@@ -1,0 +1,27 @@
+<!--index.wxml-->
+<view class="flex-col justify-center content-center items-center flex">
+  <view class="userinfo mt-100px">
+    <block wx:if="{{canIUseOpenData}}">
+      <view class="userinfo-avatar" bindtap="bindViewTap">
+        <open-data type="userAvatarUrl"></open-data>
+      </view>
+      <open-data type="userNickName"></open-data>
+    </block>
+    <block wx:elif="{{!hasUserInfo}}">
+      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
+      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
+    </block>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="usermotto font-serif mt-100px" >
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <button bindtap="getUserProfile" class="mt-20px">获取用户信息</button>
+  <button bindtap="getToken" class="mt-20px">获取token</button>
+  <button bindtap="tokenTest" class="mt-20px">token测试</button>
+  <button bindtap="apiTest" class="mt-20px">封装api测试</button>
+</view>
