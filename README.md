@@ -4,6 +4,8 @@
 
 ## 小程序开发手册
 
+- 小程序是由一个个page组成的，一个page是一个独立的小程序页面，其包含四个文件（下面会提到）
+
 - 小程序`Pages`项目结构
 
   - `wxml`：极其类似`html`
@@ -31,11 +33,27 @@
 
 ![image-20220418164815736](https://peng-img.oss-cn-shanghai.aliyuncs.com/markdown-img/image-20220418164815736.png)
 
+- 使用`windicss`框架（[文档]([开始 | Windi CSS](https://cn.windicss.org/guide/))）写css，好处是按需引入、轻量。**当然如果觉得不习惯也可以自己写css**。使用方式：
+
+> 全局安装windicss依赖(安装过后，后续无需再次安装)
+>
+> ```
+> cnpm i -g windicss
+> ```
+>
+> 在小程序目录的终端下执行下列命令
+>
+> ```
+> windicss '**.wxml' -o windi.wxss -d
+> ```
+> 随后就可以开始写css了
+
 ## 开发约定
 
 - UI组件库：待定（LinUI、VantUI...）
 - 代码检查：eslint
 - 所有的静态资源（图片等）部署后用url引入，因为小程序发布时有代码体积限制（我记得是2M）
+- 组件**按需引入**，避免使用全局自定义组件和插件，目的也是为了给小程序瘦身提速。具体方式见[代码包体积优化 | 微信开放文档 (qq.com)](https://developers.weixin.qq.com/miniprogram/dev/framework/performance/tips/start_optimizeA.html)
 - 在`dev分支`里开发（或者建一个自己的分支），最后统一`merge`到`main分支`
 - 目前的页面是供后端接口测试用
   - 先点击`获取用户信息`
