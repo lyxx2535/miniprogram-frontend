@@ -32,7 +32,7 @@ Page({
         }
       })
     },
-    async apiTest(){
+    async getOpenid(){
       const response = await api._login(wx.getStorageSync('code'));
       console.log(response);
       wx.setStorageSync('session_key', response.data.session_key);

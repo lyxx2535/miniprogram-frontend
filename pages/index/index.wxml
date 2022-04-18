@@ -21,7 +21,8 @@
     <text class="user-motto">{{motto}}</text>
   </view>
   <button bindtap="getUserProfile" class="mt-20px">获取用户信息</button>
+  <button bindtap="getOpenid" class="mt-20px">获取openid</button>
   <button bindtap="getToken" class="mt-20px">获取token</button>
   <button bindtap="tokenTest" class="mt-20px">token测试</button>
-  <button bindtap="apiTest" class="mt-20px">封装api测试</button>
+
 </view>
