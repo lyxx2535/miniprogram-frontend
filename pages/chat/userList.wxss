@@ -27,9 +27,9 @@
   cursor: pointer;
 }
 .item .poster {
-  width: 128rpx;
-  height: 128rpx;
-  margin-right: 20rpx;
+  width: 110rpx;
+  height: 110rpx;
+  margin-right: 29rpx;
 }
 .item .meta {
   flex: 1;
@@ -39,7 +39,7 @@
   margin-bottom: 15rpx;
 }
 .item .meta .title {
-  font-size: 32rpx;
+  font-size: 38rpx;
 }
 .item .meta .sub-title {
   font-size: 22rpx;
