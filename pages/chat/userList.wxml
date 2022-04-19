@@ -5,7 +5,7 @@
   <loading hidden="{{!loading}}">加载中...</loading>
   <!--顶部标题栏-->
   <view class='page-header'>
-    <text class='page-title'>好友列表</text>
+    <text class='page-title'>消息列表</text>
   </view>
   <!--列表-->
   <view class='page-body' wx:for="{{list}}" wx:key="id">
