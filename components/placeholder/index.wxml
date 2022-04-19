@@ -1,2 +1,2 @@
 <!--components/placeholder/index.wxml-->
-<view style="height:{{navHeight}}px;"></view>
+<view style="height:{{navHeight}}rpx;"></view>

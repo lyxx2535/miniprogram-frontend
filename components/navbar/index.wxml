@@ -1,13 +1,13 @@
 <!--components/navbar.wxml-->
-<view class="navbar custom-class" style='height:{{navHeight}}px;background-color:{{bgColor}}'>
-  <view class="navbar-action-wrap navbar-action-group row item-center"
-    style='top:{{navTop}}px;background-color:rgba(255,255,255,.6)'>
+<view class="navbar custom-class" style='height:{{navHeight}}rpx;background-color:{{bgColor}}'>
+  <!-- <view class="navbar-action-wrap navbar-action-group row item-center"
+    style='top:{{navTop}}rpx;background-color:rgba(255,255,255,.6)'>
     <view wx:if="{{showBack}}" name="back" block="{{true}}" class="navbar-action_item iconfont iconzuojiantou" bindtap="_navBack">
     </view>
     <view wx:if="{{showHome}}" name="index" block="{{true}}" class="navbar-action_item iconfont iconshouye last" bindtap="_toIndex">
     </view>
-  </view>
-  <view class='navbar-title' style='top:{{navTop}}px'>
+  </view> -->
+  <view class='navbar-title' >
     {{pageName}}
   </view>
 </view>

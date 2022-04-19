@@ -35,7 +35,7 @@ Page({
     functionShow: false,//扩展区，目前只支持发图片
     toBottom:'bottom',// 滚动到底部
     emojiShow: false, //表情区是否显示
-    paddingBottom:80, //消息内容区距底部的距离
+    paddingBottom:20, //消息内容区距底部的距离
     keyboardHeight:15,//输入框距下边框距离
     emojiSource: 'https://s1.ax1x.com/2022/04/19/LBDn78.png',//表情图片
     windowHeight:0,//聊天内容区的高度
@@ -84,6 +84,12 @@ Page({
           },function(){
             this.linkSocket();
             this.getMessageHistory("init");
+          })
+          wx.setNavigationBarTitle({
+            title: res.data.data.name,
+            fail: err => {
+              console.log(err)
+            }
           })
         }
       },
