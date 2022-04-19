@@ -13,34 +13,30 @@ App({
         app.globalData.code = res.code;
         wx.setStorageSync('code', res.code)
         console.log("code：" + wx.getStorageSync('code'))
-        // console.log("code："+app.globalData.code)
-        // 发起网络请求
-    //     wx.request({
-    //     // 后端地址
-    //     url: 'http://124.223.105.99:8085/api/user/sessionId',
-    //     data: {
-    //       code: app.globalData.code
-    //     },
-    //     method: 'GET',
-    //     // 获取后端回传的openid
-    //     success: token => {
-    //       // console.log(token);
-    //       app.globalData.openid = token.data.openid;
-    //       app.globalData.sessionId = token.data.sessionId;
-    //       console.log('openid: ' + app.globalData.openid)
-    //     },
-    //     fail: errorMsg => {
-    //       console.log(errorMsg);
-    //     }
-    //     })
+      }
+    })
+    // end of wx.login
+    let menuButtonObject = wx.getMenuButtonBoundingClientRect();
+    wx.getSystemInfo({
+      success: res => {
+        let statusBarHeight = res.statusBarHeight;
+        //胶囊按钮与顶部的距离
+        let navTop = menuButtonObject.top;
+        //导航高度
+        let navHeight = statusBarHeight + menuButtonObject.height + (menuButtonObject.top - statusBarHeight) * 2;
+        this.globalData.navHeight = navHeight;
+        this.globalData.navTop = navTop;
+        this.globalData.windowHeight = res.windowHeight;
+      },
+      fail(err) {
+        console.log(err);
       }
     })
   },
   globalData: {
     userInfo: null,
-    // code: "",
-    // openid: "",
-    // sessionId: "",
-    // token: "",
+    navHeight:0,
+    baseAPI: 'http://localhost:9999/message-server/',
+    wsBaseAPI: 'ws://localhost:9999/message-server/',
   }
 })

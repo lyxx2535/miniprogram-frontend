@@ -1,0 +1,23 @@
+<!--pages/list/list.wxml-->
+<!--列表页-->
+<view class='container'>
+  <!--等待框-->
+  <loading hidden="{{!loading}}">加载中...</loading>
+  <!--顶部标题栏-->
+  <view class='page-header'>
+    <text class='page-title'>好友列表</text>
+  </view>
+  <!--列表-->
+  <view class='page-body' wx:for="{{list}}" wx:key="id">
+    <!--类型判断,显示不同的数据-->
+    <block>
+        <view class='item'  bindtap="chat" data-openId='{{item.openId}}'>
+          <image class='poster' src='{{item.avatar}}'></image>
+          <view class='meta'>
+            <text class='title'>{{item.name}}</text>
+            <text class='sub-title'>我怎么会爱上一个我讨厌的人呢</text>
+          </view>
+        </view>
+    </block>
+  </view>
+</view>
