@@ -1,5 +1,5 @@
-import { httpRequest } from 'http.js' //引入上面封装好的请求方法
 import * as API from '../enum/enums.js'
+import { httpRequest } from './http.js' //引入上面封装好的请求方法
 import { uploadMedia } from './http.js'
 
 // 登录，参数是用户code
@@ -50,6 +50,7 @@ const _get_user_info = () => {
 const _upload_nucleic = () => {
   return uploadMedia({
     url: API.NUCLEIC_ACID,
+    name: 'image',
     header: {
       'content-type': 'multipart/form-data'
     }

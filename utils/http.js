@@ -2,6 +2,7 @@
  * author: Peng Junzhi
  * date: 20220418
  */
+
 //后端地址公共部分
 const pubUrl = "http://124.223.105.99:8085/api/"
 
@@ -36,7 +37,7 @@ const uploadMedia = (options) =>{
           wx.uploadFile({
             url: pubUrl + options.url,
             filePath: res.tempFiles[index].tempFilePath,
-            name: 'image',
+            name: options.name,
             formData: options.data || {},
             header: options.header || {
               'content-type': 'multipart/form-data',
