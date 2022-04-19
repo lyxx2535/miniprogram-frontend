@@ -47,7 +47,7 @@ Page({
     },
     async getUserInfo(){
       const res = await api._get_user_info();
-      wx.setStorageSync('userInfo', res);
+      wx.setStorageSync('userInfo', res.data.data);
       console.log('userInfo: ' + wx.getStorageSync('userInfo'))
       console.log(res.data)
     },
