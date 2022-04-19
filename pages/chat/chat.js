@@ -15,7 +15,7 @@ Page({
     },
     pageName:'',//页面名称
     popupFlag:true,
-    sendId:2, //当前用户,此处定死 实际场景中改为自己业务ID
+    sendId:1, //当前用户,此处定死 实际场景中改为自己业务ID
     sendOpenId: wx.getStorageSync('myOpenid'),//当前用户OPENID
     lineHeight: 24,//表情的大小
     receiveId:'',//接受人

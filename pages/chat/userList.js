@@ -7,7 +7,7 @@ Page({
   data: {
     title: '加载中...', // 状态
     list: [], // 数据列表
-    myOpenId: '2222',
+    myOpenId: '1111',
     type: '', // 数据类型
     loading: true // 显示等待框
   },

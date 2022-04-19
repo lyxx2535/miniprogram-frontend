@@ -35,8 +35,21 @@ const _get_token = (avatarUrl, nickName, openId, school) => {
   })
 }
 
+// 查询用户详细信息，需要token
+const _get_user_info = () => {
+  return httpRequest({
+    url: API.GET_USER_INFO,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    method: "POST",
+  })
+}
+
 export {
   _login,
   _get_token,
-
+  _get_user_info,
 }

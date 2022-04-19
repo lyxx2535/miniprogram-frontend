@@ -1,6 +1,6 @@
 <!--index.wxml-->
 <view class="flex-col justify-center content-center items-center flex">
-  <view class="userinfo mt-100px">
+  <view class="userinfo mt-50px">
     <block wx:if="{{canIUseOpenData}}">
       <view class="userinfo-avatar" bindtap="bindViewTap">
         <open-data type="userAvatarUrl"></open-data>
@@ -17,12 +17,13 @@
       <text class="userinfo-nickname">{{userInfo.nickName}}</text>
     </block>
   </view>
-  <view class="usermotto font-serif mt-100px" >
+  <view class="usermotto font-serif mt-40px" >
     <text class="user-motto">{{motto}}</text>
   </view>
   <button bindtap="getUserProfile" class="mt-20px">获取用户信息</button>
   <button bindtap="getOpenid" class="mt-20px">获取openid</button>
   <button bindtap="getToken" class="mt-20px">获取token</button>
+  <button bindtap="getUserInfo" class="mt-20px">向后端获取用户详细信息</button>
   <button bindtap="tokenTest" class="mt-20px">token测试</button>
 
 </view>

@@ -27,7 +27,7 @@ Page({
             userInfo: res.userInfo,
             hasUserInfo: true
           })
-          wx.setStorageSync('userInfo', res.userInfo)
+          wx.setStorageSync('userInfo_wx', res.userInfo)
         }
       })
     },
@@ -38,12 +38,18 @@ Page({
       wx.setStorageSync('openid', response.data.openid);
     },
     async getToken(){
-      const res = await api._get_token(wx.getStorageSync('userInfo').avatarUrl,
-                                       wx.getStorageSync('userInfo').nickName,
+      const res = await api._get_token(wx.getStorageSync('userInfo_wx').avatarUrl,
+                                       wx.getStorageSync('userInfo_wx').nickName,
                                        wx.getStorageSync('openid'),
                                        '南京大学')
       wx.setStorageSync('token', res.data.data.token)
       console.log('token: ' + wx.getStorageSync('token'));
+    },
+    async getUserInfo(){
+      const res = await api._get_user_info();
+      wx.setStorageSync('userInfo', res);
+      console.log('userInfo: ' + wx.getStorageSync('userInfo'))
+      console.log(res.data)
     },
     tokenTest(e) {
       wx.request({
