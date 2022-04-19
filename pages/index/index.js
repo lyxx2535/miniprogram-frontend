@@ -1,7 +1,6 @@
 // index.js
 import * as api from '../../utils/api.js'
 // 获取应用实例
-const util = require('../../utils/format.js')
 const app = getApp()
 
 Page({

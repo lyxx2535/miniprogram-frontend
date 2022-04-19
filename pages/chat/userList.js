@@ -7,7 +7,7 @@ Page({
   data: {
     title: '加载中...', // 状态
     list: [], // 数据列表
-    myOpenId:'1111',
+    myOpenId: '2222',
     type: '', // 数据类型
     loading: true // 显示等待框
   },
@@ -26,6 +26,8 @@ Page({
     const _this = this;
     // 拼接请求url
     const url =  App.globalData.baseAPI + 'mobile/register/getMemberList/' + openId;
+    wx.setStorageSync('myOpenid', Number(openId));
+    console.log(wx.getStorageSync('myOpenid'))
     // 请求数据
     wx.request({
       url: url,

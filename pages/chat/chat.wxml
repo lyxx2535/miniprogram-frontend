@@ -67,6 +67,7 @@
 		<view style="display: -webkit-box;display: -webkit-flex;display: flex;-webkit-box-align: center;-webkit-align-items: center;align-items: center;font-size: 0;width:100%;padding: 8px 0px;background-color: #F9F9F9;">
 			<view class="reply_form_wrp" >
 			  <label for="" class="reply_label">
+        <!-- 输入框 -->
 			    <textarea
 			      style="height:30px"
 			      class="reply_input"

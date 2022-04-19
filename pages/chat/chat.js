@@ -3,7 +3,6 @@ const App = getApp();
 const util = require('../../utils/chat');
 let socketOpen = false;
 Page({
-
   /**
    * 页面的初始数据
    */
@@ -16,8 +15,8 @@ Page({
     },
     pageName:'',//页面名称
     popupFlag:true,
-    sendId:0,//当前用户,此处定死实际场景中改为自己业务ID
-    sendOpenId:1111,//当前用户OPENID
+    sendId:2, //当前用户,此处定死 实际场景中改为自己业务ID
+    sendOpenId: wx.getStorageSync('myOpenid'),//当前用户OPENID
     lineHeight: 24,//表情的大小
     receiveId:'',//接受人
     roomId:'',//房间ID 防止串线
@@ -60,14 +59,15 @@ Page({
   //获取对方信息
   getReceiveInfo(openId){
    const _this = this;
-    const sendId = this.data.sendId;
+   const sendId = this.data.sendId;
     wx.request({
       url: App.globalData.baseAPI + 'mobile/register/verifyMember/' + openId,
       method: 'GET',
-      success: data => {
+      success: res => {
         console.log(1);
-        if (data.data.code == 0) {
-          const info = data.data.data;
+        console.log(res.data.data)
+        if (res.data.code == 0) {
+          const info = res.data.data;
           _this.setData({
             receiveId:info.id,
             receiveAvatar:info.avatar,
@@ -217,7 +217,6 @@ Page({
       functionShow: false,
       emojiShow:!this.data.emojiShow
     },function(){
-
         this.setData({
           keyboardHeight:this.data.emojiShow?300:0,
           paddingBottom:this.data.emojiShow?300:80
@@ -234,7 +233,8 @@ Page({
       functionShow:!this.data.functionShow,
       isPaddingBottom:!this.data.functionShow,
       emojiShow: false
-    },function(){
+    },
+    function(){
       this.setData({
         keyboardHeight:this.data.functionShow?200:0,
         paddingBottom:this.data.functionShow?200:80
