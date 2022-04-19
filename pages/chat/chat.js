@@ -1,6 +1,6 @@
 // pages/chat/chat.js
 const App = getApp();
-const util = require('../../utils/util');
+const util = require('../../utils/chat');
 let socketOpen = false;
 Page({
 

@@ -2,7 +2,6 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/test/test",
     "pages/chat/userList",
     "pages/chat/chat"
   ],
