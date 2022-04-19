@@ -90,10 +90,10 @@
 			  <image src="./images/reply_tool_emoji.svg" mode='aspectFit' class="reply_tool_pic"></image>
 			</view>
 			<view hover-class="active" class="reply_button replay_media_button" bindtap="showFunction">
-			  <image src="./images/reply_tool_add.png" mode='aspectFit' class="reply_tool_pic"></image>
+			  <image src="https://s1.ax1x.com/2022/04/19/LBDRAO.png" mode='aspectFit' class="reply_tool_pic"></image>
 			</view>
       <view>
-        <image src="./images/send.png" mode='aspectFit' class="reply_button replay_media_button" style="margin-right: 20rpx;" bindtap="onConfirm"></image>
+        <image src="https://s1.ax1x.com/2022/04/19/LBDbHf.png" mode='aspectFit' class="reply_button replay_media_button" style="margin-right: 20rpx;" bindtap="onConfirm"></image>
       </view>
 		</view>
 	</view>
