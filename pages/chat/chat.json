@@ -2,7 +2,7 @@
   "usingComponents": {
     "navbar":"/components/navbar/index",
     "placeholder":"/components/placeholder/index",
-    "mp-emoji": "../../components/emoji/index"
+    "mp-emoji": "/components/emoji/index"
   },
   "pageOrientation": "auto",
   "navigationBarTitleText": "111"

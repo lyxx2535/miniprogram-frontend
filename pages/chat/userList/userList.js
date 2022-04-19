@@ -1,9 +1,8 @@
-// pages/list/list.js
 /**
  * author: Peng Junzhi
  * date: 2022-04-19
  */
-import * as API from '../../enum/enums'
+import * as API from '../../../enum/enums'
 const App = getApp();
 Page({
   /**
@@ -12,7 +11,7 @@ Page({
   data: {
     title: '加载中...', // 状态
     list: [], // 数据列表
-    myOpenId: '1111',
+    myOpenId: '5555',
     // myOpenId: wx.getStorageSync('openid'),
     type: '', // 数据类型
     loading: true // 显示等待框
@@ -20,8 +19,9 @@ Page({
   toChat(event){
     let openId = event.currentTarget.dataset.openid;
     wx.navigateTo({
-      url: `/pages/chat/chat?receiveOpenId=`+openId,
+      url: `/pages/chat/charBox/chat?receiveOpenId=`+openId,
     })
+    console.log(openId);
   },
   /**
    * 生命周期函数--监听页面加载
@@ -31,7 +31,7 @@ Page({
     const _this = this;
     // 拼接请求url
     const url =  API.CHAT_BASE + 'mobile/register/getMemberList/' + openId;
-    wx.setStorageSync('myOpenid', openId);
+    wx.setStorageSync('myOpenid', Number(openId));
     console.log(wx.getStorageSync('myOpenid'))
     // TODO: GET接口，无参数，带token，请求所有聊天过的用户数据
     // 返回对象数组，每个对象包含用户名、用户头像url及对应的最新消息内容和通信时间

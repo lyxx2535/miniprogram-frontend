@@ -22,8 +22,8 @@ Page({
     },
     pageName:'',//页面名称
     popupFlag:true,
-    sendId:5, //当前用户,此处定死 实际场景中改为自己业务ID
-    sendOpenId: wx.getStorageSync('myOpenid'),//当前用户OPENID
+    sendId:1, //当前用户,此处定死 实际场景中改为自己业务ID
+    sendOpenId: '',//当前用户OPENID
     lineHeight: 24,//表情的大小
     receiveId:'',//接受人
     roomId:'',//房间ID 防止串线
@@ -102,7 +102,11 @@ Page({
   //获取我的信息
   getMemberInfo(){
     const _this = this;
-    const openId = this.data.sendOpenId;
+    const openId = wx.getStorageSync('myOpenid');
+    this.setData({
+      sendOpenId: openId
+    })
+    console.log('我的openid：' + openId);
         // TODO：封装api
      wx.request({
        url: API.CHAT_BASE + 'mobile/register/verifyMember/' + openId,
@@ -110,7 +114,6 @@ Page({
        success: data => {
          if (data.data.code == 0) {
            const info = data.data.data;
-           console.log('获取我的信息:' + info)
            _this.setData({
              //初始化头像
              sendAvatar:info.avatar,
