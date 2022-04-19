@@ -53,6 +53,11 @@ Page({
       console.log('userInfo: ' + wx.getStorageSync('userInfo'))
       console.log(res.data)
     },
+    async uploadImg(){
+      const res = await api._upload_nucleic();
+      console.log(res.data)
+    },
+    
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({

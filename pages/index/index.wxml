@@ -24,5 +24,6 @@
   <button bindtap="getOpenid" class="mt-20px">获取openid</button>
   <button bindtap="getToken" class="mt-20px">获取token</button>
   <button bindtap="getUserInfo" class="mt-20px">向后端获取用户详细信息</button>
+  <button bindtap="uploadImg" class="mt-20px">上传核酸截图</button>
 
 </view>

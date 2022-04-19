@@ -6,7 +6,8 @@ const GET_USER_INFO = '/user/query';
 // chat
 const CHAT_BASE = 'http://localhost:9999/message-server/'
 const WS_BASE = 'ws://localhost:9999/message-server/'
-// const 
+// OCR
+const NUCLEIC_ACID = '/nucleic-acid/upload';
 
 export {
   LOGIN_API,
@@ -15,4 +16,5 @@ export {
   GET_USER_INFO,
   CHAT_BASE,
   WS_BASE,
+  NUCLEIC_ACID,
 }
