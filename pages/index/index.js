@@ -28,6 +28,8 @@ Page({
             hasUserInfo: true
           })
           wx.setStorageSync('userInfo_wx', res.userInfo)
+          this.getOpenid();
+          this.getToken();
         }
       })
     },
@@ -51,27 +53,13 @@ Page({
       console.log('userInfo: ' + wx.getStorageSync('userInfo'))
       console.log(res.data)
     },
-    tokenTest(e) {
-      wx.request({
-        url: 'http://124.223.105.99:8085/api/user/test',
-        // url: 'http://localhost:8085/api/user/test',
-        method: 'get',
-        header:{
-          "content-type": "application/json",
-          'accept': 'application/json',
-          "Authorization": wx.getStorageSync('token'),
-        },
-        success: res => {
-          console.log(res);
-        }
-      })
-    },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
       })
     }
+    console.log('load index page!')
   },
 
 })

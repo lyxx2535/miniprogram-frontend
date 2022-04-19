@@ -5,7 +5,7 @@
   bottom: 0rpx;
   display: flex;
   align-items: center;
-  background: #fff;
+  background: white;
   z-index: 9999;
 }
 .reply_function_pic {
@@ -16,7 +16,7 @@
 .function_item_img{
 width: 64px;
 height: 64px;
-background:#FFFFFF;
+background:white;
 border-radius:10px;
 }
 .function_item {
@@ -111,8 +111,8 @@ video{
   height: 32px;
 }
 .cu-chat .cu-item>.cu-avatar {
-	width: 80rpx;
-	height: 80rpx;
+	width: 90rpx;
+	height: 90rpx;
 }
 
 .cu-chat .cu-item>.main {

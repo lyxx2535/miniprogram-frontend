@@ -1,7 +1,14 @@
 // pages/chat/chat.js
+/**
+ * author: Peng Junzhi
+ * date: 2022-04-19
+ */
+import * as API from '../../enum/enums'
+
 const App = getApp();
 const util = require('../../utils/chat');
-let socketOpen = false;
+let isSocketOpen = false;
+
 Page({
   /**
    * 页面的初始数据
@@ -15,57 +22,57 @@ Page({
     },
     pageName:'',//页面名称
     popupFlag:true,
-    sendId:1, //当前用户,此处定死 实际场景中改为自己业务ID
+    sendId:5, //当前用户,此处定死 实际场景中改为自己业务ID
     sendOpenId: wx.getStorageSync('myOpenid'),//当前用户OPENID
     lineHeight: 24,//表情的大小
     receiveId:'',//接受人
     roomId:'',//房间ID 防止串线
     list:[],//消息列表
-    focus: false,//光标选中
+    focus: true,//光标选中
     cursor: 0,//光标位置
     comment:'',//文本内容
     resource:'',//资源内容 图片或视频
-    functionShow: false,//扩展区
-    toLast:'toLast',// 滚动到底部
+    functionShow: false,//扩展区，目前只支持发图片
+    toBottom:'bottom',// 滚动到底部
     emojiShow: false, //表情区是否显示
     paddingBottom:80, //消息内容区距底部的距离
-    keyboardHeight:0,//输入框距下边框距离
+    keyboardHeight:15,//输入框距下边框距离
     emojiSource: './images/emoji-sprite.png',//表情图片
     windowHeight:0,//聊天内容区的高度
-    sendAvatar:'https://lyhl.oss-cn-shanghai.aliyuncs.com/20210530/cbe1b8d05cd74745b058dfcb5961e71d.jpg',//当前用户头像
+    sendAvatar:'',//当前用户头像
+    // https://lyhl.oss-cn-shanghai.aliyuncs.com/20210530/cbe1b8d05cd74745b058dfcb5961e71d.jpg
     receiveAvatar:'',//聊天对象头像
     limit:1,//重连次数
     imgList:[],//聊天记录中的图片数组
     pageNo:1, //聊天记录页码
-    pageSize:2,
-    isDisConnection:false//是否是手动断开锻炼
+    pageSize:10,
+    isDisConnection:false//是否是手动断开连接
   },
-  /**
-   * 生命周期函数--监听页面加载
-   *
-   */
 
   onLoad: function (options) {
-    console.log("屏幕高度："+wx.getSystemInfoSync().windowHeight);
-    console.log("头高度："+App.globalData.navHeight);
-    const receiveOpenId = options.receiveOpenId?options.receiveOpenId:'2222';
+    console.log("屏幕高度：" + wx.getSystemInfoSync().windowHeight);
+    console.log("头高度：" + App.globalData.navHeight);
+    //默认对象是2222
+    const receiveOpenId = options.receiveOpenId ? options.receiveOpenId:'2222';
     this.getReceiveInfo(receiveOpenId);
     this.getMemberInfo();
+    //初始化emoji组件
     const emojiInstance = this.selectComponent('.mp-emoji');
     this.emojiNames = emojiInstance.getEmojiNames();
     this.parseEmoji = emojiInstance.parseEmoji;
     this.getScollBottom();
   },
+
   //获取对方信息
   getReceiveInfo(openId){
    const _this = this;
    const sendId = this.data.sendId;
+   // TODO：封装api
     wx.request({
-      url: App.globalData.baseAPI + 'mobile/register/verifyMember/' + openId,
+      url: API.CHAT_BASE + 'mobile/register/verifyMember/' + openId,
       method: 'GET',
       success: res => {
-        console.log(1);
-        console.log(res.data.data)
+        console.log('获取聊天对象信息：' + res.data.data)
         if (res.data.code == 0) {
           const info = res.data.data;
           _this.setData({
@@ -85,19 +92,21 @@ Page({
       }
     })
   },
+
   //获取我的信息
   getMemberInfo(){
     const _this = this;
-     const openId = this.data.sendOpenId;
+    const openId = this.data.sendOpenId;
+        // TODO：封装api
      wx.request({
-       url: App.globalData.baseAPI + 'mobile/register/verifyMember/' + openId,
+       url: API.CHAT_BASE + 'mobile/register/verifyMember/' + openId,
        method: 'GET',
        success: data => {
-         console.log(1);
          if (data.data.code == 0) {
            const info = data.data.data;
+           console.log('获取我的信息:' + info)
            _this.setData({
-             balance:info.balance?info.balance:0,
+             //初始化头像
              sendAvatar:info.avatar,
            },function(){
            })
@@ -108,28 +117,31 @@ Page({
        }
      })
    },
+
   // 链接websocket
   linkSocket() {
     let that = this
     wx.connectSocket({
-      url: App.globalData.wsBaseAPI+`webSocketOneToOne/${this.data.sendId}/${this.data.roomId}`,
+      url: API.WS_BASE + `webSocketOneToOne/${this.data.sendId}/${this.data.roomId}`,
       success() {
-        socketOpen = true;
+        isSocketOpen = true;
         that.initEventHandle()
       }
     })
   },
 
    initEventHandle() {
+     // 监听 WebSocket 接受到服务器的消息事件
     wx.onSocketMessage((res) => {
       //接收到消息
-      console.log("接收到消息"+JSON.stringify(res));
+      console.log("接收到消息" + JSON.stringify(res));
       let resJson = JSON.parse(res.data);
       var messageObj = {};
       messageObj.sendId = resJson.sender;
       if(messageObj.sendId === this.data.sendId){
         //消息发送成功的回调，删除菊花即可。
         for(let item in this.data.list){
+          //访问list数组里的json
           if(this.data.list[item].requestId === resJson.requestId){
             this.data.list[item].requestId = null;
             this.data.list[item].time = util.tsFormatTime(resJson.createdTime,'Y-M-D h:m');
@@ -137,7 +149,7 @@ Page({
           }
         }
         this.setData({
-          list:this.data.list
+          list: this.data.list
         })
         return;
       }else{
@@ -170,7 +182,7 @@ Page({
     })
     wx.onSocketClose((res) => {
       console.log('WebSocket 已关闭！');
-      socketOpen = false;
+      isSocketOpen = false;
       if(this.data.isDisConnection){
         this.reconnect()
       }
@@ -181,6 +193,7 @@ Page({
     if (this.lockReconnect) return;
     this.lockReconnect = true;
     clearTimeout(this.timer)
+    //超时计时器
     if (this.data.limit < 12) {
       this.timer = setTimeout(() => {
         this.linkSocket();
@@ -192,6 +205,7 @@ Page({
       console.log("重新连接中："+this.data.limit);
     }
   },
+  //改变输入框高度函数，未使用。
   onkeyboardHeightChange(e) {
     const {height} = e.detail
     this.setData({
@@ -203,6 +217,7 @@ Page({
    * @param {} event
    */
   preview:function(event){
+    console.log('预览图片！')
     let currentUrl = event.currentTarget.dataset.src
     wx.previewImage({
       current:currentUrl,
@@ -217,6 +232,7 @@ Page({
       functionShow: false,
       emojiShow:!this.data.emojiShow
     },function(){
+        //改变输入框高度
         this.setData({
           keyboardHeight:this.data.emojiShow?300:0,
           paddingBottom:this.data.emojiShow?300:80
@@ -264,6 +280,7 @@ Page({
     this.data.comment = value
   },
   onConfirm() {
+      //消息发送前的处理
     let msg = this.data.comment;
       if (msg == "") {
         wx.showToast({
@@ -275,8 +292,8 @@ Page({
       }
     const parsedComment = this.parseEmoji(this.data.comment)
     this.onsend(this.data.typeToCode.text,parsedComment)
+    this.getScollBottom();
   },
-  //消息发送前的处理
   onsend(type,message) {
     const obj = {};
     obj.content = message; //消息内容
@@ -291,7 +308,6 @@ Page({
       obj.lastMessageTime = this.data.list[this.data.list.length-1].time;
     }
   
-
     //消息先加入聊天区域，此时菊花是转的
     this.data.list.push(obj);
     this.setData({
@@ -307,7 +323,7 @@ Page({
     if(type === this.data.typeToCode.image || type ===this.data.typeToCode.video ){ //图片或视频
       const that  =this;
       wx.uploadFile({
-        url: App.globalData.baseAPI+'mobile/media/upload',
+        url: API.CHAT_BASE + 'mobile/media/upload',
         filePath: obj.content,
         name: 'file',
         formData: {
@@ -327,11 +343,11 @@ Page({
     }else{
       this.sendSocket(obj);
     }
-
   },
+
   //socket发送消息
   sendSocket:function(obj){
-    if (socketOpen) {
+    if (isSocketOpen) {
       wx.sendSocketMessage({
         data: JSON.stringify(obj),
         success(res) {
@@ -389,8 +405,9 @@ Page({
       emojiShow: false
     })
   },
+  //发送消息后滚动到最底部
   getScollBottom() {
-      this.setData({'toLast':'toLast'})
+      this.setData({toBottom: 'bottom'})
   },
   /**
    * 插入表情
@@ -484,13 +501,6 @@ Page({
 
   },
 
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-
-  },
-
   onPulling(e) {
     console.log('onPulling:', e)
   },
@@ -515,10 +525,11 @@ Page({
   onAbort(e) {
     console.log('onAbort', e)
   },
+
   //下拉获取聊天记录
   getMessageHistory(ident){
     wx.request({
-      url: App.globalData.baseAPI + 'mobile/message/getMessageHistory',
+      url: API.CHAT_BASE + 'mobile/message/getMessageHistory',
       data:{myMemberId:this.data.sendId,youMemberId:this.data.receiveId,pageNo:this.data.pageNo,pageSize:this.data.pageSize},
       method: 'GET',
       success: data => {

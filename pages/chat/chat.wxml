@@ -1,8 +1,9 @@
 <view class='view-page'>
-  <navbar page-name="{{pageName}}" show-home="{{false}}" show-nav="{{false}}"></navbar>
+  <navbar page-name="{{pageName}}" show-home="{{false}}" show-back="{{false}}" 
+  style="margin-top: -20rpx;"></navbar>
   <placeholder></placeholder>
   <view class="comments cu-chat" id="x_chat">
-    <scroll-view scroll-y="{{true}}" scroll-with-animation='{{true}}' scroll-into-view="{{toLast}}"
+    <scroll-view scroll-y="{{true}}" scroll-with-animation='{{true}}' scroll-into-view="{{toBottom}}"
     style="width:100%;height:{{windowHeight}}px;"
   refresher-enabled="{{true}}"
   refresher-threshold="{{200}}"
@@ -35,10 +36,10 @@
             <video wx:if="{{item.messageType==2}}" src="{{item.content}}"></video>
              <image data-src="{{item.content}}" catchtap="preview" wx:if="{{item.messageType==3}}" class="messageImg" mode="widthFix"  src="{{item.content}}"></image>
         </view>
-        <image class="cu-avatar" src="{{sendAvatar}}"/>
+        <image class="cu-avatar" style="border-radius: 50%;" src="{{sendAvatar}}"/>
       </view>
       <view class="cu-item"  wx:if="{{item.sendId != sendId}}">
-        <image class="cu-avatar" src="{{receiveAvatar}}"/>
+        <image class="cu-avatar" style="border-radius: 50%;" src="{{receiveAvatar}}"/>
         <view class="main">
           <view class="{{item.messageType==0?'bg-white':''}} content  shadow">
               <block wx:for="{{item.content}}" wx:key="index" wx:for-item="pro">
@@ -58,7 +59,7 @@
         </view>
       </view>
     </view>
-    <view id="toLast" style="height:{{paddingBottom}}px"></view>
+    <view id="bottom" style="height:{{paddingBottom}}px"></view>
   </scroll-view>
 </view>
   <view class="reply_wrp" style="bottom: 0px">
@@ -91,6 +92,9 @@
 			<view hover-class="active" class="reply_button replay_media_button" bindtap="showFunction">
 			  <image src="./images/reply_tool_add.png" mode='aspectFit' class="reply_tool_pic"></image>
 			</view>
+      <view>
+        <image src="./images/send.png" mode='aspectFit' class="reply_button replay_media_button" style="margin-right: 20rpx;" bindtap="onConfirm"></image>
+      </view>
 		</view>
 	</view>
   </view>

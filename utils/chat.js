@@ -1,4 +1,4 @@
-
+import * as API from '../enum/enums'
 const App = getApp();
 const formatTime = date => {
   const year = date.getFullYear()
@@ -102,7 +102,7 @@ const loadLocation=function(){
   })
 }
 
-const request=function(method,url,params,header,showLoading=true){
+const request = function(method,url,params,header,showLoading=true){
   return new Promise((resolve, reject) => {
     if(showLoading){
       wx.showLoading({
@@ -110,7 +110,7 @@ const request=function(method,url,params,header,showLoading=true){
       })
     }
     wx.request({
-      url:  `${App.globalData.baseAPI}${url}`,
+      url:  `${API.CHAT_BASE}${url}`,
       method: method,
       data:params,
       header: header,
