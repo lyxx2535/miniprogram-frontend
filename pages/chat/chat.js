@@ -297,10 +297,10 @@ Page({
         return;
       }
     const parsedComment = this.parseEmoji(this.data.comment)
-    this.onsend(this.data.typeToCode.text,parsedComment)
+    this.onSend(this.data.typeToCode.text,parsedComment)
     this.getScollBottom();
   },
-  onsend(type,message) {
+  onSend(type, message) {
     const obj = {};
     obj.content = message; //消息内容
     obj.requestId = util.wxuuid(); //消息请求ID，用于消息是否发送成功，去除菊花
@@ -308,12 +308,10 @@ Page({
     obj.sendId = this.data.sendId; //发送人的ID
     obj.roomId = this.data.roomId; //二人组合成的房间ID
     obj.messageType = type; // 0:文本 1:图片 2:视频
-
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length>0){
       obj.lastMessageTime = this.data.list[this.data.list.length-1].time;
     }
-  
     //消息先加入聊天区域，此时菊花是转的
     this.data.list.push(obj);
     this.setData({
@@ -446,7 +444,7 @@ Page({
         const type = res.type === 'image'?that.data.typeToCode.image:that.data.typeToCode.video;
         const tempFilePaths = res.tempFiles;
         for(let index in tempFilePaths){
-          that.onsend(type,tempFilePaths[index].tempFilePath);
+          that.onSend(type, tempFilePaths[index].tempFilePath);
         }
       }
     })
