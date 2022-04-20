@@ -30,6 +30,7 @@ Page({
     const openId = this.data.myOpenId;
     const _this = this;
     // 拼接请求url
+    // todo: url: usr/friend-list need token
     const url =  API.CHAT_BASE + 'mobile/register/getMemberList/' + openId;
     wx.setStorageSync('myOpenid', openId);
     console.log(wx.getStorageSync('myOpenid'))

@@ -67,8 +67,8 @@ Page({
   getReceiveInfo(openId){
    const _this = this;
    const sendId = this.data.sendId;
-   // TODO：封装api
     wx.request({
+      // todo: 这里就是获取用户信息 可以直接调 user/query 来查询 need token
       url: API.CHAT_BASE + 'mobile/register/verifyMember/' + openId,
       method: 'GET',
       success: res => {
@@ -109,6 +109,7 @@ Page({
     console.log('我的openid：' + openId);
         // TODO：封装api
      wx.request({
+       // todo: 这里就是获取用户信息 可以直接调 user/query 来查询 need token
        url: API.CHAT_BASE + 'mobile/register/verifyMember/' + openId,
        method: 'GET',
        success: data => {
@@ -131,6 +132,7 @@ Page({
   linkSocket() {
     let that = this
     wx.connectSocket({
+      // todo: 这里需要改成: web-server/{senderId}。roomId可以删除
       url: API.WS_BASE + `webSocketOneToOne/${this.data.sendId}/${this.data.roomId}`,
       success() {
         isSocketOpen = true;
@@ -326,6 +328,7 @@ Page({
     },function(){
       this.getScollBottom();
     })
+    // todo: 这里要删除 不支持图片或者视频
     //非文本消息，先上传资源文件，在进行传输发送消息
     if(type === this.data.typeToCode.image || type ===this.data.typeToCode.video ){ //图片或视频
       const that  =this;
@@ -536,6 +539,8 @@ Page({
   //下拉获取聊天记录
   getMessageHistory(ident){
     wx.request({
+      // todo: 这里的url是：message/get-chat-history
+      // 参数是 id friendId pageNo pageSize @RequasetParam来传(即url后面+ 问号)
       url: API.CHAT_BASE + 'mobile/message/getMessageHistory',
       data:{myMemberId:this.data.sendId,youMemberId:this.data.receiveId,pageNo:this.data.pageNo,pageSize:this.data.pageSize},
       method: 'GET',
