@@ -29,7 +29,7 @@ Page({
           })
           wx.setStorageSync('userInfo_wx', res.userInfo)
           this.getOpenid();
-          this.getToken();
+          // this.getToken();
         }
       })
     },
@@ -38,6 +38,7 @@ Page({
       console.log(response);
       wx.setStorageSync('session_key', response.data.session_key);
       wx.setStorageSync('openid', response.data.openid);
+      this.getToken();
     },
     async getToken(){
       const res = await api._get_token(wx.getStorageSync('userInfo_wx').avatarUrl,
