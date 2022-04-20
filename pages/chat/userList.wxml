@@ -15,11 +15,14 @@
         <view class='item'  bindtap="toChat" data-id='{{item.id}}'>
           <image class='poster rounded-xl' style="border-color: rgba(107, 114, 128, var(--tw-border-opacity));" src='{{item.avatarUrl}}'></image>
           <view class='meta'>
-            <text class='title'>{{item.nickName}}</text>
+            <view class="title">
+              <text class="inline-block text-2xl">{{item.nickName}}</text>
+              <text class="inline-block text-sm ml-200rpx">{{item.latestChatDate}}</text>
+            </view>
             <!-- <text class='sub-title' style="font-size: 30rpx;">与ta进一步联系吧！</text> -->
             <text class='sub-title' style="font-size: 30rpx;">{{item.content}}</text>
             <!-- 聊天时间 -->
-            <!-- <text>{{item.latestChatDate}}</text> -->
+
           </view>
         </view>
     </block>

@@ -4,7 +4,7 @@
  */
 
 //后端地址公共部分
-const pubUrl = "http://124.223.105.99:8085/api/"
+const pubUrl = "http://124.223.105.99:8085/api"
 
 const httpRequest = (options) =>{
   return new Promise((resolve, reject) => {

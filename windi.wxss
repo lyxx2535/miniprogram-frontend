@@ -30,11 +30,11 @@
   --tw-bg-opacity: 1;
   background-color: rgba(255, 255, 255, var(--tw-bg-opacity));
 }
-.rounded-2xl {
-  border-radius: 1rem;
-}
 .rounded-xl {
   border-radius: 0.75rem;
+}
+.inline-block {
+  display: inline-block;
 }
 .flex {
   display: -webkit-box;
@@ -65,6 +65,47 @@
   -ms-flex-pack: center;
   -webkit-justify-content: center;
   justify-content: center;
+}
+.justify-between {
+  -webkit-box-pack: justify;
+  -ms-flex-pack: justify;
+  -webkit-justify-content: space-between;
+  justify-content: space-between;
+}
+.text-xs {
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+.text-3xl {
+  font-size: 1.875rem;
+  line-height: 2.25rem;
+}
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+.ml-30rpx {
+  margin-left: 30rpx;
+}
+.ml-100rpx {
+  margin-left: 100rpx;
+}
+.ml-150rpx {
+  margin-left: 150rpx;
+}
+.ml-220rpx {
+  margin-left: 220rpx;
+}
+.ml-200rpx {
+  margin-left: 200rpx;
 }
 .mt-50px {
   margin-top: 50px;

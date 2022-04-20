@@ -42,7 +42,7 @@ Page({
     receiveAvatar:'',//聊天对象头像
     limit:1,//重连次数
     imgList:[],//聊天记录中的图片数组
-    pageNo:1, //聊天记录页码
+    pageNo:0, //聊天记录页码
     pageSize:10,
     isDisConnection:false//是否是手动断开连接
   },
@@ -60,10 +60,10 @@ Page({
     this.parseEmoji = emojiInstance.parseEmoji;
     this.getScollBottom();
   },
-  //获取对方信息
+  // 获取对方信息
   async getReceiveInfo(id){
    const res = await _get_user_info_byId(id);
-   console.log('获取聊天对象信息：' + res.data.data);
+   console.log('获取聊天对象信息：' + JSON.stringify(res.data.data));
    if (res.data.code == 200) {
       const info = res.data.data;
       this.setData({
@@ -75,20 +75,19 @@ Page({
         this.getMessageHistory("init");
       })
       wx.setNavigationBarTitle({
-        title: res.data.data.name,
+        title: res.data.data.nickName,
         fail: err => {
           console.log(err)
         }
       })
     }
   },
-  //获取我的信息
+  // 获取我的信息
   async getMemberInfo(){
     const res = await _get_user_info();
-    console.log('send info: ' + res.data.code)
+    console.log('获取我的信息：' + JSON.stringify(res.data.data));
     if (res.data.code == 200) {
       const info = res.data.data;
-      console.log('sender avartar: ' + info.avatarUrl)
       this.setData({
         //初始化头像
         sendAvatar: info.avatarUrl,
@@ -280,7 +279,6 @@ Page({
     obj.requestId = util.wxuuid(); //消息请求ID，用于消息是否发送成功，去除菊花
     obj.receiveId = this.data.receiveId;//接收人的ID
     obj.sendId = this.data.sendId; //发送人的ID
-    obj.messageType = type; // 0:文本 1:图片 2:视频
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length>0){
       obj.lastMessageTime = this.data.list[this.data.list.length-1].time;
@@ -289,10 +287,9 @@ Page({
     this.data.list.push(obj);
     this.setData({
       comment: '',
-      resource:'',
-      giftSelected:null,
-      popupFlag:true,
-      list:this.data.list
+      resource: '',
+      popupFlag: true,
+      list: this.data.list
     },function(){
       this.getScollBottom();
     })
@@ -300,6 +297,7 @@ Page({
   },
   //socket发送消息
   sendSocket:function(obj){
+    console.log(JSON.stringify(obj))
     if (isSocketOpen) {
       wx.sendSocketMessage({
         data: JSON.stringify(obj),
@@ -408,9 +406,8 @@ Page({
     wx.getSystemInfo({
       success({windowHeight}) {
         that.setData({
-          windowHeight:windowHeight-App.globalData.navHeight-80
+          windowHeight: windowHeight - App.globalData.navHeight - 80
         })
-        console.log(windowHeight);
       }
     });
   },
@@ -481,8 +478,8 @@ Page({
 
   //下拉获取聊天记录
   async getMessageHistory(ident){
-    // console.log('history before data: ' + this.data.sendId + this.data.receiveId + this.data.pageNo + this.data.pageSize)
-    const data = _get_chat_history(this.data.receiveIdId,
+    console.log('history before data: ' + this.data.sendId + this.data.receiveId + this.data.pageNo + this.data.pageSize)
+    const data = _get_chat_history(this.data.receiveId,
                                    this.data.sendId,
                                    this.data.pageNo,
                                    this.data.pageSize);

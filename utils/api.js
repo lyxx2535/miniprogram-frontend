@@ -77,7 +77,7 @@ const _get_chat_history = (_friendId, _id, _pageNo, _pageSize) => {
       friendId: _friendId,
       id: _id,
       pageNo: _pageNo,
-      pageSiz: _pageSize
+      pageSize: _pageSize
     },
     header:{
       "content-type": "application/json",
