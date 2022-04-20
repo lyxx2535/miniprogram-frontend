@@ -4,6 +4,7 @@
  * date: 2022-04-19
  */
 import * as API from '../../enum/enums'
+import { _get_chat_history, _get_user_info, _get_user_info_byId } from '../../utils/api';
 
 const App = getApp();
 const util = require('../../utils/chat');
@@ -23,10 +24,8 @@ Page({
     pageName:'',//页面名称
     popupFlag:true,
     sendId:1, //当前用户,此处定死 实际场景中改为自己业务ID
-    sendOpenId: '',//当前用户OPENID
     lineHeight: 24,//表情的大小
     receiveId:'',//接受人
-    roomId:'',//房间ID 防止串线
     list:[],//消息列表
     focus: true,//光标选中
     cursor: 0,//光标位置
@@ -40,7 +39,6 @@ Page({
     emojiSource: 'https://s1.ax1x.com/2022/04/19/LBDn78.png',//表情图片
     windowHeight:0,//聊天内容区的高度
     sendAvatar:'',//当前用户头像
-    // https://lyhl.oss-cn-shanghai.aliyuncs.com/20210530/cbe1b8d05cd74745b058dfcb5961e71d.jpg
     receiveAvatar:'',//聊天对象头像
     limit:1,//重连次数
     imgList:[],//聊天记录中的图片数组
@@ -48,13 +46,13 @@ Page({
     pageSize:10,
     isDisConnection:false//是否是手动断开连接
   },
-
+  // 初始化操作：获取我的信息，获取对方信息，初始化组件
   onLoad: function (options) {
     console.log("屏幕高度：" + wx.getSystemInfoSync().windowHeight);
     console.log("头高度：" + App.globalData.navHeight);
-    //默认对象是2222
-    const receiveOpenId = options.receiveOpenId ? options.receiveOpenId:'2222';
-    this.getReceiveInfo(receiveOpenId);
+    //默认对象是
+    const receiveId = options.receiveId ? options.receiveId: 9;
+    this.getReceiveInfo(receiveId);
     this.getMemberInfo();
     //初始化emoji组件
     const emojiInstance = this.selectComponent('.mp-emoji');
@@ -62,78 +60,49 @@ Page({
     this.parseEmoji = emojiInstance.parseEmoji;
     this.getScollBottom();
   },
-
   //获取对方信息
-  getReceiveInfo(openId){
-   const _this = this;
-   const sendId = this.data.sendId;
-    wx.request({
-      // todo: 这里就是获取用户信息 可以直接调 user/query 来查询 need token
-      url: API.CHAT_BASE + 'mobile/register/verifyMember/' + openId,
-      method: 'GET',
-      success: res => {
-        console.log('获取聊天对象信息：' + res.data.data)
-        if (res.data.code == 0) {
-          const info = res.data.data;
-          _this.setData({
-            receiveId:info.id,
-            receiveAvatar:info.avatar,
-            roomId:(parseInt(sendId))+(parseInt(info.id)),
-            pageName:info.name?info.name:info.nickname,
-            sendId:sendId
-          },function(){
-            this.linkSocket();
-            this.getMessageHistory("init");
-          })
-          wx.setNavigationBarTitle({
-            title: res.data.data.name,
-            fail: err => {
-              console.log(err)
-            }
-          })
+  async getReceiveInfo(id){
+   const res = await _get_user_info_byId(id);
+   console.log('获取聊天对象信息：' + res.data.data);
+   if (res.data.code == 200) {
+      const info = res.data.data;
+      this.setData({
+        receiveId: info.id,
+        receiveAvatar: info.avatarUrl,
+        pageName: info.nickname,
+      },function(){
+        this.linkSocket();
+        this.getMessageHistory("init");
+      })
+      wx.setNavigationBarTitle({
+        title: res.data.data.name,
+        fail: err => {
+          console.log(err)
         }
-      },
-      error: err => {
-        console.err(err);
-      }
-    })
+      })
+    }
   },
-
   //获取我的信息
-  getMemberInfo(){
-    const _this = this;
-    const openId = wx.getStorageSync('myOpenid');
-    this.setData({
-      sendOpenId: openId
-    })
-    console.log('我的openid：' + openId);
-        // TODO：封装api
-     wx.request({
-       // todo: 这里就是获取用户信息 可以直接调 user/query 来查询 need token
-       url: API.CHAT_BASE + 'mobile/register/verifyMember/' + openId,
-       method: 'GET',
-       success: data => {
-         if (data.data.code == 0) {
-           const info = data.data.data;
-           _this.setData({
-             //初始化头像
-             sendAvatar:info.avatar,
-           },function(){
-           })
-         }
-       },
-       error: err => {
-         console.err(err);
-       }
-     })
-   },
-
+  async getMemberInfo(){
+    const res = await _get_user_info();
+    console.log('send info: ' + res.data.code)
+    if (res.data.code == 200) {
+      const info = res.data.data;
+      console.log('sender avartar: ' + info.avatarUrl)
+      this.setData({
+        //初始化头像
+        sendAvatar: info.avatarUrl,
+      },function(){
+      })
+    }
+  },
   // 链接websocket
   linkSocket() {
     let that = this
     wx.connectSocket({
       // todo: 这里需要改成: web-server/{senderId}。roomId可以删除
-      url: API.WS_BASE + `webSocketOneToOne/${this.data.sendId}/${this.data.roomId}`,
+      url: API.WS_BASE + `web-server/${this.data.sendId}`,
+      // url: API.WS_BASE + `webSocketOneToOne/${this.data.sendId}/${this.data.roomId}`,
       success() {
         isSocketOpen = true;
         that.initEventHandle()
@@ -311,7 +280,6 @@ Page({
     obj.requestId = util.wxuuid(); //消息请求ID，用于消息是否发送成功，去除菊花
     obj.receiveId = this.data.receiveId;//接收人的ID
     obj.sendId = this.data.sendId; //发送人的ID
-    obj.roomId = this.data.roomId; //二人组合成的房间ID
     obj.messageType = type; // 0:文本 1:图片 2:视频
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length>0){
@@ -328,33 +296,8 @@ Page({
     },function(){
       this.getScollBottom();
     })
-    // todo: 这里要删除 不支持图片或者视频
-    //非文本消息，先上传资源文件，在进行传输发送消息
-    if(type === this.data.typeToCode.image || type ===this.data.typeToCode.video ){ //图片或视频
-      const that  =this;
-      wx.uploadFile({
-        url: API.CHAT_BASE + 'mobile/media/upload',
-        filePath: obj.content,
-        name: 'file',
-        formData: {
-          'source': '2',
-          'memberId':that.data.sendId,
-          'type':type
-        },
-        success (res){
-          if(res.statusCode===200){
-            console.log("文件上传成功"+JSON.stringify(res));
-            const data = JSON.parse(res.data);
-            obj.content = data.url;
-            that.sendSocket(obj);
-          }
-        }
-      })
-    }else{
-      this.sendSocket(obj);
-    }
+    this.sendSocket(obj);
   },
-
   //socket发送消息
   sendSocket:function(obj){
     if (isSocketOpen) {
@@ -537,49 +480,35 @@ Page({
   },
 
   //下拉获取聊天记录
-  getMessageHistory(ident){
-    wx.request({
-      // todo: 这里的url是：message/get-chat-history
-      // 参数是 id friendId pageNo pageSize @RequasetParam来传(即url后面+ 问号)
-      url: API.CHAT_BASE + 'mobile/message/getMessageHistory',
-      data:{myMemberId:this.data.sendId,youMemberId:this.data.receiveId,pageNo:this.data.pageNo,pageSize:this.data.pageSize},
-      method: 'GET',
-      success: data => {
-        const records = data.data.datas.records;
-        if(records){
-          if(records.length < this.data.pageSize){
-            this._noDataing = true
-          }
-          const array = this.data.imgList;
-          for(let index in records){
-            const obj = records[index];
-            obj.requestId = null;
-            obj.messageType = obj.contentType;
-            if(obj.messageType === this.data.typeToCode.text){
-              obj.content = JSON.parse(obj.content);
-            }else if(obj.messageType === this.data.typeToCode.image){
-                array.unshift(obj.content);
-            }
-            this.setData({imgList:array})
-            obj.sendId = obj.sender
-            obj.time = util.tsFormatTime(obj.createdTime,'Y-M-D h:m');
-            this.data.list.unshift(obj);
-          }
-          this.setData({
-            list:this.data.list,
-            triggered: false,
-            pageNo:this.data.pageNo+1
-          },function(){
-            if(ident === "init" ){              
-              this.getScollBottom();
-            }
-
-          })
-        }
-      },
-      error: err => {
-        console.err(err);
-      }
-    })
+  async getMessageHistory(ident){
+    // console.log('history before data: ' + this.data.sendId + this.data.receiveId + this.data.pageNo + this.data.pageSize)
+    const data = _get_chat_history(this.data.receiveIdId,
+                                   this.data.sendId,
+                                   this.data.pageNo,
+                                   this.data.pageSize);
+    // const records = data.data.data;
+    console.log('history: ' + data.data)
+    // if(records){
+    //   if(records.length < this.data.pageSize){
+    //     this._noDataing = true
+    //   }
+    //   for(let index in records){
+    //     const obj = records[index];
+    //     obj.requestId = null;
+    //     obj.content = JSON.parse(obj.content);
+    //     obj.sendId = obj.senderId
+    //     obj.time = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
+    //     this.data.list.unshift(obj);
+    //   }
+    //   this.setData({
+    //     list: this.data.list,
+    //     triggered: false,
+    //     pageNo: this.data.pageNo + 1
+    //   },function(){
+    //     if(ident === "init" ){              
+    //       this.getScollBottom();
+    //     }
+    //   })
+    // }
   }
 })

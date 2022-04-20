@@ -17,7 +17,7 @@ const _login = (_code) => {
     method: 'GET',
   })
 }
-//向后端请求token，参数是userVO
+// 向后端请求token，参数是userVO
 const _get_token = (avatarUrl, nickName, openId, school) => {
   return httpRequest({
     url: API.GET_TOKEN,
@@ -46,11 +46,52 @@ const _get_user_info = () => {
     method: "POST",
   })
 }
-//上传核酸截图，暂时不需要token
+// 查询用户详细信息，使用id，PathVaraible，不需要token
+const _get_user_info_byId = (id) => {
+  return httpRequest({
+    url: API.GET_USER_INFO_BYID + id,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+    },
+    method: "GET",
+  })
+}
+// 获取用户的好友列表，需要token
+const _get_user_friendList = () => {
+  return httpRequest({
+    url: API.FRIEND_LIST,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    method: "GET",
+  })
+}
+// 获取用户的所有聊天记录，需要token
+const _get_chat_history = (_friendId, _id, _pageNo, _pageSize) => {
+  return httpRequest({
+    url: API.CHAT_HISTORY,
+    data: {
+      friendId: _friendId,
+      id: _id,
+      pageNo: _pageNo,
+      pageSiz: _pageSize
+    },
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    method: "GET",
+  })
+}
+// 上传核酸截图，暂时不需要token
 const _upload_nucleic = () => {
   return uploadMedia({
     url: API.NUCLEIC_ACID,
-    name: 'image',
+    name: 'image', // key
     header: {
       'content-type': 'multipart/form-data'
     }
@@ -62,4 +103,8 @@ export {
   _get_token,
   _get_user_info,
   _upload_nucleic,
+  _get_user_friendList,
+  _get_chat_history,
+  _get_user_info_byId,
+
 }
