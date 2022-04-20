@@ -21,7 +21,6 @@
             </view>
             <!-- <text class='sub-title' style="font-size: 30rpx;">与ta进一步联系吧！</text> -->
             <text class='sub-title' style="font-size: 30rpx;">{{item.content}}</text>
-            <!-- 聊天时间 -->
 
           </view>
         </view>

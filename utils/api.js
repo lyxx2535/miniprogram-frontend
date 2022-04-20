@@ -80,8 +80,7 @@ const _get_chat_history = (_friendId, _id, _pageNo, _pageSize) => {
       pageSize: _pageSize
     },
     header:{
-      "content-type": "application/json",
-      'accept': 'application/json',
+      "content-type": "application/x-www-form-urlencoded",
       'Authorization': wx.getStorageSync('token')
     },
     method: "GET",

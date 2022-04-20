@@ -58,7 +58,11 @@ Page({
       const res = await api._upload_nucleic();
       console.log(res.data)
     },
-    
+    async test(){
+      console.log('history before data: ' + 1 + 9 + 0 + 10)
+      const data = await api._get_chat_history(1,9,0,10);
+      console.log('history: ' + JSON.stringify(data))
+    },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({

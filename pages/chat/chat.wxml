@@ -14,48 +14,27 @@
       bindrefresherrestore="onRestore"
       bindrefresherabort="onAbort"
       >
-      <view wx:for="{{list}}" wx:key="index" id="item{{index+1}}">
-        <view class='messageTime' wx:if="{{item.type === 1}}">{{item.time}}</view>
-        <view class="cu-item self" wx:if="{{item.sendId == sendId}}">
+      <view wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
+        <view class='messageTime'>{{item.sendTime}}</view>
+        <view class="cu-item self" wx:if="{{item.senderId == senderId}}">
           <view class="main">
-            <text wx:if="{{item.requestId!=null}}" class="iconfont icon-sending sending"></text>
-            <view class="{{item.messageType==0?'bg-green':''}} content  shadow">
-                <block wx:for="{{item.content}}" wx:key="index" wx:for-item="pro">
-                  <block wx:if="{{pro.type === 1}}">{{pro.content}}</block>
-                  <view
-                    wx:if="{{pro.type === 2}}"
-                    style="display: inline-block; width: {{lineHeight}}px; height: {{lineHeight}}px">
-                    <view
-                      class="{{pro.imageClass}}"
-                      style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{lineHeight / 64}});"></view>
-                  </view>
+            <text wx:if="{{item.receiverId != null}}" class="iconfont icon-sending sending"></text>
+            <view class="bg-green content  shadow">
+                <block wx:key="index" >
+                  <block>{{item.content}}</block>
                 </block>
               </view>
-              <image data-src="{{item.content}}" catchtap="preview" wx:if="{{item.messageType==1}}" class="messageImg" mode="widthFix"  src="{{item.content}}"></image>
-              <image data-src="{{item.content}}" catchtap="preview" wx:if="{{item.messageType==2}}" class="messageImg" mode="widthFix"  src="{{item.content}}"></image>
-              <video wx:if="{{item.messageType==2}}" src="{{item.content}}"></video>
-              <image data-src="{{item.content}}" catchtap="preview" wx:if="{{item.messageType==3}}" class="messageImg" mode="widthFix"  src="{{item.content}}"></image>
           </view>
           <image class="cu-avatar" style="border-radius: 50%;" src="{{sendAvatar}}"/>
         </view>
-        <view class="cu-item"  wx:if="{{item.sendId != sendId}}">
+        <view class="cu-item"  wx:if="{{item.senderId != senderId}}">
           <image class="cu-avatar" style="border-radius: 50%;" src="{{receiveAvatar}}"/>
           <view class="main">
-            <view class="{{item.messageType==0?'bg-white':''}} content  shadow">
-                <block wx:for="{{item.content}}" wx:key="index" wx:for-item="pro">
-                  <block wx:if="{{pro.type === 1}}">{{pro.content}}</block>
-                  <view
-                    wx:if="{{pro.type === 2}}"
-                    style="display: inline-block; width: {{lineHeight}}px; height: {{lineHeight}}px">
-                    <view
-                      class="{{pro.imageClass}}"
-                      style="background-image: url({{emojiSource}});transform-origin: 0 0; transform: scale({{lineHeight / 64}});"></view>
-                  </view>
+            <view class="bg-white content shadow">
+                <block wx:key="index">
+                  <block >{{item.content}}</block>
                 </block>
               </view>
-              <image data-src="{{item.content}}" catchtap="preview" wx:if="{{item.messageType==1}}" class="messageImg" mode="widthFix"  src="{{item.content}}"></image>
-              <video wx:if="{{item.messageType==2}}" src="{{item.content}}"></video>
-              <image data-src="{{item.content}}" catchtap="preview" wx:if="{{item.messageType==3}}" class="messageImg" mode="widthFix"  src="{{item.content}}"></image>
           </view>
         </view>
       </view>
@@ -87,23 +66,23 @@
 			    ></textarea>
 			  </label>
 			</view>
-			<view hover-class="active" class="reply_button replay_emotion_button" bindtap="showEmoji">
+			<!-- <view hover-class="active" class="reply_button replay_emotion_button" bindtap="showEmoji">
 			  <image src="./images/reply_tool_emoji.svg" mode='aspectFit' class="reply_tool_pic"></image>
-			</view>
-			<view hover-class="active" class="reply_button replay_media_button" bindtap="showFunction">
+			</view> -->
+			<!-- <view hover-class="active" class="reply_button replay_media_button" bindtap="showFunction">
 			  <image src="https://s1.ax1x.com/2022/04/19/LBDRAO.png" mode='aspectFit' class="reply_tool_pic"></image>
-			</view>
+			</view> -->
       <view>
         <image src="https://s1.ax1x.com/2022/04/19/LBDbHf.png" mode='aspectFit' class="reply_button replay_media_button" style="margin-right: 20rpx;" bindtap="onConfirm"></image>
       </view>
 		</view>
 	</view>
   </view>
-  <view class="reply_panel_wrp" style="height: {{emojiShow ? 300 : 200}}px;" hidden="{{!emojiShow && !functionShow}}">
+  <!-- <view class="reply_panel_wrp" style="height: {{emojiShow ? 300 : 200}}px;" hidden="{{!emojiShow && !functionShow}}">
     <view class="reply_panel {{emojiShow ? 'show': ''}}" hidden="{{!emojiShow}}">
       <mp-emoji source="{{emojiSource}}" class="mp-emoji" bindinsertemoji="insertEmoji" binddelemoji="deleteEmoji" bindsend="onConfirm"></mp-emoji>
-    </view>
-    <view class="reply_panel {{functionShow ? 'show': ''}}" hidden="{{!functionShow}}">
+    </view> -->
+    <!-- <view class="reply_panel {{functionShow ? 'show': ''}}" hidden="{{!functionShow}}">
       <view class="function_list">
         <view class="function_item" bindtap="chooseMedia">
           <view class="function_item_img">
@@ -111,7 +90,7 @@
           <text class="function_item_text">相册</text>
         </view>
       </view>
-    </view>
-  </view>
+    </view> -->
+  <!-- </view> -->
 </view>
 </view>

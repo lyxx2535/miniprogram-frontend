@@ -23,7 +23,7 @@ Page({
     let id = event.currentTarget.dataset.id;
     wx.navigateTo({
       // url: `/pages/chat/chat?receiveOpenId=`+openId,
-      url: `/pages/chat/chat?receiveId=`+ id,
+      url: `/pages/chat/chat?receiverId=`+ id,
     })
   },
   async get_friend_list(){

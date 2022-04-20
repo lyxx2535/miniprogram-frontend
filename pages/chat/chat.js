@@ -23,9 +23,9 @@ Page({
     },
     pageName:'',//页面名称
     popupFlag:true,
-    sendId:1, //当前用户,此处定死 实际场景中改为自己业务ID
+    senderId:1, //当前用户,此处定死 实际场景中改为自己业务ID
     lineHeight: 24,//表情的大小
-    receiveId:'',//接受人
+    receiverId:'',//接受人
     list:[],//消息列表
     focus: true,//光标选中
     cursor: 0,//光标位置
@@ -51,14 +51,14 @@ Page({
     console.log("屏幕高度：" + wx.getSystemInfoSync().windowHeight);
     console.log("头高度：" + App.globalData.navHeight);
     //默认对象是
-    const receiveId = options.receiveId ? options.receiveId: 9;
-    this.getReceiveInfo(receiveId);
+    const receiverId = options.receiverId ? options.receiverId: 9;
+    this.getReceiveInfo(receiverId);
     this.getMemberInfo();
     //初始化emoji组件
-    const emojiInstance = this.selectComponent('.mp-emoji');
-    this.emojiNames = emojiInstance.getEmojiNames();
-    this.parseEmoji = emojiInstance.parseEmoji;
-    this.getScollBottom();
+    // const emojiInstance = this.selectComponent('.mp-emoji');
+    // this.emojiNames = emojiInstance.getEmojiNames();
+    // this.parseEmoji = emojiInstance.parseEmoji;
+    // this.getScollBottom();
   },
   // 获取对方信息
   async getReceiveInfo(id){
@@ -67,7 +67,7 @@ Page({
    if (res.data.code == 200) {
       const info = res.data.data;
       this.setData({
-        receiveId: info.id,
+        receiverId: info.id,
         receiveAvatar: info.avatarUrl,
         pageName: info.nickname,
       },function(){
@@ -100,8 +100,8 @@ Page({
     let that = this
     wx.connectSocket({
       // todo: 这里需要改成: web-server/{senderId}。roomId可以删除
-      url: API.WS_BASE + `web-server/${this.data.sendId}`,
-      // url: API.WS_BASE + `webSocketOneToOne/${this.data.sendId}/${this.data.roomId}`,
+      url: API.WS_BASE + `web-server/${this.data.senderId}`,
+      // url: API.WS_BASE + `webSocketOneToOne/${this.data.senderId}/${this.data.roomId}`,
       success() {
         isSocketOpen = true;
         that.initEventHandle()
@@ -116,15 +116,14 @@ Page({
       console.log("接收到消息" + JSON.stringify(res));
       let resJson = JSON.parse(res.data);
       var messageObj = {};
-      messageObj.sendId = resJson.sender;
-      if(messageObj.sendId === this.data.sendId){
+      messageObj.senderId = resJson.senderId;
+      if(messageObj.senderId === this.data.senderId){
         //消息发送成功的回调，删除菊花即可。
         for(let item in this.data.list){
           //访问list数组里的json
-          if(this.data.list[item].requestId === resJson.requestId){
+          if(this.data.list[item].requestId === resJson.receiverId){
             this.data.list[item].requestId = null;
-            this.data.list[item].time = util.tsFormatTime(resJson.createdTime,'Y-M-D h:m');
-            this.data.list[item].type = resJson.type
+            this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
           }
         }
         this.setData({
@@ -133,20 +132,11 @@ Page({
         return;
       }else{
         //接受到对方的来信，渲染
-        messageObj.messageType = resJson.contentType;
-        messageObj.avatar = this.data.receiveAvatar
-        if(messageObj.messageType === 0){
-          messageObj.content = JSON.parse(resJson.content);
-        }else if(messageObj.messageType === 1){//往预览图片的数组里加入一张图片
-          this.data.imgList.push(resJson.content);
-          messageObj.content = resJson.content;
-        }else{
-          messageObj.content = resJson.content;
-        }
+        messageObj.avatar = this.data.receiveAvatar;
+        messageObj.content = JSON.parse(resJson.content);
         this.data.list.push(messageObj);
         this.setData({
-          list:this.data.list,
-          imgList:this.data.imgList
+          list: this.data.list,
         },function(){
           this.getScollBottom();
         })
@@ -270,19 +260,15 @@ Page({
         return;
       }
     const parsedComment = this.parseEmoji(this.data.comment)
-    this.onSend(this.data.typeToCode.text,parsedComment)
+    this.onSend(parsedComment)
     this.getScollBottom();
   },
-  onSend(type, message) {
+  onSend(message) {
     const obj = {};
-    obj.content = message; //消息内容
+    obj.content = message.content; //消息内容
     obj.requestId = util.wxuuid(); //消息请求ID，用于消息是否发送成功，去除菊花
-    obj.receiveId = this.data.receiveId;//接收人的ID
-    obj.sendId = this.data.sendId; //发送人的ID
-    //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
-    if(this.data.list && this.data.list.length>0){
-      obj.lastMessageTime = this.data.list[this.data.list.length-1].time;
-    }
+    obj.receiverId = this.data.receiverId;//接收人的ID
+    obj.senderId = this.data.senderId; //发送人的ID
     //消息先加入聊天区域，此时菊花是转的
     this.data.list.push(obj);
     this.setData({
@@ -375,7 +361,7 @@ Page({
     })
   },
   /**
-   * 选择图片或者视频
+   * 选择图片或者视频，此功能删掉了
    */
   chooseMedia:function(){
     const that = this;
@@ -478,34 +464,34 @@ Page({
 
   //下拉获取聊天记录
   async getMessageHistory(ident){
-    console.log('history before data: ' + this.data.sendId + this.data.receiveId + this.data.pageNo + this.data.pageSize)
-    const data = _get_chat_history(this.data.receiveId,
-                                   this.data.sendId,
+    console.log('history before data: ' + this.data.senderId + this.data.receiverId + this.data.pageNo + this.data.pageSize)
+    const data = await _get_chat_history(this.data.receiverId,
+                                   this.data.senderId,
                                    this.data.pageNo,
                                    this.data.pageSize);
-    // const records = data.data.data;
-    console.log('history: ' + data.data)
-    // if(records){
-    //   if(records.length < this.data.pageSize){
-    //     this._noDataing = true
-    //   }
-    //   for(let index in records){
-    //     const obj = records[index];
-    //     obj.requestId = null;
-    //     obj.content = JSON.parse(obj.content);
-    //     obj.sendId = obj.senderId
-    //     obj.time = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
-    //     this.data.list.unshift(obj);
-    //   }
-    //   this.setData({
-    //     list: this.data.list,
-    //     triggered: false,
-    //     pageNo: this.data.pageNo + 1
-    //   },function(){
-    //     if(ident === "init" ){              
-    //       this.getScollBottom();
-    //     }
-    //   })
-    // }
+    const records = data.data.data;
+    console.log('history: ' + JSON.stringify(data.data))
+    if(records){
+      if(records.length < this.data.pageSize){
+        this._noDataing = true
+      }
+      for(let index in records){
+        const obj = records[index];
+        obj.receiverId = null;
+        obj.content = obj.content;
+        obj.senderId = obj.senderId
+        obj.sendTime = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
+        this.data.list.push(obj);
+      }
+      this.setData({
+        list: this.data.list,
+        triggered: false,
+        pageNo: this.data.pageNo + 1
+      },function(){
+        if(ident === "init" ){              
+          this.getScollBottom();
+        }
+      })
+    }
   }
 })
