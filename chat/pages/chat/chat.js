@@ -23,15 +23,13 @@ Page({
       'video':2
     },//图片功能删掉了，暂时没用
     pageName:'',//页面名称
-    popupFlag:true,
-    senderId: 1, //当前用户,此处定死 实际场景中改为自己业务ID
+    senderId: 1, //当前用户ID
     lineHeight: 24,//表情的大小
     receiverId:'',//接受人
     list:[],//消息列表
     focus: true,//光标选中
     cursor: 0,//光标位置
     comment:'',//文本内容
-    resource:'',//资源内容 图片或视频
     functionShow: false,//扩展区，目前只支持发图片
     toBottom:'bottom',// 滚动到底部
     emojiShow: false, //表情区是否显示
@@ -295,8 +293,6 @@ Page({
     }
     this.setData({
       comment: '',
-      resource: '',
-      popupFlag: true,
       list: this.data.list
     },function(){
       this.getScollBottom();
