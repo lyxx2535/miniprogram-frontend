@@ -57,11 +57,14 @@
 - 所有的静态资源（图片等）部署后用`url`引入，因为小程序发布时有代码体积限制（我记得是2M）
 - 组件**按需引入**，避免使用全局自定义组件和插件，目的也是为了给小程序瘦身提速。具体方式见[代码包体积优化 | 微信开放文档 (qq.com)](https://developers.weixin.qq.com/miniprogram/dev/framework/performance/tips/start_optimizeA.html)
 - 在`dev分支`里开发（或者建一个自己的分支），最后统一`merge`到`main分支`
-- 目前的页面是供后端接口测试用
-  - 先点击`获取用户信息`
-  - 再点击`获取openid`
-  - 再点击`获取token`
-  - 随后在请求头里加上token进行api测试（或点击`token测试`）
+- 代码结构
+  - nucleicAcid 核酸模块
+  - community 互助社区模块
+  - chat 聊天模块
+  - my 我的模块
+  - login 登录页面
+  - index 后端接口测试页面
+  - logs 日志（与实际产品无关）
 
 ## api构建
 
