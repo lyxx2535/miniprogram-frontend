@@ -1,7 +1,4 @@
 <view class='view-page'>
-  <!-- <navbar page-name="{{pageName}}" show-home="{{false}}" show-back="{{false}}" 
-  style="margin-top: -20rpx;"></navbar> -->
-  <!-- <placeholder></placeholder> -->
   <view class="comments cu-chat" id="x_chat">
     <scroll-view scroll-y="{{true}}" scroll-with-animation='{{true}}' scroll-into-view="{{toBottom}}"
       style="width:100%; height:{{windowHeight}}px;"
@@ -67,31 +64,11 @@
 			    ></textarea>
 			  </label>
 			</view>
-			<!-- <view hover-class="active" class="reply_button replay_emotion_button" bindtap="showEmoji">
-			  <image src="./images/reply_tool_emoji.svg" mode='aspectFit' class="reply_tool_pic"></image>
-			</view> -->
-			<!-- <view hover-class="active" class="reply_button replay_media_button" bindtap="showFunction">
-			  <image src="https://s1.ax1x.com/2022/04/19/LBDRAO.png" mode='aspectFit' class="reply_tool_pic"></image>
-			</view> -->
       <view>
         <image src="https://s1.ax1x.com/2022/04/19/LBDbHf.png" mode='aspectFit' class="reply_button replay_media_button" style="margin-right: 20rpx;" bindtap="onConfirm"></image>
       </view>
 		</view>
 	</view>
   </view>
-  <!-- <view class="reply_panel_wrp" style="height: {{emojiShow ? 300 : 200}}px;" hidden="{{!emojiShow && !functionShow}}">
-    <view class="reply_panel {{emojiShow ? 'show': ''}}" hidden="{{!emojiShow}}">
-      <mp-emoji source="{{emojiSource}}" class="mp-emoji" bindinsertemoji="insertEmoji" binddelemoji="deleteEmoji" bindsend="onConfirm"></mp-emoji>
-    </view> -->
-    <!-- <view class="reply_panel {{functionShow ? 'show': ''}}" hidden="{{!functionShow}}">
-      <view class="function_list">
-        <view class="function_item" bindtap="chooseMedia">
-          <view class="function_item_img">
-          <image src="./images/photo.svg" class="reply_function_pic"></image></view>
-          <text class="function_item_text">相册</text>
-        </view>
-      </view>
-    </view> -->
-  <!-- </view> -->
 </view>
 </view>
