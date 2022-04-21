@@ -2,8 +2,33 @@
   "pages":[
     "pages/index/index",
     "pages/logs/logs",
-    "pages/chat/userList",
-    "pages/chat/chat"
+    "pages/my/my",
+    "pages/login/login"
+  ],
+  "subpackages": [
+    {
+      "root": "chat",
+      "name": "聊天模块",
+      "pages": [
+        "pages/chat/chat",
+        "pages/chat/userList"
+      ],
+      "independent": false
+    }, {
+      "root": "community",
+      "name": "互助社区",
+      "pages": [
+        "pages/"
+      ],
+      "independent": false
+    }, {
+      "root": "nucleic-acid",
+      "name": "核酸模块",
+      "pages": [
+        "pages/"
+      ],
+      "independent": false
+    }
   ],
   "window":{
     "backgroundTextStyle":"light",

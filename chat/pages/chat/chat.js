@@ -4,11 +4,11 @@
  * date: 2022-04-19
  */
 
-import * as API from '../../enum/enums'
-import { _get_chat_history, _get_user_info, _get_user_info_byId } from '../../utils/api';
+import * as API from '../../../enum/enums'
+import { _get_chat_history, _get_user_info, _get_user_info_byId } from '../../../utils/api';
 
 const App = getApp();
-const util = require('../../utils/chat');
+const util = require('../../../utils/chat');
 let isSocketOpen = false;
 
 Page({

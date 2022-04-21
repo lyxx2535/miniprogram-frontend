@@ -17,7 +17,7 @@
         },
         {
           "name": "",
-          "pathName": "pages/chat/userList",
+          "pathName": "chat/pages/chat/userList",
           "query": "",
           "launchMode": "default",
           "scene": null
