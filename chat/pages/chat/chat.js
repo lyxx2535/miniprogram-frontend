@@ -126,6 +126,7 @@ Page({
           if(this.data.list[item].id === resJson.id){
             // 删除小菊花
             this.data.list[item].receiverId = null;
+            this.data.list[item].isShowTime = resJson.isShowTime;
             this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
           }
         }
@@ -138,8 +139,9 @@ Page({
         //接受到对方的来信，渲染
         // messageObj.avatar = this.data.receiveAvatar;
         //传入时间
-        messageObj.sendTime = JSON.parse(resJson.sendTime);
-        messageObj.content = JSON.parse(resJson.content);
+        messageObj.sendTime = resJson.sendTime;
+        messageObj.content = resJson.content;
+        messageObj.isShowTime = resJson.isShowTime;
         this.data.list.push(messageObj);
         this.setData({
           list: this.data.list,
