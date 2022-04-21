@@ -80,10 +80,11 @@ border-radius:10px;
   margin-right: 20rpx;
 }
 .content{
-  padding-bottom: 0;
+  padding-top: 10rpx;
+  padding-bottom: 10rpx;
 }
 .padding-bottom{
-  padding-bottom: 110rpx;
+  padding-bottom: 10rpx;
 }
 /* ==================
          聊天

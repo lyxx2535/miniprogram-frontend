@@ -20,9 +20,9 @@
           <view class="main">
           <!-- 小菊花 -->
             <text wx:if="{{item.receiverId != null}}" class="iconfont icon-sending sending"></text>
-            <view class="bg-green content  shadow">
+            <view class="bg-green content shadow">
                 <block wx:key="index" >
-                  <block>{{item.content}}</block>
+                  <block style="margin-top: 10rpx; margin-bottom: 10rpx;">{{item.content}}</block>
                 </block>
               </view>
           </view>
@@ -39,7 +39,7 @@
           </view>
         </view>
       </view>
-      <view id="bottom" style="height:{{paddingBottom}}px"></view>
+      <view id="bottom" style="height:40px"></view>
     </scroll-view>
   </view>
   

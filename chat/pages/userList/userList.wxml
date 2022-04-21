@@ -16,8 +16,8 @@
           <image class='poster rounded-xl' style="border-color: rgba(107, 114, 128, var(--tw-border-opacity));" src='{{item.avatarUrl}}'></image>
           <view class='meta'>
             <view class="title">
-              <text class="inline-block text-2xl">{{item.nickName}}</text>
-              <text class="inline-block text-sm ml-200rpx">{{item.latestChatDate}}</text>
+              <text class="inline-block text-xl">{{item.nickName}}</text>
+              <text class="inline-block text-sm mt-10rpx" style="float: right;">{{item.latestChatDate}}</text>
             </view>
             <!-- <text class='sub-title' style="font-size: 30rpx;">与ta进一步联系吧！</text> -->
             <text class='sub-title' style="font-size: 30rpx;">{{item.content}}</text>
