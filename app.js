@@ -35,9 +35,8 @@ App({
     })
   },
   globalData: {
-    userInfo: null,
-    navHeight:0,
-    baseAPI: 'http://localhost:9999/message-server/',
-    wsBaseAPI: 'ws://localhost:9999/message-server/',
+    navHeight: 0,
+    navTop: 0,
+    windowHeight: 0
   }
 })

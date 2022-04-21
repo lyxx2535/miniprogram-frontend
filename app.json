@@ -25,7 +25,9 @@
       "root": "nucleic-acid",
       "name": "核酸模块",
       "pages": [
-        "pages/nucleic-acid/nucleic-acid"
+        "pages/appointment/appointment",
+        "pages/detection/detection",
+        "pages/report/report"
       ],
       "independent": false
     }
