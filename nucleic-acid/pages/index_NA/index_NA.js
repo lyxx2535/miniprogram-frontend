@@ -1,23 +1,23 @@
 // nucleic-acid/pages/index_NA/index_NA.js
-Component({
-    /**
-     * 组件的属性列表
-     */
-    properties: {
-
-    },
-
-    /**
-     * 组件的初始数据
-     */
-    data: {
-
-    },
-
-    /**
-     * 组件的方法列表
-     */
-    methods: {
-
-    }
+Page({
+    gotoAppointment: function (options) {
+        wx.navigateTo({
+              url: '../appointment/appointment',
+     })  
+     },
+     gotoDetection: function (options) {
+        wx.navigateTo({
+              url: '../detection/detection',
+     })  
+     },
+     gotoReport: function (options) {
+        wx.navigateTo({
+              url: '../report/report',
+     })  
+     },
+     gotoMyNA: function (options) {
+        wx.navigateTo({
+              url: '../report/report',//之后要改！！！
+     })  
+     },
 })

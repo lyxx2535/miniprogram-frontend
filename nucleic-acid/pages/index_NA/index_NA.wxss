@@ -37,6 +37,10 @@ page {
     
 }
 
+.btn_all_hover {
+    background-color: rgb(155, 155, 155);
+}
+
 .num_pos {
     position: absolute;
     right: 10%;
@@ -73,6 +77,10 @@ page {
     border-radius: 15rpx;
     box-shadow: 0rpx 1rpx 4rpx 0rpx rgb(122, 122, 122);
     background-color: #585858;
+}
+
+.btn_myNA_hover {
+    background-color: rgb(104, 104, 104);
 }
 
 .text_myNA {
