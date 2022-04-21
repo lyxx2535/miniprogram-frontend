@@ -278,11 +278,13 @@ Page({
     obj.senderId = this.data.senderId; //发送人的ID
 
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
-    if(this.data.list && this.data.list.length>0){
+    if(this.data.list && this.data.list.length > 0){
       obj.lastSendMsgTime = this.data.list[this.data.list.length-1].sendTime;
       console.log(this.data.list[this.data.list.length-1].sendTime)
     }
-
+    else{
+      obj.lastSendMsgTime = null;
+    }
     //消息先加入聊天区域，此时菊花是转的
     this.data.list.push(obj);
     this.setData({
