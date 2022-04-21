@@ -1,10 +1,10 @@
-<view class='view-page' style="height: 100vh;">
+<view class='view-page'>
   <!-- <navbar page-name="{{pageName}}" show-home="{{false}}" show-back="{{false}}" 
   style="margin-top: -20rpx;"></navbar> -->
-  <placeholder></placeholder>
+  <!-- <placeholder></placeholder> -->
   <view class="comments cu-chat" id="x_chat">
     <scroll-view scroll-y="{{true}}" scroll-with-animation='{{true}}' scroll-into-view="{{toBottom}}"
-      style="width:100%;height:{{windowHeight}}px;"
+      style="width:100%; height:{{windowHeight}}px;"
       refresher-enabled="{{true}}"
       refresher-threshold="{{200}}"
       refresher-default-style="black"
@@ -39,7 +39,7 @@
           </view>
         </view>
       </view>
-      <view id="bottom" style="height:40px"></view>
+      <view id="bottom" style="height:35px"></view>
     </scroll-view>
   </view>
   

@@ -125,21 +125,24 @@ Page({
         for(let item in this.data.list){
           // 访问list数组里的json，找到最新发的那条信息
           if(this.data.list[item].id === resJson.id){
+            console.log('新发消息： ' + JSON.stringify(this.data.list[item]))
             // 删除小菊花
             this.data.list[item].receiverId = null;
-            this.data.list[item].isShowTime = resJson.isShowTime;
             this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
+            this.data.list[item].isShowTime = resJson.isShowTime;
           }
         }
         this.setData({
           list: this.data.list
         })
+        console.log('消息列表：' + JSON.stringify(this.data.list))
         return;
         //如果是接受消息
       }else{
         //接受到对方的来信，渲染
         // messageObj.avatar = this.data.receiveAvatar;
         //传入时间
+        messageObj.id = resJson.id
         messageObj.sendTime = resJson.sendTime;
         messageObj.content = resJson.content;
         messageObj.isShowTime = resJson.isShowTime;
@@ -276,20 +279,19 @@ Page({
   },
   onSend(message) {
     const obj = {};
-    obj.content = message; //消息内容
-    obj.receiverId = this.data.receiverId;//接收人的ID
     obj.senderId = this.data.senderId; //发送人的ID
-
+    obj.receiverId = this.data.receiverId;//接收人的ID
+    obj.content = message; //消息内容
+    //消息先加入聊天区域，此时菊花是转的
+    this.data.list.push(obj);
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length > 0){
-      obj.lastSendMsgTime = this.data.list[this.data.list.length-1].sendTime;
+      obj.lastSendMsgTime = this.data.list[this.data.list.length - 1].sendTime;
       console.log('上一条消息发送时间: ' + this.data.list[this.data.list.length-1].sendTime)
     }
     else{
       obj.lastSendMsgTime = null;
     }
-    //消息先加入聊天区域，此时菊花是转的
-    this.data.list.push(obj);
     this.setData({
       comment: '',
       resource: '',
@@ -381,30 +383,6 @@ Page({
     })
   },
   /**
-   * 选择图片或者视频，此功能删掉了
-   */
-  chooseMedia:function(){
-    const that = this;
-    wx.chooseMedia({
-      count: 9,
-      mediaType: ['image','video'],
-      sourceType: ['album', 'camera'],
-      maxDuration: 60,
-      camera: 'back',
-      success(res) {
-        console.log(res.type);
-        console.log(res.tempFiles)
-        const type = res.type === 'image'?that.data.typeToCode.image:that.data.typeToCode.video;
-        const tempFilePaths = res.tempFiles;
-        for(let index in tempFilePaths){
-          that.onSend(type, tempFilePaths[index].tempFilePath);
-        }
-      }
-    })
-  },
-
- 
-  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady: function () {
@@ -412,7 +390,7 @@ Page({
     wx.getSystemInfo({
       success({windowHeight}) {
         that.setData({
-          windowHeight: windowHeight - App.globalData.navHeight - 80
+          windowHeight: windowHeight - App.globalData.navHeight
         })
       }
     });
@@ -488,7 +466,6 @@ Page({
                                    this.data.pageNo,
                                    this.data.pageSize);
     const records = data.data.data;
-    console.log('history: ' + JSON.stringify(data.data.data))
     if(records){
       if(records.length < this.data.pageSize){
         this._noDataing = true
@@ -499,11 +476,13 @@ Page({
         obj.receiverId = null;
         obj.content = obj.content;
         obj.senderId = obj.senderId;
+        obj.id = obj.id;
         obj.isShowTime = obj.isShowTime;
         obj.sendTime = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
         // 这里需要逆序添加 保证最新的消息永远在list的最后面
         this.data.list.unshift(obj);
       }
+      // 页数 + 1
       this.setData({
         list: this.data.list,
         triggered: false,
@@ -513,6 +492,7 @@ Page({
           this.getScollBottom();
         }
       })
+      console.log('本地缓存聊天记录：' + JSON.stringify(this.data.list));
     }
   }
 })
