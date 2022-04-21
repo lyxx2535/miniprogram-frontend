@@ -15,9 +15,10 @@
       bindrefresherabort="onAbort"
       >
       <view wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
-        <view class='messageTime'>{{item.sendTime}}</view>
+        <view wx:if="{{item.isShowTime != null}}" class='messageTime'>{{item.sendTime}}</view>
         <view class="cu-item self" wx:if="{{item.senderId == senderId}}">
           <view class="main">
+          <!-- 小菊花 -->
             <text wx:if="{{item.receiverId != null}}" class="iconfont icon-sending sending"></text>
             <view class="bg-green content  shadow">
                 <block wx:key="index" >

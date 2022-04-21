@@ -3,6 +3,7 @@
  * author: Peng Junzhi
  * date: 2022-04-19
  */
+
 import * as API from '../../enum/enums'
 import { _get_chat_history, _get_user_info, _get_user_info_byId } from '../../utils/api';
 
@@ -15,12 +16,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-    triggered: false,
+    triggered: false,//重新刷新标志
     typeToCode:{
       'text':0,
       'image':1,
       'video':2
-    },
+    },//图片功能删掉了，暂时没用
     pageName:'',//页面名称
     popupFlag:true,
     senderId:1, //当前用户,此处定死 实际场景中改为自己业务ID
@@ -43,7 +44,7 @@ Page({
     limit:1,//重连次数
     imgList:[],//聊天记录中的图片数组
     pageNo:0, //聊天记录页码
-    pageSize:10,
+    pageSize:10,//聊天记录页容量
     isDisConnection:false//是否是手动断开连接
   },
   // 初始化操作：获取我的信息，获取对方信息，初始化组件
@@ -85,7 +86,7 @@ Page({
   // 获取我的信息
   async getMemberInfo(){
     const res = await _get_user_info();
-    console.log('获取我的信息：' + JSON.stringify(res.data.data));
+    console.log('获取我的信息：' + JSON.stringify(res.data.data.nickName));
     if (res.data.code == 200) {
       const info = res.data.data;
       this.setData({
@@ -117,11 +118,13 @@ Page({
       let resJson = JSON.parse(res.data);
       var messageObj = {};
       messageObj.senderId = resJson.senderId;
+      //如果是发送消息成功
       if(messageObj.senderId === this.data.senderId){
         //消息发送成功的回调，删除菊花即可。
         for(let item in this.data.list){
-          //访问list数组里的json
+          // 访问list数组里的json
           if(this.data.list[item].requestId === resJson.receiverId){
+            // 删除小菊花
             this.data.list[item].requestId = null;
             this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
           }
@@ -130,6 +133,7 @@ Page({
           list: this.data.list
         })
         return;
+        //如果是接受消息成功
       }else{
         //接受到对方的来信，渲染
         messageObj.avatar = this.data.receiveAvatar;
@@ -259,14 +263,16 @@ Page({
         });
         return;
       }
-    const parsedComment = this.parseEmoji(this.data.comment)
-    this.onSend(parsedComment)
+    // const parsedComment = this.parseEmoji(this.data.comment)
+    // this.onSend(parsedComment)
+    console.log('发送消息：' + this.data.comment)
+    this.onSend(this.data.comment)
     this.getScollBottom();
   },
   onSend(message) {
     const obj = {};
-    obj.content = message.content; //消息内容
-    obj.requestId = util.wxuuid(); //消息请求ID，用于消息是否发送成功，去除菊花
+    obj.content = message; //消息内容
+    // obj.requestId = util.wxuuid(); //消息请求ID，用于消息是否发送成功，去除菊花
     obj.receiverId = this.data.receiverId;//接收人的ID
     obj.senderId = this.data.senderId; //发送人的ID
     //消息先加入聊天区域，此时菊花是转的
@@ -288,7 +294,7 @@ Page({
       wx.sendSocketMessage({
         data: JSON.stringify(obj),
         success(res) {
-          console.log("打开socket")
+          console.log("打开socket 回调：" + JSON.stringify(res))
         }
       })
     } else {
@@ -464,22 +470,23 @@ Page({
 
   //下拉获取聊天记录
   async getMessageHistory(ident){
-    console.log('history before data: ' + this.data.senderId + this.data.receiverId + this.data.pageNo + this.data.pageSize)
     const data = await _get_chat_history(this.data.receiverId,
                                    this.data.senderId,
                                    this.data.pageNo,
                                    this.data.pageSize);
     const records = data.data.data;
-    console.log('history: ' + JSON.stringify(data.data))
+    console.log('history: ' + JSON.stringify(data.data.data))
     if(records){
       if(records.length < this.data.pageSize){
         this._noDataing = true
       }
       for(let index in records){
         const obj = records[index];
+        // receiverId设为null，用于标注小菊花
         obj.receiverId = null;
         obj.content = obj.content;
-        obj.senderId = obj.senderId
+        obj.senderId = obj.senderId;
+        obj.isShowTime = obj.isShowTime;
         obj.sendTime = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
         this.data.list.push(obj);
       }

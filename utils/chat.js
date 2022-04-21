@@ -8,7 +8,7 @@ const formatTime = date => {
   const minute = date.getMinutes()
   const second = date.getSeconds()
 
-  return `${[year, month, day].map(formatNumber).join('/')} ${[hour, minute, second].map(formatNumber).join(':')}`
+  return `${[year, month, day].map(formatNumber).join('-')} ${[hour, minute, second].map(formatNumber).join(':')}`
 }
 
 const formatNumber = n => {
@@ -58,17 +58,17 @@ const wxuuid = function () {
   return uuid
 }
 
-const get=function(url,params){
+const get = function(url,params){
   return request('GET',url,params)
 }
 
-const post=function(url,params){
+const post = function(url,params){
   return request('POST',url,params,{'Content-Type': 'application/json'})
 }
-const postNoLoading=function(url,params){
+const postNoLoading = function(url,params){
   return request('POST',url,params,{'Content-Type': 'application/json'},false)
 }
-const loadLocation=function(){
+const loadLocation = function(){
   return new Promise((resolve, reject)=>{
     let address=wx.getStorageSync('ly-user-address')
     let isLoad=true
