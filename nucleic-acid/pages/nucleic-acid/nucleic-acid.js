@@ -1,4 +1,4 @@
-// nucleic-acid/pages.js
+// nucleic-acid/pages/nucleic-acid/nucleic-acid.js
 Page({
 
   /**

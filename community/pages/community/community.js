@@ -1,4 +1,4 @@
-// community/pages.js
+// community/pages/community/community.js
 Page({
 
   /**

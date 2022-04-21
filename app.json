@@ -18,14 +18,14 @@
       "root": "community",
       "name": "互助社区",
       "pages": [
-        "pages/"
+        "pages/community/community"
       ],
       "independent": false
     }, {
       "root": "nucleic-acid",
       "name": "核酸模块",
       "pages": [
-        "pages/"
+        "pages/nucleic-acid/nucleic-acid"
       ],
       "independent": false
     }
