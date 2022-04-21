@@ -24,7 +24,7 @@ Page({
     },//图片功能删掉了，暂时没用
     pageName:'',//页面名称
     popupFlag:true,
-    senderId:1, //当前用户,此处定死 实际场景中改为自己业务ID
+    senderId: 1, //当前用户,此处定死 实际场景中改为自己业务ID
     lineHeight: 24,//表情的大小
     receiverId:'',//接受人
     list:[],//消息列表
@@ -86,12 +86,13 @@ Page({
   // 获取我的信息
   async getMemberInfo(){
     const res = await _get_user_info();
-    console.log('获取我的信息：' + JSON.stringify(res.data.data.nickName));
+    console.log('获取我的信息：' + JSON.stringify(res.data.data));
     if (res.data.code == 200) {
       const info = res.data.data;
       this.setData({
         //初始化头像
         sendAvatar: info.avatarUrl,
+        senderId: info.id
       },function(){
       })
     }
