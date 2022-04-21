@@ -21,6 +21,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "nucleic-acid/pages/index_NA/index_NA",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

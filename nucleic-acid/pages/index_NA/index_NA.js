@@ -1,5 +1,12 @@
 // nucleic-acid/pages/index_NA/index_NA.js
+import * as IMG from '../../../enum/imageUrl'
 Page({
+  data :{
+    img_url: {
+      ICON_CALENDER: IMG.ICON_CALENDER,
+      VECTOR_PIC: IMG.VECTOR_PIC
+    }
+  },
     gotoAppointment: function (options) {
         wx.navigateTo({
               url: '../appointment/appointment',
