@@ -51,7 +51,7 @@ Page({
   onLoad: function (options) {
     console.log("屏幕高度：" + wx.getSystemInfoSync().windowHeight);
     console.log("头高度：" + App.globalData.navHeight);
-    //默认对象是
+    //默认聊天对象是zy id：9
     const receiverId = options.receiverId ? options.receiverId: 9;
     this.getReceiveInfo(receiverId);
     this.getMemberInfo();
@@ -118,14 +118,14 @@ Page({
       let resJson = JSON.parse(res.data);
       var messageObj = {};
       messageObj.senderId = resJson.senderId;
-      //如果是发送消息成功
+      //如果是发送消息
       if(messageObj.senderId === this.data.senderId){
         //消息发送成功的回调，删除菊花即可。
         for(let item in this.data.list){
-          // 访问list数组里的json
-          if(this.data.list[item].requestId === resJson.receiverId){
+          // 访问list数组里的json，找到最新发的那条信息
+          if(this.data.list[item].id === resJson.id){
             // 删除小菊花
-            this.data.list[item].requestId = null;
+            this.data.list[item].receiverId = null;
             this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
           }
         }
@@ -133,10 +133,12 @@ Page({
           list: this.data.list
         })
         return;
-        //如果是接受消息成功
+        //如果是接受消息
       }else{
         //接受到对方的来信，渲染
-        messageObj.avatar = this.data.receiveAvatar;
+        // messageObj.avatar = this.data.receiveAvatar;
+        //传入时间
+        messageObj.sendTime = JSON.parse(resJson.sendTime);
         messageObj.content = JSON.parse(resJson.content);
         this.data.list.push(messageObj);
         this.setData({
@@ -272,9 +274,15 @@ Page({
   onSend(message) {
     const obj = {};
     obj.content = message; //消息内容
-    // obj.requestId = util.wxuuid(); //消息请求ID，用于消息是否发送成功，去除菊花
     obj.receiverId = this.data.receiverId;//接收人的ID
     obj.senderId = this.data.senderId; //发送人的ID
+
+    //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
+    if(this.data.list && this.data.list.length>0){
+      obj.lastSendMsgTime = this.data.list[this.data.list.length-1].sendTime;
+      console.log(this.data.list[this.data.list.length-1].sendTime)
+    }
+
     //消息先加入聊天区域，此时菊花是转的
     this.data.list.push(obj);
     this.setData({
