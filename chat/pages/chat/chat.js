@@ -283,7 +283,7 @@ Page({
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length > 0){
       obj.lastSendMsgTime = this.data.list[this.data.list.length-1].sendTime;
-      console.log(this.data.list[this.data.list.length-1].sendTime)
+      console.log('上一条消息发送时间: ' + this.data.list[this.data.list.length-1].sendTime)
     }
     else{
       obj.lastSendMsgTime = null;
@@ -307,7 +307,7 @@ Page({
       wx.sendSocketMessage({
         data: JSON.stringify(obj),
         success(res) {
-          console.log("打开socket 回调：" + JSON.stringify(res))
+          console.log("打开socket!");
         }
       })
     } else {
@@ -453,14 +453,14 @@ Page({
   /**
    * 页面上拉触底事件的处理函数
    */
-  onReachBottom: function () {
-
+  onReachBottom(e) {
+    console.log('onReachBottom:', e)
   },
 
   onPulling(e) {
     console.log('onPulling:', e)
   },
-
+  // 下拉获取聊天记录
   onRefresh() {
     const that =this;
     if(this._noDataing){
@@ -502,7 +502,8 @@ Page({
         obj.senderId = obj.senderId;
         obj.isShowTime = obj.isShowTime;
         obj.sendTime = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
-        this.data.list.push(obj);
+        // 这里需要逆序添加 保证最新的消息永远在list的最后面
+        this.data.list.unshift(obj);
       }
       this.setData({
         list: this.data.list,
