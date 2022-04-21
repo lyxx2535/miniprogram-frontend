@@ -1,8 +1,6 @@
 {
   "usingComponents": {
-    "navbar":"/components/navbar/index",
-    "placeholder":"/components/placeholder/index",
-    "mp-emoji": "/components/emoji/index"
+    "placeholder":"/components/placeholder/index"
   },
   "pageOrientation": "auto",
   "navigationBarTitleText": "111"

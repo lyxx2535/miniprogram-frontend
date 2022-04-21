@@ -456,7 +456,7 @@ Page({
   onReachBottom(e) {
     console.log('onReachBottom:', e)
   },
-
+  // 下拉处理
   onPulling(e) {
     console.log('onPulling:', e)
   },
@@ -481,8 +481,7 @@ Page({
   onAbort(e) {
     console.log('onAbort', e)
   },
-
-  //下拉获取聊天记录
+  //获取聊天记录
   async getMessageHistory(ident){
     const data = await _get_chat_history(this.data.receiverId,
                                    this.data.senderId,
