@@ -1,7 +1,5 @@
 {
-  "usingComponents": {
-    "placeholder":"/components/placeholder/index"
-  },
+  "usingComponents": {},
   "pageOrientation": "auto",
   "navigationBarTitleText": "111"
 }
