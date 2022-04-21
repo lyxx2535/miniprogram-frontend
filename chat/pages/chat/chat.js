@@ -124,12 +124,13 @@ Page({
         //消息发送成功的回调，删除菊花即可。
         for(let item in this.data.list){
           // 访问list数组里的json，找到最新发的那条信息
-          if(this.data.list[item].id === resJson.id){
+          if(this.data.list[item].id == null){
             console.log('新发消息： ' + JSON.stringify(this.data.list[item]))
             // 删除小菊花
             this.data.list[item].receiverId = null;
             this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
             this.data.list[item].isShowTime = resJson.isShowTime;
+            this.data.list[item].id = resJson.id;
           }
         }
         this.setData({
@@ -286,8 +287,8 @@ Page({
     this.data.list.push(obj);
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length > 0){
-      obj.lastSendMsgTime = this.data.list[this.data.list.length - 1].sendTime;
-      console.log('上一条消息发送时间: ' + this.data.list[this.data.list.length-1].sendTime)
+      obj.lastSendMsgTime = this.data.list[this.data.list.length - 2].sendTime;
+      console.log('上一条消息发送时间: ' + this.data.list[this.data.list.length - 2].sendTime)
     }
     else{
       obj.lastSendMsgTime = null;
