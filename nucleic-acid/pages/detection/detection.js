@@ -1,10 +1,21 @@
 // nucleic-acid/pages/detection/detection.js
+import * as IMG from '../../../enum/imageUrl'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    navigationTitle: '检测列表',
+    img_url: {
+      notice: IMG.NOTICE,
+      ongoing: IMG.STATE_ONGOING,
+      over: IMG.STATE_OVER,
+      miss: IMG.STATE_MISS,
+      remind: IMG.REMIND
+    },
+    // 预约信息列表
+    list :[],
 
   },
 
@@ -12,7 +23,46 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 测试数据
+    const test = [
+      {
+        name: '第四次常态化检测',
+        time: '4月19日',
+        spot: '体育馆4号门',
+        requirement: '佩戴口罩，携带身份证',
+        status: {
+          ongoing: true,
+          over: false,
+          miss: false
+        }
+      },
+      {
+        name: '第三次常态化检测',
+        time: '4月10日',
+        spot: '体育馆4号门',
+        requirement: '佩戴口罩，携带身份证',
+        status: {
+          ongoing: false,
+          over: true,
+          miss: false
+        }
+      },
+      {
+        name: '第八轮全员检测',
+        time: '4月8日',
+        spot: '体育馆4号门',
+        requirement: '佩戴口罩，携带身份证',
+        status: {
+          ongoing: false,
+          over: false,
+          miss: true
+        }
+      }
+    ]
+    this.setData({
+      list: test
+    })
+    console.log('装载测试数据：' + JSON.stringify(this.data.list))
   },
 
   /**
@@ -26,7 +76,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    wx.setNavigationBarTitle({
+      title: this.data.navigationTitle,
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**

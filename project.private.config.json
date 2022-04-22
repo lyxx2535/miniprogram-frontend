@@ -35,6 +35,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "nucleic-acid/pages/detection/detection",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "nucleic-acid/pages/report/report",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -27,7 +27,7 @@ Page({
     const test = [
       {
         name: '第四次常态化检测',
-        appointmentTime: '4月19日',
+        time: '4月19日',
         status: {
           ongoing: true,
           over: false,
@@ -36,7 +36,7 @@ Page({
       },
       {
         name: '第三次常态化检测',
-        appointmentTime: '4月10日',
+        time: '4月10日',
         status: {
           ongoing: false,
           over: true,
@@ -45,7 +45,7 @@ Page({
       },
       {
         name: '第八轮全员检测',
-        appointmentTime: '4月8日',
+        time: '4月8日',
         status: {
           ongoing: false,
           over: false,

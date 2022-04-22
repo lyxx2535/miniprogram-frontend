@@ -9,7 +9,7 @@
     <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
   </view>
 
-  <text class="ml-20">预约时间：{{item.appointmentTime}}前</text>
+  <text class="ml-20">预约时间：{{item.time}}前</text>
 
   <view class="flex flex-grow-0 relative">
   <!-- TODO：激活按钮绑定跳转事件和处理事件 -->

@@ -1,2 +1,31 @@
 <!--nucleic-acid/pages/detection/detection.wxml-->
-<text>nucleic-acid/pages/detection/detection.wxml</text>
+<view class="card mt-20px" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
+
+<view class="mt-30px flex">
+  <image src="{{img_url.notice}}" class="inline-block h-15 w-20" style="z-index: 999;"></image>
+  <text class="inline-block mt-3 text-xl font-semibold">{{item.name}}</text>
+  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
+  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
+  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
+</view>
+
+<view class="ml-20">检测时间：{{item.time}}</view>
+<view class="ml-20 mt-2">检测地点：{{item.spot}}</view>
+<view class="ml-20 mt-2">检测要求：{{item.requirement}}</view>
+
+<view class="flex flex-grow-0 relative">
+<!-- TODO：激活按钮绑定跳转事件和处理事件 -->
+  <button  wx:if="{{item.status.ongoing}}" class="btn btn_2" style="background-color: #d0cece;">我已检测</button>
+  <button  wx:if="{{item.status.over}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">我已检测</button>
+  <button  wx:if="{{item.status.miss}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">我已检测</button>
+</view>
+
+<view class="divide_line"></view>
+
+<view class="flex relative">
+  <image src="{{img_url.remind}}" class="inline-block h-11 w-15"></image>
+  <text class="mt-2 font-semibold" >检测提醒</text>
+  <!-- TODO：switch绑定处理事件 -->
+  <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;"><switch></switch></view>
+</view>
+</view>
