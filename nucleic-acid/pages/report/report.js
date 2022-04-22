@@ -126,6 +126,22 @@ Page({
     console.log('完成上报，改变上报状态')
     // TODO: 回传后端，更新状态
   },
+  // 打开上报提醒
+  switchChange(e){
+    const index = e.currentTarget.dataset.index
+    if(this.data.list[index].status.over || this.data.list[index].status.miss){
+      wx.showToast({
+        title: '检测已过期，无法开启提醒！',
+        icon: 'none'
+      })
+      this.setData({
+        switchChecked: false
+      })
+    }
+    else{
+      // TODO: 弹出表单 选择上报时间 开启服务提醒
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */

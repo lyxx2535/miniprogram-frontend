@@ -45,7 +45,7 @@
     <text class="mt-2 font-semibold" >上报提醒</text>
     <!-- TODO：switch绑定处理事件 -->
     <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;">
-      <switch checked="{{switchChecked}}" bindchange="switchChange"/>
+      <switch checked="{{switchChecked}}" bindchange="switchChange" data-index="{{index}}"></switch>
     </view>
   </view>
 
