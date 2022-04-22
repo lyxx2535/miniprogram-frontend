@@ -42,6 +42,10 @@
   display: -webkit-flex;
   display: flex;
 }
+.grid {
+  display: -ms-grid;
+  display: grid;
+}
 .flex-col {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;

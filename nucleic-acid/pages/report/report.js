@@ -13,12 +13,15 @@ Page({
       upload: IMG.UPLOAD
     },
     list :[],    // 预约信息列表
-    now_state:null,
+    now_state:null, // 当前卡片的状态
     reportContent: '',    // 上报弹窗内容
-    tempImgUrl: '',
-    isChoose: false,
-    switchChecked: false,
-    currentIndex: 0,  //目前卡片的index
+    tempImgUrl: '', // 图片缓存
+    isChoose: false, // 是否上传截图
+    switchChecked: false, // switch开关
+    currentIndex: 0,  // 目前卡片的index
+    isShowForm: false, // 是否展示提醒时间表单
+    userName: wx.getStorageSync('userInfo_wx').nickName, //用户微信名
+    date: wx.getStorageSync('date'), // 当天日期
   },
   // 点击按钮事件
   reportMedia(e){
@@ -68,6 +71,10 @@ Page({
   },
   // 上传核酸截图
   async uploadImg(e){
+    wx.showLoading({  // 显示加载中loading效果 
+      title: "加载中",
+      mask: true  //开启蒙版遮罩
+    });
     try{
       const res = await api._upload_nucleic(this.data.tempImgUrl);
       const resJson = JSON.parse(res.data)
@@ -77,6 +84,8 @@ Page({
         tempImgUrl: '', // 清空本地图片缓存
         switchChecked: !this.data.switchChecked // 取消上报提醒
       })
+      //隐藏加载界面
+      wx.hideLoading();
       if(resJson.code == 200){
         wx.showToast({
           title: '上传成功！'
@@ -128,19 +137,71 @@ Page({
   },
   // 打开上报提醒
   switchChange(e){
-    const index = e.currentTarget.dataset.index
-    if(this.data.list[index].status.over || this.data.list[index].status.miss){
-      wx.showToast({
-        title: '检测已过期，无法开启提醒！',
-        icon: 'none'
-      })
-      this.setData({
-        switchChecked: false
-      })
-    }
-    else{
-      // TODO: 弹出表单 选择上报时间 开启服务提醒
-    }
+      // TODO:开启服务提醒 封装相关api
+      if(!this.data.switchChecked){
+        var currentStatus = e.currentTarget.dataset.status; 
+        this.formAnimation(currentStatus)
+      }
+      // 关闭通知时
+      else{
+        this.setData({
+          switchChecked: false
+        })
+        wx.showToast({
+          title: '已关闭服务通知！',
+        })
+      }
+  },
+  // 通过按钮关闭表单
+  powerDrawer(e){
+    var currentStatus = e.currentTarget.dataset.status; 
+    this.formAnimation(currentStatus)
+  },
+  // 表单弹出动画
+  formAnimation(currentStatus){ 
+    // 创建动画实例  
+    var animation = wx.createAnimation({ 
+     duration: 200, //动画时长 
+     timingFunction: "linear", //线性 
+     delay: 0 //0则不延迟 
+    }); 
+    // 这个动画实例赋给当前的动画实例 
+    this.animation = animation; 
+    // 执行第一组动画 
+    animation.opacity(0).rotateX(-50).step(); 
+    // 导出动画对象赋给数据对象储存 
+    this.setData({ 
+     animationData: animation.export() 
+    })  
+    // 设置定时器到指定时候后，执行第二组动画 
+    setTimeout(() => { 
+      // 执行第二组动画 
+      animation.opacity(1).rotateX(0).step(); 
+      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象 
+      this.setData({ 
+        animationData: animation 
+      })  
+      //关闭 
+      if (currentStatus == "close") { 
+        this.setData({ 
+          isShowForm: false
+        }); 
+      }
+    }, 200) 
+    // 显示 
+    if (currentStatus == "open") { 
+      this.setData({ 
+        isShowForm: true,
+        switchChecked: true
+      }); 
+    } 
+  },
+  // 点击日期选择器事件
+  bindDateChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
   },
   /**
    * 生命周期函数--监听页面加载
@@ -181,14 +242,6 @@ Page({
     })
     console.log('装载测试数据：' + JSON.stringify(this.data.list))
   },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
   /**
    * 生命周期函数--监听页面显示
    */
@@ -200,39 +253,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

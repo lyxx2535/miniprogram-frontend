@@ -28,7 +28,9 @@
     <text class="mt-2 font-semibold" >预约提醒</text>
     <!-- TODO：switch绑定处理事件 -->
     <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;">
-      <switch checked="{{switchChecked}}" bindchange="switchChange"/>
+      <switch wx:if="{{item.status.over}}" disabled="true"></switch>
+      <switch wx:if="{{item.status.miss}}" disabled="true"></switch>
+      <switch wx:if="{{item.status.ongoing}}" checked="{{switchChecked}}" bindchange="switchChange" data-status="open"></switch>
     </view>
   </view>
 </view>

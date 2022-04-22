@@ -45,8 +45,42 @@
     <text class="mt-2 font-semibold" >上报提醒</text>
     <!-- TODO：switch绑定处理事件 -->
     <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;">
-      <switch checked="{{switchChecked}}" bindchange="switchChange" data-index="{{index}}"></switch>
+      <switch wx:if="{{item.status.over}}" disabled="true"></switch>
+      <switch wx:if="{{item.status.miss}}" disabled="true"></switch>
+      <switch wx:if="{{item.status.ongoing}}" checked="{{switchChecked}}" bindchange="switchChange" data-status="open"></switch>
     </view>
+  </view>
+  <!--mask-->
+<view class="drawer_screen" bindtap="powerDrawer" data-status="close" wx:if="{{isShowForm}}"></view> 
+  <!--content-->
+  <!--使用animation属性指定需要执行的动画-->
+<view animation="{{animationData}}" class="drawer_box" wx:if="{{isShowForm}}"> 
+ <!--drawer content-->
+  <view class="drawer_title">自定义/确认提醒内容</view> 
+  <view class="drawer_content">
+    <view class="top grid"> 
+      <label class="title col-0">上报人</label> 
+      <input class="input_base input_h30 col-1" value="{{userName}}"></input> 
+    </view> 
+    <view class="top grid"> 
+      <label class="title col-0">上报内容</label> 
+      <input class="input_base input_h30 col-1" value="{{item.name}}"></input> 
+    </view>
+    <view class="top grid"> 
+      <label class="title col-0">提醒时间</label> 
+      <picker  mode="date" header-text="选择时间" value="{{date}}"  bindchange="bindDateChange">
+        <view style="font-size: 30rpx;">
+          <text style="margin-top: 20rpx;">{{date}}</text>
+          <text style="margin-top: 20rpx; margin-left: 3rpx;" >▼</text>
+        </view>
+      </picker> 
+    </view> 
+      <view class="top bottom grid"> 
+        <label class="title col-0">备注</label> 
+        <input class="input_base input_h30 col-1"></input> 
+      </view> 
+    </view> 
+    <view class="btn_ok" bindtap="powerDrawer" data-status="close">确定</view> 
   </view>
 
 </view>

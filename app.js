@@ -1,6 +1,11 @@
 // app.js
+const util = require('./utils/chat')
+
 App({
   onLaunch() {
+    // 拿到当天日期
+    var d = new Date();
+    wx.setStorageSync('date', util.tsFormatTime(d,'Y-M-D'))
     // 登录
     wx.login({
       success: res => {
