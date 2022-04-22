@@ -12,6 +12,7 @@ Page({
     },
     // 预约信息列表
     list :[],
+    switchChecked: false,
   },
 
   /**
@@ -59,7 +60,28 @@ Page({
     })
     console.log('装载测试数据：' + JSON.stringify(this.data.list))
   },
-
+  // 完成检测
+  finishDetection(index){
+    let obj = [];
+    for(let item in this.data.list){
+      obj.push(this.data.list[item])
+      if(item == index){
+        obj[item].status.ongoing = false;
+        obj[item].status.miss = false;
+        obj[item].status.over = true;
+      }
+    }
+    this.setData({
+      switchChecked: false,
+      list: obj
+    })
+    console.log('完成检测，改变检测状态')
+  },
+  // 点击已检测
+  tapDetection(e){
+    console.log('123')
+    this.finishDetection(e.currentTarget.dataset.index)
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

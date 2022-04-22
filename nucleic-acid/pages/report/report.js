@@ -12,21 +12,21 @@ Page({
       remind: IMG.REMIND,
       upload: IMG.UPLOAD
     },
-    // 预约信息列表
-    list :[],
+    list :[],    // 预约信息列表
     now_state:null,
-    // 上报弹窗内容
-    reportContent: '',
+    reportContent: '',    // 上报弹窗内容
     tempImgUrl: '',
     isChoose: false,
-
+    switchChecked: false,
+    currentIndex: 0,  //目前卡片的index
   },
   // 点击按钮事件
   reportMedia(e){
     var that = this 
     that.setData({
       now_state: true,
-      reportContent: e.currentTarget.dataset.name
+      reportContent: e.currentTarget.dataset.name,
+      currentIndex: e.currentTarget.dataset.index
     })
   },
   // 点击黑色背景触发的事件
@@ -67,7 +67,7 @@ Page({
     }
   },
   // 上传核酸截图
-  async uploadImg(){
+  async uploadImg(e){
     try{
       const res = await api._upload_nucleic(this.data.tempImgUrl);
       console.log(res.data);
@@ -79,16 +79,20 @@ Page({
         wx.showToast({
           title: '上传成功！'
         })
+        // 改变状态，取消switch
+        this.finishUpload(this.data.currentIndex)
       }
       else{
         wx.showToast({
-          title: '上传失败！'
+          title: '上传失败！',
+          icon: 'error'
         })
       }
     }catch(err){
       console.log('上传失败：' + JSON.stringify(err));
       wx.showToast({
-        title: '上传失败！'
+        title: '上传失败！',
+        icon: 'error'
       })
     }
   },
@@ -101,6 +105,23 @@ Page({
     wx.showToast({
       title: '已取消上传',
     })
+  },
+  // 完成上传
+  finishUpload(index){
+    let obj = [];
+    for(let item in this.data.list){
+      obj.push(this.data.list[item])
+      if(item == index){
+        obj[item].status.ongoing = false;
+        obj[item].status.miss = false;
+        obj[item].status.over = true;
+      }
+    }
+    this.setData({
+      switchChecked: false,
+      list: obj
+    })
+    console.log('完成上传，改变上传状态')
   },
   /**
    * 生命周期函数--监听页面加载

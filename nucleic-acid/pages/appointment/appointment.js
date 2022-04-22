@@ -12,6 +12,7 @@ Page({
     },
     // 预约信息列表
     list :[],
+    switchChecked: false,
   },
 
   /**
@@ -58,6 +59,7 @@ Page({
   },
   goToBook(e){
     // 复制网址到剪切板
+    var that = this
     wx.setClipboardData({
       data: e.currentTarget.dataset.url,//需要复制的内容
       success: function (res) {//成功回调函数
@@ -70,11 +72,34 @@ Page({
             } else {
               console.log('预约：用户点击取消')
             }
+            that.finishAppointment(e.currentTarget.dataset.index);
           }
         })
       }
     })
     // todo: 后续改变状态操作
+  },
+  // 完成预约
+  finishAppointment(index){
+    console.log(typeof(index))
+    let obj = [];
+    for(let item in this.data.list){
+      obj.push(this.data.list[item])
+      if(item == index){
+        obj[item].status.ongoing = false;
+        obj[item].status.miss = false;
+        obj[item].status.over = true;
+      }
+    }
+    this.setData({
+      switchChecked: false,
+      list: obj
+    })
+    console.log('完成预约，改变预约状态')
+  },
+  // 点击已预约
+  tapAppointment(e){
+    this.finishAppointment(e.currentTarget.dataset.index)
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
