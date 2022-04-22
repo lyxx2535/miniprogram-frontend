@@ -44,7 +44,9 @@
     <image src="{{img_url.remind}}" class="inline-block h-11 w-15"></image>
     <text class="mt-2 font-semibold" >上报提醒</text>
     <!-- TODO：switch绑定处理事件 -->
-    <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;"><switch></switch></view>
+    <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;">
+      <switch checked="{{switchChecked}}" bindchange="switchChange"/>
+    </view>
   </view>
 
 </view>

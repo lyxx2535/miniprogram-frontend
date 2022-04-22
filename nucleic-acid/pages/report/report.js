@@ -70,17 +70,19 @@ Page({
   async uploadImg(e){
     try{
       const res = await api._upload_nucleic(this.data.tempImgUrl);
-      console.log(res.data);
+      const resJson = JSON.parse(res.data)
+      console.log(resJson);
       this.setData({
-        isChoose: !this.data.isChoose,
-        tempImgUrl: '',
+        isChoose: !this.data.isChoose,// 回到上传图片界面
+        tempImgUrl: '', // 清空本地图片缓存
+        switchChecked: !this.data.switchChecked // 取消上报提醒
       })
-      if(res.data.code === 200){
+      if(resJson.code == 200){
         wx.showToast({
           title: '上传成功！'
         })
         // 改变状态，取消switch
-        this.finishUpload(this.data.currentIndex)
+        this.finishReport(this.data.currentIndex)
       }
       else{
         wx.showToast({
@@ -107,7 +109,7 @@ Page({
     })
   },
   // 完成上传
-  finishUpload(index){
+  finishReport(index){
     let obj = [];
     for(let item in this.data.list){
       obj.push(this.data.list[item])
@@ -121,7 +123,8 @@ Page({
       switchChecked: false,
       list: obj
     })
-    console.log('完成上传，改变上传状态')
+    console.log('完成上报，改变上报状态')
+    // TODO: 回传后端，更新状态
   },
   /**
    * 生命周期函数--监听页面加载
