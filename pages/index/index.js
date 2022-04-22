@@ -5,19 +5,13 @@ const app = getApp()
 
 Page({
   data: {
-    motto: 'Hello World',
+    motto: '测试页面 可拿token',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
     canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
   },
-    // 事件处理函数
-    bindViewTap() {
-      wx.navigateTo({
-        url: '../logs/logs'
-      })
-    },
     getUserProfile(e) {
       wx.getUserProfile({
         desc: '展示用户信息', // 声明获取用户个人信息后的用途，后续会展示在弹窗中，请谨慎填写
@@ -47,21 +41,6 @@ Page({
                                        '南京大学')
       wx.setStorageSync('token', res.data.data.token)
       console.log('token: ' + wx.getStorageSync('token'));
-    },
-    async getUserInfo(){
-      const res = await api._get_user_info();
-      wx.setStorageSync('userInfo', res.data.data);
-      console.log('userInfo: ' + wx.getStorageSync('userInfo'))
-      console.log(res.data)
-    },
-    async uploadImg(){
-      const res = await api._upload_nucleic();
-      console.log(res.data)
-    },
-    async test(){
-      console.log('history before data: ' + 1 + 9 + 0 + 10)
-      const data = await api._get_chat_history(1,9,0,10);
-      console.log('history: ' + JSON.stringify(data))
     },
   onLoad() {
     if (wx.getUserProfile) {

@@ -20,10 +20,5 @@
   <view class="usermotto mt-60px" >
     <text class="user-motto">{{motto}}</text>
   </view>
-  <button bindtap="getUserProfile" class="mt-20px">获取用户信息</button>
-  <button bindtap="getOpenid" class="mt-20px">获取openid</button>
-  <button bindtap="getToken" class="mt-20px">获取token</button>
-  <button bindtap="getUserInfo" class="mt-20px">向后端获取用户详细信息</button>
-  <button bindtap="uploadImg" class="mt-20px">上传核酸截图</button>
-  <button bindtap="test" class="mt-20px" >聊天记录</button>
+  <button bindtap="getUserProfile" class="mt-20px">登陆并获取token</button>
 </view>
