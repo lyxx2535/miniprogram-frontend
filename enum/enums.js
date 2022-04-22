@@ -10,9 +10,8 @@ const CHAT_BASE = 'http://localhost:9999/message-server/'
 const WS_BASE = 'ws://124.223.105.99:8085/'
 const FRIEND_LIST = '/user/friend-list'
 const CHAT_HISTORY = '/message/get-chat-history'
-
-// OCR
-const NUCLEIC_ACID = '/nucleic-acid/info/upload';
+// nucleic_acid
+const NUCLEIC_OCR = '/nucleic-acid/info/upload';
 
 export {
   LOGIN_API,
@@ -21,7 +20,7 @@ export {
   GET_USER_INFO,
   CHAT_BASE,
   WS_BASE,
-  NUCLEIC_ACID,
+  NUCLEIC_OCR,
   FRIEND_LIST,
   CHAT_HISTORY,
   GET_USER_INFO_BYID,

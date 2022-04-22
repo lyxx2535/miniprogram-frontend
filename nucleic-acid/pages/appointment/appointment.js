@@ -12,7 +12,6 @@ Page({
     },
     // 预约信息列表
     list :[],
-
   },
 
   /**
@@ -28,7 +27,8 @@ Page({
           ongoing: true,
           over: false,
           miss: false
-        }
+        },
+        url: 'http://ndyy.nju.edu.cn'
       },
       {
         name: '第三次常态化检测',
@@ -37,7 +37,8 @@ Page({
           ongoing: false,
           over: true,
           miss: false
-        }
+        },
+        url: 'http://ndyy.nju.edu.cn'
       },
       {
         name: '第八轮全员检测',
@@ -46,7 +47,8 @@ Page({
           ongoing: false,
           over: false,
           miss: true
-        }
+        },
+        url: 'http://ndyy.nju.edu.cn'
       }
     ]
     this.setData({
@@ -54,7 +56,26 @@ Page({
     })
     console.log('装载测试数据：' + JSON.stringify(this.data.list))
   },
-
+  goToBook(e){
+    // 复制网址到剪切板
+    wx.setClipboardData({
+      data: e.currentTarget.dataset.url,//需要复制的内容
+      success: function (res) {//成功回调函数
+        wx.showModal({
+          title: '快去预约叭~',
+          content: '预约网址已复制到剪切板',
+          success: function (res) {
+            if (res.confirm) {
+              console.log('预约：用户点击确定')
+            } else {
+              console.log('预约：用户点击取消')
+            }
+          }
+        })
+      }
+    })
+    // todo: 后续改变状态操作
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */

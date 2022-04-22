@@ -13,7 +13,7 @@
 
   <view class="flex flex-grow-0 relative">
   <!-- TODO：激活按钮绑定跳转事件和处理事件 -->
-    <button  wx:if="{{item.status.ongoing}}" class="btn btn_1" style="background-color: black; color: white;">前往预约</button>
+    <button  wx:if="{{item.status.ongoing}}" class="btn btn_1" style="background-color: black; color: white;" bindtap="goToBook" data-url="{{item.url}}">前往预约</button>
     <button  wx:if="{{item.status.ongoing}}" class="btn btn_2" style="background-color: #d0cece;">我已预约</button>
     <button  wx:if="{{item.status.over}}" class="btn btn_1" style="background-color: #f0efef; color: #d0cece;">前往预约</button>
     <button  wx:if="{{item.status.over}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">我已预约</button>

@@ -1,5 +1,5 @@
 import * as API from '../enum/enums.js'
-import { chooseMedia, httpRequest, uploadMedia } from './http.js' //引入上面封装好的请求方法
+import { chooseMedia, httpRequest, uploadMedia } from './http.js'
 
 // 登录，参数是用户code
 const _login = (_code) => {
@@ -89,12 +89,11 @@ const _get_chat_history = (_friendId, _id, _pageNo, _pageSize) => {
 const _choose_nucleic = () => {
   return chooseMedia()
 }
-// 上传核酸截图，暂时不需要token
-// todo: 接口路径改了？
+// 上传核酸截图，需要token
 const  _upload_nucleic = (_filePath) => {
-  console.log('截图参数：' + _filePath)
+  console.log('图片本地路径：' + _filePath)
   return uploadMedia({
-    url: API.NUCLEIC_ACID,
+    url: API.NUCLEIC_OCR,
     filePath: _filePath,
     name: 'image', // key
     header: {
@@ -102,20 +101,6 @@ const  _upload_nucleic = (_filePath) => {
       'Authorization': wx.getStorageSync('token')
     }
   })
-  // this._choose_nucleic().then(res => {
-  // // 遍历所有本地上传文件
-  //   for(let index in res.tempFiles){
-  //     console.log('上传媒体暂时路径: ' + res.tempFiles[index].tempFilePath);
-  //   }
-  //   return uploadMedia({
-  //     url: API.NUCLEIC_ACID,
-  //     filePath: res.tempFiles[0].tempFilePath,
-  //     name: 'image', // key
-  //     header: {
-  //       'content-type': 'multipart/form-data'
-  //     }
-  //   })
-  // })
 }
 
 export {
