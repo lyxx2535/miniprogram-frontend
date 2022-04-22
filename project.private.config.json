@@ -28,6 +28,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "nucleic-acid/pages/appointment/appointment",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

@@ -1,10 +1,21 @@
 // nucleic-acid/pages/appointment/appointment.js
+import * as IMG from '../../../enum/imageUrl'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    navigationTitle: '预约列表',
+    img_url: {
+      notice: IMG.NOTICE,
+      ongoing: IMG.STATE_ONGOING,
+      over: IMG.STATE_OVER,
+      miss: IMG.STATE_MISS,
+      remind: IMG.REMIND
+    },
+    // 预约信息列表
+    list :[],
 
   },
 
@@ -12,7 +23,28 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    // 测试数据
+    const test = [
+      {
+        name: '第四次常态化检测',
+        appointmentTime: '4月19日',
+        status_ongoing: true,
+      },
+      {
+        name: '第三次常态化检测',
+        appointmentTime: '4月10日',
+        status_over: true,
+      },
+      {
+        name: '第八轮全员检测',
+        appointmentTime: '4月8日',
+        status_miss: true,
+      }
+    ]
+    this.setData({
+      list: test
+    })
+    console.log('装载测试数据：' + JSON.stringify(this.data.list))
   },
 
   /**
@@ -26,7 +58,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    wx.setNavigationBarTitle({
+      title: this.data.navigationTitle,
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**

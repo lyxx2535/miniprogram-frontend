@@ -1,2 +1,21 @@
 <!--nucleic-acid/pages/appointment/appointment.wxml-->
-<text>nucleic-acid/pages/appointment/appointment.wxml</text>
+<view class="card mt-20px" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
+  <view class="mt-30px flex">
+    <image src="{{img_url.notice}}" class="inline-block h-15 w-20" style="z-index: 999;"></image>
+    <text class="inline-block mt-3 text-xl font-semibold">{{item.name}}</text>
+    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status_ongoing}}" src="{{img_url.ongoing}}"></image>
+    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status_over}}" src="{{img_url.over}}"></image>
+    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status_miss}}" src="{{img_url.miss}}"></image>
+  </view>
+  <text class="ml-20">预约时间：{{item.appointmentTime}}前</text>
+  <view class="flex flex-grow-0 relative">
+    <button class="btn btn_1" style="background-color: black; color: white;">前往预约</button>
+    <button class="btn btn_2" style="background-color: #d0cece;">我已预约</button>
+  </view>
+  <view class="divide_line"></view>
+  <view class="flex relative">
+    <image src="{{img_url.remind}}" class="inline-block h-13 w-15"></image>
+    <text class="mt-3 font-semibold" >预约提醒</text>
+    <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;"><switch></switch></view>
+  </view>
+</view>

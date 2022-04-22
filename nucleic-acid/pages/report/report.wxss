@@ -1,1 +1,4 @@
 /* nucleic-acid/pages/report/report.wxss */
+page {
+  background-color: #f2f2f4;
+}
