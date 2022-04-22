@@ -98,7 +98,8 @@ const  _upload_nucleic = (_filePath) => {
     filePath: _filePath,
     name: 'image', // key
     header: {
-      'content-type': 'multipart/form-data'
+      'content-type': 'multipart/form-data',
+      'Authorization': wx.getStorageSync('token')
     }
   })
   // this._choose_nucleic().then(res => {

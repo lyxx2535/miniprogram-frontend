@@ -12,7 +12,7 @@ const FRIEND_LIST = '/user/friend-list'
 const CHAT_HISTORY = '/message/get-chat-history'
 
 // OCR
-const NUCLEIC_ACID = '/nucleic-acid/upload';
+const NUCLEIC_ACID = '/nucleic-acid/info/upload';
 
 export {
   LOGIN_API,

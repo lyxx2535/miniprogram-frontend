@@ -102,9 +102,6 @@
   font-size: 1.5rem;
   line-height: 2rem;
 }
-.m-auto {
-  margin: auto;
-}
 .mt-50px {
   margin-top: 50px;
 }
@@ -132,11 +129,8 @@
 .ml-20 {
   margin-left: 5rem;
 }
-.mt-20 {
-  margin-top: 5rem;
-}
-.mt-10 {
-  margin-top: 2.5rem;
+.mt-8 {
+  margin-top: 2rem;
 }
 .relative {
   position: relative;

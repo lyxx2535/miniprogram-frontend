@@ -75,9 +75,16 @@ Page({
         isChoose: !this.data.isChoose,
         tempImgUrl: '',
       })
-      wx.showToast({
-        title: '上传成功！'
-      })
+      if(res.data.code === 200){
+        wx.showToast({
+          title: '上传成功！'
+        })
+      }
+      else{
+        wx.showToast({
+          title: '上传失败！'
+        })
+      }
     }catch(err){
       console.log('上传失败：' + JSON.stringify(err));
       wx.showToast({
