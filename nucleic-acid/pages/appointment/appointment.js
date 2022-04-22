@@ -28,17 +28,29 @@ Page({
       {
         name: '第四次常态化检测',
         appointmentTime: '4月19日',
-        status_ongoing: true,
+        status: {
+          ongoing: true,
+          over: false,
+          miss: false
+        }
       },
       {
         name: '第三次常态化检测',
         appointmentTime: '4月10日',
-        status_over: true,
+        status: {
+          ongoing: false,
+          over: true,
+          miss: false
+        }
       },
       {
         name: '第八轮全员检测',
         appointmentTime: '4月8日',
-        status_miss: true,
+        status: {
+          ongoing: false,
+          over: false,
+          miss: true
+        }
       }
     ]
     this.setData({
