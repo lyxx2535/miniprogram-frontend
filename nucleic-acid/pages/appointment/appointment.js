@@ -1,10 +1,6 @@
 // nucleic-acid/pages/appointment/appointment.js
 import * as IMG from '../../../enum/imageUrl'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     navigationTitle: '预约列表',
     img_url: {

@@ -2,10 +2,6 @@
 import * as IMG from '../../../enum/imageUrl'
 import * as api from '../../../utils/api'
 Page({
-
-  /**
-   * 页面的初始数据
-   */
   data: {
     navigationTitle: '上报列表',
     img_url: {
@@ -58,17 +54,17 @@ Page({
   },
   // 选择核酸截图
   async chooseImg(){
-    const res = await api._choose_nucleic();
-    // 遍历所有本地上传文件，此时限定count = 1
-    for(let index in res.tempFiles){
-      
+    try{
+      const res = await api._choose_nucleic();
+      // 保存url
+      this.setData({
+        tempImgUrl: res.tempFiles[0].tempFilePath,
+        isChoose: true
+      })
+      console.log('上传媒体暂时路径: ' + this.data.tempImgUrl);
+    }catch(err){
+      console.log('选择媒体失败：' + JSON.stringify(err));
     }
-    // 保存url
-    this.setData({
-      tempImgUrl: res.tempFiles[0].tempFilePath,
-      isChoose: true
-    })
-    console.log('上传媒体暂时路径: ' + this.data.tempImgUrl);
   },
   // 上传核酸截图
   async uploadImg(){
