@@ -32,9 +32,9 @@
     </view>
     <view wx:if="{{isChoose}}">
       <image src="{{tempImgUrl}}" style="width: 60%; height: 500rpx; margin-top: 100rpx;"></image>
-      <view class="flex mt-10">
-        <button bindtap="reChoose">更改</button>
-        <button bindtap="uploadImg">提交</button>
+      <view class="flex mt-10 relative">
+        <button bindtap="reChoose" class="btn_upload" style="left: 50rpx;">更改</button>
+        <button bindtap="uploadImg" class="btn_upload" style="right: 50rpx; background-color: black; color: white;">提交</button>
       </view>
     </view>
   </view>
