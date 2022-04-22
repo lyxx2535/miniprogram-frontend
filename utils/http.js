@@ -7,6 +7,7 @@
 const pubUrl = "http://124.223.105.99:8085/api"
 // const pubUrl = "http://localhost:8085/api"
 
+// http请求
 const httpRequest = (options) =>{
   return new Promise((resolve, reject) => {
     wx.request({
@@ -23,40 +24,41 @@ const httpRequest = (options) =>{
   })
 }
 
-const uploadMedia = (options) =>{
+// 选择本地图片/视频
+const chooseMedia = (options) =>{
   return new Promise((resolve, reject) => {
     wx.chooseMedia({
-      count: 9,
+      count: 1,
       mediaType: ['image','video'],
       sourceType: ['album', 'camera'],
       maxDuration: 30,
       camera: 'back',
-      success(res) {
-        // 遍历所有本地上传文件
-        for(let index in res.tempFiles){
-          console.log('上传媒体暂时路径: ' + res.tempFiles[index].tempFilePath);
-          wx.uploadFile({
-            url: pubUrl + options.url,
-            filePath: res.tempFiles[index].tempFilePath,
-            name: options.name,
-            formData: options.data || {},
-            header: options.header || {
-              'content-type': 'multipart/form-data',
-              'Authorization': wx.getStorageSync('token')
-            },
-            success: resolve,
-            fail: reject
-          })
-        }
+      success: resolve,
+      fail: reject
+    })
+  })
+}
+
+// 上传图片/视频
+const uploadMedia = (options) => {
+  return new Promise((resolve, reject) => {
+    wx.uploadFile({
+      url: pubUrl + options.url,
+      filePath: options.filePath,
+      name: options.name,
+      formData: options.data || {},
+      header: options.header || {
+        'content-type': 'multipart/form-data',
+        'Authorization': wx.getStorageSync('token')
       },
-      fail: err => {
-        console.log(err)
-      }
+      success: resolve,
+      fail: reject
     })
   })
 }
 
 export {
   httpRequest,
-  uploadMedia
+  uploadMedia,
+  chooseMedia
 }

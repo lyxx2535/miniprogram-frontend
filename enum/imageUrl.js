@@ -13,6 +13,7 @@ const REMIND = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/remin
 const STATE_MISS = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/state_miss.png'
 const STATE_ONGOING = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/state_ongoing.png'
 const STATE_OVER = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/state_over.png'
+const UPLOAD = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/upload.png'
 // NOTICE和RETURN是核酸 - 列表与核酸 - 我的公用
 const NOTICE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/notice.png'
 const RETURN = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/return.png'
@@ -43,4 +44,5 @@ export {
   MSG_SELECTED,
   MY,
   MY_SELECTED,
+  UPLOAD,
 }

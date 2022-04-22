@@ -1,5 +1,6 @@
 // nucleic-acid/pages/report/report.js
 import * as IMG from '../../../enum/imageUrl'
+import * as api from '../../../utils/api'
 Page({
 
   /**
@@ -12,13 +13,92 @@ Page({
       ongoing: IMG.STATE_ONGOING,
       over: IMG.STATE_OVER,
       miss: IMG.STATE_MISS,
-      remind: IMG.REMIND
+      remind: IMG.REMIND,
+      upload: IMG.UPLOAD
     },
     // 预约信息列表
     list :[],
+    now_state:null,
+    // 上报弹窗内容
+    reportContent: '',
+    tempImgUrl: '',
+    isChoose: false,
 
   },
-
+  // 点击按钮事件
+  reportMedia(e){
+    var that = this 
+    that.setData({
+      now_state: true,
+      reportContent: e.currentTarget.dataset.name
+    })
+  },
+  // 点击黑色背景触发的事件
+  hideModal(e){
+    //首先创建一个动画对象（让页面不在是一个“死页面”）
+    var animation = wx.createAnimation({
+      duration: 400,
+      timingFunction: "linear",
+      delay: 5
+    })
+    this.animation = animation
+    //animation.translateY(300)中的translate函数是表示在y轴上平移多少px，而后面紧接着的.step表示前面动画的完成，可以开始下一个动画了
+    animation.translateY(600).step()
+    this.setData({
+      /*这里的export函数是导出动画队列，同时export方法在调用完后会清掉前面的动画操作 */
+      animationData: animation.export(),
+    })
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        now_state: false,
+      })
+    }.bind(this), 200)
+  },
+  // 选择核酸截图
+  async chooseImg(){
+    const res = await api._choose_nucleic();
+    // 遍历所有本地上传文件，此时限定count = 1
+    for(let index in res.tempFiles){
+      
+    }
+    // 保存url
+    this.setData({
+      tempImgUrl: res.tempFiles[0].tempFilePath,
+      isChoose: true
+    })
+    console.log('上传媒体暂时路径: ' + this.data.tempImgUrl);
+  },
+  // 上传核酸截图
+  async uploadImg(){
+    try{
+      const res = await api._upload_nucleic(this.data.tempImgUrl);
+      console.log(res.data);
+      this.setData({
+        isChoose: !this.data.isChoose,
+        tempImgUrl: '',
+      })
+      wx.showToast({
+        title: '上传成功！'
+      })
+    }catch(err){
+      console.log('上传失败：' + JSON.stringify(err));
+      wx.showToast({
+        title: '上传失败！'
+      })
+    }
+  },
+  // 重新上传
+  reChoose(){
+    this.setData({
+      isChoose: !this.data.isChoose,
+      tempImgUrl: '',
+    })
+    wx.showToast({
+      title: '已取消上传',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

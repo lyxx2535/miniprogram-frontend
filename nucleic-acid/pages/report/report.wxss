@@ -44,3 +44,35 @@ page {
 .wx-switch-input{width:42px !important;height:22px !important;}
 .wx-switch-input::before{width:40px !important;height: 20px !important;}
 .wx-switch-input::after{width: 18px !important;height: 18px !important;}
+
+.background{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+}
+.box{
+    height: 80%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    background: #e7e6e6;
+    text-align: center;
+    border-radius: 10px;
+}
+.media{
+  height: 300rpx;
+  width: 300rpx;
+  border-radius: 20px;
+  border: 2px dashed black;
+  margin-top: 15%;
+  margin-left: calc(50vw - 150rpx);
+}

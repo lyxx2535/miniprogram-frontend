@@ -1,32 +1,52 @@
 <!--nucleic-acid/pages/report/report.wxml-->
 <view class="card mt-20px" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
 
-<view class="mt-30px flex">
-  <image src="{{img_url.notice}}" class="inline-block h-15 w-20" style="z-index: 999;"></image>
-  <text class="inline-block mt-3 text-xl font-semibold">{{item.name}}</text>
-  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
-  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
-  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
-</view>
+  <view class="mt-30px flex">
+    <image src="{{img_url.notice}}" class="inline-block h-15 w-20" style="z-index: 999;"></image>
+    <text class="inline-block mt-3 text-xl font-semibold">{{item.name}}</text>
+    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
+    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
+    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
+  </view>
 
-<view class="ml-20">截止时间：{{item.time}}</view>
+  <view class="ml-20">截止时间：{{item.time}}</view>
 
-<view class="flex flex-grow-0 relative">
-<!-- TODO：激活按钮绑定跳转事件和处理事件 -->
-  <button  wx:if="{{item.status.ongoing}}" class="btn btn_2" style="background-color: #d0cece;">点击上报</button>
-  <button  wx:if="{{item.status.over}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
-  <button  wx:if="{{item.status.miss}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
-</view>
+  <view class="flex flex-grow-0 relative">
+  <!-- TODO：激活按钮绑定跳转事件和处理事件 -->
+    <button  wx:if="{{item.status.ongoing}}" class="btn btn_2" style="background-color: #d0cece;" bindtap="reportMedia" data-name="{{item.name}}">点击上报</button>
+    <button  wx:if="{{item.status.over}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
+    <button  wx:if="{{item.status.miss}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
+  </view>
 
-<view class="divide_line"></view>
+  <!--点击后灰色背景的设置-->
+  <view wx:if="{{now_state}}" class="background" bindtap="hideModal"></view>
+  <!--弹窗的出现-->
+  <view animation="{{animationData}}" class="box" wx:if="{{now_state}}" >
+  <!--弹窗内部内容-->
+  <view class="mt-3 text-2xl font-semibold" style="margin-left: auto;">{{reportContent}}结果上报</view>
+    <view wx:if="{{!isChoose}}" bindtap="chooseImg">
+      <view class="media relative" >
+        <image src="{{img_url.upload}}" style="position: relative; width: 40%; height: 40%; margin:0 auto; top: 60rpx"></image>
+        <view style="margin: 0 auto; position: relative; top: 100rpx;">点击上传图片</view>
+      </view>
+    </view>
+    <view wx:if="{{isChoose}}">
+      <image src="{{tempImgUrl}}" style="width: 60%; height: 500rpx; margin-top: 100rpx;"></image>
+      <view class="flex mt-10">
+        <button bindtap="reChoose">更改</button>
+        <button bindtap="uploadImg">提交</button>
+      </view>
+    </view>
+  </view>
 
-<view class="flex relative">
-  <image src="{{img_url.remind}}" class="inline-block h-11 w-15"></image>
-  <text class="mt-2 font-semibold" >上报提醒</text>
-  <!-- TODO：switch绑定处理事件 -->
-  <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;"><switch></switch></view>
-</view>
-<!-- TODO：加上点击按钮后的弹出选择栏 -->
+
+  <view class="flex relative">
+    <image src="{{img_url.remind}}" class="inline-block h-11 w-15"></image>
+    <text class="mt-2 font-semibold" >上报提醒</text>
+    <!-- TODO：switch绑定处理事件 -->
+    <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;"><switch></switch></view>
+  </view>
+
 </view>
 
 
