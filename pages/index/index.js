@@ -1,7 +1,6 @@
 // index.js
+import { TEMPLATE_ID } from '../../enum/enums.js'
 import * as api from '../../utils/api.js'
-// 获取应用实例
-const app = getApp()
 
 Page({
   data: {
@@ -41,6 +40,36 @@ Page({
                                        '南京大学')
       wx.setStorageSync('token', res.data.data.token)
       console.log('token: ' + wx.getStorageSync('token'));
+    },
+    async getAccessToken(){
+      const res = await api._get_access_token();
+      console.log(res.data)
+      wx.setStorageSync('access_token', JSON.parse(res.data.data).access_token)
+      console.log(wx.getStorageSync('access_token'))
+    },
+    // 发送服务消息
+    testMsg(){
+      wx.requestSubscribeMessage({
+        tmplIds: [TEMPLATE_ID],
+        success:res=>{
+          console.log(res)
+          // 准备请求参数
+          var data = {
+            "access_token": wx.getStorageSync('access_token'),
+            "touser": wx.getStorageSync('openid'),  //需要提前获取
+            "template_id": TEMPLATE_ID,  //模板id，在微信后台拿
+            "data": {
+              // MessageVO
+              "thing1": "核酸检测提醒",
+              "time3": "某个时间",
+              "thing4": "fzz",
+              "thing5": "备注"
+            },
+            "executeTime": "yyyy-mm-dd H:M:S"
+          }
+          // 请求服务端
+        }
+      })
     },
   onLoad() {
     if (wx.getUserProfile) {

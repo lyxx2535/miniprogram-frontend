@@ -99,6 +99,18 @@ const  _upload_nucleic = (_filePath) => {
     header: {
       'content-type': 'multipart/form-data',
       'Authorization': wx.getStorageSync('token')
+    },
+    method: 'POST'
+  })
+}
+// 获取小程序的access_token，不需要参数和token
+const _get_access_token = () => {
+  return httpRequest({
+    url: API.ACCESS_TOKEN,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
     }
   })
 }
@@ -112,4 +124,5 @@ export {
   _get_chat_history,
   _get_user_info_byId,
   _choose_nucleic,
+  _get_access_token
 }

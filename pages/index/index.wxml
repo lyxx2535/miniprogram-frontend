@@ -21,4 +21,6 @@
     <text class="user-motto">{{motto}}</text>
   </view>
   <button bindtap="getUserProfile" class="mt-20px">登陆并获取token</button>
+  <button bindtap="getAccessToken" class="mt-20px">获取access_token</button>
+  <button bindtap="testMsg" class="mt-20px">发送服务消息</button>
 </view>
