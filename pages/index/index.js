@@ -75,6 +75,38 @@ Page({
         }
       })
     },
+    async getNucleicInfo(){
+      const res = await api._get_nucleic_inform();
+      console.log(res)
+    },
+    async insertBook(){
+      const data = {
+        "deadLine": "2022-04-07",
+        "finishStatus": "未完成",
+        "id": 1,
+        "isOpenRemind": false,
+        "managerId": 0,
+        "title": "第七次全员检测",
+        "userId": 1
+      }
+      const res = await api._insert_book(data)
+      console.log(res)
+    },
+    async insertTest(){
+      const data = {
+        "finishStatus": "未完成",
+        "id": 1,
+        "isOpenRemind": false,
+        "managerId": 0,
+        "place": "体育馆4号门",
+        "require": "佩戴口罩，携带身份证",
+        "testingTime": "2022-04-07",
+        "title": "第七次全员检测",
+        "userId": 1
+      }
+      const res = await api._insert_test(data)
+      console.log(res)
+    },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({
@@ -82,6 +114,8 @@ Page({
       })
     }
     console.log('load index page!')
+    // this.insertBook()
+    // this.insertTest()
   },
 
 })
