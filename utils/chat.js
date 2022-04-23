@@ -1,5 +1,5 @@
 import * as API from '../enum/enums'
-const App = getApp();
+
 const formatTime = date => {
   const year = date.getFullYear()
   const month = date.getMonth() + 1
@@ -58,49 +58,6 @@ const wxuuid = function () {
   return uuid
 }
 
-const get = function(url,params){
-  return request('GET',url,params)
-}
-
-const post = function(url,params){
-  return request('POST',url,params,{'Content-Type': 'application/json'})
-}
-const postNoLoading = function(url,params){
-  return request('POST',url,params,{'Content-Type': 'application/json'},false)
-}
-const loadLocation = function(){
-  return new Promise((resolve, reject)=>{
-    let address=wx.getStorageSync('ly-user-address')
-    let isLoad=true
-    if(address){
-      isLoad=(Date.now()-address.time)>=720000
-    }
-    if(!isLoad){
-      resolve(address)
-    }else{
-      wx.getLocation({
-        type: 'wgs84',
-        success (res) {
-          const latitude = res.latitude
-          const longitude = res.longitude
-         let addressUrl=`https://apis.map.qq.com/ws/geocoder/v1/?location=${latitude},${longitude}&key=7MLBZ-BRLWV-KIFPM-UTP3B-MMUR6-MUFCO`
-         wx.request({
-          url: addressUrl,
-          success: function (result) {
-            if(result&&result.statusCode===200){
-              let city=result.data.result.address_component.city
-              let addressName=result.data.result.address
-              let address={lat:latitude,lon:longitude,city:city,addressName:addressName,time:Date.now()}
-              wx.setStorageSync('ly-user-address',address)
-              resolve(address)
-            }
-          }
-        })
-        }
-       })
-    }
-  })
-}
 
 const request = function(method,url,params,header,showLoading=true){
   return new Promise((resolve, reject) => {
@@ -132,7 +89,8 @@ const request = function(method,url,params,header,showLoading=true){
       fail: err => {
         console.err(err);
         reject(err)
-      },complete:com=>{
+      },
+      complete:com=>{
         if(showLoading){
           wx.hideLoading()
         }
@@ -141,27 +99,9 @@ const request = function(method,url,params,header,showLoading=true){
   })
 }
 
-const getNowAddress=function(){
-  return new Promise((resolve, reject) => {
-    let selectAddress=wx.getStorageSync('select-address')
-    if(selectAddress){
-      resolve(selectAddress)
-    }else{
-      let lyUserAddress=wx.getStorageSync('ly-user-address')
-      resolve(lyUserAddress)
-    }
-  })
-}
-
-
 module.exports = {
   formatTime,
   wxuuid,
   tsFormatTime,
   formatTimeYMD,
-  get:get,
-  post:post,
-  postNoLoading:postNoLoading,
-  loadLocation:loadLocation,
-  getNowAddress:getNowAddress
 }

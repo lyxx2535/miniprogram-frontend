@@ -14,6 +14,7 @@ const _login = (_code) => {
       'accept': 'application/json'
     },
     method: 'GET',
+    showLoading: true
   })
 }
 // 向后端请求token，参数是userVO
@@ -31,6 +32,7 @@ const _get_token = (avatarUrl, nickName, openId, school) => {
       'accept': 'application/json'
     },
     method: "POST",
+    showLoading: true
   })
 }
 // 查询用户详细信息，需要token
@@ -42,7 +44,7 @@ const _get_user_info = () => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    method: "POST",
+    method: "POST"
   })
 }
 // 查询用户详细信息，使用id，PathVaraible，不需要token
@@ -66,6 +68,7 @@ const _get_user_friendList = () => {
       'Authorization': wx.getStorageSync('token')
     },
     method: "GET",
+    showLoading: true
   })
 }
 // 获取用户的所有聊天记录，需要token
@@ -83,6 +86,7 @@ const _get_chat_history = (_friendId, _id, _pageNo, _pageSize) => {
       'Authorization': wx.getStorageSync('token')
     },
     method: "GET",
+    showLoading: true
   })
 }
 // 选择核酸截图
@@ -100,7 +104,8 @@ const  _upload_nucleic = (_filePath) => {
       'content-type': 'multipart/form-data',
       'Authorization': wx.getStorageSync('token')
     },
-    method: 'POST'
+    method: 'POST',
+    showLoading: true
   })
 }
 // 获取小程序的access_token，不需要参数和token

@@ -10,6 +10,12 @@ const pubUrl = "http://124.223.105.99:8085/api"
 // http请求
 const httpRequest = (options) =>{
   return new Promise((resolve, reject) => {
+    if(options.showLoading || false){
+      wx.showLoading({
+        title: '加载中...',
+        mask: true  //开启蒙版遮罩
+      })
+    }
     wx.request({
       url: pubUrl + options.url,
       method: options.method || 'GET',
@@ -19,7 +25,12 @@ const httpRequest = (options) =>{
         'Authorization': wx.getStorageSync('token')
       },
       success: resolve,
-      fail: reject
+      fail: reject,
+      complete: () =>{
+        if(options.showLoading || false){
+          wx.hideLoading()
+        }
+      }
     })
   })
 }
@@ -34,7 +45,7 @@ const chooseMedia = (options) =>{
       maxDuration: 30,
       camera: 'back',
       success: resolve,
-      fail: reject
+      fail: reject,
     })
   })
 }
@@ -42,6 +53,11 @@ const chooseMedia = (options) =>{
 // 上传图片/视频
 const uploadMedia = (options) => {
   return new Promise((resolve, reject) => {
+    if(options.showLoading || false){
+      wx.showLoading({
+        title: '加载中...',
+      })
+    }
     wx.uploadFile({
       url: pubUrl + options.url,
       filePath: options.filePath,
@@ -52,7 +68,12 @@ const uploadMedia = (options) => {
         'Authorization': wx.getStorageSync('token')
       },
       success: resolve,
-      fail: reject
+      fail: reject,
+      complete: () =>{
+        if(options.showLoading || false){
+          wx.hideLoading()
+        }
+      }
     })
   })
 }
