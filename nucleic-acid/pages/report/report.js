@@ -138,6 +138,9 @@ Page({
   },
   // 打开上报提醒
   switchChange(e){
+      this.setData({
+        currentIndex: e.currentTarget.dataset.index
+      })
       // TODO:开启服务提醒 封装相关api
       if(!this.data.switchChecked){
         var currentStatus = e.currentTarget.dataset.status; 

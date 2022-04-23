@@ -14,6 +14,8 @@ Page({
     },
     // 预约信息列表
     list :[],
+    userName: wx.getStorageSync('userInfo_wx').nickName, //用户微信名
+    date: wx.getStorageSync('date'), // 当天日期
   },
   async getNucleicInfo(){
     const res = await api._get_book_inform();
@@ -102,6 +104,9 @@ Page({
   },
   // 打开上报提醒
   switchChange(e){
+    this.setData({
+      currentIndex: e.currentTarget.dataset.index
+    })
     // TODO:开启服务提醒 封装相关api
     const index = e.currentTarget.dataset.index
     if(!this.data.list[index].isOpenRemind){
@@ -119,9 +124,12 @@ Page({
     // TODO: 回传后端，更新状态
   },
   // 通过按钮关闭表单
-  powerDrawer(e){
+  confirmRemind(e){
     var currentStatus = e.currentTarget.dataset.status; 
-    this.formAnimation(currentStatus)
+    this.formAnimation(currentStatus);
+    wx.showToast({
+      title: '已开启提醒',
+    })
   },
   // 表单弹出动画
   formAnimation(currentStatus){ 

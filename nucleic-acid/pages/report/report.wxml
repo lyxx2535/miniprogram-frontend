@@ -49,10 +49,10 @@
     <view class="flex-1 text-right relative" style="right: 30rpx; margin-top: 4rpx;">
       <switch wx:if="{{item.status.over}}" disabled="true"></switch>
       <switch wx:if="{{item.status.miss}}" disabled="true"></switch>
-      <switch wx:if="{{item.status.ongoing}}" checked="{{switchChecked}}" bindchange="switchChange" data-status="open" color="#595959"></switch>
+      <switch wx:if="{{item.status.ongoing}}" checked="{{item.isOpenRemind}}" bindchange="switchChange" data-status="open" data-index="{{index}}" color="#595959"></switch>
     </view>
   </view>
-<!-- 选择提醒后弹出的表单 TODO：修改样式 -->
+<!-- 选择提醒后弹出的表单 -->
   <view class="drawer_screen" bindtap="powerDrawer" data-status="close" wx:if="{{isShowForm}}"></view> 
   <view animation="{{animationData}}" class="drawer_box" wx:if="{{isShowForm}}"> 
     <view class="drawer_title">自定义/确认提醒内容</view> 
@@ -63,7 +63,7 @@
       </view> 
       <view class="top grid"> 
         <label class="title col-0">上报内容</label> 
-        <input class="input_base input_h30 col-1" value="{{item.name}}"></input> 
+        <input class="input_base input_h30 col-1" value="{{list[currentIndex].name}}"></input> 
       </view>
       <view class="top grid"> 
         <label class="title col-0">提醒时间</label> 
@@ -76,7 +76,7 @@
       </view> 
       <view class="top bottom grid"> 
         <label class="title col-0">备注</label> 
-        <input class="input_base input_h30 col-1"></input> 
+        <input class="input_base input_h30 col-1" value="记得及时上报哦~"></input> 
       </view> 
     </view> 
     <view class="btn_ok" bindtap="confirmRemind" data-status="close">确定</view> 
