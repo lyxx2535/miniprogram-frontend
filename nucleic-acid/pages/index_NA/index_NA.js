@@ -4,6 +4,7 @@ import * as api from '../../../utils/api'
 
 Page({
     data :{
+        navigationTitle: '您的核酸助手', // 核酸首页的标题，pjz随便想的，可改
         num_appointment:0,
         num_detection:0,
         num_report:0,
@@ -54,7 +55,15 @@ Page({
      },
      gotoMyNA: function (options) {
         wx.navigateTo({
-              url: '../myNA/myNA',//之后要改！！！
+              url: '../myNA/myNA',
      })  
      },
+     onShow(){
+      wx.setNavigationBarTitle({
+        title: this.data.navigationTitle,
+        fail: err => {
+          console.log(err)
+        }
+      })
+     }
 })
