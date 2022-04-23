@@ -72,36 +72,35 @@ Page({
   },
   // 上传核酸截图
   async uploadImg(e){
-    wx.showLoading({  // 显示加载中loading效果 
-      title: "加载中",
-      mask: true  //开启蒙版遮罩
-    });
     try{
       const res = await api._upload_nucleic(this.data.tempImgUrl);
-      const resJson = JSON.parse(res.data)
-      console.log(resJson);
-      this.setData({
-        isChoose: !this.data.isChoose,// 回到上传图片界面
-        tempImgUrl: '', // 清空本地图片缓存
-        switchChecked: !this.data.switchChecked // 取消上报提醒
-      })
-      //隐藏加载界面
-      wx.hideLoading();
-      if(resJson.code == 200){
-        wx.showToast({
-          title: '上传成功！'
-        })
-        // 改变状态，取消switch
-        this.finishReport(this.data.currentIndex)
+      if(res.data.length == 0){
+        console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res))
       }
       else{
-        wx.showToast({
-          title: '上传失败！',
-          icon: 'error'
+        const resJson = JSON.parse(res.data)
+        console.log(resJson);
+        this.setData({
+          isChoose: !this.data.isChoose,// 回到上传图片界面
+          tempImgUrl: '', // 清空本地图片缓存
+          switchChecked: !this.data.switchChecked // 取消上报提醒
         })
+        if(resJson.code == 200){
+          wx.showToast({
+            title: '上传成功！'
+          })
+          // 改变状态，取消提醒
+          this.finishReport(this.data.currentIndex)
+        }
+        else{
+          wx.showToast({
+            title: '上传失败！',
+            icon: 'error'
+          })
+        }
       }
     }catch(err){
-      console.log('上传失败：' + JSON.stringify(err));
+      console.log('上传失败：' + err);
       wx.showToast({
         title: '上传失败！',
         icon: 'error'

@@ -43,9 +43,13 @@ Page({
     },
     async getAccessToken(){
       const res = await api._get_access_token();
-      console.log(res.data)
-      wx.setStorageSync('access_token', JSON.parse(res.data.data).access_token)
-      console.log(wx.getStorageSync('access_token'))
+      if(res.data.data.length == 0){
+        console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res.data))
+      }
+      else{
+        wx.setStorageSync('access_token', JSON.parse(res.data.data).access_token)
+        console.log('access_token: ' + wx.getStorageSync('access_token'))
+      }
     },
     // 发送服务消息
     testMsg(){

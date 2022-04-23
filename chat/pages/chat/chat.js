@@ -114,43 +114,48 @@ Page({
     wx.onSocketMessage((res) => {
       //接收到消息
       console.log("接收到消息" + JSON.stringify(res));
-      let resJson = JSON.parse(res.data);
-      var messageObj = {};
-      messageObj.senderId = resJson.senderId;
-      //如果是发送消息
-      if(messageObj.senderId === this.data.senderId){
-        //消息发送成功的回调，删除菊花即可。
-        for(let item in this.data.list){
-          // 访问list数组里的json，找到最新发的那条信息
-          if(this.data.list[item].id == null){
-            console.log('新发消息： ' + JSON.stringify(this.data.list[item]))
-            // 删除小菊花
-            this.data.list[item].receiverId = null;
-            this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
-            this.data.list[item].isShowTime = resJson.isShowTime;
-            this.data.list[item].id = resJson.id;
+      if(res.data.length == 0){
+        console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res))
+      }
+      else{
+        let resJson = JSON.parse(res.data);
+        var messageObj = {};
+        messageObj.senderId = resJson.senderId;
+        //如果是发送消息
+        if(messageObj.senderId === this.data.senderId){
+          //消息发送成功的回调，删除菊花即可。
+          for(let item in this.data.list){
+            // 访问list数组里的json，找到最新发的那条信息
+            if(this.data.list[item].id == null){
+              console.log('新发消息： ' + JSON.stringify(this.data.list[item]))
+              // 删除小菊花
+              this.data.list[item].receiverId = null;
+              this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
+              this.data.list[item].isShowTime = resJson.isShowTime;
+              this.data.list[item].id = resJson.id;
+            }
           }
+          this.setData({
+            list: this.data.list
+          })
+          console.log('消息列表：' + JSON.stringify(this.data.list))
+          return;
+          //如果是接受消息
+        }else{
+          //接受到对方的来信，渲染
+          // messageObj.avatar = this.data.receiveAvatar;
+          //传入时间
+          messageObj.id = resJson.id
+          messageObj.sendTime = resJson.sendTime;
+          messageObj.content = resJson.content;
+          messageObj.isShowTime = resJson.isShowTime;
+          this.data.list.push(messageObj);
+          this.setData({
+            list: this.data.list,
+          },function(){
+            this.getScollBottom();
+          })
         }
-        this.setData({
-          list: this.data.list
-        })
-        console.log('消息列表：' + JSON.stringify(this.data.list))
-        return;
-        //如果是接受消息
-      }else{
-        //接受到对方的来信，渲染
-        // messageObj.avatar = this.data.receiveAvatar;
-        //传入时间
-        messageObj.id = resJson.id
-        messageObj.sendTime = resJson.sendTime;
-        messageObj.content = resJson.content;
-        messageObj.isShowTime = resJson.isShowTime;
-        this.data.list.push(messageObj);
-        this.setData({
-          list: this.data.list,
-        },function(){
-          this.getScollBottom();
-        })
       }
     })
     wx.onSocketOpen(() => {
