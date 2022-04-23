@@ -18,6 +18,8 @@
     <button  wx:if="{{item.status.miss}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
   </view>
 
+  <view class="divide_line" style="margin-top: 20px;"></view>
+
   <!--点击后灰色背景的设置-->
   <view wx:if="{{now_state}}" class="background" bindtap="hideModal"></view>
   <!--弹窗的出现-->
