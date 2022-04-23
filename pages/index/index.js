@@ -21,7 +21,7 @@ Page({
             hasUserInfo: true
           })
           wx.setStorageSync('userInfo_wx', res.userInfo)
-          this.getOpenid();
+          this.getOpenid(); 
           // this.getToken();
         }
       })

@@ -149,14 +149,17 @@ Page({
           switchChecked: false
         })
         wx.showToast({
-          title: '已关闭服务通知！',
+          title: '已关闭提醒',
         })
       }
   },
   // 通过按钮关闭表单
-  powerDrawer(e){
+  confirmRemind(e){
     var currentStatus = e.currentTarget.dataset.status; 
-    this.formAnimation(currentStatus)
+    this.formAnimation(currentStatus);
+    wx.showToast({
+      title: '已开启提醒',
+    })
   },
   // 表单弹出动画
   formAnimation(currentStatus){ 

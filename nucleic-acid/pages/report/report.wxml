@@ -79,7 +79,7 @@
         <input class="input_base input_h30 col-1"></input> 
       </view> 
     </view> 
-    <view class="btn_ok" bindtap="powerDrawer" data-status="close">确定</view> 
+    <view class="btn_ok" bindtap="confirmRemind" data-status="close">确定</view> 
   </view>
 
 </view>
