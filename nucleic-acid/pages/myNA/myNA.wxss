@@ -6,7 +6,7 @@ page {
   border-radius: 25rpx;
   content: '';
   width: 300%;
-  height: 35%;
+  height: 400rpx;
   position: absolute;
   z-index: -1;
   width: 94%;

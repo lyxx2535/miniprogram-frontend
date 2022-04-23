@@ -26,7 +26,7 @@
   <image src="{{img_url.remind}}" class="inline-block h-11 w-15"></image>
   <text class="mt-2 font-semibold" >检测提醒</text>
   <!-- TODO：switch绑定处理事件 -->
-  <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;">
+  <view class="flex-1 text-right relative" style="right: 30rpx;margin-top: 4rpx;">
     <switch wx:if="{{item.status.over}}" disabled="true"></switch>
       <switch wx:if="{{item.status.miss}}" disabled="true"></switch>
       <switch wx:if="{{item.status.ongoing}}" checked="{{item.isOpenRemind}}" bindchange="switchChange" data-status="open" data-index="{{index}}"></switch>

@@ -38,8 +38,12 @@
     "userConfirmedBundleSwitch": false,
     "minifyWXSS": true,
     "packNpmManually": false,
-    "packNpmRelationList": [
-    ]
+    "packNpmRelationList": [],
+    "lazyloadPlaceholderEnable": false,
+    "useStaticServer": true,
+    "showES6CompileOption": false,
+    "disableUseStrict": false,
+    "useCompilerPlugins": false
   },
   "compileType": "miniprogram",
   "libVersion": "2.19.4",
