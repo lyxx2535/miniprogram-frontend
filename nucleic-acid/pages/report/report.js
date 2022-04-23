@@ -10,7 +10,8 @@ Page({
       over: IMG.STATE_OVER,
       miss: IMG.STATE_MISS,
       remind: IMG.REMIND,
-      upload: IMG.UPLOAD
+      upload: IMG.UPLOAD,
+      return: IMG.RETURN,
     },
     list :[],    // 预约信息列表
     now_state: null, // 当前卡片的状态

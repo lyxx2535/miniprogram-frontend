@@ -4,12 +4,12 @@ page {
 
 /* 卡片部分CSS */
 .card {
-  border-radius: 25rpx;
+  border-radius: 15rpx;
   /* 阴影弄不准确555 */
-  box-shadow: 2rpx 2rpx 5rpx 0rpx rgb(122, 122, 122);
+  box-shadow: 1rpx 1rpx 10rpx 0rpx rgb(211, 211, 211);
   background-color: #ffffff;
-  width: 94%;
-  margin-left: 3%;
+  width: 90%;
+  margin-left: 5%;
 }
 .divide_line{
   background: linear-gradient(
@@ -30,6 +30,7 @@ page {
 .btn {
   border-radius: 40px;
   height: 80rpx;
+  letter-spacing: 8rpx;
 }
 .btn:not([size="mini"]) {
   position: relative;
@@ -124,3 +125,66 @@ page {
  } 
  .grid { display: -webkit-box; display: box; } 
  .col-1 {-webkit-box-flex:1;box-flex:1;} 
+
+ .icon_notice {
+     height: 75rpx;
+     width: 90rpx;
+     margin-top: 15rpx;
+ }
+
+ .icon_remind {
+  height: 70rpx;
+  width: 90rpx;
+ }
+
+ .text_title {
+  font-size: 32rpx;
+  font-weight: 1000;
+  letter-spacing:8rpx;
+  margin-top: 25rpx;
+ }
+
+ .state-right {
+   margin-right: 25rpx;
+ }
+
+ .text_detail {
+  margin-left: 90rpx;
+  font-size: 24rpx;
+  letter-spacing:8rpx;
+  font-weight: 300;
+ }
+
+ .text_remind {
+  font-size: 24rpx;
+  font-weight: 1000;
+  letter-spacing:8rpx;
+  margin-top: 15rpx;
+ }
+
+ .return_indexNA {
+   border: none;
+   border-color: transparent;
+   background-image: url(https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/return.png);
+   background-size: 38rpx 38rpx;
+   background-repeat: no-repeat;
+   float:left;
+  
+ }
+ .return_indexNA[plain] {
+   border: 0;
+ }
+
+ .text_listTitle {
+  font-size: 28rpx;
+  font-weight: 1000;
+  letter-spacing:10rpx;
+  margin-top: 50rpx;
+ }
+
+ .divLine{
+  background: #dbdbdb;
+  width: 90%;
+  height: 3rpx;
+  margin-left: 5%;
+ }
