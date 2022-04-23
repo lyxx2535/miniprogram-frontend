@@ -19,24 +19,25 @@ page {
     #000000 50%,
     #000000 100%
   );
-  background-size: 10px 1px;
+  background-size: 20rpx 2rpx;
   background-repeat: repeat-x;
-  margin-top: 20px;
+  margin-top: 40rpx;
   width: 96%;
   margin-left: 2%;
   height: 2rpx;
-  margin-bottom: 10px;
+  margin-bottom: 20rpx;
 }
 .btn {
-  border-radius: 40px;
+  border-radius: 80rpx;
   height: 80rpx;
-  letter-spacing: 8rpx;
+  font-size: 30rpx;
+  letter-spacing: 5rpx;
 }
 .btn:not([size="mini"]) {
   position: relative;
-  margin-left: 50px;
+  margin-left: 90rpx;
   margin-top: 40rpx;
-  width: 240rpx;
+  width: 250rpx;
   text-align: center;
   justify-content: center;
 }
@@ -151,7 +152,7 @@ page {
  .text_detail {
   margin-left: 90rpx;
   font-size: 24rpx;
-  letter-spacing:8rpx;
+  letter-spacing:5rpx;
   font-weight: 300;
  }
 

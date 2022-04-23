@@ -1,10 +1,4 @@
 <!--nucleic-acid/pages/report/report.wxml-->
-<view style="top: auto; height: 110rpx;">
-  <button class = "return_indexNA" style = "width: 40rpx;height: 40rpx; margin-left: 50rpx;margin-top: 50rpx;" plain></button>
-  <text class="inline-block text_listTitle">上报列表</text>
-</view>
-<view class="divLine"></view>
-
 <view class="card" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
 
   <view class="mt-30px flex">
