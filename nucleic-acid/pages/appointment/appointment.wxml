@@ -2,14 +2,14 @@
 <view class="card mt-20px" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
 
   <view class="mt-30px flex">
-    <image src="{{img_url.notice}}" class="inline-block h-15 w-20" style="z-index: 999;"></image>
-    <text class="inline-block mt-3 text-xl font-semibold">{{item.name}}</text>
-    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
-    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
-    <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
+    <image src="{{img_url.notice}}" class="inline-block icon_notice" style="z-index: 999;"></image>
+    <text class="inline-block text_title">{{item.name}}</text>
+    <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
+    <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
+    <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
   </view>
 
-  <text class="ml-20">预约时间：{{item.time}}前</text>
+  <text class="text_detail">预约时间：{{item.time}}前</text>
 
   <view class="flex flex-grow-0 relative">
   <!-- TODO：激活按钮绑定跳转事件和处理事件 -->
@@ -24,8 +24,8 @@
   <view class="divide_line"></view>
 
   <view class="flex relative">
-    <image src="{{img_url.remind}}" class="inline-block h-11 w-15"></image>
-    <text class="mt-2 font-semibold" >预约提醒</text>
+    <image src="{{img_url.remind}}" class="inline-block icon_remind"></image>
+    <text class="text_remind" >预约提醒</text>
     <!-- TODO：switch绑定处理事件 -->
     <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;">
       <switch wx:if="{{item.status.over}}" disabled="true"></switch>
