@@ -4,17 +4,17 @@
     </view>
     <view class = "list_button">
         <button class="btn_all" style="width:220rpx; height: 300rpx;" bindtap="gotoAppointment" hover-class="btn_all_hover">
-        <text class="num_pos" style="color: #c00000;">1</text><!--这里先用文本代替-->
+        <text class="num_pos" style="color: #c00000;">{{num_appointment}}</text>
         <text class="one_pos">待</text>
         <text class="two_pos">预约</text>
         </button>
         <button class="btn_all" style="margin-left: 28rpx;width:220rpx; height: 300rpx;" bindtap="gotoDetection" hover-class="btn_all_hover">
-        <text class="num_pos" style="color: #ceab01;">2</text><!--这里先用文本代替-->
+        <text class="num_pos" style="color: #ceab01;">{{num_detection}}</text>
         <text class="one_pos">待</text>
         <text class="two_pos">检测</text>
         </button>
         <button class="btn_all" style="margin-left: 28rpx;width:220rpx; height: 300rpx;" bindtap="gotoReport" hover-class="btn_all_hover">
-        <text class="num_pos" style="color: #1f4e79;">3</text><!--这里先用文本代替-->
+        <text class="num_pos" style="color: #1f4e79;">{{num_report}}</text>
         <text class="one_pos">待</text>
         <text class="two_pos">上报</text>
         </button>
@@ -22,11 +22,11 @@
     <view class="myNA">
         <button class="btn_myNA" style="width:350rpx; height: 200rpx;" bindtap="gotoMyNA" hover-class="btn_myNA_hover">
             <text class="text_myNA">我的\n核酸</text>
-            <image src="{{img_url.ICON_CALENDER}}" class="img_cal"></image>
+            <image src="{{ICON_CALENDER}}" class="img_cal"></image>
         </button>
     </view>
     <view class="img_bgg">
-        <image src="{{img_url.VECTOR_PIC}}" style="width: 500rpx;height: 500rpx;"></image>
+        <image src="{{VECTOR_PIC}}" style="width: 500rpx;height: 500rpx;"></image>
     </view>
     
 </view>
