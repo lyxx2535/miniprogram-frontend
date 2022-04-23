@@ -27,7 +27,8 @@
         "pages/appointment/appointment",
         "pages/detection/detection",
         "pages/report/report",
-        "pages/index_NA/index_NA"
+        "pages/index_NA/index_NA",
+        "pages/myNA/myNA"
       ],
       "independent": false
     }

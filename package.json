@@ -1,0 +1,19 @@
+{
+  "name": "miniprogram-frontend",
+  "version": "1.0.0",
+  "description": "2022微信小程序比赛前端仓库",
+  "main": ".eslintrc.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@git.nju.edu.cn:Pengzna/miniprogram-frontend.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@vant/weapp": "^1.10.2",
+    "lin-ui": "^0.9.8"
+  }
+}

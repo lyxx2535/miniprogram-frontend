@@ -1,0 +1,78 @@
+page {
+  background-color: #f2f2f4;
+  height: 100%;
+}
+.calendar_bg:after{
+  border-radius: 25rpx;
+  content: '';
+  width: 300%;
+  height: 35%;
+  position: absolute;
+  z-index: -1;
+  width: 94%;
+  margin-left: 3%;
+  top: 3%;
+  background:#ffffff;
+}
+
+.success {
+  border-radius: 50%;
+  background-color: #FDE6E0;
+}
+.fail {
+  border-radius: 50%;
+  background-color: #C7EDCC;
+}
+.choose{
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.noChoose{
+  background-color: #FFFFFF;
+  color: #29292b3b;
+}
+.btn {
+  border-radius: 80px;
+  height: 80rpx;
+}
+.btn:not([size="mini"]) {
+  position: relative;
+  margin-left: 40px;
+  margin-top: 80rpx;
+  width: 240rpx;
+  text-align: center;
+  justify-content: center;
+}
+.btn2 {
+  border-radius: 80px;
+  height: 80rpx;
+}
+.btn2:not([size="mini"]) {
+  position: relative;
+  margin-right: 40px;
+  margin-top: -80rpx;
+  width: 240rpx;
+  text-align: center;
+  justify-content: center;
+}
+.list_bg:after{
+  border-radius: 25rpx;
+  content: '';
+  width: 94%;
+  margin-left: 3%;
+  height: 150%;
+  position: absolute;
+  z-index: -1;
+  top: 49%;
+  background:#ffffff;
+  display: flex;
+  margin-bottom: 3%;
+}
+.card {
+  border-radius: 25rpx;
+  /* 阴影弄不准确555 */
+  box-shadow: 1rpx 1rpx 2rpx 0rpx rgb(122, 122, 122);
+  background-color: #f2f2f4;
+  width: 90%;
+  margin-left: 5%;
+}

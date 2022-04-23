@@ -1,0 +1,32 @@
+<view>
+    <view class="calendar_bg">
+        <calendar config="{{calendarConfig}}"
+  bind:afterCalendarRender="afterCalendarRender"
+  bind:whenChangeMonth="whenChangeMonth"
+  id="calendar"
+/>
+    </view>
+    <button class="btn {{!finished?'choose':'noChoose'}}" bindtap="reportMedia1">未完成</button>
+    <button class="btn2 {{finished?'choose':'noChoose'}}" bindtap="reportMedia2">已完成</button>
+<view class="list_bg mt-20px">
+
+    <view class="card mt-20px" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
+
+<view class="flex">
+        <image src="{{img_url.notice}}" class="inline-block h-15 w-20" style="z-index: 999;"></image>
+  <text class="inline-block mt-3 text-xl font-semibold">{{item.name}}</text>
+  <!-- 进度条 根据ongoing/over/miss三种状态确认-->
+  <!-- <image class="mt-2 h-7 w-16" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
+  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
+  <image class="mt-2 h-7 w-16 ml-auto" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image> -->
+</view>
+  <l-steps>
+  <l-step title="已支付" describe="11:30"></l-step>
+  <l-step title="备餐中" describe="11:30"></l-step>
+  <l-step title="已出餐" describe="11:30"></l-step>
+</l-steps>
+
+</view>
+</view>
+</view>
+
