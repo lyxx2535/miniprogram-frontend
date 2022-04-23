@@ -4,7 +4,7 @@ import * as api from '../../utils/api.js'
 
 Page({
   data: {
-    motto: '测试页面 可拿token',
+    motto: '测试页面\n请在首次打开项目时点击第一个按钮\n其余按钮无需按',
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
