@@ -13,7 +13,7 @@ Page({
       upload: IMG.UPLOAD
     },
     list :[],    // 预约信息列表
-    now_state:null, // 当前卡片的状态
+    now_state: null, // 当前卡片的状态
     reportContent: '',    // 上报弹窗内容
     tempImgUrl: '', // 图片缓存
     isChoose: false, // 是否上传截图
@@ -38,7 +38,7 @@ Page({
     var animation = wx.createAnimation({
       duration: 400,
       timingFunction: "linear",
-      delay: 5
+      delay: 0
     })
     this.animation = animation
     //animation.translateY(300)中的translate函数是表示在y轴上平移多少px，而后面紧接着的.step表示前面动画的完成，可以开始下一个动画了
@@ -47,6 +47,7 @@ Page({
       /*这里的export函数是导出动画队列，同时export方法在调用完后会清掉前面的动画操作 */
       animationData: animation.export(),
     })
+    // 执行第二步动画
     setTimeout(function () {
       animation.translateY(0).step()
       this.setData({
@@ -171,7 +172,7 @@ Page({
     animation.opacity(0).rotateX(-50).step(); 
     // 导出动画对象赋给数据对象储存 
     this.setData({ 
-     animationData: animation.export() 
+      animationData: animation.export() 
     })  
     // 设置定时器到指定时候后，执行第二组动画 
     setTimeout(() => { 
@@ -187,7 +188,7 @@ Page({
           isShowForm: false
         }); 
       }
-    }, 200) 
+    }, 200) // 此处箭头函数不生成自己的this，无须绑定this
     // 显示 
     if (currentStatus == "open") { 
       this.setData({ 

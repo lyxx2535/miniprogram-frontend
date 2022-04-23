@@ -76,19 +76,81 @@ Page({
       list: obj
     })
     console.log('完成检测，改变检测状态')
+    // TODO: 回传后端，更新状态
   },
   // 点击已检测
   tapDetection(e){
     console.log('123')
     this.finishDetection(e.currentTarget.dataset.index)
   },
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+  // 打开上报提醒
+  switchChange(e){
+      // TODO:开启服务提醒 封装相关api
+      if(!this.data.switchChecked){
+        var currentStatus = e.currentTarget.dataset.status; 
+        this.formAnimation(currentStatus)
+      }
+      // 关闭通知时
+      else{
+        this.setData({
+          switchChecked: false
+        })
+        wx.showToast({
+          title: '已关闭服务通知！',
+        })
+      }
   },
-
+  // 通过按钮关闭表单
+  powerDrawer(e){
+    var currentStatus = e.currentTarget.dataset.status; 
+    this.formAnimation(currentStatus)
+  },
+  // 表单弹出动画
+  formAnimation(currentStatus){ 
+    // 创建动画实例  
+    var animation = wx.createAnimation({ 
+    duration: 200, //动画时长 
+    timingFunction: "linear", //线性 
+    delay: 0 //0则不延迟 
+    }); 
+    // 这个动画实例赋给当前的动画实例 
+    this.animation = animation; 
+    // 执行第一组动画 
+    animation.opacity(0).rotateX(-50).step(); 
+    // 导出动画对象赋给数据对象储存 
+    this.setData({ 
+      animationData: animation.export() 
+    })  
+    // 设置定时器到指定时候后，执行第二组动画 
+    setTimeout(() => { 
+      // 执行第二组动画 
+      animation.opacity(1).rotateX(0).step(); 
+      // 给数据对象储存的第一组动画，更替为执行完第二组动画的动画对象 
+      this.setData({ 
+        animationData: animation 
+      })  
+      //关闭 
+      if (currentStatus == "close") { 
+        this.setData({ 
+          isShowForm: false
+        }); 
+      }
+    }, 200) // 此处箭头函数不生成自己的this，无须绑定this
+    // 显示 
+    if (currentStatus == "open") { 
+      this.setData({ 
+        isShowForm: true,
+        switchChecked: true
+      }); 
+    } 
+  },
+  // 点击日期选择器事件
+  bindDateChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
+    this.setData({
+      date: e.detail.value
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
@@ -100,39 +162,4 @@ Page({
       }
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
