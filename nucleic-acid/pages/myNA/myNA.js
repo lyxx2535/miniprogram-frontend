@@ -11,20 +11,11 @@ Page({
     },
     img_url: {
       notice: IMG.NOTICE,
-      ongoing: IMG.STATE_ONGOING,
-      over: IMG.STATE_OVER,
-      miss: IMG.STATE_MISS,
-      remind: IMG.REMIND,
-      upload: IMG.UPLOAD
     },
 
-    list :[],//用于展示的核酸列表
-    now_state:null,
-    // 上报弹窗内容
-    reportContent: '',
-    tempImgUrl: '',
-    finished: false,
-
+    list :[],//“未完成”的核酸列表
+    list1:[],//“已完成”的核酸列表
+    finished: false,//表示当前按钮选择的是“未完成”还是“已完成”
   },
   afterCalendarRender(e) {
     const successDate = [
@@ -81,89 +72,35 @@ Page({
     // 测试数据
     const test = [
       {
+        name: '第二次常态化检测',
+        status: {
+          appointment: true,
+          detection: false,
+          report: false
+        }
+      },
+    ];
+    const test1 = [
+      {
         name: '第四次常态化检测',
-        time: '4月23日22:00',
         status: {
-          ongoing: true,
-          over: false,
-          miss: false
+          appointment: true,
+          detection: true,
+          report: false
         }
       },
       {
-        name: '第三次常态化检测',
-        time: '4月10日22:00',
+        name: '第五次常态化检测',
         status: {
-          ongoing: false,
-          over: true,
-          miss: false
+          appointment: false,
+          detection: true,
+          report: false
         }
       },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      }
     ]
     this.setData({
-      list: test
+      list: test,
+      list1: test1
     })
     console.log('装载测试数据：' + JSON.stringify(this.data.list))
   },

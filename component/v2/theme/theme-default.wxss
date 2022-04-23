@@ -5,7 +5,7 @@
 .default_weekend-color,
 .default_handle-color,
 .default_week-color {
-    color: #0b705a;
+    color: #464244;
 }
 
 .default_today {
