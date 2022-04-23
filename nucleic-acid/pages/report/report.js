@@ -73,7 +73,7 @@ Page({
   // 上传核酸截图
   async uploadImg(e){
     try{
-      const res = await api._upload_nucleic(this.data.tempImgUrl);
+      const res = await api._upload_nucleic(this.data.tempImgUrl, this.data.list[this.data.currentIndex].id);
       if(res.data.length == 0){
         console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res))
       }
@@ -206,44 +206,42 @@ Page({
       date: e.detail.value
     })
   },
+  async getNucleicInfo(){
+    const res = await api._get_report_inform();
+    const resSet = res.data.data
+    let obj = []
+    for(let item in resSet){
+      let temp = {};
+      temp.name = resSet[item].title;
+      temp.time = resSet[item].deadLine.replace('-', '年').replace('-', '月') + '日';
+      temp.id = resSet[item].id; // 该通知的id
+      switch (resSet[item].status) {
+        case '进行中':
+          temp.status = {ongoing: true, over: false, miss: false}
+          break;
+        case '已完成':
+          temp.status = {ongoing: false, over: true, miss: false}
+          break;
+        case '未完成':
+          temp.status = {ongoing: false, over: false, miss: true}
+          break;
+        default :
+          temp.status = {ongoing: true, over: false, miss: false}
+          break;
+      }
+      obj.push(temp);
+    }
+    this.setData({
+      list: obj
+    })
+    console.log(this.data.list)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 测试数据
-    const test = [
-      {
-        name: '第四次常态化检测',
-        time: '4月23日22:00',
-        status: {
-          ongoing: true,
-          over: false,
-          miss: false
-        }
-      },
-      {
-        name: '第三次常态化检测',
-        time: '4月10日22:00',
-        status: {
-          ongoing: false,
-          over: true,
-          miss: false
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日19:00',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      }
-    ]
-    this.setData({
-      list: test
-    })
-    console.log('装载测试数据：' + JSON.stringify(this.data.list))
+    // 初始化数据
+    this.getNucleicInfo();
   },
   /**
    * 生命周期函数--监听页面显示

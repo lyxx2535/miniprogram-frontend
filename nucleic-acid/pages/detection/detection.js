@@ -1,5 +1,6 @@
 // nucleic-acid/pages/detection/detection.js
 import * as IMG from '../../../enum/imageUrl'
+import * as api from '../../../utils/api'
 Page({
   data: {
     navigationTitle: '检测列表',
@@ -12,53 +13,46 @@ Page({
     },
     // 预约信息列表
     list :[],
-    switchChecked: false,
   },
-
+  async getNucleicInfo(){
+    const res = await api._get_test_inform();
+    const resSet = res.data.data
+    let obj = []
+    for(let item in resSet){
+      let temp = {};
+      temp.name = resSet[item].title;
+      temp.time = resSet[item].testingTime.replace('-', '年').replace('-', '月') + '日';
+      temp.id = resSet[item].id; // 该通知的id
+      temp.spot = resSet[item].place;
+      temp.requirement = resSet[item].require;
+      temp.isOpenRemind = resSet[item].isOpenRemind
+      switch (resSet[item].finishStatus) {
+        case '进行中':
+          temp.status = {ongoing: true, over: false, miss: false}
+          break;
+        case '已完成':
+          temp.status = {ongoing: false, over: true, miss: false}
+          break;
+        case '未完成':
+          temp.status = {ongoing: false, over: false, miss: true}
+          break;
+        default :
+          temp.status = {ongoing: true, over: false, miss: false}
+          break;
+      }
+      obj.push(temp);
+    }
+    this.setData({
+      list: obj
+    })
+    console.log(this.data.list)
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 测试数据
-    const test = [
-      {
-        name: '第四次常态化检测',
-        time: '4月19日',
-        spot: '体育馆4号门',
-        requirement: '佩戴口罩，携带身份证',
-        status: {
-          ongoing: true,
-          over: false,
-          miss: false
-        }
-      },
-      {
-        name: '第三次常态化检测',
-        time: '4月10日',
-        spot: '体育馆4号门',
-        requirement: '佩戴口罩，携带身份证',
-        status: {
-          ongoing: false,
-          over: true,
-          miss: false
-        }
-      },
-      {
-        name: '第八轮全员检测',
-        time: '4月8日',
-        spot: '体育馆4号门',
-        requirement: '佩戴口罩，携带身份证',
-        status: {
-          ongoing: false,
-          over: false,
-          miss: true
-        }
-      }
-    ]
-    this.setData({
-      list: test
-    })
-    console.log('装载测试数据：' + JSON.stringify(this.data.list))
+    // 获取通知
+    this.getNucleicInfo()
   },
   // 完成检测
   finishDetection(index){
@@ -69,14 +63,15 @@ Page({
         obj[item].status.ongoing = false;
         obj[item].status.miss = false;
         obj[item].status.over = true;
+        obj[item].isOpenRemind = false;
       }
     }
     this.setData({
-      switchChecked: false,
       list: obj
     })
     console.log('完成检测，改变检测状态')
     // TODO: 回传后端，更新状态
+
   },
   // 点击已检测
   tapDetection(e){
@@ -86,19 +81,20 @@ Page({
   // 打开上报提醒
   switchChange(e){
       // TODO:开启服务提醒 封装相关api
-      if(!this.data.switchChecked){
+      const index = e.currentTarget.dataset.index
+      if(!this.data.list[index].isOpenRemind){
         var currentStatus = e.currentTarget.dataset.status; 
         this.formAnimation(currentStatus)
+        this.data.list[index].isOpenRemind = true;
       }
-      // 关闭通知时
+      // 关闭通知，同时更新服务端数据
       else{
-        this.setData({
-          switchChecked: false
-        })
+        this.data.list[index].isOpenRemind = false;
         wx.showToast({
           title: '已关闭服务通知！',
         })
       }
+      // TODO: 回传后端，更新状态
   },
   // 通过按钮关闭表单
   powerDrawer(e){
@@ -140,7 +136,6 @@ Page({
     if (currentStatus == "open") { 
       this.setData({ 
         isShowForm: true,
-        switchChecked: true
       }); 
     } 
   },

@@ -12,9 +12,15 @@ const WS_BASE = 'ws://124.223.105.99:8085/'
 const FRIEND_LIST = '/user/friend-list'
 const CHAT_HISTORY = '/message/get-chat-history'
 // nucleic_acid
-const NUCLEIC_OCR = '/nucleic-acid/info/upload';
+const NUCLEIC_OCR = '/nucleic-acid/info/upload/';
+const GET_REPORT_INFORM = '/nucleic-acid/info/user-list';
+const INSERT_TEST_INFORM = '/nucleic-acid/testing/insert'
+const GET_TEST_INFORM = '/nucleic-acid/testing/user-list'
+const INSERT_BOOK_INFORM = '/nucleic-acid/booking/insert'
+const GET_BOOK_INFORM = '/nucleic-acid/booking/user-list'
 // service message
 const TEMPLATE_ID = 'dTxNqzkbtF7apmXfZBYlWD97krufydh5Gh0Zgn2QvlQ'
+
 
 export {
   LOGIN_API,
@@ -29,5 +35,10 @@ export {
   GET_USER_INFO_BYID,
   ACCESS_TOKEN,
   TEMPLATE_ID,
+  GET_REPORT_INFORM,
+  INSERT_BOOK_INFORM,
+  INSERT_TEST_INFORM,
+  GET_TEST_INFORM,
+  GET_BOOK_INFORM,
   
 }

@@ -29,7 +29,7 @@
   <view class="mt-2 flex-1 text-right relative" style="right: 30rpx;">
     <switch wx:if="{{item.status.over}}" disabled="true"></switch>
       <switch wx:if="{{item.status.miss}}" disabled="true"></switch>
-      <switch wx:if="{{item.status.ongoing}}" checked="{{switchChecked}}" bindchange="switchChange" data-status="open"></switch>
+      <switch wx:if="{{item.status.ongoing}}" checked="{{item.isOpenRemind}}" bindchange="switchChange" data-status="open" data-index="{{index}}"></switch>
   </view>
 </view>
 </view>

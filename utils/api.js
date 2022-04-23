@@ -94,10 +94,10 @@ const _choose_nucleic = () => {
   return chooseMedia()
 }
 // 上传核酸截图，需要token
-const  _upload_nucleic = (_filePath) => {
+const  _upload_nucleic = (_filePath, _info_id) => {
   console.log('图片本地路径：' + _filePath)
   return uploadMedia({
-    url: API.NUCLEIC_OCR,
+    url: API.NUCLEIC_OCR + _info_id,
     filePath: _filePath,
     name: 'image', // key
     header: {
@@ -119,6 +119,73 @@ const _get_access_token = () => {
     }
   })
 }
+// 核酸模块获取用户收到的上报通知，需要token
+const _get_report_inform = () => {
+  return httpRequest({
+    url: API.GET_REPORT_INFORM,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 核酸模块获取用户收到的预约通知，需要token
+const _get_book_inform = () => {
+  return httpRequest({
+    url: API.GET_BOOK_INFORM,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 核酸模块获取用户收到的检测通知，需要token
+const _get_test_inform = () => {
+  return httpRequest({
+    url: API.GET_TEST_INFORM,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 增加一条预约通知
+const _insert_book = (_data) => {
+  return httpRequest({
+    url: API.INSERT_BOOK_INFORM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 增加一条检测通知
+const _insert_test = (_data) => {
+  return httpRequest({
+    url: API.INSERT_TEST_INFORM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 
 export {
   _login,
@@ -129,5 +196,11 @@ export {
   _get_chat_history,
   _get_user_info_byId,
   _choose_nucleic,
-  _get_access_token
+  _get_access_token,
+  _get_report_inform,
+  _get_book_inform,
+  _get_test_inform,
+  _insert_book,
+  _insert_test,
+
 }
