@@ -23,7 +23,7 @@ Page({
     for(let item in resSet){
       let temp = {};
       temp.name = resSet[item].title;
-      temp.time = resSet[item].deadLine.replace('-', '年').replace('-', '月') + '日';
+      temp.time = resSet[item].deadLine;
       temp.id = resSet[item].id; // 该通知的id
       temp.url = 'http://ndyy.nju.edu.cn';
       temp.isOpenRemind = resSet[item].isOpenRemind

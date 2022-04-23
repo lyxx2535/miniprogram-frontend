@@ -21,7 +21,7 @@ Page({
     for(let item in resSet){
       let temp = {};
       temp.name = resSet[item].title;
-      temp.time = resSet[item].testingTime.replace('-', '年').replace('-', '月') + '日';
+      temp.time = resSet[item].testingTime;
       temp.id = resSet[item].id; // 该通知的id
       temp.spot = resSet[item].place;
       temp.requirement = resSet[item].require;

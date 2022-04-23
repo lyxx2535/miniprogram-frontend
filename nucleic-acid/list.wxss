@@ -154,7 +154,7 @@ page {
  }
 
  .text_title {
-  font-size: 32rpx;
+  font-size: 34rpx;
   font-weight: 1000;
   letter-spacing:8rpx;
   margin-top: 25rpx;
