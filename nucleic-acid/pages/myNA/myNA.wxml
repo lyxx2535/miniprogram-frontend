@@ -6,6 +6,9 @@
   id="calendar"
 />
 </view>
+
+<view class="divide_line"></view>
+
 <button class="btn {{!finished?'choose':'noChoose'}}" bindtap="reportMedia1">未完成</button>
 <button class="btn2 {{finished?'choose':'noChoose'}}" bindtap="reportMedia2">已完成</button>
 <view class="mt-20px" style="margin-bottom: 20px;"wx:for="{{!finished?list:list1}}" wx:key="index" id="item{{index + 1}}">

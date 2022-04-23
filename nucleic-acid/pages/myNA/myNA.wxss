@@ -14,7 +14,15 @@ page {
   top: 3%;
   background:#ffffff;
 }
-
+.divide_line{
+  background-color: black;
+  margin-top: 40rpx;
+  width: 94%;
+  margin-left: 3%;
+  height: 1rpx;
+  margin-top: 100rpx;
+  transform: scaleY(0.3)
+}
 .success {
   border-radius: 50%;
   background-color: #FDE6E0;
@@ -38,7 +46,7 @@ page {
 .btn:not([size="mini"]) {
   position: relative;
   margin-left: 40px;
-  margin-top: 80rpx;
+  margin-top: 60rpx;
   width: 240rpx;
   text-align: center;
   justify-content: center;
