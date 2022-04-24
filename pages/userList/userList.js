@@ -3,7 +3,7 @@
  * author: Peng Junzhi
  * date: 2022-04-19
  */
-import { _get_user_friendList } from '../../../utils/api';
+import { _get_user_friendList } from '../../utils/api';
 Page({
   /**
    * 页面的初始数据
@@ -36,6 +36,12 @@ Page({
    */
   onShow: function(options){
     this.get_friend_list();
+    if (typeof this.getTabBar === 'function' &&
+      this.getTabBar()) {
+      this.getTabBar().setData({
+        selected: 2
+      })
+    }
   },
   /**
    * 生命周期函数--监听页面加载

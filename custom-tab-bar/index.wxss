@@ -1,0 +1,38 @@
+/* 根标签样式 */
+.tab-bar {
+  height: 150rpx;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-bottom: env(safe-area-inset-bottom);
+}
+/* 每个Tab的样式 */
+.tab {
+  text-align: -webkit-center;
+  flex-grow: 1;
+  margin-bottom: 20rpx;
+}
+.tab-image {
+  width: 112rpx;
+  height: 112rpx;
+}
+.tab-text {
+  margin-left: 8rpx;
+  font-size: 28rpx;
+  padding-top: 6rpx;
+  text-align: center;
+  letter-spacing: 6rpx;
+  font-weight:300;
+}
+
+.bg_tab {
+  position: absolute;
+  height: 100rpx;
+  border-radius: 70rpx;
+  margin-bottom: 50rpx;
+  background-color: #ededef;
+  z-index: -1;
+  width: 88%;
+  border: 3rpx solid #dadada;
+  box-shadow: 1rpx 1rpx 4rpx 1rpx rgb(255, 255, 255);
+}

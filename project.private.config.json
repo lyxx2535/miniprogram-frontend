@@ -15,9 +15,10 @@
           "scene": null
         },
         {
-          "name": "nucleic-acid/pages/index_NA/index_NA",
-          "pathName": "nucleic-acid/pages/index_NA/index_NA",
+          "name": "",
+          "pathName": "pages/index_NA/index_NA",
           "query": "",
+          "launchMode": "default",
           "scene": null
         },
         {

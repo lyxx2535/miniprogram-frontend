@@ -2,22 +2,23 @@
   "pages":[
     "pages/index/index",
     "pages/my/my",
-    "pages/login/login"
+    "pages/login/login",
+    "pages/userList/userList",
+    "pages/index_NA/index_NA",
+    "pages/community/community"
   ],
   "subpackages": [
     {
       "root": "chat",
       "name": "聊天模块",
       "pages": [
-        "pages/chat/chat",
-        "pages/userList/userList"
+        "pages/chat/chat"
       ],
       "independent": false
     }, {
       "root": "community",
       "name": "互助社区",
       "pages": [
-        "pages/community/community"
       ],
       "independent": false
     }, {
@@ -27,7 +28,6 @@
         "pages/appointment/appointment",
         "pages/detection/detection",
         "pages/report/report",
-        "pages/index_NA/index_NA",
         "pages/myNA/myNA"
       ],
       "independent": false
@@ -38,6 +38,30 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "Weixin",
     "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "custom": true,
+    "color": "#000000",
+    "selectedColor": "#000000",
+    "backgroundColor": "#000000",
+    "list": [
+      {
+        "pagePath": "pages/index_NA/index_NA",
+        "text": "核酸"
+      },
+      {
+        "pagePath": "pages/community/community",
+        "text": "帮助"
+      },
+      {
+        "pagePath": "pages/userList/userList",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/my/my",
+        "text": "我的"
+      }
+    ]
   },
   "style": "v2",
   "sitemapLocation": "sitemap.json",

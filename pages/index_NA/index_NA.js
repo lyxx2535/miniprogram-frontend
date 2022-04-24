@@ -1,6 +1,6 @@
 // nucleic-acid/pages/index_NA/index_NA.js
-import * as IMG from '../../../enum/imageUrl'
-import * as api from '../../../utils/api'
+import * as IMG from '../../enum/imageUrl'
+import * as api from '../../utils/api'
 
 Page({
     data :{
@@ -40,22 +40,22 @@ Page({
     },
     gotoAppointment: function (options) {
         wx.navigateTo({
-              url: '../appointment/appointment',
+              url: '/nucleic-acid/pages/appointment/appointment',
      })  
      },
      gotoDetection: function (options) {
         wx.navigateTo({
-              url: '../detection/detection',
+              url: '/nucleic-acid/pages/detection/detection',
      })  
      },
      gotoReport: function (options) {
         wx.navigateTo({
-              url: '../report/report',
+              url: '/nucleic-acid/pages/report/report',
      })  
      },
      gotoMyNA: function (options) {
         wx.navigateTo({
-              url: '../myNA/myNA',
+              url: '/nucleic-acid/pages/myNA/myNA',
      })  
      },
      onShow(){
@@ -65,5 +65,11 @@ Page({
           console.log(err)
         }
       })
-     }
+      if (typeof this.getTabBar === 'function' &&
+        this.getTabBar()) {
+        this.getTabBar().setData({
+          selected: 0
+        })
+      }
+    }
 })

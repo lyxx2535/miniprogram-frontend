@@ -27,6 +27,3 @@
   <button bindtap="deleteMsg" class="mt-20px">删除服务消息</button>
   <button bindtap="getNucleicInfo" class="mt-20px">获取核酸通知</button>
 </view>
-
-
-<my_test1 style="position: fixed; bottom: 0;width: 100vw;">tabBar1</my_test1>

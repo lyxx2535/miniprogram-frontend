@@ -25,7 +25,7 @@ const IHELP_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav
 const MSG = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/msg.png'
 const MSG_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/msg_isSelected.png'
 const MY = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/my.png'
-const MY_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/my.png'
+const MY_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/my_isSelected.png'
 
 export {
   ICON_CALENDER,
