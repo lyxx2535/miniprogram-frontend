@@ -25,3 +25,6 @@
   <button bindtap="testMsg" class="mt-20px">发送服务消息</button>
   <button bindtap="getNucleicInfo" class="mt-20px">获取核酸通知</button>
 </view>
+
+
+<my_test1>tabBar1</my_test1>

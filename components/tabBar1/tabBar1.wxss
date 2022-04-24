@@ -1,0 +1,23 @@
+/* 根标签样式 */
+.root {
+  height: 100rpx;
+  border-top: 1px solid rgb(221, 221, 221);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+/* 每个Tab的样式 */
+.tab {
+  text-align: -webkit-center;
+  flex-grow: 1;
+}
+.tab cover-image {
+  width: 50rpx;
+  height: 50rpx;
+}
+.tab cover-view {
+  font-size: 25rpx;
+  padding-top: 5rpx;
+  text-align: center;
+}
