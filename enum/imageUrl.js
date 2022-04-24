@@ -18,14 +18,14 @@ const UPLOAD = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/uploa
 const NOTICE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/notice.png'
 const RETURN = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/return.png'
 // 导航栏
-const HESUAN = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/hesuan.png'
-const HESUAN_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/hesuan_isSelected.png'
-const IHELP = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/ihelp.png'
-const IHELP_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/ihelp_isSelected.png'
-const MSG = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/msg.png'
-const MSG_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/msg_isSelected.png'
-const MY = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/my.png'
-const MY_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav/my.png'
+const HESUAN = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/hesuan.png'
+const HESUAN_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/hesuan_isSelected.png'
+const IHELP = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/ihelp.png'
+const IHELP_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/ihelp_isSelected.png'
+const MSG = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/msg.png'
+const MSG_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/msg_isSelected.png'
+const MY = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/my.png'
+const MY_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/my.png'
 
 export {
   ICON_CALENDER,

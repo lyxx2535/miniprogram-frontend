@@ -12,24 +12,24 @@ Page({
         VECTOR_PIC: IMG.VECTOR_PIC
     },
     async getTestNum(){
-      const res = await api._get_test_inform();
-      const resSet = res.data.data
+      const res = await api._test_count();
+      const count = res.data.data
       this.setData({
-        num_detection: resSet.length
+        num_detection: count
       })
     },
     async getReportNum(){
-      const res = await api._get_report_inform();
-      const resSet = res.data.data
+      const res = await api._report_count();
+      const count = res.data.data
       this.setData({
-        num_report: resSet.length
+        num_report: count
       })
     },
     async getBookNum(){
-      const res = await api._get_book_inform();
-      const resSet = res.data.data
+      const res = await api._book_count();
+      const count = res.data.data
       this.setData({
-        num_appointment: resSet.length
+        num_appointment: count
       })
     },
     onLoad: function(options) {

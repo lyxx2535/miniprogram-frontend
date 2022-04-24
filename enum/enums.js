@@ -21,6 +21,9 @@ const GET_BOOK_INFORM = '/nucleic-acid/booking/user-list'
 const SEND_REMIND = '/task/add'
 const CHECK_REMIND = '/tast/list'
 const DELETE_REMIND = '/tasl/delete/'
+const TEST_COUNT = '/nucleic-acid/testing/count'
+const BOOK_COUNT = '/nucleic-acid/booking/count'
+const REPORT_COUNT = '/nucleic-acid/info/count'
 // service message
 const TEMPLATE_ID = 'dTxNqzkbtF7apmXfZBYlWD97krufydh5Gh0Zgn2QvlQ'
 
@@ -46,5 +49,8 @@ export {
   SEND_REMIND,
   CHECK_REMIND,
   DELETE_REMIND,
+  TEST_COUNT,
+  BOOK_COUNT,
+  REPORT_COUNT,
   
 }

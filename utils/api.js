@@ -226,6 +226,46 @@ const _check_remind = () => {
     showLoading: true
   })
 }
+// 获取用户待上报数量
+const _report_count = () => {
+  return httpRequest({
+    url: API.REPORT_COUNT,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 获取用户待预约数量
+const _book_count = () => {
+  return httpRequest({
+    url: API.BOOK_COUNT,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 获取用户待检测数量
+const _test_count = () => {
+  return httpRequest({
+    url: API.TEST_COUNT,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+
 
 export {
   _login,
@@ -245,5 +285,8 @@ export {
   _add_remind,
   _delete_remind,
   _check_remind,
+  _book_count,
+  _test_count,
+  _report_count,
   
 }
