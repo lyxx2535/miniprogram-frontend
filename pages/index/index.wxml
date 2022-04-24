@@ -23,8 +23,10 @@
   <button bindtap="getUserProfile" class="mt-20px">登陆并获取token</button>
   <button bindtap="getAccessToken" class="mt-20px">获取小程序access_token</button>
   <button bindtap="testMsg" class="mt-20px">发送服务消息</button>
+  <button bindtap="checkMsg" class="mt-20px">查看服务消息</button>
+  <button bindtap="deleteMsg" class="mt-20px">删除服务消息</button>
   <button bindtap="getNucleicInfo" class="mt-20px">获取核酸通知</button>
 </view>
 
 
-<my_test1>tabBar1</my_test1>
+<my_test1 style="position: fixed; bottom: 0;width: 100vw;">tabBar1</my_test1>

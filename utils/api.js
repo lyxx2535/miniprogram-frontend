@@ -186,6 +186,46 @@ const _insert_test = (_data) => {
     showLoading: false
   })
 }
+// 添加定时提醒
+const _add_remind = (_data) => {
+  return httpRequest({
+    url: API.INSERT_TEST_INFORM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 删除定时提醒
+const _delete_remind = (_task_name ) => {
+  return httpRequest({
+    url: API.INSERT_TEST_INFORM + _task_name,
+    method: 'DELETE',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 查看所有定时提醒
+const _check_remind = () => {
+  return httpRequest({
+    url: API.INSERT_TEST_INFORM,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
 
 export {
   _login,
@@ -202,5 +242,8 @@ export {
   _get_test_inform,
   _insert_book,
   _insert_test,
-
+  _add_remind,
+  _delete_remind,
+  _check_remind,
+  
 }

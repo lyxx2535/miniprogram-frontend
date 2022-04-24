@@ -31,6 +31,9 @@ App({
         console.log(err);
       }
     })
+    wx.navigateTo({
+      url: '/nucleic-acid/pages/index_NA/index_NA',
+    })
   },
   globalData: {
     navHeight: 0,

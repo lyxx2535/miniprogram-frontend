@@ -28,6 +28,6 @@
     <view class="img_bgg">
         <image src="{{VECTOR_PIC}}" style="width: 500rpx;height: 500rpx;"></image>
     </view>
-    
+    <my_test1 style="position: fixed; bottom: 0; width: 100vw;"></my_test1>
 </view>
 

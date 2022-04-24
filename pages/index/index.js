@@ -51,6 +51,10 @@ Page({
         console.log('access_token: ' + wx.getStorageSync('access_token'))
       }
     },
+    async add_remind(_data){
+      const res = await api._add_remind(_data);
+      console.log(res);
+    },
     // 发送服务消息
     testMsg(){
       wx.requestSubscribeMessage({
@@ -58,20 +62,29 @@ Page({
         success:res=>{
           console.log(res)
           // 准备请求参数
-          var data = {
+          var _data = {
             "access_token": wx.getStorageSync('access_token'),
-            "touser": wx.getStorageSync('openid'),  //需要提前获取
-            "template_id": TEMPLATE_ID,  //模板id，在微信后台拿
             "data": {
               // MessageVO
-              "thing1": "核酸检测提醒",
-              "time3": "某个时间",
-              "thing4": "fzz",
-              "thing5": "备注"
+              "thing1": {
+                "value" : "核酸检测提醒"
+              },
+              "time3":{
+                "value" :  "某个时间"
+              },
+              "thing4":{
+                "value" : "fzz"
+              },
+              "thing5": {
+                "value" : "备注"
+              } 
             },
-            "executeTime": "yyyy-mm-dd H:M:S"
+            "executeTime": "2022-04-24 15:45:45",
+            "template_id": TEMPLATE_ID,  //模板id，在微信后台拿
+            "touser": wx.getStorageSync('openid'),  //需要提前获取
           }
           // 请求服务端
+          this.add_remind(_data);
         }
       })
     },

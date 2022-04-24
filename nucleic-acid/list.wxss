@@ -112,8 +112,6 @@ page {
    font-size: 24rpx;
    letter-spacing:5rpx;
    font-weight: 300;
-
-   
  } 
    
  .input_base { 

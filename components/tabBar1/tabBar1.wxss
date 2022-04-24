@@ -1,6 +1,6 @@
 /* 根标签样式 */
 .root {
-  height: 100rpx;
+  height: 110rpx;
   border-top: 1px solid rgb(221, 221, 221);
   display: flex;
   justify-content: space-around;
@@ -13,11 +13,13 @@
   flex-grow: 1;
 }
 .tab cover-image {
-  width: 50rpx;
-  height: 50rpx;
+  width: 60rpx;
+  height: 60rpx;
 }
 .tab cover-view {
+  margin-left: 8rpx;
   font-size: 25rpx;
-  padding-top: 5rpx;
+  padding-top: 6rpx;
   text-align: center;
+  letter-spacing: 8rpx;
 }

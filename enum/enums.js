@@ -18,6 +18,9 @@ const INSERT_TEST_INFORM = '/nucleic-acid/testing/insert'
 const GET_TEST_INFORM = '/nucleic-acid/testing/user-list'
 const INSERT_BOOK_INFORM = '/nucleic-acid/booking/insert'
 const GET_BOOK_INFORM = '/nucleic-acid/booking/user-list'
+const SEND_REMIND = '/task/add'
+const CHECK_REMIND = '/tast/list'
+const DELETE_REMIND = '/tasl/delete/'
 // service message
 const TEMPLATE_ID = 'dTxNqzkbtF7apmXfZBYlWD97krufydh5Gh0Zgn2QvlQ'
 
@@ -40,5 +43,8 @@ export {
   INSERT_TEST_INFORM,
   GET_TEST_INFORM,
   GET_BOOK_INFORM,
+  SEND_REMIND,
+  CHECK_REMIND,
+  DELETE_REMIND,
   
 }
