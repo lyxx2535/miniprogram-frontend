@@ -1,7 +1,7 @@
 /* 根标签样式 */
 .root {
-  height: 110rpx;
-  border-top: 1px solid rgb(221, 221, 221);
+  height: 150rpx;
+  /* border-top: 1px solid rgb(221, 221, 221); */
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -11,15 +11,29 @@
 .tab {
   text-align: -webkit-center;
   flex-grow: 1;
+  margin-bottom: 20rpx;
 }
 .tab cover-image {
-  width: 60rpx;
-  height: 60rpx;
+  width: 112rpx;
+  height: 112rpx;
 }
 .tab cover-view {
   margin-left: 8rpx;
-  font-size: 25rpx;
+  font-size: 22rpx;
   padding-top: 6rpx;
   text-align: center;
-  letter-spacing: 8rpx;
+  letter-spacing: 6rpx;
+  font-weight:300;
+}
+
+.bg_tab {
+  position: absolute;
+  height: 100rpx;
+  border-radius: 70rpx;
+  margin-bottom: 50rpx;
+  background-color: #ededef;
+  z-index: -1;
+  width: 88%;
+  border: 3rpx solid #dadada;
+  box-shadow: 1rpx 1rpx 4rpx 1rpx rgb(255, 255, 255);
 }

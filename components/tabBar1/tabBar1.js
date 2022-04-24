@@ -14,13 +14,14 @@ Component({
         tabIndex:0,
         tabBar:{
           custom:true,
-          color:"#5F5F5F",
-          selectedColor:"#027FF5",
-          backgroundColor:"#F7F7F7",
+          weight:300,
+          selectedWeight:500,
+          backgroundColor:"transport",
           list:[
             {
             iconPath:IMG1.HESUAN,
             selectedIconPath:IMG1.HESUAN_SELECTED,
+            iconPath:IMG1.HESUAN_SELECTED,
             pagePath:"/nucleic-acid/pages/index_NA/index_NA",
             text:"核酸"
           },

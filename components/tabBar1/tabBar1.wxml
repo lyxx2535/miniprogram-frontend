@@ -1,12 +1,13 @@
 <!--components/tabBar1/tabBar1.wxml-->
 <cover-view class="root" style="background-color: {{tabBar.backgroundColor}};">
     <!-- 循环渲染Tab标签 -->
+    <cover-view class="bg_tab"></cover-view>
     <cover-view class="tab"
         wx:for="{{tabBar.list}}" wx:key="index"
         id="item{{index + 1}}" data-index="{{index}}"
         bindtap="switchPage" data-url="{{item.pagePath}}">
         <!-- 这里需要注意路径前面要加/，或者直接修改tabBar下的list.pagePath也行 -->
         <cover-image src="{{index == tabIndex ? item.selectedIconPath : item.iconPath}}"></cover-image>
-        <cover-view style="color: {{index == tabIndex ? tabBar.selectedColor : tabBar.color}};">{{item.text}}</cover-view> 
+        <cover-view style="font-weight: {{index == tabIndex ? tabBar.selectedWeight : tabBar.weight}};">{{item.text}}</cover-view> 
     </cover-view>
 </cover-view>
