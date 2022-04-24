@@ -4,7 +4,7 @@ import * as api from '../../utils/api'
 
 Page({
     data :{
-        navigationTitle: '您的核酸助手', // 核酸首页的标题，pjz随便想的，可改
+        navigationTitle: '核酸助手', // 核酸首页的标题，pjz随便想的，可改
         num_appointment:0,
         num_detection:0,
         num_report:0,

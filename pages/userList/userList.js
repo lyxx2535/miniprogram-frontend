@@ -9,6 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    navigationTitle: '消息列表',
     title: '加载中...', // 状态
     list: [], // 数据列表
     myOpenId: wx.getStorageSync('openid'),// 用户的唯一标识
@@ -35,6 +36,12 @@ Page({
    * 用于返回页面时刷新数据
    */
   onShow: function(options){
+    wx.setNavigationBarTitle({
+      title: this.data.navigationTitle,
+      fail: err => {
+        console.log(err)
+      }
+    })
     this.get_friend_list();
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {

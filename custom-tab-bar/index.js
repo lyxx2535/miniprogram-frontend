@@ -21,7 +21,7 @@ Component({
             iconPath: IMG1.IHELP,
             selectedIconPath: IMG1.IHELP_SELECTED,
             pagePath: "/pages/community/community",
-            text: "帮助"
+            text: "互助"
           },
           {
             iconPath: IMG1.MSG,

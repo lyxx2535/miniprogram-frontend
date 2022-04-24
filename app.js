@@ -31,6 +31,10 @@ App({
         console.log(err);
       }
     })
+    // 默认跳转到login
+    // wx.navigateTo({
+    //   url: '/pages/login/login',
+    // })
   },
   globalData: {
     navHeight: 0,
