@@ -138,31 +138,40 @@ Page({
   },
   // 打开上报提醒
   switchChange(e){
-      this.setData({
-        currentIndex: e.currentTarget.dataset.index
+    this.setData({
+      currentIndex: e.currentTarget.dataset.index
+    })
+    // TODO:开启服务提醒 封装相关api
+    const index = e.currentTarget.dataset.index
+    if(!this.data.list[index].isOpenRemind){
+      var currentStatus = e.currentTarget.dataset.status; 
+      this.formAnimation(currentStatus)
+      this.data.list[index].isOpenRemind = true;
+    }
+    // 关闭通知，同时更新服务端数据
+    else{
+      this.data.list[index].isOpenRemind = false;
+      wx.showToast({
+        title: '已关闭服务通知！',
       })
-      // TODO:开启服务提醒 封装相关api
-      if(!this.data.switchChecked){
-        var currentStatus = e.currentTarget.dataset.status; 
-        this.formAnimation(currentStatus)
-      }
-      // 关闭通知时
-      else{
-        this.setData({
-          switchChecked: false
-        })
-        wx.showToast({
-          title: '已关闭提醒',
-        })
-      }
+    }
+    // TODO: 回传后端，更新状态
   },
   // 通过按钮关闭表单
   confirmRemind(e){
     var currentStatus = e.currentTarget.dataset.status; 
     this.formAnimation(currentStatus);
-    wx.showToast({
-      title: '已开启提醒',
-    })
+    if(e.currentTarget.dataset.close == "false"){
+      wx.showToast({
+        title: '已开启提醒',
+      })
+    }
+    else{
+      this.data.list[this.data.currentIndex].isOpenRemind = false;
+      this.setData({
+        list: this.data.list
+      })
+    }
   },
   // 表单弹出动画
   formAnimation(currentStatus){ 

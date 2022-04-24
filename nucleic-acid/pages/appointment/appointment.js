@@ -127,9 +127,17 @@ Page({
   confirmRemind(e){
     var currentStatus = e.currentTarget.dataset.status; 
     this.formAnimation(currentStatus);
-    wx.showToast({
-      title: '已开启提醒',
-    })
+    if(e.currentTarget.dataset.close == "false"){
+      wx.showToast({
+        title: '已开启提醒',
+      })
+    }
+    else{
+      this.data.list[this.data.currentIndex].isOpenRemind = false;
+      this.setData({
+        list: this.data.list
+      })
+    }
   },
   // 表单弹出动画
   formAnimation(currentStatus){ 

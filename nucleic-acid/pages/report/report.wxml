@@ -53,7 +53,7 @@
     </view>
   </view>
 <!-- 选择提醒后弹出的表单 -->
-  <view class="drawer_screen" bindtap="powerDrawer" data-status="close" wx:if="{{isShowForm}}"></view> 
+<view class="drawer_screen" bindtap="confirmRemind" data-status="close" data-close="true" wx:if="{{isShowForm}}"></view> 
   <view animation="{{animationData}}" class="drawer_box" wx:if="{{isShowForm}}"> 
     <view class="drawer_title">自定义/确认提醒内容</view> 
     <view class="drawer_content">
@@ -79,7 +79,7 @@
         <input class="input_base input_h30 col-1" value="记得及时上报哦~"></input> 
       </view> 
     </view> 
-    <view class="btn_ok" bindtap="confirmRemind" data-status="close">确定</view> 
+    <view class="btn_ok" bindtap="confirmRemind" data-status="close" data-close="false">确定</view> 
   </view>
 
 </view>
