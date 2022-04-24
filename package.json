@@ -10,10 +10,9 @@
     "type": "git",
     "url": "git@git.nju.edu.cn:Pengzna/miniprogram-frontend.git"
   },
-  "author": "",
+  "author": "NJU_SE2020_TEAM",
   "license": "ISC",
   "dependencies": {
-    "@vant/weapp": "^1.10.2",
     "lin-ui": "^0.9.8"
   }
 }
