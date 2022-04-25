@@ -1,5 +1,6 @@
 <!--community/pages/detail/detail.wxml-->
 <view class='divide-line'></view>
+
 <view class="flex mt-2" style="height: 100rpx;">
   <image mode="heightFix" src="{{avartar}}" class="user-avartar"></image>
   <view class="user-info">
@@ -7,38 +8,47 @@
     <view style="margin-top: 15rpx; font-size: 25rpx; letter-spacing: 2rpx;">{{postTime}}</view>
   </view>
 </view>
+
 <view class="info-block flex" style="margin-top: 45rpx;">
   <text wx:if="{{forumType == 0}}">求助类型：</text>
   <text wx:if="{{forumType == 1}}">帮助类型：</text>
-  <view style="background-color:#ec7070; color: white; padding-left: 15rpx; padding-right: 15rpx;padding-top: 7rpx;padding-bottom: 8rpx; border-radius: 10rpx; font-size: 28rpx; font-weight: bolder; letter-spacing: 4rpx;"> {{type}} </view>
+  <view class="tag1"> {{type}} </view>
 </view>
+
 <view class="info-block flex">
   <text>标签：</text>
-  <view style="background-color:#ffe699; color: black; padding-left: 15rpx; padding-right: 15rpx;padding-top: 7rpx;padding-bottom: 8rpx; border-radius: 10rpx; font-size: 28rpx; font-weight: bolder; letter-spacing: 4rpx;"> {{tag}} </view>
+  <view class="tag2"> {{tag}} </view>
 </view>
+
 <view class="info-block flex">
   <text>名称：</text>
   <view class="info-text">{{content}}</view>
 </view>
+
 <view class="info-block flex">
   <text>截止时间：</text>
   <view class="info-text">{{ddl}}</view>
 </view>
+
 <view class="info-block flex">
   <text>紧急程度：</text>
-  <view class="info-text" wx:for="{{star}}" wx:key="index">
+  <!-- <view class="info-text" wx:for="{{star}}" wx:key="index">
     <text style="font-size: large; letter-spacing: 8rpx;">{{item}}</text>
-  </view>
+  </view> -->
+  <l-rate active-color="#FFDD55" inActive-color="#FFF5CE" score="{{emergency}}" disabled="true" />
 </view>
+
 <view class="info-block flex">
   <text>备注：</text>
   <view class="info-text">{{remark}}</view>
 </view>
+
 <view class="img-block flex">
   <image wx:for="{{forumImg}}" wx:key="index" mode="heightFix" style="height: 95%; display: inline-block;" wx:for-item="item" src="{{item}}"></image>
-  <!-- <view wx:for="{{forumImg}}" wx:key="index" mode="heightFix" style="height: 95%; display: inline-block;" wx:for-item="item" src="{{item}}">{{item}}</view> -->
 </view>
+
 <view class='divide-line'></view>
+
 <view class="relative" style="width: 100vw;">
   <view class="flex chat-btn relative" bindtap="goToChat">
     <image src="{{imgUrl.chat}}" style="height: 60rpx; margin-top: 10rpx; margin-left: 30rpx;" mode="heightFix"></image>

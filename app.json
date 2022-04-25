@@ -20,8 +20,7 @@
       "name": "互助社区",
       "pages": [
         "pages/detail/detail",
-        "pages/draft_renderHelp/draft_renderHelp",
-        "pages/draft_seekHelp/draft_seekHelp",
+        "pages/draft/draft",
         "pages/search/search"
       ],
       "independent": false

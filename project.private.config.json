@@ -45,6 +45,13 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "community/pages/draft/draft",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

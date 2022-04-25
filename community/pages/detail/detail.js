@@ -37,6 +37,8 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // TODO: 根据options传来的参数加载数据
+
     let _star = []
     for (let index = 0; index < this.data.emergency; index++) {
       _star.push('★')
@@ -65,7 +67,6 @@ Page({
       _title = "帮忙区"
     }
     wx.setNavigationBarTitle({
-
       title: _title,
       fail: err => {
         console.log(err)

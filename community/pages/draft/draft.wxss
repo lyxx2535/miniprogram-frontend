@@ -1,0 +1,41 @@
+/* community/pages/draft/draft.wxss */
+@import '../forum.wxss';
+.btn{
+  background-color: #afabab;
+  color: white;
+  font-weight: 700;
+  border-radius: 15rpx;
+  float: right;
+  margin-top: 30rpx;
+  /* margin-left: 20rpx; */
+  position: relative;
+  right: 25rpx;
+}
+.tag1-unselected{
+  background-color:#d0cece; 
+  color: white;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-top: 7rpx;
+  padding-bottom: 8rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  font-weight: bolder;
+  letter-spacing: 4rpx;
+}
+.tag2-unselected{
+  background-color: #f2f2f2;
+  color: black;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-top: 7rpx;
+  padding-bottom: 8rpx;
+  border-radius: 10rpx; 
+  font-size: 28rpx; 
+  font-weight: bolder; 
+  letter-spacing: 4rpx;
+}
+.scroll-box {
+  white-space: nowrap;
+  overflow: scroll;
+}

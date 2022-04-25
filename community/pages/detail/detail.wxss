@@ -1,10 +1,4 @@
-.divide-line {
-  margin-top: 40rpx;
-  justify-content: center;
-  width: 94%;
-  margin-left: 3%;
-  border-bottom: 2rpx solid #ccc;
-}
+@import '../forum.wxss';
 .chat-btn{
   width: 44vw;
   height: 80rpx;
@@ -22,12 +16,7 @@
   margin-top: 12rpx;
   margin-left: 40rpx;
 }
-.info-block{
-  font-weight: 600;
-  font-size: 33rpx;
-  margin-top: 25rpx;
-  margin-left: 60rpx;
-}
+
 .info-text{
   font-weight: normal;
   letter-spacing: 2rpx;
