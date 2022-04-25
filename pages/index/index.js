@@ -120,6 +120,19 @@ Page({
       const res = await api._insert_test(data)
       console.log(res)
     },
+    async publishDraft(){
+      const data = {
+        "comment": "备注",
+        "deadLine": "2022-04-25 9:55:00",
+        "helpType": "帮助",
+        "name": "一只口罩",
+        "publishDate": "2022-04-25 9:55:00",
+        "tag": "日用品",
+        "urgency": 2,
+      }
+      const res = await api._publish_draft(data);
+      console.log(res.data)
+    },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({

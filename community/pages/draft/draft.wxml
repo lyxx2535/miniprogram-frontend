@@ -17,7 +17,7 @@
 
 <view class="info-block flex">
   <text style="margin-top: 20rpx;">名称：</text>
-  <l-input focus="true" width="500" hide-label="true" placeholder="请简要描述您的帖子内容" clear="{{true}}" value="{{content}}" />
+  <l-input focus="true" width="500" hide-label="true" placeholder="请简要描述您的帖子内容" clear="{{true}}" value="{{content}}"  bind:lininput="saveContent" />
 </view>
 
 <view class="info-block flex relative ">
@@ -32,12 +32,12 @@
 
 <view class="info-block flex">
   <text style="margin-top: 20rpx;">紧急程度：</text>
-  <l-rate active-color="#FFDD55" inActive-color="#FFF5CE" bind:linchange="onChangeRate" style="margin-top: 20rpx;"></l-rate>
+  <l-rate active-color="#FFDD55" inActive-color="#FFF5CE" bind:linchange="onChangeRate" style="margin-top: 20rpx;" score="{{emergency}}"></l-rate>
 </view>
 
 <view class="info-block flex">
   <text style="margin-top: 20rpx;">备注：</text>
-  <l-input focus="true" width="500" hide-label="true" placeholder="您可在备注详细描述您的需求" clear="{{true}}" value="{{remark}}"/>
+  <l-input focus="true" width="500" hide-label="true" placeholder="您可在备注详细描述您的需求" clear="{{true}}" value="{{remark}}" bind:lininput="saveRemark"/>
 </view>
 
 <view style="margin-left: 60rpx; margin-top: 40rpx;">
@@ -46,4 +46,4 @@
 
 <view class='divide-line'></view>
 
-<button class="btn" size="mini" style="width: 160rpx;">发布</button>
+<button class="btn" size="mini" style="width: 160rpx;" bindtap="publish">发布</button>

@@ -26,7 +26,9 @@ const BOOK_COUNT = '/nucleic-acid/booking/count'
 const REPORT_COUNT = '/nucleic-acid/info/count'
 // service message
 const TEMPLATE_ID = 'dTxNqzkbtF7apmXfZBYlWD97krufydh5Gh0Zgn2QvlQ'
-
+// community
+const PUBLISH_DRAFT = '/help-info/insert'
+const INSERT_DRAFT_IMG = '/help-info/upload/'
 
 export {
   LOGIN_API,
@@ -52,5 +54,7 @@ export {
   TEST_COUNT,
   BOOK_COUNT,
   REPORT_COUNT,
-  
+  PUBLISH_DRAFT,
+  INSERT_DRAFT_IMG,
+
 }

@@ -265,7 +265,35 @@ const _test_count = () => {
     showLoading: true
   })
 }
-
+// 发布求助信息，需要token
+const _publish_draft = (_data) => {
+  return httpRequest({
+    url: API.PUBLISH_DRAFT,
+    data: _data,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 上传帖子截图，需要token
+const  _upload_draft_img = (_filePath, _draft_id) => {
+  console.log('图片本地路径：' + _filePath)
+  return uploadMedia({
+    url: API.INSERT_DRAFT_IMG + _draft_id,
+    filePath: _filePath,
+    name: 'image', // key
+    header: {
+      'content-type': 'multipart/form-data',
+      'Authorization': wx.getStorageSync('token')
+    },
+    method: 'POST',
+    showLoading: true
+  })
+}
 
 export {
   _login,
@@ -288,5 +316,7 @@ export {
   _book_count,
   _test_count,
   _report_count,
+  _publish_draft,
+  _upload_draft_img,
   
 }
