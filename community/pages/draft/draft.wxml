@@ -32,9 +32,7 @@
 
 <view class="info-block flex">
   <text style="margin-top: 20rpx;">紧急程度：</text>
-  <view style="margin-top: 15rpx;" wx:for="{{star}}" wx:key="index">
-    <text style="font-size: larger; letter-spacing: 8rpx;" data-index="{{index}}" bindtap="chooseEmer">{{item}}</text>
-  </view>
+  <l-rate active-color="#FFDD55" inActive-color="#FFF5CE" bind:linchange="onChangeRate" style="margin-top: 20rpx;"></l-rate>
 </view>
 
 <view class="info-block flex">

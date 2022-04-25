@@ -36,10 +36,12 @@ Page({
     console.log('选择tag: ' + this.data.tag[_index])
     console.log('emergency: ' + this.data.emergency)
   },
-  // 选择紧急程度
+  // 选择紧急程度 - 已废弃，LinUI真香
   chooseEmer(e){
     const _index = e.currentTarget.dataset.index;
-    console.log(_index)
+    this.setData({
+      emergency: _index
+    })
     let _star = []
     for (let index = 0; index <= _index; index++) {
       _star.push('⭐')
@@ -57,6 +59,20 @@ Page({
     console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       ddl: e.detail.value
+    })
+  },
+  onChangeTap(e){
+    console.log(e.detail)
+    this.setData({
+      forumImg: e.detail.all
+    })
+    console.log(this.data.forumImg)
+  },
+  // 选择紧急程度 - LinUI
+  onChangeRate(e){
+    console.log('选择紧急度：' + e.detail.score)
+    this.setData({
+      emergency: e.detail.score
     })
   },
   // TODO: linUI上传图片接口
@@ -90,6 +106,9 @@ Page({
       fail: err => {
         console.log(err)
       }
+    })
+    this.setData({
+      forumImg: []
     })
   },
 
