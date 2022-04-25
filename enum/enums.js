@@ -6,7 +6,7 @@ const GET_USER_INFO = '/user/query';
 const GET_USER_INFO_BYID = '/user/info/'
 const ACCESS_TOKEN = '/user/access-token'
 // chat
-const CHAT_BASE = 'http://localhost:9999/message-server/'
+const CHAT_BASE = 'https://localhost:9999/message-server/'
 // const WS_BASE = 'ws://localhost:9999/message-server/'
 const WS_BASE = 'ws://124.223.105.99:8085/'
 const FRIEND_LIST = '/user/friend-list'
