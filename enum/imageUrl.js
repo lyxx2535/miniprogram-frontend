@@ -26,6 +26,18 @@ const MSG = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/msg.pn
 const MSG_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/msg_isSelected.png'
 const MY = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/my.png'
 const MY_SELECTED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/nav-new/my_isSelected.png'
+// 社区
+const ICNO_CHAT = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/icon_chat.png'
+const ICNO_DELETE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/icon_delete.png'
+const ICNO_HELP = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/icon_help.png'
+const ICNO_NEW = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/icon_new.png'
+const ICNO_REFRESH = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/icon_refresh.png'
+const ICNO_SEARCH = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/icon_search.png'
+const ICNO_SEEKHELP = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/icon_seekHelp.png'
+const LABEL_BOOK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_book.png'
+const LABEL_DAILY = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_daily.png'
+const LABEL_FOOD = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_food.png'
+const LABEL_RECOMMEND = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_recommend.png'
 
 export {
   ICON_CALENDER,
@@ -45,4 +57,16 @@ export {
   MY,
   MY_SELECTED,
   UPLOAD,
+  ICNO_CHAT,
+  ICNO_DELETE,
+  ICNO_HELP,
+  ICNO_NEW,
+  ICNO_REFRESH,
+  ICNO_SEARCH,
+  ICNO_SEEKHELP,
+  LABEL_BOOK,
+  LABEL_DAILY,
+  LABEL_FOOD,
+  LABEL_RECOMMEND,
+  
 }
