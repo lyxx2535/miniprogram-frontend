@@ -4,7 +4,8 @@
  */
 
 //后端地址公共部分
-const pubUrl = "https://124.223.105.99:8085/api"
+const pubUrl = "https://xjk-advisor.com:9090/api"
+// const pubUrl = "https://124.223.105.99:8085/api"
 // const pubUrl = "http://localhost:8085/api"
 
 // http请求
