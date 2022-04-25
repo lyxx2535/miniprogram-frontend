@@ -1,6 +1,8 @@
 import { defineConfig } from 'windicss/helpers'
 import colors from 'windicss/colors'
 import plugin from 'windicss/plugin'
+import 'virtual:windi-components.css'
+import 'virtual:windi-utilities.css'
 
 export default defineConfig({
   darkMode: 'class', // or 'media'

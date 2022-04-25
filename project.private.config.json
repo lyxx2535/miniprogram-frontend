@@ -38,6 +38,13 @@
           "pathName": "nucleic-acid/pages/detection/detection",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "community/pages/detail/detail",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }

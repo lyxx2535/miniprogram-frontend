@@ -467,6 +467,7 @@ Page({
                                    this.data.senderId,
                                    this.data.pageNo,
                                    this.data.pageSize);
+    console.log('拉取页码：' + this.data.pageNo)
     const records = data.data.data;
     if(records){
       if(records.length < this.data.pageSize){

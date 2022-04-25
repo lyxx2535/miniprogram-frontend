@@ -1,18 +1,49 @@
 // community/pages/detail/detail.js
+import * as IMG from '../../../enum/imageUrl'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
+    userId: 19, // 发布帖子的用户id，默认
+    avartar: "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKhC6L1TBskS6sKawL7KYxE2QVy2X8A76gPbJnU5tyOkVxynaqYwlb1BWIhRaogLIwuicnuzV7KQdA/132", // 发布帖子用户的头像url
+    userName: "刘玥骁", // 发布帖子的用户名称
+    forumId: 0, // 帖子ID
+    postTime: "4月22日 17：41", // 帖子发布时间
+    ddl: "4月23日", // 截止时间
+    type: "求帮跑腿", // 帖子类型
+    tag: "日用品", // 标签
+    content: "一只口罩", // 内容
+    emergency: 4, // 紧急程度
+    remark: "孩子口罩用完了，求好心人私戳", // 备注
+    forumImg: [IMG.ICNO_CHAT, IMG.ICNO_REFRESH, IMG.MY_SELECTED], // 帖子图片url
+    forumType: 0, // 求助贴：0，帮助贴：1
+    imgUrl: {
+      chat: IMG.ICNO_CHAT,
+    },
+    info: {}, // 帖子信息对象
+  },
 
+  // 跳转聊天
+  goToChat(){
+    const id = this.data.userId
+    wx.navigateTo({
+      url: `/chat/pages/chat/chat?receiverId=`+ id,
+    })
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    let _star = []
+    for (let index = 0; index < this.data.emergency; index++) {
+      _star.push('★')
+    }
+    this.setData({
+      star: _star
+    })
   },
 
   /**
@@ -26,16 +57,21 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    let _title;
+    if(this.data.forumType == 0){
+      _title = "求助区"
+    }
+    else{
+      _title = "帮忙区"
+    }
+    wx.setNavigationBarTitle({
 
+      title: _title,
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
   /**
    * 生命周期函数--监听页面卸载
    */
@@ -43,24 +79,4 @@ Page({
 
   },
 
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })
