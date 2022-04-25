@@ -147,6 +147,9 @@ Page({
    */
   onLoad(options) {
     // TODO: 根据options选择渲染求助还是帮忙
+    this.setData({
+      forumType: options.type
+    })
   },
 
   /**

@@ -1,4 +1,6 @@
 // community/pages/community/community.js
+import * as IMG from '../../enum/imageUrl'
+const app = getApp()
 Page({
 
   /**
@@ -6,13 +8,89 @@ Page({
    */
   data: {
     navigationTitle: '互助社区', // 页面title
+    navbar: ['求助区', '帮忙区'],
+    currentTab: 0,
+    SEARCH: IMG.ICNO_SEARCH,
+    NEW: IMG.ICNO_NEW,
+    test_img: IMG.VECTOR_PIC,
+
+    // nav: ['算法推荐','食物饮品','日用品','书籍文具'],
+    // nav:[{'id':'算法推荐','image':IMG.LABEL_RECOMMEND},
+    //           {'id':'食物饮品','image':IMG.LABEL_FOOD},
+    //           {'id':'日用品','image':IMG.LABEL_DAILY},
+    //           {'id':'书籍文具','image':IMG.LABEL_BOOK},
+    // ],//待补充
+    //更换图片！！！
+    nav:[{'id':'算法推荐','image':'https://s2.loli.net/2022/04/25/uhfpOyQeCbArGq3.png'},
+              {'id':'食物饮品','image':'https://s2.loli.net/2022/04/25/mlv8R2kiYE5ODpf.png'},
+              {'id':'日用品','image':'https://s2.loli.net/2022/04/25/a8TgQZPzsRHVJ2L.png'},
+              {'id':'书籍文具','image':'https://s2.loli.net/2022/04/25/WNwolAz9V4JjZRu.png'},
+    ],
+
+    // 当前项目
+    current: 0,
+    // 滚动栏滚动距离
+    scrollLeft: 0,
+    // 窗体宽度
+    windowWidth: 0
+  },
+  //切换bar
+  navbarTap: function (e) {
+    this.setData({
+      currentTab: e.currentTarget.dataset.idx
+    })
+    //全局变量
+    app.globalData.currentTab = e.currentTarget.dataset.idx;
   },
 
+  //标签点击响应事件
+  currentNav: function (e) {
+    console.log(e);
+    let index = e.currentTarget.dataset.index;
+    let scrollLeft =  e.currentTarget.offsetLeft - ( this.data.windowWidth * 0.9 ) / 2;
+    this.setData({
+      current: index,
+      scrollLeft: scrollLeft
+    })
+  },
+  
+  // 跳转至编辑页
+  toDraft(){
+    let type;
+    if(this.data.currentTab == undefined){
+      type = 0
+    }
+    else{
+      type = this.data.currentTab
+    }
+    wx.navigateTo({
+      url: '/community/pages/draft/draft?type=' + type,
+    })
+  },
+  // 跳转至搜索页
+  toSearch(){
+    let type;
+    if(this.data.currentTab == undefined){
+      type = 0
+    }
+    else{
+      type = this.data.currentTab
+    }
+    wx.navigateTo({
+      url: '/community/pages/search/search?type=' + type,
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-
+    wx.getSystemInfo({
+      success: (result) => {
+        this.setData({
+          windowWidth: result.windowWidth
+        })
+      },
+    })
   },
 
   /**
@@ -38,6 +116,9 @@ Page({
         selected: 1
       })
     }
+    this.setData({
+      currentTab: app.globalData.currentTab
+    })
   },
 
   /**
@@ -74,4 +155,5 @@ Page({
   onShareAppMessage() {
 
   }
+  
 })

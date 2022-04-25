@@ -1,1 +1,56 @@
-<view>community</view>
+
+<view class="bg1"></view>
+<view class="bg2"></view>
+<view style="display: flex;">
+    <!-- 顶部标签 -->
+    <view class="navbar">
+    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+    </view>
+    <!-- 右上角标签 -->
+    <view class="navSide">
+        <button class="btn1" plain bindtap="toSearch" style="width: 50rpx;">
+            <image src = "{{SEARCH}}" style="width: 40rpx;height:40rpx;"></image>
+        </button>
+        <button class="btn1" plain bindtap="toDraft" style="width: 50rpx;margin-left: 20rpx;">
+            <image src = "{{NEW}}" style="width: 40rpx;height: 40rpx;"></image>
+        </button>
+    </view>
+</view>
+<view wx:if="{{currentTab==0}}">
+
+    <view>
+    <scroll-view scroll-x="true" enable-flex="true" class="scroll" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
+        <block  wx:for="{{nav}}" wx:for-index="index" wx:key="index" >
+            <view class="nav-item {{ current==index ? 'active':'' }}" bindtap="currentNav" data-index="{{ index }}" >
+                <image src="{{item.image}}" class="nav-image" ></image>
+                <text  class="nav-text">{{item.id}}</text>
+            </view>
+        </block>
+    </scroll-view>
+    </view>
+
+    <!--单个求助 无js-->
+    <view class="card">
+        <view style="display: flex;">
+            <view>
+                <image src = "{{test_img}}" class="help_image"></image>
+            </view>
+            <view class="content">
+                <view class="help_title">一只口罩</view>
+                <view class = "tag">
+                    <view class="tag1">紧急租借</view>
+                    <view class="tag2">日用品</view>
+                </view>
+                <view class = "help_msg">备注：啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</view>
+            </view>
+        </view>
+        <view class="user_info">
+            <image src="{{test_img}}" class="user_pic"></image>
+            <view class="user_name">username</view>   
+        </view>
+    </view>
+</view>
+
+<view wx:elif="{{currentTab==1}}">
+  
+</view>
