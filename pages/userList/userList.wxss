@@ -1,4 +1,7 @@
 /* pages/list/list.wxss */
+page{
+  background-color: #f2f2f4;
+}
 .container{
   padding:0px;
 }
