@@ -8,9 +8,6 @@
     </view>
     <!-- 右上角标签 -->
     <view class="navSide">
-        <!-- <button class="btn1" plain bindtap="toSearch" style="width: 50rpx;">
-            <image src = "{{SEARCH}}" style="width: 40rpx;height:40rpx;"></image>
-        </button> -->
         <button class="btn1" plain bindtap="toDraft" style="width: 50rpx;margin-left: 60rpx;">
             <image src = "{{NEW}}" style="width: 40rpx;height: 40rpx;"></image>
         </button>

@@ -10,10 +10,8 @@ Page({
     navigationTitle: '互助社区', // 页面title
     navbar: ['求助区', '帮忙区'],
     currentTab: 0,
-    SEARCH: IMG.ICNO_SEARCH,
     NEW: IMG.ICNO_NEW,
     test_img: IMG.VECTOR_PIC,
-
     // nav: ['算法推荐','食物饮品','日用品','书籍文具'],
     // nav:[{'id':'算法推荐','image':IMG.LABEL_RECOMMEND},
     //           {'id':'食物饮品','image':IMG.LABEL_FOOD},
@@ -26,7 +24,6 @@ Page({
               {'id':'日用品','image':'https://s2.loli.net/2022/04/25/a8TgQZPzsRHVJ2L.png'},
               {'id':'书籍文具','image':'https://s2.loli.net/2022/04/25/WNwolAz9V4JjZRu.png'},
     ],
-
     // 当前项目
     current: 0,
     // 滚动栏滚动距离
@@ -98,6 +95,7 @@ Page({
     })
   },
 
+  // cyr - community
   //切换bar
   navbarTap: function (e) {
     this.setData({
@@ -138,19 +136,6 @@ Page({
       url: '/community/pages/draft/draft?type=' + type,
     })
   },
-  // // 跳转至搜索页
-  // toSearch(){
-  //   let type;
-  //   if(this.data.currentTab == undefined){
-  //     type = 0
-  //   }
-  //   else{
-  //     type = this.data.currentTab
-  //   }
-  //   wx.navigateTo({
-  //     url: '/community/pages/search/search?type=' + type,
-  //   })
-  // },
   /**
    * 生命周期函数--监听页面加载
    */
