@@ -22,10 +22,12 @@ page{
 }
 .input-text{
   color: #a6a7bd; 
+  letter-spacing: 8rpx;
   margin-top: 7rpx; 
   font-size: large;
 }
 .sub-title{
+  letter-spacing: 8rpx;
   margin-left: 40rpx;
   font-size: larger;
   color: #ec7070;
@@ -34,7 +36,7 @@ page{
 .sub-img{
   width: 50rpx;
   position: relative;
-  left: 450rpx;
+  left: 420rpx;
 }
 .tag{
   margin-left: 30rpx;
