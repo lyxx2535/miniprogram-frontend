@@ -30,7 +30,8 @@
     </view>
 
     <!--单个求助 无js-->
-    <view class="card">
+    <!-- TODO：卡片wx-for渲染，每个卡片绑定该帖子的id(从后端拿)，方便点击后跳转到对应帖子的详情页 -->
+    <view class="card" bindtap="checkDetail" data-id="">
         <view style="display: flex;">
             <view>
                 <image src = "{{test_img}}" class="help_image"></image>

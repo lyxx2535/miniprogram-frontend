@@ -53,7 +53,14 @@ Page({
       scrollLeft: scrollLeft
     })
   },
-  
+  // 查看帖子详情
+  checkDetail(e){
+    // const id = e.currentTarget.dataset.id;
+    const id = 1; // 这里暂时先随便写一个值
+    wx.navigateTo({
+      url: '/community/pages/detail/detail?id=' + id,
+    })
+  },
   // 跳转至编辑页
   toDraft(){
     let type;
