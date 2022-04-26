@@ -6,9 +6,9 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userId: 19, // 发布帖子的用户id，默认
-    avartar: "https://thirdwx.qlogo.cn/mmopen/vi_32/Q0j4TwGTfTKhC6L1TBskS6sKawL7KYxE2QVy2X8A76gPbJnU5tyOkVxynaqYwlb1BWIhRaogLIwuicnuzV7KQdA/132", // 发布帖子用户的头像url
-    userName: "刘玥骁", // 发布帖子的用户名称
+    userId: 1, // 发布帖子的用户id，默认
+    avartar: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqkI35J2pSNIibGqV1MZZiaPVNSLnlIYfPPu9QV3rHYBdnicxroF2bBEhQ7drrOsEMkOQtnH4icVSMCQQ/132", // 发布帖子用户的头像url
+    userName: "彭俊植", // 发布帖子的用户名称
     forumId: 0, // 帖子ID
     postTime: "4月22日 17：41", // 帖子发布时间
     ddl: "4月23日", // 截止时间
@@ -37,15 +37,19 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // TODO: 根据options传来的参数加载数据
-
-    let _star = []
-    for (let index = 0; index < this.data.emergency; index++) {
-      _star.push('★')
-    }
+    const id = options.id;
     this.setData({
-      star: _star
+      forumId: id
     })
+    // TODO: 从后端拿该id的帖子数据
+
+    // let _star = []
+    // for (let index = 0; index < this.data.emergency; index++) {
+    //   _star.push('★')
+    // }
+    // this.setData({
+    //   star: _star
+    // })
   },
 
   /**
