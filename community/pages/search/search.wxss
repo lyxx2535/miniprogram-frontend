@@ -1,1 +1,48 @@
 /* community/pages/search/search.wxss */
+page{
+  background-color: #f3f3f5;
+}
+.input{
+  width: 65%;
+  position: relative;
+  right: 20rpx;
+  height: 65rpx;
+  border-radius: 20px;
+  color: black;
+  background-color: white;
+  z-index: 0;
+  padding-left: 90rpx
+}
+.input-img{
+  width: 50rpx;
+  position: relative;
+  left: 55rpx;
+  z-index: 999;
+  top: 8rpx
+}
+.input-text{
+  color: #a6a7bd; 
+  margin-top: 7rpx; 
+  font-size: large;
+}
+.sub-title{
+  margin-left: 40rpx;
+  font-size: larger;
+  color: #ec7070;
+  font-weight: 700;
+}
+.sub-img{
+  width: 50rpx;
+  position: relative;
+  left: 450rpx;
+}
+.tag{
+  margin-left: 30rpx;
+  margin-top: 15rpx;
+  border-radius: 40px;
+  background-color: #fff2cc;
+  color: black;
+  padding: 10rpx;
+  padding-left: 30rpx;
+  padding-right: 30rpx;
+}

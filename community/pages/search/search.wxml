@@ -1,2 +1,24 @@
 <!--community/pages/search/search.wxml-->
-<text>community/pages/search/search.wxml</text>
+<view style="position: relative; display: flex; margin-top: 30rpx;">
+  <image src="{{asset.search}}" class="input-img" mode="widthFix"></image>
+  <input class="input" placeholder="口罩"></input>
+  <text class="input-text" bindtap="cancelInput">取消</text>
+</view>
+
+<view style="position: relative; display: flex; margin-top: 50rpx;">
+  <view class="sub-title">历史记录</view>
+  <image class="sub-img" mode="widthFix" src="{{asset.trash}}"></image>
+</view>
+
+<view style="margin-top: 20rpx;">
+  <view wx:for="{{history}}" wx:key="index" class="tag" style="display: inline-block;">{{item}}</view>
+</view>
+
+<view style="position: relative; display: flex; margin-top: 50rpx;">
+  <view class="sub-title">算法推荐</view>
+  <image class="sub-img" mode="widthFix" src="{{asset.refresh}}"></image>
+</view>
+
+<view style="margin-top: 20rpx;">
+  <view wx:for="{{algorithm}}" wx:key="index" class="tag" style="display: inline-block;">{{item}}</view>
+</view>

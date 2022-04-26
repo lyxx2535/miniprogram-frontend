@@ -1,11 +1,21 @@
 // community/pages/search/search.js
+import * as IMG from '../../../enum/imageUrl'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-
+    list: [], // 帖子的搜索结果
+    keyWord: "", // 搜索关键字
+    history: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 历史搜索词
+    algorithm: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 算法推荐关键词
+    asset: {
+      search: IMG.ICNO_SEARCH,
+      trash: IMG.ICNO_DELETE,
+      refresh: IMG.ICNO_REFRESH
+    },
+    navigationTitle: '搜一搜',
   },
 
   /**
@@ -26,7 +36,12 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-
+    wx.setNavigationBarTitle({
+      title: this.data.navigationTitle,
+      fail: err => {
+        console.log(err)
+      }
+    })
   },
 
   /**
