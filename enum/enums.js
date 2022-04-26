@@ -18,9 +18,11 @@ const INSERT_TEST_INFORM = '/nucleic-acid/testing/insert'
 const GET_TEST_INFORM = '/nucleic-acid/testing/user-list'
 const INSERT_BOOK_INFORM = '/nucleic-acid/booking/insert'
 const GET_BOOK_INFORM = '/nucleic-acid/booking/user-list'
+// 发送服务消息
 const SEND_REMIND = '/task/add'
-const CHECK_REMIND = '/tast/list'
-const DELETE_REMIND = '/tasl/delete/'
+const CHECK_REMIND = '/task/list'
+const DELETE_REMIND = '/task/delete/'
+// 获取数量
 const TEST_COUNT = '/nucleic-acid/testing/count'
 const BOOK_COUNT = '/nucleic-acid/booking/count'
 const REPORT_COUNT = '/nucleic-acid/info/count'
@@ -29,6 +31,9 @@ const TEMPLATE_ID = 'dTxNqzkbtF7apmXfZBYlWD97krufydh5Gh0Zgn2QvlQ'
 // community
 const PUBLISH_DRAFT = '/help-info/insert'
 const INSERT_DRAFT_IMG = '/help-info/upload/'
+// forum - seekHelp/renderHelp
+const QUERY_SH_BY_ID = '/seek-help/query/'
+const QUERY_RH_BY_ID = '/help-info/query/'
 
 export {
   LOGIN_API,
@@ -56,5 +61,7 @@ export {
   REPORT_COUNT,
   PUBLISH_DRAFT,
   INSERT_DRAFT_IMG,
-
+  QUERY_RH_BY_ID,
+  QUERY_SH_BY_ID,
+  
 }

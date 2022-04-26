@@ -79,7 +79,7 @@ Page({
                 "value" : "备注"
               } 
             },
-            "executeTime": "2022-04-24 15:45:45",
+            "executeTime": "2022-04-26 11:46:45",
             "template_id": TEMPLATE_ID,  //模板id，在微信后台拿
             "touser": wx.getStorageSync('openid'),  //需要提前获取
           }
@@ -92,46 +92,15 @@ Page({
       const res = await api._get_nucleic_inform();
       console.log(res)
     },
-    async insertBook(){
-      const data = {
-        "deadLine": "2022-04-07",
-        "finishStatus": "未完成",
-        "id": 1,
-        "isOpenRemind": false,
-        "managerId": 0,
-        "title": "第七次全员检测",
-        "userId": 1
-      }
-      const res = await api._insert_book(data)
-      console.log(res)
-    },
-    async insertTest(){
-      const data = {
-        "finishStatus": "未完成",
-        "id": 1,
-        "isOpenRemind": false,
-        "managerId": 0,
-        "place": "体育馆4号门",
-        "require": "佩戴口罩，携带身份证",
-        "testingTime": "2022-04-07",
-        "title": "第七次全员检测",
-        "userId": 1
-      }
-      const res = await api._insert_test(data)
-      console.log(res)
-    },
-    async publishDraft(){
-      const data = {
-        "comment": "备注",
-        "deadLine": "2022-04-25 9:55:00",
-        "helpType": "帮助",
-        "name": "一只口罩",
-        "publishDate": "2022-04-25 9:55:00",
-        "tag": "日用品",
-        "urgency": 2,
-      }
-      const res = await api._publish_draft(data);
+    async checkMsg(){
+      const res = await api._check_remind();
       console.log(res.data)
+    },
+    async queryhelpMsg(){
+      const res = await api._query_rh_forum_byId(31)
+      const res2 = await api._query_sh_forum_byId(1)
+      console.log(res.data)
+      console.log(res2.data)
     },
   onLoad() {
     if (wx.getUserProfile) {

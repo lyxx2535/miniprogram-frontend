@@ -25,6 +25,5 @@
   <button bindtap="testMsg" class="mt-20px">发送服务消息</button>
   <button bindtap="checkMsg" class="mt-20px">查看服务消息</button>
   <button bindtap="deleteMsg" class="mt-20px">删除服务消息</button>
-  <button bindtap="getNucleicInfo" class="mt-20px">获取核酸通知</button>
-  <button bindtap="publishDraft" class="mt-20px">发布求助信息</button>
+  <button bindtap="queryhelpMsg" class="mt-20px">查看帖子信息</button>
 </view>

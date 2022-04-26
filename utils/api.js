@@ -189,7 +189,7 @@ const _insert_test = (_data) => {
 // 添加定时提醒
 const _add_remind = (_data) => {
   return httpRequest({
-    url: API.INSERT_TEST_INFORM,
+    url: API.SEND_REMIND,
     method: 'POST',
     data: _data,
     header:{
@@ -203,7 +203,7 @@ const _add_remind = (_data) => {
 // 删除定时提醒
 const _delete_remind = (_task_name ) => {
   return httpRequest({
-    url: API.INSERT_TEST_INFORM + _task_name,
+    url: API.DELETE_REMIND + _task_name,
     method: 'DELETE',
     header:{
       "content-type": "application/json",
@@ -216,7 +216,7 @@ const _delete_remind = (_task_name ) => {
 // 查看所有定时提醒
 const _check_remind = () => {
   return httpRequest({
-    url: API.INSERT_TEST_INFORM,
+    url: API.CHECK_REMIND,
     method: 'GET',
     header:{
       "content-type": "application/json",
@@ -294,6 +294,32 @@ const  _upload_draft_img = (_filePath, _draft_id) => {
     showLoading: true
   })
 }
+// 通过id查询帮助帖子
+const _query_rh_forum_byId = (_id) => {
+  return httpRequest({
+    url: API.QUERY_RH_BY_ID + _id,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 通过id查询求助帖子
+const _query_sh_forum_byId = (_id) => {
+  return httpRequest({
+    url: API.QUERY_SH_BY_ID + _id,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
 
 export {
   _login,
@@ -318,5 +344,7 @@ export {
   _report_count,
   _publish_draft,
   _upload_draft_img,
+  _query_rh_forum_byId,
+  _query_sh_forum_byId,
   
 }
