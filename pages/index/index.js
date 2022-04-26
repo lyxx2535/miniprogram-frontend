@@ -63,14 +63,14 @@ Page({
           console.log(res)
           // 准备请求参数
           var _data = {
-            "access_token": wx.getStorageSync('access_token'),
+            "accessToken": wx.getStorageSync('access_token'),
             "data": {
               // MessageVO
               "thing1": {
                 "value" : "核酸检测提醒"
               },
               "time3":{
-                "value" :  "某个时间"
+                "value" :  "2022-04-25 00:00:00"
               },
               "thing4":{
                 "value" : "fzz"
@@ -79,8 +79,8 @@ Page({
                 "value" : "备注"
               } 
             },
-            "executeTime": "2022-04-26 14:26:45",
-            "template_id": TEMPLATE_ID,  //模板id，在微信后台拿
+            "executeTime": "2022-04-26 15:19:45",
+            "templateId": TEMPLATE_ID,  //模板id，在微信后台拿
             "touser": wx.getStorageSync('openid'),  //需要提前获取
           }
           // 请求服务端
