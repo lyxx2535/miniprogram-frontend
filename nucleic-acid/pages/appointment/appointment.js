@@ -27,7 +27,7 @@ Page({
     dateTimeArray: '', //时间数组
     startYear: 2000, //最小年份
     endYear: 2050, // 最大年份
-    start_time_p: '', //显示的开始时间
+    start_time_p: wx.getStorageSync('date'), //显示的开始时间
     start_time_p2: '', //显示的开始时间2
   },
   

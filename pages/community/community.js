@@ -41,7 +41,6 @@ Page({
       trash: IMG.ICNO_DELETE,
       refresh: IMG.ICNO_REFRESH
     },
-    navigationTitle: '搜一搜',
     isSearch: false, // 是否展现搜索页面
     isShowRes: false, // 是否展现搜索结果
   },
