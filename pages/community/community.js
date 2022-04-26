@@ -32,8 +32,72 @@ Page({
     // 滚动栏滚动距离
     scrollLeft: 0,
     // 窗体宽度
-    windowWidth: 0
+    windowWidth: 0,
+
+    // pjz - 搜索
+    list: [], // 帖子的搜索结果
+    keyWord: "", // 搜索关键字
+    history: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 历史搜索词
+    algorithm: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 算法推荐关键词
+    asset: {
+      search: IMG.ICNO_SEARCH,
+      trash: IMG.ICNO_DELETE,
+      refresh: IMG.ICNO_REFRESH
+    },
+    navigationTitle: '搜一搜',
+    isSearch: false, // 是否展现搜索页面
+    isShowRes: false, // 是否展现搜索结果
   },
+
+  // pjz - 搜索
+  // 开始输入
+  onSearch(){
+    console.log('exe')
+    this.setData({
+      isSearch: true
+    })
+  },
+  // 输入框双向绑定
+  onInput(e){
+    this.setData({
+      keyWord: e.detail.value
+    })
+    if(!this.data.isShowRes){
+      this.setData({
+        isShowRes: true
+      })
+    }
+    console.log(this.data.isShowRes)
+    // TODO: 搜索算法
+  },
+  // 取消输入
+  cancelInput(){
+    this.setData({
+      keyWord: "",
+      isSearch: false,
+      isShowRes: false
+    })
+  },
+  // 清楚历史记录
+  clearHistory(){
+    this.setData({
+      history: []
+    })
+  },
+  // 刷新算法推荐
+  refreshTag(){
+
+  },
+  // 点击tag
+  getInput(e){
+    const _keyWord = e.currentTarget.dataset.content;
+    this.setData({
+      keyWord: _keyWord,
+      // 此时bindinput无法监听到input值变化，需要手动设置视图变化
+      isShowRes: true
+    })
+  },
+
   //切换bar
   navbarTap: function (e) {
     this.setData({
@@ -74,19 +138,19 @@ Page({
       url: '/community/pages/draft/draft?type=' + type,
     })
   },
-  // 跳转至搜索页
-  toSearch(){
-    let type;
-    if(this.data.currentTab == undefined){
-      type = 0
-    }
-    else{
-      type = this.data.currentTab
-    }
-    wx.navigateTo({
-      url: '/community/pages/search/search?type=' + type,
-    })
-  },
+  // // 跳转至搜索页
+  // toSearch(){
+  //   let type;
+  //   if(this.data.currentTab == undefined){
+  //     type = 0
+  //   }
+  //   else{
+  //     type = this.data.currentTab
+  //   }
+  //   wx.navigateTo({
+  //     url: '/community/pages/search/search?type=' + type,
+  //   })
+  // },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -125,6 +189,19 @@ Page({
     }
     this.setData({
       currentTab: app.globalData.currentTab
+    })
+    const data = [{
+      name: '一只口罩',
+      type: '紧急租借',
+      tag: '日用品',
+      remark: '阿巴阿巴',
+      userName: '阿巴阿巴',
+      avartar: this.data.test_img,
+      showImg: this.data.test_img,
+      id: '1'
+    }]
+    this.setData({
+      list: data
     })
   },
 
