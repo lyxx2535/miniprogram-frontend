@@ -58,8 +58,8 @@
     <view class="drawer_title">自定义/确认提醒内容</view> 
     <view class="drawer_content">
       <view class="top grid"> 
-        <label class="title col-0">上报人</label> 
-        <input class="input_base input_h30 col-1" value="{{userName}}" bindinput="onInputName"></input> 
+        <label class="title col-0">上报地点</label> 
+        <input class="input_base input_h30 col-1" value="小程序内" bindinput="onInputName"></input> 
       </view> 
       <view class="top grid"> 
         <label class="title col-0">上报内容</label> 

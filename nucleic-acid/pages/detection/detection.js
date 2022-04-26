@@ -3,6 +3,7 @@ import * as IMG from '../../../enum/imageUrl'
 import * as api from '../../../utils/api'
 import { TEMPLATE_ID } from '../../../enum/enums.js'
 const dateTimePicker = require('../../../utils/dateTimer');
+const dateFormat = require('../../../utils/chat')
 
 Page({
   data: {
@@ -18,22 +19,22 @@ Page({
     list :[],
     userName: wx.getStorageSync('userInfo_wx').nickName, //用户微信名
     date: wx.getStorageSync('date'), // 当天日期
-    remindName: wx.getStorageSync('userInfo_wx').nickName,
+    remindSpot: '',
     remindContent: '',
-    remindRemark: '记得及时上报哦~',
-    remindTime: '',
+    remindRemark: '记得及时检测哦~',
     // timePicker
     start_time: '',
     dateTimeArray: '', //时间数组
     startYear: 2000, //最小年份
     endYear: 2050, // 最大年份
     start_time_p: '', //显示的开始时间
+    start_time_p2: '', //显示的开始时间2
   },
 
   // input数据双向绑定
   onInputName(e){
     this.setData({
-      remindName: e.detail.value
+      remindSpot: e.detail.value
     })
   },
   onInputContent(e){
@@ -72,10 +73,10 @@ Page({
                 "value" : this.data.remindContent
               },
               "time3":{
-                "value" : this.data.remindTime
+                "value" : this.data.start_time_p2
               },
               "thing4":{
-                "value" : this.data.remindName // 应该是上报地点
+                "value" : this.data.remindSpot // 应该是上报地点
               },
               "thing5": {
                 "value" : this.data.remindRemark
@@ -85,6 +86,7 @@ Page({
             "templateId": TEMPLATE_ID,  //模板id，在微信后台拿
             "touser": wx.getStorageSync('openid'),  //需要提前获取
           }
+          console.log(_data)
           // 请求服务端
           this.add_remind(_data);
         }
@@ -134,11 +136,11 @@ Page({
     for(let item in resSet){
       let temp = {};
       temp.name = resSet[item].title;
-      temp.time = resSet[item].testingTime;
       temp.id = resSet[item].id; // 该通知的id
       temp.spot = resSet[item].place;
       temp.requirement = resSet[item].require;
       temp.isOpenRemind = resSet[item].isOpenRemind
+      temp.timeSpan = dateFormat.tsFormatTime(resSet[item].startTime, 'Y-M-D') + ' ~ ' + dateFormat.tsFormatTime(resSet[item].endTime, 'M-D');
       switch (resSet[item].finishStatus) {
         case '进行中':
           temp.status = {ongoing: true, over: false, miss: false}
@@ -202,7 +204,7 @@ Page({
     this.setData({
       currentIndex: e.currentTarget.dataset.index,
       remindContent: this.data.list[e.currentTarget.dataset.index].name,
-      remindTime: this.data.list[e.currentTarget.dataset.index].time
+      remindSpot: this.data.list[e.currentTarget.dataset.index].spot
     })
       // TODO:开启服务提醒 封装相关api
       const index = e.currentTarget.dataset.index

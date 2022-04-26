@@ -39,11 +39,11 @@
     <view class="drawer_title">自定义/确认提醒内容</view> 
     <view class="drawer_content">
       <view class="top grid"> 
-        <label class="title col-0">上报人</label> 
-        <input class="input_base input_h30 col-1" value="{{userName}}" bindinput="onInputName"></input> 
+        <label class="title col-0">预约网址</label> 
+        <input class="input_base input_h30 col-1" value="http://ndyy.nju.edu.cn" bindinput="onInputName"></input> 
       </view> 
       <view class="top grid"> 
-        <label class="title col-0">上报内容</label> 
+        <label class="title col-0">预约内容</label> 
         <input class="input_base input_h30 col-1" value="{{list[currentIndex].name}}" bindinput="onInputContent"></input> 
       </view>
       <view class="top grid"> 
@@ -56,6 +56,16 @@
           </view>
         </picker>
       </view> 
+      <view class="top grid"> 
+        <label class="title col-0">预约ddl</label> 
+        <picker class="act_picker" mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p2' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+          <view class="act_right">
+            <text style="letter-spacing:3rpx; font-weight: 300;" wx:if="{{!start_time_p2}}">请选择</text>
+            <text style="letter-spacing:3rpx; font-weight: 300;" wx:else>{{start_time_p2}}</text>
+            <text style="color: rgb(121, 121, 121); margin-left: 10rpx;" >▼</text>
+          </view>
+        </picker>
+      </view>
       <view class="top bottom grid"> 
         <label class="title col-0">备注</label> 
         <input class="input_base input_h30 col-1" value="记得及时预约哦~" bindinput="onInputRemark"></input> 

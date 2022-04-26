@@ -18,9 +18,9 @@ Page({
     list :[],
     userName: wx.getStorageSync('userInfo_wx').nickName, //用户微信名
     date: wx.getStorageSync('date'), // 当天日期
-    remindName: wx.getStorageSync('userInfo_wx').nickName,
+    reminduUrl: '校医院官网, 可前往小程序复制~',
     remindContent: '',
-    remindRemark: '记得及时上报哦~',
+    remindRemark: '记得及时预约哦~',
     remindTime: '',
     // timePicker
     start_time: '',
@@ -28,12 +28,13 @@ Page({
     startYear: 2000, //最小年份
     endYear: 2050, // 最大年份
     start_time_p: '', //显示的开始时间
+    start_time_p2: '', //显示的开始时间2
   },
   
   // input数据双向绑定
   onInputName(e){
     this.setData({
-      remindName: e.detail.value
+      reminduUrl: e.detail.value
     })
   },
   onInputContent(e){
@@ -69,13 +70,13 @@ Page({
             "data": {
               // MessageVO
               "thing1": {
-                "value" : this.data.remindContent
+                "value" : this.data.remindContent + '预约'
               },
               "time3":{
-                "value" : this.data.remindTime
+                "value" : this.data.start_time_p2
               },
               "thing4":{
-                "value" : this.data.remindName // 应该是上报地点
+                "value" : this.data.reminduUrl 
               },
               "thing5": {
                 "value" : this.data.remindRemark
@@ -85,6 +86,7 @@ Page({
             "templateId": TEMPLATE_ID,  //模板id，在微信后台拿
             "touser": wx.getStorageSync('openid'),  //需要提前获取
           }
+          console.log(_data)
           // 请求服务端
           this.add_remind(_data);
         }
@@ -224,7 +226,7 @@ Page({
     this.setData({
       currentIndex: e.currentTarget.dataset.index,
       remindContent: this.data.list[e.currentTarget.dataset.index].name,
-      remindTime: this.data.list[e.currentTarget.dataset.index].time
+      start_time_p2: this.data.list[e.currentTarget.dataset.index].time
     })
     // TODO:开启服务提醒 封装相关api
     const index = e.currentTarget.dataset.index

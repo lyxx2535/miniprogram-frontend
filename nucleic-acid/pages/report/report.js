@@ -30,6 +30,7 @@ Page({
     remindContent: '',
     remindRemark: '记得及时上报哦~',
     remindTime: '',
+    remindSpot: '小程序内',
     // timePicker
     start_time: '',
     dateTimeArray: '', //时间数组
@@ -41,7 +42,7 @@ Page({
   // input数据双向绑定
   onInputName(e){
     this.setData({
-      remindName: e.detail.value
+      remindSpot: e.detail.value
     })
   },
   onInputContent(e){
@@ -77,13 +78,13 @@ Page({
             "data": {
               // MessageVO
               "thing1": {
-                "value" : this.data.remindContent
+                "value" : this.data.remindContent + '上报'
               },
               "time3":{
                 "value" : this.data.remindTime
               },
               "thing4":{
-                "value" : this.data.remindName // 应该是上报地点
+                "value" : this.data.remindSpot // 应该是上报地点
               },
               "thing5": {
                 "value" : this.data.remindRemark
@@ -253,7 +254,7 @@ Page({
     this.setData({
       currentIndex: e.currentTarget.dataset.index,
       remindContent: this.data.list[e.currentTarget.dataset.index].name,
-      remindTime: this.data.list[e.currentTarget.dataset.index].time
+      remindTime: this.data.list[e.currentTarget.dataset.index].time,
     })
     // TODO:开启服务提醒 封装相关api
     const index = e.currentTarget.dataset.index
