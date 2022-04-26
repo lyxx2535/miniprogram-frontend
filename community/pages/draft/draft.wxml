@@ -41,7 +41,7 @@
 </view>
 
 <view style="margin-left: 60rpx; margin-top: 40rpx;">
-  <l-image-picker size="4" bind:linchange="onChangeTap" />
+  <l-image-picker size="4" bind:linchange="onChangeTap" size-type="original" />
 </view>
 
 <view class='divide-line'></view>
