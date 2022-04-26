@@ -20,8 +20,7 @@
       "name": "互助社区",
       "pages": [
         "pages/detail/detail",
-        "pages/draft/draft",
-        "pages/search/search"
+        "pages/draft/draft"
       ],
       "independent": false
     }, {

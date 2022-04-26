@@ -13,7 +13,6 @@
         </button>
     </view>
 </view>
-<view wx:if="{{currentTab==0}}">
 
 <!-- start: 搜索 -->
 <view style="position: relative; display: flex; margin-top: 30rpx;">
@@ -61,12 +60,12 @@
               <image src="{{item.avartar}}" class="user_pic"></image>
               <view class="user_name">{{item.userName}}</view>   
           </view>
-      </view>
-    </view>
+  </view>
 
 <!-- end：搜索 -->
 
-<view wx:if="{{!isSearch}}">
+<view wx:if="{{currentTab==0}}">
+  <view wx:if="{{!isSearch}}">
     <view>
       <scroll-view scroll-x="true" enable-flex="true" class="scroll" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
           <block  wx:for="{{nav}}" wx:for-index="index" wx:key="index" >
@@ -76,30 +75,31 @@
               </view>
           </block>
       </scroll-view>
-      </view>
+    </view>
 
       <!--单个求助 无js-->
       <!-- TODO：卡片wx-for渲染，每个卡片绑定该帖子的id(从后端拿)，方便点击后跳转到对应帖子的详情页 -->
-      <view class="card" bindtap="checkDetail" data-id="">
-          <view style="display: flex;">
-              <view>
-                  <image src = "{{test_img}}" class="help_image"></image>
-              </view>
-              <view class="content">
-                  <view class="help_title">一只口罩</view>
-                  <view class = "tag">
-                      <view class="tag1">紧急租借</view>
-                      <view class="tag2">日用品</view>
-                  </view>
-                  <view class = "help_msg">备注：啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</view>
-              </view>
+    <view class="card" bindtap="checkDetail" data-id="">
+      <view style="display: flex;">
+          <view>
+              <image src = "{{test_img}}" class="help_image"></image>
           </view>
-          <view class="user_info">
-              <image src="{{test_img}}" class="user_pic"></image>
-              <view class="user_name">username</view>   
+          <view class="content">
+              <view class="help_title">一只口罩</view>
+              <view class = "tag">
+                  <view class="tag1">紧急租借</view>
+                  <view class="tag2">日用品</view>
+              </view>
+              <view class = "help_msg">备注：啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</view>
           </view>
       </view>
+      <view class="user_info">
+          <image src="{{test_img}}" class="user_pic"></image>
+          <view class="user_name">username</view>   
+      </view>
     </view>
-
-  <view wx:elif="{{currentTab==1}}">
+  </view>
+</view>
+<!-- 帮忙区 -->
+<view wx:elif="{{currentTab==1}}">
 </view>
