@@ -17,7 +17,7 @@ Page({
     content: "一只口罩", // 内容
     emergency: 4, // 紧急程度
     remark: "孩子口罩用完了，求好心人私戳", // 备注
-    forumImg: [IMG.ICNO_CHAT, IMG.ICNO_REFRESH, IMG.MY_SELECTED], // 帖子图片url
+    forumImg: [IMG.ICNO_CHAT, IMG.ICNO_REFRESH, IMG.MY_SELECTED, IMG.MY_SELECTED, IMG.MY_SELECTED, IMG.MY_SELECTED], // 帖子图片url
     forumType: 0, // 求助贴：0，帮助贴：1
     imgUrl: {
       chat: IMG.ICNO_CHAT,

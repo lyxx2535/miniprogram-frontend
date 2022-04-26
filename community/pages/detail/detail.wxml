@@ -43,8 +43,8 @@
   <view class="info-text">{{remark}}</view>
 </view>
 
-<view class="img-block flex">
-  <image wx:for="{{forumImg}}" wx:key="index" mode="heightFix" style="height: 95%; display: inline-block;" wx:for-item="item" src="{{item}}"></image>
+<view class="img-block">
+  <image wx:for="{{forumImg}}" wx:key="index" mode="widthFix" style="width: 30%; display: inline-block; margin-left: 20rpx;" wx:for-item="item" src="{{item}}"></image>
 </view>
 
 <view class='divide-line'></view>

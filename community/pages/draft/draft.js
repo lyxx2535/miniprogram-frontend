@@ -1,6 +1,7 @@
 // community/pages/draft/draft.js
 import * as api from '../../../utils/api'
 const dateUtil = require('../../../utils/chat')
+
 Page({
 
   /**
@@ -75,12 +76,10 @@ Page({
     })
   },
   onChangeTap(e){
-    console.log(e.detail)
     this.setData({
       forumImg: e.detail.all
     })
-    console.log(this.data.forumImg)
-    this.uploadImg(this.data.forumImg)
+    console.log('上传图片本地路径list：' + this.data.forumImg)
   },
   // 选择紧急程度 - LinUI
   onChangeRate(e){
@@ -108,6 +107,9 @@ Page({
     this.setData({
       id: res.data.data.id
     })
+    // 上传图片
+    const filePaths = this.data.forumImg
+    this.uploadImg(filePaths)
   },
   // TODO: linUI上传图片接口
   async uploadImg(filePaths){
