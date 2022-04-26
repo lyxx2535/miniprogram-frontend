@@ -1,8 +1,22 @@
 // app.js
+import * as api from './utils/api'
 const util = require('./utils/chat')
 
 App({
+  // 向服务端获取access_token
+  async getAccessToken(){
+    const res = await api._get_access_token();
+    if(res.data.data.length == 0){
+      console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res.data))
+    }
+    else{
+      wx.setStorageSync('access_token', JSON.parse(res.data.data).access_token)
+      console.log('access_token: ' + wx.getStorageSync('access_token'))
+    }
+  },
   onLaunch() {
+    // 拿到access_token
+    this.getAccessToken()
     // 拿到当天日期
     var d = new Date();
     wx.setStorageSync('date', util.tsFormatTime(d,'Y-M-D'))

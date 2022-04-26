@@ -46,3 +46,25 @@
   margin-top: 15%;
   margin-left: calc(50vw - 150rpx);
 }
+.act_item {
+  width: 702rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+  box-sizing: border-box;
+  padding: 24rpx;
+  position: relative;
+  font-size: 28rpx;
+  color: #4D4D4D;
+  font-weight: 500;
+}
+
+.require {
+  color: #E9543E;
+}
+
+.nowp {
+  white-space: nowrap;
+  margin-right: 15rpx;
+}
+
