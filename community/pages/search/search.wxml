@@ -1,24 +1,49 @@
 <!--community/pages/search/search.wxml-->
 <view style="position: relative; display: flex; margin-top: 30rpx;">
   <image src="{{asset.search}}" class="input-img" mode="widthFix"></image>
-  <input class="input" placeholder="口罩"></input>
+  <input class="input" placeholder="请输入帖子关键词" bindinput="onInput" value="{{keyWord}}"
+  bindfocus="onSearch"></input>
   <text class="input-text" bindtap="cancelInput">取消</text>
 </view>
 
-<view style="position: relative; display: flex; margin-top: 50rpx;">
-  <view class="sub-title">历史记录</view>
-  <image class="sub-img" mode="widthFix" src="{{asset.trash}}"></image>
+<view wx:if="{{!isSearch}}">
+  <view style="position: relative; display: flex; margin-top: 50rpx;">
+    <view class="sub-title">历史记录</view>
+    <image class="sub-img" mode="widthFix" src="{{asset.trash}}" bindtap="clearHistory"></image>
+  </view>
+
+  <view style="margin-top: 20rpx;">
+    <view wx:for="{{history}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item}}" bindtap="getInput">{{item}}</view>
+  </view>
+
+  <view style="position: relative; display: flex; margin-top: 50rpx;">
+    <view class="sub-title">算法推荐</view>
+    <image class="sub-img" mode="widthFix" src="{{asset.refresh}}" bindtap="refreshTag"></image>
+  </view>
+
+  <view style="margin-top: 20rpx;">
+    <view wx:for="{{algorithm}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item}}" bindtap="getInput">{{item}}</view>
+  </view>
 </view>
 
-<view style="margin-top: 20rpx;">
-  <view wx:for="{{history}}" wx:key="index" class="tag" style="display: inline-block;">{{item}}</view>
-</view>
-
-<view style="position: relative; display: flex; margin-top: 50rpx;">
-  <view class="sub-title">算法推荐</view>
-  <image class="sub-img" mode="widthFix" src="{{asset.refresh}}"></image>
-</view>
-
-<view style="margin-top: 20rpx;">
-  <view wx:for="{{algorithm}}" wx:key="index" class="tag" style="display: inline-block;">{{item}}</view>
+<view wx:if="{{isSearch}}">
+  <view class="card" bindtap="checkDetail" data-id="">
+        <view style="display: flex;">
+            <view>
+                <image src = "{{test_img}}" class="help_image"></image>
+            </view>
+            <view class="content">
+                <view class="help_title">一只口罩</view>
+                <view class = "tag">
+                    <view class="tag1">紧急租借</view>
+                    <view class="tag2">日用品</view>
+                </view>
+                <view class = "help_msg">备注：啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</view>
+            </view>
+        </view>
+        <view class="user_info">
+            <image src="{{test_img}}" class="user_pic"></image>
+            <view class="user_name">username</view>   
+        </view>
+    </view>
 </view>

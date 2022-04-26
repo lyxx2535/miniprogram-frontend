@@ -79,7 +79,7 @@ Page({
                 "value" : "备注"
               } 
             },
-            "executeTime": "2022-04-26 11:46:45",
+            "executeTime": "2022-04-26 14:26:45",
             "template_id": TEMPLATE_ID,  //模板id，在微信后台拿
             "touser": wx.getStorageSync('openid'),  //需要提前获取
           }
