@@ -127,48 +127,128 @@ Page({
         })
         break;
       case 1:
+        if(this.data.forumRenderHelp['食物饮品'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['食物饮品'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['食物饮品'],
           renderHelpList: this.data.forumRenderHelp['食物饮品'],
         })        
           break;
       case 2:
+        if(this.data.forumRenderHelp['日用品'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['日用品'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['日用品'],
           renderHelpList: this.data.forumRenderHelp['日用品'],
         })        
         break;
       case 3:
+        if(this.data.forumRenderHelp['书籍文具'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['书籍文具'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['书籍文具'],
           renderHelpList: this.data.forumRenderHelp['书籍文具'],
         })
           break;
       case 4:
+        if(this.data.forumRenderHelp['运动用品'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['运动用品'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['运动用品'],
           renderHelpList: this.data.forumRenderHelp['运动用品'],
         })
         break;
       case 5:
+        if(this.data.forumRenderHelp['化妆品'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['化妆品'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['化妆品'],
           renderHelpList: this.data.forumRenderHelp['化妆品'],
         })
           break;
       case 6:
+        if(this.data.forumRenderHelp['药品'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['药品'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['药品'],
           renderHelpList: this.data.forumRenderHelp['药品'],
         })
           break;
       case 7:
+        if(this.data.forumRenderHelp['卫生用品'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['卫生用品'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['卫生用品'],
           renderHelpList: this.data.forumRenderHelp['卫生用品'],
         })
           break;
       case 8:
+        if(this.data.forumRenderHelp['电子产品'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['电子产品'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
         this.setData({
           seekHelpList: this.data.forumSeekHelp['电子产品'],
           renderHelpList: this.data.forumRenderHelp['电子产品'],
@@ -215,18 +295,18 @@ Page({
     const res = await api._query_sh_list_byTag();
     const resData = res.data.data;
     this.setData({
-      forumSeekHelp: resData,
-      seekHelpList: resData['算法推荐']
+      forumSeekHelp: resData
     })
+    console.log(resData)
     this.refreshData(this.data.current)
   },
   async getRenderHelpList(){
     const res = await api._query_rh_list_byTag();
     const resData = res.data.data;
     this.setData({
-      forumRenderHelp: resData,
-      renderHelpList: resData['算法推荐']
+      forumRenderHelp: resData
     })
+    console.log(resData)
     this.refreshData(this.data.current)
   },
   /**
