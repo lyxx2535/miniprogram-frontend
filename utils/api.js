@@ -320,6 +320,32 @@ const _query_sh_forum_byId = (_id) => {
     showLoading: true
   })
 }
+// 获得按tag分类的所有求助帖子
+const _query_sh_list_byTag = () => {
+  return httpRequest({
+    url: API.QUERY_SH_LIST,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 获得按tag分类的所有帮助帖子
+const _query_rh_list_byTag = (_tag) => {
+  return httpRequest({
+    url: API.QUERY_RH_LIST,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
 
 export {
   _login,
@@ -346,5 +372,7 @@ export {
   _upload_draft_img,
   _query_rh_forum_byId,
   _query_sh_forum_byId,
+  _query_rh_list_byTag,
+  _query_sh_list_byTag,
   
 }

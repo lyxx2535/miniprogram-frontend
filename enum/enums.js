@@ -34,6 +34,8 @@ const INSERT_DRAFT_IMG = '/help-info/upload/'
 // forum - seekHelp/renderHelp
 const QUERY_SH_BY_ID = '/seek-help/query/'
 const QUERY_RH_BY_ID = '/help-info/query/'
+const QUERY_SH_LIST = '/seek-help/tag'
+const QUERY_RH_LIST = '/help-info/tag'
 
 export {
   LOGIN_API,
@@ -63,5 +65,7 @@ export {
   INSERT_DRAFT_IMG,
   QUERY_RH_BY_ID,
   QUERY_SH_BY_ID,
-  
+  QUERY_RH_LIST,
+  QUERY_SH_LIST,
+
 }

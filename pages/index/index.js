@@ -41,56 +41,9 @@ Page({
       wx.setStorageSync('token', res.data.data.token)
       console.log('token: ' + wx.getStorageSync('token'));
     },
-    async getAccessToken(){
-      const res = await api._get_access_token();
-      if(res.data.data.length == 0){
-        console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res.data))
-      }
-      else{
-        wx.setStorageSync('access_token', JSON.parse(res.data.data).access_token)
-        console.log('access_token: ' + wx.getStorageSync('access_token'))
-      }
-    },
     async add_remind(_data){
       const res = await api._add_remind(_data);
       console.log(res);
-    },
-    // 发送服务消息
-    testMsg(){
-      wx.requestSubscribeMessage({
-        tmplIds: [TEMPLATE_ID],
-        success:res=>{
-          console.log(res)
-          // 准备请求参数
-          var _data = {
-            "accessToken": wx.getStorageSync('access_token'),
-            "data": {
-              // MessageVO
-              "thing1": {
-                "value" : "核酸检测提醒"
-              },
-              "time3":{
-                "value" :  "2022-04-25 00:00:00"
-              },
-              "thing4":{
-                "value" : "fzz"
-              },
-              "thing5": {
-                "value" : "备注"
-              } 
-            },
-            "executeTime": "2022-04-26 15:19:45",
-            "templateId": TEMPLATE_ID,  //模板id，在微信后台拿
-            "touser": wx.getStorageSync('openid'),  //需要提前获取
-          }
-          // 请求服务端
-          this.add_remind(_data);
-        }
-      })
-    },
-    async getNucleicInfo(){
-      const res = await api._get_nucleic_inform();
-      console.log(res)
     },
     async checkMsg(){
       const res = await api._check_remind();
@@ -100,6 +53,12 @@ Page({
       const res = await api._query_rh_forum_byId(31)
       const res2 = await api._query_sh_forum_byId(1)
       console.log(res.data)
+      console.log(res2.data)
+    },
+    async queryForumList(){
+      const res = await api._query_rh_list_byTag();
+      const res2 = await api._query_sh_list_byTag();
+      console.log(res.data);
       console.log(res2.data)
     },
   onLoad() {
