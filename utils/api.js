@@ -266,9 +266,9 @@ const _test_count = () => {
   })
 }
 // 发布求助信息，需要token
-const _publish_draft = (_data) => {
+const _publish_sh_draft = (_data) => {
   return httpRequest({
-    url: API.PUBLISH_DRAFT,
+    url: API.PUBLISH_SH_DRAFT,
     data: _data,
     method: 'POST',
     header:{
@@ -279,13 +279,42 @@ const _publish_draft = (_data) => {
     showLoading: true
   })
 }
-// 上传帖子截图，需要token
-const  _upload_draft_img = (_filePath, _draft_id) => {
+// 发布帮助信息，需要token
+const _publish_rh_draft = (_data) => {
+  return httpRequest({
+    url: API.PUBLISH_RH_DRAFT,
+    data: _data,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 上传求助帖子截图，需要token
+const  _upload_rh_draft_img = (_filePath, _draft_id) => {
   console.log('图片本地路径：' + _filePath)
   return uploadMedia({
-    url: API.INSERT_DRAFT_IMG + _draft_id,
+    url: API.INSERT_RH_DRAFT_IMG + _draft_id,
     filePath: _filePath,
-    name: 'image', // key
+    name: 'imageList', // key
+    header: {
+      'content-type': 'multipart/form-data',
+      'Authorization': wx.getStorageSync('token')
+    },
+    method: 'POST',
+    showLoading: true
+  })
+}
+// 上传帮助帖子截图，需要token
+const  _upload_sh_draft_img = (_filePath, _draft_id) => {
+  console.log('图片本地路径：' + _filePath)
+  return uploadMedia({
+    url: API.INSERT_SH_DRAFT_IMG + _draft_id,
+    filePath: _filePath,
+    name: 'imageList', // key
     header: {
       'content-type': 'multipart/form-data',
       'Authorization': wx.getStorageSync('token')
@@ -368,8 +397,10 @@ export {
   _book_count,
   _test_count,
   _report_count,
-  _publish_draft,
-  _upload_draft_img,
+  _publish_rh_draft,
+  _publish_sh_draft,
+  _upload_sh_draft_img,
+  _upload_rh_draft_img,
   _query_rh_forum_byId,
   _query_sh_forum_byId,
   _query_rh_list_byTag,

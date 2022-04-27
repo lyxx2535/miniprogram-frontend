@@ -8,18 +8,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userId: 9, // 发布帖子的用户id，默认
-    avartar: "https://thirdwx.qlogo.cn/mmopen/vi_32/DYAIOgq83eqkI35J2pSNIibGqV1MZZiaPVNSLnlIYfPPu9QV3rHYBdnicxroF2bBEhQ7drrOsEMkOQtnH4icVSMCQQ/132", // 发布帖子用户的头像url
-    userName: "彭俊植", // 发布帖子的用户名称
-    forumId: 0, // 帖子ID
-    postTime: "4月22日 17：41", // 帖子发布时间
-    ddl: "4月23日", // 截止时间
-    type: "求帮跑腿", // 帖子类型
-    tag: "日用品", // 标签
-    content: "一只口罩", // 内容
-    emergency: 4, // 紧急程度
-    remark: "孩子口罩用完了，求好心人私戳", // 备注
-    forumImg: [IMG.ICNO_CHAT, IMG.ICNO_REFRESH, IMG.MY_SELECTED, IMG.MY_SELECTED, IMG.MY_SELECTED, IMG.MY_SELECTED], // 帖子图片url
+    userId: 9, // 发布帖子的用户id，默认为zy
     forumType: 0, // 求助贴：0，帮助贴：1
     imgUrl: {
       chat: IMG.ICNO_CHAT,

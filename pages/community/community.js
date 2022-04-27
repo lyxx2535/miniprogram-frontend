@@ -235,9 +235,6 @@ Page({
         })
       },
     })
-    // 加载后端数据
-    this.getSeekHelpList();
-    this.getRenderHelpList();
   },
 
   /**
@@ -259,6 +256,9 @@ Page({
     this.setData({
       currentTab: 0
     })
+    // 加载后端数据
+    this.getSeekHelpList();
+    this.getRenderHelpList();
     // 搜索功能的测试数据
     const data = [{
       name: '一只口罩',

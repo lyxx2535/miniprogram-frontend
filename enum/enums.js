@@ -29,8 +29,10 @@ const REPORT_COUNT = '/nucleic-acid/info/count'
 // service message
 const TEMPLATE_ID = 'dTxNqzkbtF7apmXfZBYlWD97krufydh5Gh0Zgn2QvlQ'
 // community
-const PUBLISH_DRAFT = '/help-info/insert'
-const INSERT_DRAFT_IMG = '/help-info/upload/'
+const PUBLISH_RH_DRAFT = '/help-info/insert'
+const PUBLISH_SH_DRAFT = '/seek-help/insert'
+const INSERT_RH_DRAFT_IMG = '/help-info/upload/'
+const INSERT_SH_DRAFT_IMG = '/seek-help/upload/'
 // forum - seekHelp/renderHelp
 const QUERY_SH_BY_ID = '/seek-help/query/'
 const QUERY_RH_BY_ID = '/help-info/query/'
@@ -61,8 +63,10 @@ export {
   TEST_COUNT,
   BOOK_COUNT,
   REPORT_COUNT,
-  PUBLISH_DRAFT,
-  INSERT_DRAFT_IMG,
+  PUBLISH_SH_DRAFT,
+  PUBLISH_RH_DRAFT,
+  INSERT_SH_DRAFT_IMG,
+  INSERT_RH_DRAFT_IMG,
   QUERY_RH_BY_ID,
   QUERY_SH_BY_ID,
   QUERY_RH_LIST,

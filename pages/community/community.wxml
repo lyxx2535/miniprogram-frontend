@@ -83,7 +83,7 @@
           <view>
           <!-- urlList的第一张，否则显示默认图片 -->
               <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
-              <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0]}}" class="help_image"></image>
+              <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
           </view>
           <view class="content">
               <view class="help_title">{{item.name}}</view>
@@ -107,7 +107,7 @@
           <view>
           <!-- urlList的第一张，否则显示默认图片 -->
           <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
-          <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0]}}" class="help_image"></image>
+          <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
           </view>
           <view class="content">
               <view class="help_title">{{item.name}}</view>

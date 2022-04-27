@@ -8,7 +8,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    userId: 1, // 发布帖子的用户id，默认为1
     ddl: wx.getStorageSync('date'), // 截止时间
     type0: ["求帮跑腿", "求借", "求租"], // 求助类型
     type1: ["帮跑腿", "外借", "出租"], // 帮助类型
@@ -17,7 +16,7 @@ Page({
     tagIndex: 0, // 当前选中的tag下标
     content: "", // 内容/名称
     star: ['☆', '☆', '☆', '☆', '☆'], // 标识紧急程度的星星
-    emergency: 1, // 紧急程度, 目前点亮☆的下标
+    emergency: 0, // 紧急程度, 目前点亮☆的下标
     remark: "", // 备注
     forumImg: [], // 帖子图片url
     forumType: 1, // 求助贴：0，帮助贴：1
@@ -105,56 +104,79 @@ Page({
       "tag": this.data.tag[this.data.tagIndex],
       "urgency": this.data.emergency,
     }
-    const res = await api._publish_draft(_data);
-    console.log(res.data)
-    this.setData({
-      id: res.data.data.id
-    })
+    let resData;
+    if(this.data.forumType == 0){
+      const res = await api._publish_sh_draft(_data);
+      resData = res.data.data;
+      this.setData({
+        id: resData.id
+      })
+    }
+    else{
+      const res = await api._publish_rh_draft(_data);
+      resData = res.data.data;
+      this.setData({
+        id: resData.id
+      })
+    }
+    console.log('发布草稿：' + JSON.stringify(resData))
     // 上传图片
     const filePaths = this.data.forumImg
     this.uploadImg(filePaths)
   },
-  // TODO: linUI上传图片接口
+  // linUI上传图片接口
   async uploadImg(filePaths){
     for(let item in filePaths){
-      try{
-        const res = await api._upload_draft_img(filePaths[item], 23);
-        if(res.data.length == 0){
-          console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res))
+      var resData;
+      if(this.data.forumType == 0){
+        const res = await api._upload_sh_draft_img(filePaths[item], this.data.id);
+        resData = res.data
+      }
+      else{
+        const res = await api._upload_rh_draft_img(filePaths[item], this.data.id);
+        resData = res.data
+      }
+      if(resData.length == 0){
+        console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(resData))
+      }
+      else{
+        const resJson = JSON.parse(resData)
+        console.log(resJson);
+        if(resJson.code == 200){
+          wx.showToast({
+            title: '上传成功！'
+          })
         }
         else{
-          const resJson = JSON.parse(res.data)
-          console.log(resJson);
-          if(resJson.code == 200){
-            wx.showToast({
-              title: '上传成功！'
-            })
-          }
-          else{
-            wx.showToast({
-              title: '上传失败！',
-              icon: 'error'
-            })
-          }
+          wx.showToast({
+            title: '上传失败！',
+            icon: 'error'
+          })
         }
-      }catch(err){
-        console.log('上传失败：' + err);
-        wx.showToast({
-          title: '上传失败！',
-          icon: 'error'
-        })
       }
+      this.finishPublish()
     }
   },
-
+  finishPublish(){
+    this.setData({
+      ddl: wx.getStorageSync('date'), // 截止时间
+      typeIndex: 0, // 当前选中的type下标
+      tagIndex: 0, // 当前选中的tag下标
+      content: "", // 内容/名称
+      emergency: 0, // 紧急程度, 目前点亮☆的下标
+      remark: "", // 备注
+      forumImg: [], // 帖子图片url
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // TODO: 根据options选择渲染求助还是帮忙
+    // 根据options选择渲染求助还是帮忙
     this.setData({
       forumType: options.type
     })
+    console.log('当前草稿类别：' + this.data.forumType)
     wx.getSystemInfo({
       success: (result) => {
         this.setData({
