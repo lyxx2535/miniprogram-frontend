@@ -34,7 +34,7 @@
     <view wx:for="{{history}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item}}" bindtap="getInput">{{item}}</view>
   </view>
 
-  <view style="position: relative; display: flex; margin-top: 50rpx;">
+  <view style="position: relative; display: flex; margin-top: 920rpx;">
     <view class="sub-title">算法推荐</view>
     <image class="sub-img" mode="widthFix" src="{{asset.refresh}}" bindtap="refreshTag"></image>
   </view>
@@ -80,7 +80,7 @@
 
   <view wx:if="{{currentTab==0}}">
     <!--求助区-->
-    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 1020rpx;">
+    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 62vh;">
       <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index" >
       <view style="display: flex;">
           <view>
@@ -107,7 +107,7 @@
   </view>
   <!-- 帮忙区 -->
   <view wx:elif="{{currentTab==1}}">
-    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 1020rpx;">
+    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 62vh;">
     <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{renderHelpList}}" wx:key="index" >
       <view style="display: flex;">
           <view>
