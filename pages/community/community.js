@@ -12,17 +12,16 @@ Page({
     currentTab: 0,
     NEW: IMG.ICNO_NEW,
     test_img: IMG.VECTOR_PIC,
-    // nav: ['算法推荐','食物饮品','日用品','书籍文具'],
-    // nav:[{'id':'算法推荐','image':IMG.LABEL_RECOMMEND},
-    //           {'id':'食物饮品','image':IMG.LABEL_FOOD},
-    //           {'id':'日用品','image':IMG.LABEL_DAILY},
-    //           {'id':'书籍文具','image':IMG.LABEL_BOOK},
-    // ],//待补充
-    //更换图片！！！
-    nav:[{'id':'算法推荐','image':'https://s2.loli.net/2022/04/25/uhfpOyQeCbArGq3.png'},
-              {'id':'食物饮品','image':'https://s2.loli.net/2022/04/25/mlv8R2kiYE5ODpf.png'},
-              {'id':'日用品','image':'https://s2.loli.net/2022/04/25/a8TgQZPzsRHVJ2L.png'},
-              {'id':'书籍文具','image':'https://s2.loli.net/2022/04/25/WNwolAz9V4JjZRu.png'},
+    nav:[
+      {'id':'算法推荐','image':IMG.LABEL_RECOMMEND},
+      {'id':'食物饮品','image':IMG.LABEL_FOOD},
+      {'id':'日用品','image':IMG.LABEL_DAILY},
+      {'id':'书籍文具','image':IMG.LABEL_BOOK},
+      {'id':'运动用品','image':IMG.LABEL_SPORT},
+      {'id':'化妆品','image':IMG.LABEL_COSMETICS},
+      {'id':'药品','image':IMG.LABEL_MEDICINE},
+      {'id':'卫生用品','image':IMG.LABEL_HYGIENE},
+      {'id':'电子产品','image':IMG.LABEL_ELECTRONIC},
     ],
     // 当前项目
     current: 0,

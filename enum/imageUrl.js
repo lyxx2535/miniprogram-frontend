@@ -38,6 +38,11 @@ const LABEL_BOOK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/communi
 const LABEL_DAILY = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_daily.png'
 const LABEL_FOOD = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_food.png'
 const LABEL_RECOMMEND = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_recommend.png'
+const LABEL_COSMETICS = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_cosmetics.png'
+const LABEL_ELECTRONIC = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_electronic.png'
+const LABEL_HYGIENE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_hygiene.png'
+const LABEL_MEDICINE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_medicine.png'
+const LABEL_SPORT = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_sport.png'
 
 export {
   ICON_CALENDER,
@@ -68,5 +73,10 @@ export {
   LABEL_DAILY,
   LABEL_FOOD,
   LABEL_RECOMMEND,
+  LABEL_COSMETICS,
+  LABEL_ELECTRONIC,
+  LABEL_HYGIENE,
+  LABEL_MEDICINE,
+  LABEL_SPORT,
   
 }
