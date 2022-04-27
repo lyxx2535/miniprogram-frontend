@@ -107,16 +107,7 @@ Page({
     //全局变量
     app.globalData.currentTab = e.currentTarget.dataset.idx;
   },
-
-  //标签点击响应事件
-  currentNav: function (e) {
-    let index = e.currentTarget.dataset.index;
-    let scrollLeft =  e.currentTarget.offsetLeft - ( this.data.windowWidth * 0.9 ) / 2;
-    console.log('change tag index: ' + index)
-    this.setData({
-      current: index,
-      scrollLeft: scrollLeft
-    })
+  refreshData(index){
     // 改变当前list视图
     switch (index) {
       case 0:
@@ -176,7 +167,7 @@ Page({
           seekHelpList: this.data.forumSeekHelp['卫生用品'],
           renderHelpList: this.data.forumRenderHelp['卫生用品'],
         })
-            break;
+          break;
       case 8:
         this.setData({
           seekHelpList: this.data.forumSeekHelp['电子产品'],
@@ -184,7 +175,19 @@ Page({
         }) 
         break;
     }
-    console.log(this.data.forumRenderHelp)
+    console.log('刷新视图！')
+  },
+  //标签点击响应事件
+  currentNav: function (e) {
+    let index = e.currentTarget.dataset.index;
+    let scrollLeft =  e.currentTarget.offsetLeft - ( this.data.windowWidth * 0.9 ) / 2;
+    console.log('change tag index: ' + index)
+    this.setData({
+      current: index,
+      scrollLeft: scrollLeft
+    })
+    this.refreshData(index);
+    console.log(this.data.seekHelpList)
   },
   // 查看帖子详情
   checkDetail(e){
@@ -215,6 +218,7 @@ Page({
       forumSeekHelp: resData,
       seekHelpList: resData['算法推荐']
     })
+    this.refreshData(this.data.current)
   },
   async getRenderHelpList(){
     const res = await api._query_rh_list_byTag();
@@ -223,6 +227,7 @@ Page({
       forumRenderHelp: resData,
       renderHelpList: resData['算法推荐']
     })
+    this.refreshData(this.data.current)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -241,24 +246,19 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    wx.setNavigationBarTitle({
-      title: this.data.navigationTitle,
-      fail: err => {
-        console.log(err)
-      }
-    })
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 1
       })
     }
-    this.setData({
-      currentTab: 0
-    })
+    // this.setData({
+    //   currentTab: 0
+    // })
     // 加载后端数据
     this.getSeekHelpList();
     this.getRenderHelpList();
+    console.log('load！')
     // 搜索功能的测试数据
     const data = [{
       name: '一只口罩',
@@ -274,5 +274,12 @@ Page({
       list: data
     })
   },
-  
+  onReady(){
+    wx.setNavigationBarTitle({
+      title: this.data.navigationTitle,
+      fail: err => {
+        console.log(err)
+      }
+    })
+  }
 })

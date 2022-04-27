@@ -123,6 +123,9 @@ Page({
     // 上传图片
     const filePaths = this.data.forumImg
     this.uploadImg(filePaths)
+    wx.navigateBack({
+      delta:1 //返回上一级页面
+    })
   },
   // linUI上传图片接口
   async uploadImg(filePaths){
