@@ -61,45 +61,69 @@
               <view class="user_name">{{item.userName}}</view>   
           </view>
   </view>
-
 <!-- end：搜索 -->
 
-<view wx:if="{{currentTab==0}}">
-  <view wx:if="{{!isSearch}}">
-    <view>
-      <scroll-view scroll-x="true" enable-flex="true" class="scroll" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
-          <block  wx:for="{{nav}}" wx:for-index="index" wx:key="index" >
-              <view class="nav-item {{ current==index ? 'active':'' }}" bindtap="currentNav" data-index="{{ index }}" >
-                  <image src="{{item.image}}" class="nav-image" ></image>
-                  <text  class="nav-text">{{item.id}}</text>
-              </view>
-          </block>
-      </scroll-view>
-    </view>
+<view wx:if="{{!isSearch}}">
+  <!--标签  -->
+  <view>
+    <scroll-view scroll-x="true" enable-flex="true" class="scroll" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
+        <block  wx:for="{{nav}}" wx:for-index="index" wx:key="index" >
+            <view class="nav-item {{ current==index ? 'active':'' }}" bindtap="currentNav" data-index="{{ index }}" >
+                <image src="{{item.image}}" class="nav-image" ></image>
+                <text  class="nav-text">{{item.id}}</text>
+            </view>
+        </block>
+    </scroll-view>
+  </view>
 
-      <!--单个求助 无js-->
-      <!-- TODO：卡片wx-for渲染，每个卡片绑定该帖子的id(从后端拿)，方便点击后跳转到对应帖子的详情页 -->
-    <view class="card" bindtap="checkDetail" data-id="">
+  <view wx:if="{{currentTab==0}}">
+    <!--求助区-->
+    <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index" >
       <view style="display: flex;">
           <view>
-              <image src = "{{test_img}}" class="help_image"></image>
+          <!-- urlList的第一张，否则显示默认图片 -->
+              <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
+              <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0]}}" class="help_image"></image>
           </view>
           <view class="content">
-              <view class="help_title">一只口罩</view>
+              <view class="help_title">{{item.name}}</view>
               <view class = "tag">
-                  <view class="tag1">紧急租借</view>
-                  <view class="tag2">日用品</view>
+                  <view class="tag1">{{item.seekHelpType}}</view>
+                  <view class="tag2">{{item.tag}}</view>
               </view>
-              <view class = "help_msg">备注：啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊啊</view>
+              <view class = "help_msg">{{item.comment}}</view>
           </view>
       </view>
       <view class="user_info">
-          <image src="{{test_img}}" class="user_pic"></image>
-          <view class="user_name">username</view>   
+          <image src="{{item.avatarUrl}}" class="user_pic"></image>
+          <view class="user_name">{{item.nickName}}</view>   
       </view>
     </view>
   </view>
+  <!-- 帮忙区 -->
+  <view wx:elif="{{currentTab==1}}">
+    <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{renderHelpList}}" wx:key="index" >
+      <view style="display: flex;">
+          <view>
+          <!-- urlList的第一张，否则显示默认图片 -->
+          <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
+          <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0]}}" class="help_image"></image>
+          </view>
+          <view class="content">
+              <view class="help_title">{{item.name}}</view>
+              <view class = "tag">
+                  <view class="tag1">{{item.helpType}}</view>
+                  <view class="tag2">{{item.tag}}</view>
+              </view>
+              <view class = "help_msg">{{item.comment}}</view>
+          </view>
+      </view>
+      <view class="user_info">
+          <image src="{{item.avatarUrl}}" class="user_pic"></image>
+          <view class="user_name">{{item.nickName}}</view>   
+      </view>
+    </view>
+  </view>
+
 </view>
-<!-- 帮忙区 -->
-<view wx:elif="{{currentTab==1}}">
-</view>
+

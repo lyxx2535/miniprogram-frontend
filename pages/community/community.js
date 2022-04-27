@@ -1,5 +1,6 @@
 // community/pages/community/community.js
 import * as IMG from '../../enum/imageUrl'
+import * as api from '../../utils/api'
 const app = getApp()
 Page({
 
@@ -23,6 +24,10 @@ Page({
       {'id':'卫生用品','image':IMG.LABEL_HYGIENE},
       {'id':'电子产品','image':IMG.LABEL_ELECTRONIC},
     ],
+    forumSeekHelp: {}, // 求助页面显示的帖子对象，成员是各个标签的帖子list
+    seekHelpList: [], // 当前展示的求助帖子list
+    forumRenderHelp: {}, // 帮助页面显示的帖子对象，成员是各个标签的帖子list
+    renderHelpList: [], // 当前展示的帮助帖子list
     // 当前项目
     current: 0,
     // 滚动栏滚动距离
@@ -31,7 +36,7 @@ Page({
     windowWidth: 0,
 
     // pjz - 搜索
-    list: [], // 帖子的搜索结果
+    searchRes: [], // 帖子的搜索结果
     keyWord: "", // 搜索关键字
     history: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 历史搜索词
     algorithm: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 算法推荐关键词
@@ -105,20 +110,89 @@ Page({
 
   //标签点击响应事件
   currentNav: function (e) {
-    console.log(e);
     let index = e.currentTarget.dataset.index;
     let scrollLeft =  e.currentTarget.offsetLeft - ( this.data.windowWidth * 0.9 ) / 2;
+    console.log('change tag index: ' + index)
     this.setData({
       current: index,
       scrollLeft: scrollLeft
     })
+    // 改变当前list视图
+    switch (index) {
+      case 0:
+        if(this.data.forumRenderHelp['算法推荐'] == undefined){
+          this.setData({
+            renderHelpList: []
+          })
+        }
+        if(this.data.forumSeekHelp['算法推荐'] == undefined){
+          this.setData({
+            seekHelpList: []
+          })
+        }
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['算法推荐'],
+          renderHelpList: this.data.forumRenderHelp['算法推荐'],
+        })
+        break;
+      case 1:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['食物饮品'],
+          renderHelpList: this.data.forumRenderHelp['食物饮品'],
+        })        
+          break;
+      case 2:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['日用品'],
+          renderHelpList: this.data.forumRenderHelp['日用品'],
+        })        
+        break;
+      case 3:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['书籍文具'],
+          renderHelpList: this.data.forumRenderHelp['书籍文具'],
+        })
+          break;
+      case 4:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['运动用品'],
+          renderHelpList: this.data.forumRenderHelp['运动用品'],
+        })
+        break;
+      case 5:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['化妆品'],
+          renderHelpList: this.data.forumRenderHelp['化妆品'],
+        })
+          break;
+      case 6:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['药品'],
+          renderHelpList: this.data.forumRenderHelp['药品'],
+        })
+          break;
+      case 7:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['卫生用品'],
+          renderHelpList: this.data.forumRenderHelp['卫生用品'],
+        })
+            break;
+      case 8:
+        this.setData({
+          seekHelpList: this.data.forumSeekHelp['电子产品'],
+          renderHelpList: this.data.forumRenderHelp['电子产品'],
+        }) 
+        break;
+    }
+    console.log(this.data.forumRenderHelp)
   },
   // 查看帖子详情
   checkDetail(e){
-    // const id = e.currentTarget.dataset.id;
-    const id = 1; // 这里暂时先随便写一个值
+    const id = e.currentTarget.dataset.id;
+    console.log('查看' + id + '号帖子内容')
+    // const id = 1; // 这里暂时先随便写一个值
     wx.navigateTo({
-      url: '/community/pages/detail/detail?id=' + id,
+      url: '/community/pages/detail/detail?id=' + id + '&type=' + this.data.currentTab,
     })
   },
   // 跳转至编辑页
@@ -134,6 +208,22 @@ Page({
       url: '/community/pages/draft/draft?type=' + type,
     })
   },
+  async getSeekHelpList(){
+    const res = await api._query_sh_list_byTag();
+    const resData = res.data.data;
+    this.setData({
+      forumSeekHelp: resData,
+      seekHelpList: resData['算法推荐']
+    })
+  },
+  async getRenderHelpList(){
+    const res = await api._query_rh_list_byTag();
+    const resData = res.data.data;
+    this.setData({
+      forumRenderHelp: resData,
+      renderHelpList: resData['算法推荐']
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -145,13 +235,9 @@ Page({
         })
       },
     })
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
+    // 加载后端数据
+    this.getSeekHelpList();
+    this.getRenderHelpList();
   },
 
   /**
@@ -171,8 +257,9 @@ Page({
       })
     }
     this.setData({
-      currentTab: app.globalData.currentTab
+      currentTab: 0
     })
+    // 搜索功能的测试数据
     const data = [{
       name: '一只口罩',
       type: '紧急租借',
@@ -187,40 +274,5 @@ Page({
       list: data
     })
   },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
   
 })

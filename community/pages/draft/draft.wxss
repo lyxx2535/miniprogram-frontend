@@ -36,6 +36,7 @@
   letter-spacing: 4rpx;
 }
 .scroll-box {
+  /* 文本不换行 */
   white-space: nowrap;
   overflow: scroll;
 }

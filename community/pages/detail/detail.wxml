@@ -2,32 +2,33 @@
 <view class='divide-line'></view>
 
 <view class="flex mt-2" style="height: 100rpx;">
-  <image mode="heightFix" src="{{avartar}}" class="user-avartar"></image>
+  <image mode="heightFix" src="{{info.avatarUrl}}" class="user-avartar"></image>
   <view class="user-info">
-    <view style="font-weight:600; font-size: 35rpx; letter-spacing: 4rpx;">{{userName}}</view>
-    <view style="margin-top: 15rpx; font-size: 25rpx; letter-spacing: 2rpx;">{{postTime}}</view>
+    <view style="font-weight:600; font-size: 35rpx; letter-spacing: 4rpx;">{{info.nickName}}</view>
+    <view style="margin-top: 15rpx; font-size: 25rpx; letter-spacing: 2rpx;">{{info.publishDate}}</view>
   </view>
 </view>
 
 <view class="info-block flex" style="margin-top: 45rpx;">
   <text wx:if="{{forumType == 0}}">求助类型：</text>
   <text wx:if="{{forumType == 1}}">帮助类型：</text>
-  <view class="tag1"> {{type}} </view>
+  <view wx:if="{{forumType == 0}}" class="tag1"> {{info.seekHelpType}} </view>
+  <view wx:if="{{forumType == 1}}" class="tag1"> {{info.helpType}} </view>
 </view>
 
 <view class="info-block flex">
   <text>标签：</text>
-  <view class="tag2"> {{tag}} </view>
+  <view class="tag2"> {{info.tag}} </view>
 </view>
 
 <view class="info-block flex">
   <text>名称：</text>
-  <view class="info-text">{{content}}</view>
+  <view class="info-text">{{info.name}}</view>
 </view>
 
 <view class="info-block flex">
   <text>截止时间：</text>
-  <view class="info-text">{{ddl}}</view>
+  <view class="info-text">{{info.deadLine}}</view>
 </view>
 
 <view class="info-block flex">
@@ -35,16 +36,16 @@
   <!-- <view class="info-text" wx:for="{{star}}" wx:key="index">
     <text style="font-size: large; letter-spacing: 8rpx;">{{item}}</text>
   </view> -->
-  <l-rate active-color="#FFDD55" inActive-color="#FFF5CE" score="{{emergency}}" disabled="true" />
+  <l-rate active-color="#FFDD55" inActive-color="#FFF5CE" score="{{info.urgency}}" disabled="true" />
 </view>
 
 <view class="info-block flex">
   <text>备注：</text>
-  <view class="info-text">{{remark}}</view>
+  <view class="info-text">{{info.comment}}</view>
 </view>
 
 <view class="img-block">
-  <image wx:for="{{forumImg}}" wx:key="index" mode="widthFix" style="width: 30%; display: inline-block; margin-left: 20rpx;" wx:for-item="item" src="{{item}}"></image>
+  <image wx:for="{{info.urlList}}" wx:key="index" mode="widthFix" style="width: 30%; display: inline-block; margin-left: 20rpx;" wx:for-item="item" src="{{item}}"></image>
 </view>
 
 <view class='divide-line'></view>

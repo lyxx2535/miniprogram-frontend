@@ -10,7 +10,7 @@
 
 <view class="info-block flex" style="margin-top: 40rpx;">
   <text style="min-width: 100rpx;">标签：</text>
-  <scroll-view class='scroll-box' scroll-x="true" >
+  <scroll-view class='scroll-box' scroll-x="true" enable-flex="true" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
     <view wx:for="{{tag}}" wx:key="index" bindtap="chooseTag" data-index="{{index}}" class="{{index == tagIndex? 'tag2' : 'tag2-unselected'}}" style="margin-left: 20rpx;  display: inline-block;"> {{item}} </view>
   </scroll-view>
 </view>

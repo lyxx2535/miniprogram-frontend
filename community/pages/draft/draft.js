@@ -21,6 +21,8 @@ Page({
     remark: "", // 备注
     forumImg: [], // 帖子图片url
     forumType: 1, // 求助贴：0，帮助贴：1
+    scrollLeft: 0, // 滚动栏滚动距离
+    windowWidth: 0, // 窗体宽度
   },
   // 选择type
   chooseType(e){
@@ -33,11 +35,12 @@ Page({
   // 选择tag
   chooseTag(e){
     const _index = e.currentTarget.dataset.index
+    let _scrollLeft =  e.currentTarget.offsetLeft - ( this.data.windowWidth * 0.9 ) / 2;
     this.setData({
-      tagIndex: _index
+      tagIndex: _index,
+      scrollLeft: _scrollLeft
     })
     console.log('选择tag: ' + this.data.tag[_index])
-    console.log('emergency: ' + this.data.emergency)
   },
   // 选择紧急程度 - 已废弃，LinUI真香
   chooseEmer(e){
@@ -151,6 +154,13 @@ Page({
     // TODO: 根据options选择渲染求助还是帮忙
     this.setData({
       forumType: options.type
+    })
+    wx.getSystemInfo({
+      success: (result) => {
+        this.setData({
+          windowWidth: result.windowWidth
+        })
+      },
     })
   },
 
