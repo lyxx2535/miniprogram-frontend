@@ -1,6 +1,8 @@
+<view class="bg">
+  <view class="bg1"></view>
+  <view class="bg2"></view>
+</view>
 
-<view class="bg1"></view>
-<view class="bg2"></view>
 <view style="display: flex;">
     <!-- 顶部标签 -->
     <view class="navbar">
@@ -78,7 +80,8 @@
 
   <view wx:if="{{currentTab==0}}">
     <!--求助区-->
-    <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index" >
+    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 1020rpx;">
+      <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index" >
       <view style="display: flex;">
           <view>
           <!-- urlList的第一张，否则显示默认图片 -->
@@ -99,9 +102,12 @@
           <view class="user_name">{{item.nickName}}</view>   
       </view>
     </view>
+    </scroll-view>
+    
   </view>
   <!-- 帮忙区 -->
   <view wx:elif="{{currentTab==1}}">
+    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 1020rpx;">
     <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{renderHelpList}}" wx:key="index" >
       <view style="display: flex;">
           <view>
@@ -123,6 +129,7 @@
           <view class="user_name">{{item.nickName}}</view>   
       </view>
     </view>
+    </scroll-view>
   </view>
 
 </view>

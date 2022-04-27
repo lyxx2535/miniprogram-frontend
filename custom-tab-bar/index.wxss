@@ -18,7 +18,7 @@
 }
 .tab-text {
   margin-left: 8rpx;
-  font-size: 28rpx;
+  font-size: 24rpx;
   padding-top: 6rpx;
   text-align: center;
   letter-spacing: 6rpx;
