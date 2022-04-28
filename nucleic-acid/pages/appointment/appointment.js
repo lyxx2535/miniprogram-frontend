@@ -240,7 +240,7 @@ Page({
       remindContent: this.data.list[e.currentTarget.dataset.index].name,
       start_time_p2: this.data.list[e.currentTarget.dataset.index].time
     })
-    // TODO:开启服务提醒 封装相关api
+    // 开启服务提醒 封装相关api
     const index = e.currentTarget.dataset.index
     if(!this.data.list[index].isOpenRemind){
       var currentStatus = e.currentTarget.dataset.status; 

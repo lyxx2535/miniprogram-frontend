@@ -34,6 +34,14 @@
         "pages/myNA/myNA"
       ],
       "independent": false
+    }, {
+      "root": "my",
+      "name": "我的模块",
+      "pages": [
+        "pages/my_help/my_help",
+        "pages/my_seekHelp/my_seekHelp"
+      ],
+      "independent": false
     }
   ],
   "window":{

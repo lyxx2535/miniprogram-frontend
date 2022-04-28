@@ -1,4 +1,6 @@
 // pages/login/login.js
+import * as api from '../../utils/api'
+
 Page({
 
   /**
@@ -24,7 +26,6 @@ Page({
         })
         wx.setStorageSync('userInfo_wx', res.userInfo)
         this.getOpenid(); 
-        // this.getToken();
       }
     })
   },
@@ -41,12 +42,18 @@ Page({
                                      wx.getStorageSync('openid'),
                                      '南京大学')
     wx.setStorageSync('token', res.data.data.token)
+    console.log('exe')
     console.log('token: ' + wx.getStorageSync('token'));
   },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    if (wx.getUserProfile) {
+      this.setData({
+        canIUseGetUserProfile: true
+      })
+    }
     wx.setNavigationBarTitle({
       title: this.data.navigationTitle,
       fail: err => {

@@ -7,6 +7,15 @@
   },
   "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
   "condition": {
+    "plugin": {
+      "list": []
+    },
+    "game": {
+      "list": []
+    },
+    "gamePlugin": {
+      "list": []
+    },
     "miniprogram": {
       "list": [
         {
@@ -16,10 +25,9 @@
           "scene": null
         },
         {
-          "name": "",
-          "pathName": "pages/index_NA/index_NA",
+          "name": "community/pages/detail/detail",
+          "pathName": "community/pages/detail/detail",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
@@ -35,8 +43,8 @@
           "scene": null
         },
         {
-          "name": "",
-          "pathName": "nucleic-acid/pages/detection/detection",
+          "name": "pages/index_NA/index_NA",
+          "pathName": "pages/index_NA/index_NA",
           "query": "",
           "scene": null
         },
@@ -44,35 +52,30 @@
           "name": "",
           "pathName": "community/pages/detail/detail",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "community/pages/draft/draft",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
-          "pathName": "community/pages/search/search",
+          "pathName": "pages/userList/userList",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/community/community",
           "query": "",
-          "launchMode": "default",
           "scene": null
         },
         {
           "name": "",
           "pathName": "pages/my/my",
           "query": "",
-          "launchMode": "default",
           "scene": null
         }
       ]

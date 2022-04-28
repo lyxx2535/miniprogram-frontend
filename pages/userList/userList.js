@@ -26,10 +26,12 @@ Page({
     // 不需要参数了，携带token查
     const res = await _get_user_friendList();
     console.log(res.data);
-    this.setData({
-      list: res.data.data,
-      loading: false // 关闭等待框
-    })
+    if(res.data.code == 200){
+      this.setData({
+        list: res.data.data,
+        loading: false // 关闭等待框
+      })
+    }
   },
     /**
    * 生命周期函数--监听页面展示

@@ -1,5 +1,6 @@
 // pages/my/my.js
 import * as api from '../../utils/api'
+import * as IMG from '../../enum/imageUrl'
 
 Page({
   // avatarUrl:
@@ -16,15 +17,28 @@ Page({
   data: {
      navigationTitle: '我的',
      userInfo: {}, // 用户信息列表
+     imgUrl: {
+      contact: IMG.ICON_CONTACT,
+      delete: IMG.ICON_DELETE,
+      forward: IMG.ICON_FORWARD,
+      over: IMG.ICON_OVER,
+      question: IMG.ICON_QUESTION,
+      redo: IMG.ICON_REDO,
+      setting: IMG. ICON_SETTING,
+      solved: IMG.STATE_SOLVED,
+      unsolved: IMG.STATE_UNSOLVED
+     }, // 静态资源url
   },
 
   // 获取用户信息
   async getUserInfo(){
     const res = await api._get_user_info()
     console.log(res.data)
-    this.setData({
-      userInfo: res.data.data
-    })
+    if(res.data.code == 200){
+      this.setData({
+        userInfo: res.data.data
+      })
+    }
   },
 
   /**

@@ -84,7 +84,7 @@ Page({
       return
     }
     const res = await api._search_sh_by_keyWord(value)
-    console.log('搜素求助贴：' + res.data)
+    console.log('搜索求助贴：' + JSON.stringify(res.data))
     this.setData({
       searchRes: res.data.data
     })
@@ -98,7 +98,7 @@ Page({
       return
     }
     const res = await api._search_rh_by_keyWord(value)
-    console.log('搜素帮助贴：' + res.data)
+    console.log('搜索帮助贴：' + JSON.stringify(res.data))
     this.setData({
       searchRes: res.data.data
     })
@@ -190,6 +190,13 @@ Page({
     app.globalData.currentTab = e.currentTarget.dataset.idx;
     // 刷新历史记录
     this.getSearchHistory()
+    // 刷新搜索结果
+    if(this.data.currentTab == 0){
+      this.searchSH(this.data.keyWord)
+    }
+    else{
+      this.searchRH(this.data.keyWord)
+    }
     // TODO: 刷新算法推荐
   },
   refreshData(index){

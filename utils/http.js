@@ -25,7 +25,33 @@ const httpRequest = (options) =>{
         'content-type': 'application/json',
         'Authorization': wx.getStorageSync('token')
       },
-      success: resolve,
+      success: res => {
+        if(typeof(res.data) == 'string'){
+          var resJson = JSON.parse(res.data)
+        }
+        else{
+          var resJson = res.data
+        }
+        if(resJson.code == 401){
+          wx.showToast({
+            title: '用户认证已过期，请重新登录',
+            icon: 'none',
+            duration: 1000,
+            success: function () {
+              setTimeout(function () {
+                  //要延时执行的代码
+                  wx.reLaunch({
+                      url: '/pages/login/login'
+                  })
+              }, 1000) //延迟时间 
+            }
+          })
+        }
+        // 后端有时候传的是code，有时候传的是statusCode
+        else{
+          resolve(res)
+        }
+      },
       fail: reject,
       complete: () =>{
         if(options.showLoading || false){
