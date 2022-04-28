@@ -44,7 +44,7 @@
   </view>
 </view>
 
-  <view class="card" bindtap="checkDetail"  wx:for="{{searchRes}}" wx:key="index" wx:if="{{isShowRes}}">
+  <view class="card" bindtap="checkDetail"  data-id="{{item.id}}" wx:for="{{searchRes}}" wx:key="index" wx:if="{{isShowRes}}">
           <view style="display: flex;">
               <view>
                 <!-- urlList的第一张，否则显示默认图片 -->
@@ -62,7 +62,7 @@
               </view>
           </view>
           <view class="user_info">
-              <image src="{{item.avartarUrl}}" class="user_pic"></image>
+              <image src="{{item.avatarUrl}}" class="user_pic"></image>
               <view class="user_name">{{item.nickName}}</view>   
           </view>
   </view>
