@@ -16,6 +16,25 @@ Page({
     info: {}, // 帖子信息对象
   },
 
+  // 预览图片
+  previewImg(e){
+    let temp = []
+    const list = e.currentTarget.dataset.list
+    for(let item in list){
+      temp.push(list[item].imageUrl)
+    }
+    const url = e.currentTarget.dataset.url
+    console.log(JSON.stringify(list) + url)
+    if(list.length == 0 ){
+      list.push(url)
+    }
+    wx.previewImage({
+      urls: temp,
+      current: url,
+      showmenu: true,
+    })
+  },
+
   // 跳转聊天
   goToChat(){
     const id = this.data.userId

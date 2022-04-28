@@ -160,6 +160,24 @@ Page({
   },
 
   // cyr - community
+  // 预览图片
+  previewImg(e){
+    let temp = []
+    const list = e.currentTarget.dataset.list
+    for(let item in list){
+      temp.push(list[item].imageUrl)
+    }
+    const url = e.currentTarget.dataset.url
+    console.log(JSON.stringify(list) + url)
+    if(list.length == 0 ){
+      list.push(url)
+    }
+    wx.previewImage({
+      urls: temp,
+      current: url,
+      showmenu: true,
+    })
+  },
   //切换bar
   navbarTap: function (e) {
     this.setData({
