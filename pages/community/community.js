@@ -29,25 +29,10 @@ Page({
     seekHelpList: [], // 当前展示的求助帖子list
     forumRenderHelp: {}, // 帮助页面显示的帖子对象，成员是各个标签的帖子list
     renderHelpList: [], // 当前展示的帮助帖子list
-    // 当前项目
-    current: 0,
-    // 滚动栏滚动距离
-    scrollLeft: 0,
-    // 窗体宽度
-    windowWidth: 0,
+    current: 0,  // 当前项目
+    scrollLeft: 0, // 滚动栏滚动距离
+    windowWidth: 0, // 窗体宽度
     // 搜索模块
-
-        // const data = [{
-        //   name: '一只口罩',
-        //   type: '紧急租借',
-        //   tag: '日用品',
-        //   remark: '阿巴阿巴',
-        //   userName: '阿巴阿巴',
-        //   avartar: this.data.test_img,
-        //   showImg: this.data.test_img,
-        //   id: '1'
-        // }]
-
     searchRes: [], // 帖子的搜索结果
     keyWord: "", // 搜索关键字
     history: [], // 历史搜索词
