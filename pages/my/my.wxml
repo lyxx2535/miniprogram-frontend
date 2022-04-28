@@ -1,37 +1,45 @@
-<view class="header">设置个人信息</view>
+<view class="header">
+  <image src="{{imgUrl.setting}}" mode="widthFix" style="width: 30rpx;"></image>
+  <text style="margin-left: 10rpx">设置个人信息</text>
+</view>
 
 <view class="flex" style="height: 230rpx; margin-top: 20rpx; margin-left: 30rpx;">
   <image mode="heightFix" src="{{userInfo.avatarUrl}}" class="user-avartar"></image>
 
   <view class="user-info">
     <view style="font-weight:600; font-size: 35rpx; letter-spacing: 4rpx;">{{userInfo.nickName}}</view>
-    <view style="margin-top: 35rpx; font-size: 25rpx; letter-spacing: 2rpx;">学校：{{userInfo.school}}</view>
-    <view style="margin-top: 15rpx; font-size: 25rpx; letter-spacing: 2rpx;">院系：{{userInfo.institute}} {{userInfo.major}}</view>
+    <view class="info-text">学校：{{userInfo.school}}</view>
+    <view class="info-text" style="margin-top: 15rpx;">院系：{{userInfo.institute}} {{userInfo.major}}</view>
   </view>
 </view>
 
 <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 58vh;">
   <view class="card flex">
     <view class="card-text">我的核酸</view>
+    <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
   </view>
 
   <view class="card flex">
     <view class="card-text">我的帮忙</view>
+    <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
   </view>
 
   <view class="card flex">
     <view class="card-text">我的求助</view>
+    <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
   </view>
 
   <view class="big-card">
     <view class="big-card-text2">其他</view>
     <view class="divide-line"></view>
-    <view>
+    <view class="flex">
       <view class="big-card-text">常见问题</view>
+      <image mode="widthFix" src="{{imgUrl.question}}" class="icon"></image>
     </view>
     <view class="divide-line" style="width: 94%; margin-left: 3%; height: 6rpx;"></view>
-    <view>
+    <view class="flex">
       <view class="big-card-text">联系我们</view>
+      <image mode="widthFix" src="{{imgUrl.contact}}" class="icon"></image>
     </view>
   </view>
 </scroll-view>
