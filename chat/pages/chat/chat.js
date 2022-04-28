@@ -27,14 +27,14 @@ Page({
     lineHeight: 24,//表情的大小
     receiverId:'',//接受人
     list:[],//消息列表
-    focus: true,//光标选中
+    focus: false,//光标选中
     cursor: 0,//光标位置
     comment:'',//文本内容
     functionShow: false,//扩展区，目前只支持发图片
     toBottom:'bottom',// 滚动到底部
     emojiShow: false, //表情区是否显示
     paddingBottom: 0, //消息内容区距底部的距离
-    keyboardHeight:15,//输入框距下边框距离
+    keyboardHeight: 15,//输入框距下边框距离
     emojiSource: 'https://s1.ax1x.com/2022/04/19/LBDn78.png',//表情图片
     windowHeight:0,//聊天内容区的高度
     sendAvatar:'',//当前用户头像
@@ -212,43 +212,43 @@ Page({
   /**
    * 显示表情区
    */
-  showEmoji:function() {
-    this.setData({
-      functionShow: false,
-      emojiShow:!this.data.emojiShow
-    },function(){
-        //改变输入框高度
-        this.setData({
-          keyboardHeight:this.data.emojiShow?300:0,
-          paddingBottom:this.data.emojiShow?300:80
-        },function(){
-          this.getScollBottom();
-        })
-    })
-  },
+  // showEmoji:function() {
+  //   this.setData({
+  //     functionShow: false,
+  //     emojiShow:!this.data.emojiShow
+  //   },function(){
+  //       //改变输入框高度
+  //       this.setData({
+  //         keyboardHeight:this.data.emojiShow?300:0,
+  //         paddingBottom:this.data.emojiShow?300:80
+  //       },function(){
+  //         this.getScollBottom();
+  //       })
+  //   })
+  // },
   /**
    * 显示发送图片区
    */
-  showFunction:function() {
-    this.setData({
-      functionShow:!this.data.functionShow,
-      isPaddingBottom:!this.data.functionShow,
-      emojiShow: false
-    },
-    function(){
-      this.setData({
-        keyboardHeight:this.data.functionShow?200:0,
-        paddingBottom:this.data.functionShow?200:80
-      },function(){
-        this.getScollBottom();
-      })
-    })
-  },
+  // showFunction:function() {
+  //   this.setData({
+  //     functionShow:!this.data.functionShow,
+  //     isPaddingBottom:!this.data.functionShow,
+  //     emojiShow: false
+  //   },
+  //   function(){
+  //     this.setData({
+  //       keyboardHeight:this.data.functionShow?200:0,
+  //       paddingBottom:this.data.functionShow?200:80
+  //     },function(){
+  //       this.getScollBottom();
+  //     })
+  //   })
+  // },
   onFocus(e) {
     this.hideAllPanel()
     this.setData({
-      paddingBottom:e.detail.height,
-      keyboardHeight:e.detail.height,
+      paddingBottom: e.detail.height,
+      keyboardHeight: e.detail.height,
     },function(){
       this.getScollBottom()
     })
@@ -256,7 +256,7 @@ Page({
   onBlur(e) {
       this.setData({
         keyboardHeight:0,
-        paddingBottom:80
+        paddingBottom: 0
       })
       this.data.cursor = (e && e.detail.cursor)?e.detail.cursor:0
   },
