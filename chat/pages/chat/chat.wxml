@@ -17,7 +17,7 @@
           <view class="main">
           <!-- 小菊花 -->
             <text wx:if="{{item.receiverId != null}}" class="iconfont icon-sending sending"></text>
-            <view class="bg-green content shadow">
+            <view class="bg-green content">
                 <block wx:key="index" >
                   <block style="margin-top: 10rpx; margin-bottom: 10rpx;">{{item.content}}</block>
                 </block>
@@ -28,7 +28,7 @@
         <view class="cu-item"  wx:if="{{item.senderId != senderId}}">
           <image class="cu-avatar" style="border-radius: 50%;" src="{{receiveAvatar}}"/>
           <view class="main">
-            <view class="bg-white content shadow">
+            <view class="bg-white content">
                 <block wx:key="index">
                   <block >{{item.content}}</block>
                 </block>

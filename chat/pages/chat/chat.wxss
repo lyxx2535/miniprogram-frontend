@@ -97,7 +97,7 @@ border-radius:10px;
 
 .cu-chat .cu-item {
 	display: flex;
-  padding: 30rpx 15rpx 0rpx 15rpx;
+  padding: 20rpx 15rpx 0rpx 15rpx;
 	position: relative;
 }
 .messageImg{
@@ -112,13 +112,13 @@ video{
   height: 32px;
 }
 .cu-chat .cu-item>.cu-avatar {
-	width: 90rpx;
-	height: 90rpx;
+	width: 70rpx;
+	height: 70rpx;
 }
 
 .cu-chat .cu-item>.main {
 	max-width: calc(100% - 260rpx);
-	margin: 0 40rpx;
+	margin: 0 30rpx;
 	display: flex;
 	align-items: center;
 }
@@ -129,15 +129,17 @@ video{
 }
 
 page{
-  background:rgb(245, 245, 245)
+  background:#f5f5f5
 }
 .messageTime{
-  color: #999;
+  color: rgb(177, 176, 176);
   margin-top: 30rpx;
   text-align: center;
+  font-size: 24rpx;
+  letter-spacing: 3rpx;
 }
 .bg-green{
-  background: rgb(149,236,105);
+  background: #4e8df6;
 }
 
 .bg-white{
@@ -146,14 +148,16 @@ page{
 
 .cu-chat .cu-item>.main .content {
 
-	padding: 0rpx 20rpx;
-	border-radius: 6rpx;
+	padding: 20rpx 25rpx;
+	border-radius: 40rpx;
 	display: inline-flex;
 	max-width: 100%;
 	align-items: center;
-	font-size: 30rpx;
+  font-size: 28rpx;
+  letter-spacing: 5rpx;
+  font-weight: 300;
 	position: relative;
-	min-height: 80rpx;
+	min-height: 40rpx;
 	line-height: 40rpx;
 	text-align: left;
 }
@@ -180,25 +184,25 @@ page{
 
 .cu-chat .cu-item>.main .content::after {
 	content: "";
-	top: 27rpx;
+	top: 30rpx;
 	transform: rotate(45deg);
 	position: absolute;
 	z-index: -1;
 	display: inline-block;
 	overflow: hidden;
-	width: 24rpx;
-	height: 24rpx;
-	left: -12rpx;
+	width: 20rpx;
+	height: 20rpx;
+	left: -6rpx;
 	right: initial;
 	background-color: inherit;
 }
 
 .cu-chat .cu-item.self>.main .content::after {
 	left: auto;
-	right: -12rpx;
+	right: -6rpx;
 }
 
-.cu-chat .cu-item>.main .content::before {
+/* .cu-chat .cu-item>.main .content::before {
 	content: "";
 	top: 30rpx;
 	transform: rotate(45deg);
@@ -218,12 +222,12 @@ page{
 .cu-chat .cu-item>.main .content:not([class*="bg-"])::before {
 	background-color: var(--black);
 	opacity: 0.1;
-}
-
+} */
+/* 
 .cu-chat .cu-item.self>.main .content::before {
 	left: auto;
 	right: -12rpx;
-}
+} */
 
 .cu-chat .cu-item.self {
 	justify-content: flex-end;
@@ -295,20 +299,21 @@ page{
   display: block;
   background-color: #FFFFFF;
   -webkit-border-radius: 5px;
-  border-radius: 5px;
-  margin-right: 8px;
+  border-radius: 20px;
+  margin-right: 12rpx;
+  margin-left: 24rpx;
 }
 .reply_input {
-  font-size: 17px;
+  font-size: 28rpx;
   min-height: 40px;
   /* height: 40px;  */
-  padding: 0 12px;
+  padding: 20rpx 20rpx;
   width: 100%;
   -webkit-box-sizing: border-box;
   box-sizing: border-box;
   -webkit-border-radius: 4px;
-  border-radius: 4px;
-  caret-color: #1AAD19;
+  border-radius: 20px;
+  caret-color: #2166cc;
 }
 .reply_input[disabled] {
   background-color: #E8E8E8;
