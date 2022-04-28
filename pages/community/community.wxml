@@ -149,15 +149,13 @@
 <!--弹窗的出现-->
 <view animation="{{animationData}}" style="display: flex;" class="box" wx:if="{{now_state}}">
 <!--弹窗内部内容-->
-
-
     <view class="v1">
-        <contact-button size="250" class='pos1' bindtap="toDraft1"></contact-button>
+        <button size="250" class='pos1' bindtap="toDraft1"></button>
             <image class="icon_help" mode ="widthFix" src="{{Help}}"></image> 
         <view class="dbtext1">帮  忙</view>
     </view>
     <view class="v2">
-        <contact-button size="250" class='pos2' bindtap="toDraft2"></contact-button>
+        <button size="250" class='pos2' bindtap="toDraft2"></button>
             <image class="icon_seekhelp" mode ="widthFix" src="{{Seek_Help}}"></image> 
         <view class="dbtext1">求  助</view>
     </view>

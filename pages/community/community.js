@@ -402,7 +402,6 @@ Page({
       })
     }.bind(this), 200)
     var that = this
-   
   },
   // 跳转至编辑页
   toDraft1(){
