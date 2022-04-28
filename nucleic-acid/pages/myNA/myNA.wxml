@@ -2,7 +2,7 @@
     <view class="calendar_bg">
         <calendar config="{{calendarConfig}}"
   bind:afterCalendarRender="afterCalendarRender"
-  bind:whenChangeMonth="whenChangeMonth"
+  bind:whenChangeMonth="afterCalendarRender"
   id="calendar"
 />
 </view>
@@ -11,7 +11,7 @@
 
 <button class="btn {{!finished?'choose':'noChoose'}}" bindtap="reportMedia1">未完成</button>
 <button class="btn2 {{finished?'choose':'noChoose'}}" bindtap="reportMedia2">已完成</button>
-<view class="mt-20px" style="margin-bottom: 20px;"wx:for="{{!finished?list:list1}}" wx:key="index" id="item{{index + 1}}">
+<view class="mt-20px" style="margin-bottom: 20px;"wx:for="{{!finished?failList:successList}}" wx:key="index" id="item{{index + 1}}">
     <l-card type="avatar" image="{{img_url.notice}}" title="{{item.name}}">
     <view class="avter-content">
         <l-steps  dot="{{true}}" color="#464244" active-index="-1">

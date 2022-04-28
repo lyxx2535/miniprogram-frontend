@@ -1,6 +1,5 @@
-// nucleic-acid/pages/report/report.js
+// nucleic-acid/pages/myNA/myNA.js
 import * as IMG from '../../../enum/imageUrl'
-import * as api from '../../../utils/api'
 Page({
   data: {
     navigationTitle: '我的核酸',
@@ -13,45 +12,16 @@ Page({
       notice: IMG.NOTICE,
     },
 
-    list :[],//“未完成”的核酸列表
-    list1:[],//“已完成”的核酸列表
+    successDate :[],//“已完成”的核酸日期
+    failDate:[],//“未完成”的核酸日期
+    successList:[],//“已完成”的核酸列表
+    failList:[],//“未完成”的核酸列表
     finished: false,//表示当前按钮选择的是“未完成”还是“已完成”
   },
   afterCalendarRender(e) {
-    const successDate = [
-      {
-        year: 2022,
-        month: 4,
-        date: 12,
-        class: 'success' // 页面定义的 class，多个 class 由空格隔开
-      },
-      {
-        year: 2022,
-        month: 4,
-        date: 2,
-        class: 'success' // 页面定义的 class，多个 class 由空格隔开
-      },
-    ]
     const calendar = this.selectComponent('#calendar').calendar
-    calendar.setDateStyle(successDate)
-    const failDate = [
-      {
-        year: 2022,
-        month: 4,
-        date: 14,
-        class: 'fail' // 页面定义的 class，多个 class 由空格隔开
-      },
-      {
-        year: 2022,
-        month: 4,
-        date: 23,
-        class: 'fail' // 页面定义的 class，多个 class 由空格隔开
-      },
-    ]
-    calendar.setDateStyle(failDate)
-  },
-  whenChangeMonth(e) {
-  this.afterCalendarRender(e);
+    calendar.setDateStyle(this.data.successDate)
+    calendar.setDateStyle(this.data.failDate)
   },
   // 点击按钮事件
   reportMedia1(e){
@@ -69,42 +39,69 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    // 测试数据
-    const test = [
-      {
-        name: '第二次常态化检测',
-        status: {
-          appointment: true,
-          detection: false,
-          report: false
-        }
+    wx.request({
+      url: 'https://xjk-advisor.com:9090/api/nucleic-acid/schedule', 
+      data: {
       },
-    ];
-    const test1 = [
-      {
-        name: '第四次常态化检测',
-        status: {
-          appointment: true,
-          detection: true,
-          report: false
-        }
+      header: {
+        'content-type': 'application/json', // 默认值
+        'Authorization': wx.getStorageSync('token')
       },
-      {
-        name: '第五次常态化检测',
-        status: {
-          appointment: false,
-          detection: true,
-          report: false
+      method: "GET",
+      success: (res)=> {
+        const resSet = res.data.data
+        let list1 = []
+        let list2 = []
+        let list3 = []
+        let list4 = []
+        for(let item in resSet){
+          let temp1 = {}
+          let temp2 = {}
+          temp1.name = resSet[item].title;
+          temp2.year = parseInt(resSet[item].testingTime.split('-')[0])
+          temp2.month = parseInt(resSet[item].testingTime.split('-')[1])
+          temp2.date = parseInt(resSet[item].testingTime.split('-')[2])
+          switch (resSet[item].testingFinishStatus) {
+            case '已完成':
+              temp2.class = 'success'
+              list3.push(temp2)
+              if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
+                temp1.status =  {appointment: true, detection: true, report: true}
+              }else if(resSet[item].bookingFinishStatus!='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
+                temp1.status =  {appointment: false, detection: true, report: true}
+              }else if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus!='已完成'){
+                temp1.status =  {appointment: true, detection: true, report: false}
+              }else{
+                temp1.status =  {appointment: false, detection: true, report: false}
+              }
+              list1.push(temp1)
+              break
+            case '未完成':
+              temp2.class = 'fail'
+              list4.push(temp2)
+              if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
+                temp1.status =  {appointment: true, detection: false, report: true}
+              }else if(resSet[item].bookingFinishStatus!='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
+                temp1.status =  {appointment: false, detection: false, report: true}
+              }else if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus!='已完成'){
+                temp1.status =  {appointment: true, detection: false, report: false}
+              }else{
+                temp1.status =  {appointment: false, detection: false, report: false}
+              }
+              list2.push(temp1)
+              break
         }
-      },
-    ]
-    this.setData({
-      list: test,
-      list1: test1
-    })
-    console.log('装载测试数据：' + JSON.stringify(this.data.list))
+      }
+      this.setData({
+        successDate: list3,
+        failDate: list4,
+        successList: list1,
+        failList: list2
+      })
+    }
+  })
   },
-
+  
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
