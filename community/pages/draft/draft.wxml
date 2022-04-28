@@ -22,12 +22,20 @@
 
 <view class="info-block flex relative ">
   <text>截止时间：</text>
-  <picker mode="date" header-text="选择时间" value="{{ddl}}"  bindchange="bindDateChange" style="position: relative; bottom: 7rpx;">
+  <picker  mode="multiSelector" value="{{start_time}}" data-type="ddl" data-param='ddl_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" style="position: relative; bottom: 7rpx;">
+    <view style="font-size: 25rpx;margin-top: 12rpx;margin-left: 3rpx;">
+        <text style="letter-spacing:3rpx; font-weight: 300;" wx:if="{{!ddl_p}}">请选择</text>
+        <text style="letter-spacing:3rpx; font-weight: 300;" wx:else>{{ddl_p}}</text>
+        <text style="color: rgb(121, 121, 121); margin-top: 50rpx; margin-left: 3rpx;" >▼</text>
+    </view>
+  </picker>
+
+  <!-- <picker mode="date" header-text="选择时间" value="{{ddl}}"  bindchange="bindDateChange" style="position: relative; bottom: 7rpx;">
     <view style="font-size: 25rpx;margin-top: 12rpx;margin-left: 3rpx;">
       <text style="letter-spacing:3rpx;font-weight: 300;">{{ddl}}</text>
       <text style="color: rgb(121, 121, 121); margin-top: 50rpx; margin-left: 3rpx;" >▼</text>
     </view>
-  </picker> 
+  </picker>  -->
 </view>
 
 <view class="info-block flex">

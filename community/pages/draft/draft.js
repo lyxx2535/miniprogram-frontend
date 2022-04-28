@@ -1,6 +1,7 @@
 // community/pages/draft/draft.js
 import * as api from '../../../utils/api'
 const dateUtil = require('../../../utils/chat')
+const dateTimePicker = require('../../../utils/dateTimer');
 
 Page({
 
@@ -8,7 +9,6 @@ Page({
    * 页面的初始数据
    */
   data: {
-    ddl: wx.getStorageSync('date'), // 截止时间
     type0: ["求帮跑腿", "求借", "求租"], // 求助类型
     type1: ["帮跑腿", "外借", "出租"], // 帮助类型
     typeIndex: 0, // 当前选中的type下标
@@ -22,7 +22,45 @@ Page({
     forumType: 1, // 求助贴：0，帮助贴：1
     scrollLeft: 0, // 滚动栏滚动距离
     windowWidth: 0, // 窗体宽度
+    // timePicker
+    start_time: '',
+    ddl: wx.getStorageSync('date'), // 截止时间
+    dateTimeArray: '', //时间数组
+    startYear: 2000, //最小年份
+    endYear: 2050, // 最大年份
+    ddl_p: wx.getStorageSync('date'), //显示的时间
   },
+
+  // 日期选择器事件
+  /**
+   * 选择时间
+   * @param {*} e 
+   */
+  changeDateTime(e) {
+    let dateTimeArray = this.data.dateTimeArray,
+      {
+        type,
+        param
+      } = e.currentTarget.dataset;
+    this.setData({
+      [type]: e.detail.value,
+      [param]: dateTimeArray[0][e.detail.value[0]] + '/' + dateTimeArray[1][e.detail.value[1]] + '/' + dateTimeArray[2][e.detail.value[2]] + ' ' + dateTimeArray[3][e.detail.value[3]] + ':' + dateTimeArray[4][e.detail.value[4]] + ':' + dateTimeArray[5][e.detail.value[5]]
+    });
+  },
+  changeDateTimeColumn(e) {
+    var dateArr = this.data.dateTimeArray,
+      {
+        type
+      } = e.currentTarget.dataset,
+      arr = this.data[type];
+    arr[e.detail.column] = e.detail.value;
+    dateArr[2] = dateTimePicker.getMonthDay(dateArr[0][arr[0]], dateArr[1][arr[1]]);
+    this.setData({
+      dateTimeArray: dateArr,
+      [type]: arr
+    });
+  },
+
   // 选择type
   chooseType(e){
     const _index = e.currentTarget.dataset.index
@@ -71,12 +109,12 @@ Page({
     })
   },
   // 点击日期选择器事件
-  bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      ddl: e.detail.value
-    })
-  },
+  // bindDateChange: function(e) {
+  //   console.log('picker发送选择改变，携带值为', e.detail.value)
+  //   this.setData({
+  //     ddl: e.detail.value
+  //   })
+  // },
   onChangeTap(e){
     this.setData({
       forumImg: e.detail.all
@@ -94,7 +132,7 @@ Page({
   async publish(){
     var d = new Date()
     const now = dateUtil.tsFormatTime(d,'Y/M/D h:m:s' )
-    const ddl = this.data.ddl + " 00:00:00"
+    const ddl = this.data.ddl_p
     const _data = {
       "comment": this.data.remark,
       "deadLine": ddl,
@@ -104,6 +142,7 @@ Page({
       "tag": this.data.tag[this.data.tagIndex],
       "urgency": this.data.emergency,
     }
+    console.log('发布数据：' + JSON.stringify(_data))
     let resData;
     // 先发布草稿
     if(this.data.forumType == 0){
@@ -202,6 +241,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    // 获取完整的年月日 时分秒，以及默认显示的数组
+    var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
+    this.setData({
+      start_time: obj.dateTime,
+      dateTimeArray: obj.dateTimeArray,
+    });
     // 根据options选择渲染求助还是帮忙
     this.setData({
       forumType: options.type
