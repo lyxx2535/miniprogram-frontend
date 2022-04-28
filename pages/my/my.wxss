@@ -31,13 +31,26 @@ page{
   margin-left: 7.5%;
 }
 .card-text{
+  position: relative;
   font-size: 35rpx;
   font-weight: bold;
   padding-top: 30rpx;
   padding-bottom: 30rpx;
   margin-left: 50rpx;
   letter-spacing: 4rpx;
+  z-index: 2;
 }
+.underline {
+  position: relative;
+  width: 80%;
+  height: 13rpx;
+  
+  border-radius: 10rpx;
+  z-index: 1;
+  margin-top: -42rpx;
+  margin-left: 45rpx;
+}
+
 .icon{
   padding-top: 30rpx;
   padding-bottom: 30rpx;
