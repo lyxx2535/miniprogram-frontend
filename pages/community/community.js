@@ -9,6 +9,9 @@ Page({
    * 页面的初始数据
    */
   data: {
+    now_state:null,
+    Help:IMG.ICNO_HELP,
+    Seek_Help:IMG.ICNO_SEEKHELP,
     navigationTitle: '互助社区', // 页面title
     navbar: ['求助区', '帮忙区'],
     currentTab: 0,
@@ -360,17 +363,49 @@ Page({
       url: '/community/pages/detail/detail?id=' + id + '&type=' + this.data.currentTab,
     })
   },
+  //跳转出选择栏
+  Popup(e){
+    var that = this 
+    that.setData({
+      now_state:true
+    })
+    console.log(that.data.now_state);
+  },
+   //点击背景触发的事件
+   hideModal(e){
+    //首先创建一个动画对象（让页面不在是一个“死页面”）
+    var animation = wx.createAnimation({
+      duration: 200,
+      timingFunction: "linear",
+      delay: 0
+    })
+    this.animation = animation
+    //animation.translateY(300)中的translate函数是表示在y轴上平移多少px，而后面紧接着的.step表示前面动画的完成，可以开始下一个动画了
+    animation.translateY(300).step()
+    this.setData({
+      /*这里的export函数是导出动画队列，在外面的wxml中会用到该数据，同时export方法在调用完后会清掉前面的动画操作 */
+      animationData: animation.export(),
+    })
+    /*这里的setTimeout是一个延时器，而它在这里延时了200ms，然后在执行动画 */
+    setTimeout(function () {
+      animation.translateY(0).step()
+      this.setData({
+        animationData: animation.export(),
+        now_state: false,
+      })
+    }.bind(this), 200)
+    var that = this
+   
+  },
   // 跳转至编辑页
-  toDraft(){
-    let type;
-    if(this.data.currentTab == undefined){
-      type = 0
-    }
-    else{
-      type = this.data.currentTab
-    }
+  toDraft1(){
     wx.navigateTo({
-      url: '/community/pages/draft/draft?type=' + type,
+      url: '/community/pages/draft/draft?type=1',
+    })
+  },
+  toDraft2(){
+    wx.navigateTo({
+      url: '/community/pages/draft/draft?type=0',
     })
   },
   async getSeekHelpList(){

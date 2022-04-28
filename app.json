@@ -1,11 +1,12 @@
 {
   "pages":[
+    "pages/community/community",
     "pages/index/index",
     "pages/my/my",
     "pages/login/login",
     "pages/userList/userList",
-    "pages/index_NA/index_NA",
-    "pages/community/community"
+    "pages/index_NA/index_NA"
+    
   ],
   "subpackages": [
     {

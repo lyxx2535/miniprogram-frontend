@@ -10,11 +10,12 @@
     </view>
     <!-- 右上角标签 -->
     <view class="navSide">
-        <button class="btn1" plain bindtap="toDraft" style="width: 50rpx;margin-left: 60rpx;">
+        <button class="btn1" plain bindtap="Popup" style="width: 50rpx;margin-left: 60rpx;">
             <image src = "{{NEW}}" style="width: 40rpx;height: 40rpx;"></image>
         </button>
     </view>
 </view>
+
 
 <!-- start: 搜索 -->
 <view style="position: relative; display: flex; margin-top: 30rpx;">
@@ -81,6 +82,7 @@
     </scroll-view>
   </view>
 
+
   <view wx:if="{{currentTab==0}}">
     <!--求助区-->
     <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 62vh;">
@@ -137,3 +139,27 @@
 
 </view>
 
+
+
+<!--点击后灰色背景的设置-->
+
+<view wx:if="{{now_state}}" class="background" 	catchtouchmove="touchMove" bindtap="hideModal"
+></view>
+
+<!--弹窗的出现-->
+<view animation="{{animationData}}" style="display: flex;" class="box" wx:if="{{now_state}}">
+<!--弹窗内部内容-->
+
+
+    <view class="v1">
+        <contact-button size="250" class='pos1' bindtap="toDraft1"></contact-button>
+            <image class="icon_help" mode ="widthFix" src="{{Help}}"></image> 
+        <view class="dbtext1">帮  忙</view>
+    </view>
+    <view class="v2">
+        <contact-button size="250" class='pos2' bindtap="toDraft2"></contact-button>
+            <image class="icon_seekhelp" mode ="widthFix" src="{{Seek_Help}}"></image> 
+        <view class="dbtext1">求  助</view>
+    </view>
+
+</view>
