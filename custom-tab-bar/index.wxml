@@ -1,5 +1,5 @@
 <!--components/tabBar1/tabBar1.wxml-->
-<cover-view class="tab-bar" style="background-color: {{tabBar.backgroundColor}};">
+<cover-view class="tab-bar" style="background-color: {{tabBar.backgroundColor}};" wx:if="{{show}}">
     <!-- 循环渲染Tab标签 -->
     <cover-view class="bg_tab"></cover-view>
     <cover-view class="tab"

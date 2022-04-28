@@ -376,33 +376,45 @@ Page({
     that.setData({
       now_state:true
     })
+    this.getTabBar().setData({
+      show: false,
+    });
     console.log(that.data.now_state);
   },
    //点击背景触发的事件
    hideModal(e){
-    //首先创建一个动画对象（让页面不在是一个“死页面”）
-    var animation = wx.createAnimation({
-      duration: 200,
-      timingFunction: "linear",
-      delay: 0
-    })
-    this.animation = animation
+    // //首先创建一个动画对象（让页面不在是一个“死页面”）
+    // var animation = wx.createAnimation({
+    //   duration: 200,
+    //   timingFunction: "linear",
+    //   delay: 0
+    // })
+    // this.animation = animation
     //animation.translateY(300)中的translate函数是表示在y轴上平移多少px，而后面紧接着的.step表示前面动画的完成，可以开始下一个动画了
-    animation.translateY(300).step()
-    this.setData({
-      /*这里的export函数是导出动画队列，在外面的wxml中会用到该数据，同时export方法在调用完后会清掉前面的动画操作 */
-      animationData: animation.export(),
-    })
+    // animation.translateY(300).step()
+    // this.setData({
+    //   /*这里的export函数是导出动画队列，在外面的wxml中会用到该数据，同时export方法在调用完后会清掉前面的动画操作 */
+    //   animationData: animation.export(),
+    // })
     /*这里的setTimeout是一个延时器，而它在这里延时了200ms，然后在执行动画 */
-    setTimeout(function () {
-      animation.translateY(0).step()
-      this.setData({
-        animationData: animation.export(),
-        now_state: false,
+    // setTimeout(function () {
+    //   animation.translateY(0).step()
+      // this.setData({
+      //   animationData: animation.export(),
+      //   now_state: false,
+      // })
+      var that = this 
+      that.setData({
+        now_state:false
       })
-    }.bind(this), 200)
-    var that = this
-  },
+      this.getTabBar().setData({
+        show: true,
+      });
+      
+      console.log(that.data.now_state);
+      
+    },
+   
   // 跳转至编辑页
   toDraft1(){
     wx.navigateTo({

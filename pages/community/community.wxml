@@ -143,21 +143,27 @@
 
 <!--点击后灰色背景的设置-->
 
-<view wx:if="{{now_state}}" class="background" 	catchtouchmove="touchMove" bindtap="hideModal"
+<view wx:if="{{now_state}}" class="tc_background" 	catchtouchmove="touchMove" bindtap="hideModal"
 ></view>
 
 <!--弹窗的出现-->
 <view animation="{{animationData}}" style="display: flex;" class="box" wx:if="{{now_state}}">
 <!--弹窗内部内容-->
-    <view class="v1">
-        <button size="250" class='pos1' bindtap="toDraft1"></button>
-            <image class="icon_help" mode ="widthFix" src="{{Help}}"></image> 
-        <view class="dbtext1">帮  忙</view>
-    </view>
-    <view class="v2">
+<view style="display: flex;">
+      <button class='v1' bindtap="toDraft2" style="height: 300rpx; width: 250rpx;margin-left: 475rpx;">
+        <image class="icon_help" mode ="widthFix" src="{{Seek_Help}}"></image> 
+        <view class="dbtext1">求助</view>
+      </button>
+      <button class='v1' bindtap="toDraft1" style="height: 300rpx; width: 250rpx;;margin-left: 50rpx;">
+        <image class="icon_help" mode ="widthFix" src="{{Help}}"></image> 
+        <view class="dbtext1">帮忙</view>
+      </button>
+</view>
+     
+    <!-- <view class="v2">
         <button size="250" class='pos2' bindtap="toDraft2"></button>
             <image class="icon_seekhelp" mode ="widthFix" src="{{Seek_Help}}"></image> 
         <view class="dbtext1">求  助</view>
-    </view>
+    </view> -->
 
 </view>

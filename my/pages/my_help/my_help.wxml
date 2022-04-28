@@ -10,7 +10,7 @@
     <view class="TipsZhezhao {{isTipsTrue?'isTipsShow':'isTipsHide'}}" bindtap='hideTips'>
         <view class='tipsZhezhaoContent'>
             <view class="triangle"></view>
-            <block wx:for="{{tips}}" wx:for-index="index">
+            <block wx:for="{{tips}}" wx:for-index="index" wx:key="index">
             <view class="tips_item">
                 <view><image src="{{item.icon}}" class="tips_icon"></image></view> 
                 <view class="tips_text">{{item.tip}}</view>

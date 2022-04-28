@@ -4,6 +4,7 @@ Component({
    * 组件的初始数据
    */
   data: {
+        show:true,
         selected: 0, // 选中的页面
         tabBar:{
           custom:true,
