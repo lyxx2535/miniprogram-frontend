@@ -1,11 +1,32 @@
 // pages/my/my.js
-Page({
+import * as api from '../../utils/api'
 
+Page({
+  // avatarUrl:
+  // gender: "不清楚"
+  // grade: "未选定"
+  // id: 1
+  // institute: "未选定"
+  // major: "未选定"
+  // name: "郑义"
+  // nickName: "寄给海的信"
+  // openId: "oe-0Q4xfMngiXvS76YCK0IeHqdHM"
+  // school: "未选定"
   /**
    * 页面的初始数据
    */
   data: {
      navigationTitle: '我的',
+     userInfo: {}, // 用户信息列表
+  },
+
+  // 获取用户信息
+  async getUserInfo(){
+    const res = await api._get_user_info()
+    console.log(res.data)
+    this.setData({
+      userInfo: res.data.data
+    })
   },
 
   /**
@@ -38,40 +59,7 @@ Page({
         selected: 3
       })
     }
+    this.getUserInfo()
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
-  }
 })

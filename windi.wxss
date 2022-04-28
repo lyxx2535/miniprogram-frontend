@@ -117,8 +117,8 @@
 .mt-50px {
   margin-top: 50px;
 }
-.mt-60px {
-  margin-top: 60px;
+.mt-100rpx {
+  margin-top: 100rpx;
 }
 .mt-20px {
   margin-top: 20px;

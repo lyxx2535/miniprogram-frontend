@@ -53,11 +53,15 @@ Page({
       const res = await api._search_sh_by_keyWord('借')
       console.log(res.data)
     },
+    // async searchHistory(){
+    //   const res = await api._get_sh_search_history()
+    //   console.log('求助历史记录：' + JSON.stringify(res.data))
+    //   const res1 = await api._get_rh_search_history()
+    //   console.log('帮助历史记录：' + JSON.stringify(res1.data))
+    // },
     async searchHistory(){
-      const res = await api._get_sh_search_history()
-      console.log('求助历史记录：' + JSON.stringify(res.data))
-      const res1 = await api._get_rh_search_history()
-      console.log('帮助历史记录：' + JSON.stringify(res1.data))
+      const res = await api._get_user_info()
+      console.log(res.data)
     },
   onLoad() {
     if (wx.getUserProfile) {
