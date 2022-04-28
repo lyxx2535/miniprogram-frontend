@@ -1,0 +1,82 @@
+.question_btn {
+    background-color: transparent;
+    float: right;
+}
+.question_btn::after {
+    border: none;
+    border-color: transparent;
+  }
+
+.question_img {
+    position: relative;
+    display:inline-block;
+    top: 4rpx;
+    height: 25rpx;
+    width: 25rpx;
+}
+
+.question_text {
+    margin-left: 10rpx;
+    font-size: 20rpx;
+    letter-spacing: 2rpx;
+    font-weight: 300;
+    color:#bebebe;
+    word-break:keep-all;
+    white-space:nowrap;
+}
+
+.isTipsShow{
+    display: block;
+}
+.isTipsHide{
+    display: none;
+}
+.TipsZhezhao{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color:rgba(0, 0, 0, .3);
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+.tipsZhezhaoContent{
+    padding: 20rpx 20rpx;
+    width: 80%;
+    background: #ffffff;
+    margin: 12% auto;
+    border-radius: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+}
+.tips_item {
+    margin-left: 25rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    display: flex;
+}
+.tips_icon {
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.tips_text {
+    font-size: 24rpx;
+    letter-spacing: 3rpx;
+    margin-left: 15rpx;
+    font-weight: 300;
+}
+
+.triangle {
+    margin-left: 380rpx;
+    margin-top: -38rpx;
+    margin-bottom: 20rpx;
+    width: 0rpx;
+    height: 0rpx;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+    border-width: 10rpx;
+}
