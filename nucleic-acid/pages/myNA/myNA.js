@@ -11,22 +11,14 @@ Page({
     img_url: {
       notice: IMG.NOTICE,
     },
-<<<<<<< Updated upstream
-    successDate :[],//“已完成”的核酸日期
-    failDate:[],//“未完成”的核酸日期
-=======
-
-    successDate :[],//“已完成”的核酸日期 标记为绿色
-    nowDate:[],//“未完成”的核酸日期 标记为红色
->>>>>>> Stashed changes
+    coloredDate :[],//“已完成”的核酸日期
     successList:[],//“已完成”的核酸列表
-    nowList:[],//“进行中”的核酸列表
-    finished: false,//表示当前按钮选择的是“进行中”还是“已完成”
+    failList:[],//“未完成”的核酸列表
+    finished: false,//表示当前按钮选择的是“未完成”还是“已完成”
   },
   afterCalendarRender(e) {
     const calendar = this.selectComponent('#calendar').calendar
-    calendar.setDateStyle(this.data.successDate)
-    calendar.setDateStyle(this.data.nowDate)
+    calendar.setDateStyle(this.data.coloredDate)
   },
   // 点击按钮事件
   reportMedia1(e){
@@ -59,7 +51,6 @@ Page({
         let list1 = []
         let list2 = []
         let list3 = []
-        let list4 = []
         for(let item in resSet){
           let temp1 = {}
           let temp2 = {}
@@ -82,9 +73,9 @@ Page({
               }
               list1.push(temp1)
               break
-            case '进行中':
+            case '未完成':
               temp2.class = 'fail'
-              list4.push(temp2)
+              list3.push(temp2)
               if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
                 temp1.status =  {appointment: true, detection: false, report: true}
               }else if(resSet[item].bookingFinishStatus!='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
@@ -97,6 +88,8 @@ Page({
               list2.push(temp1)
               break
             case '进行中':
+              temp2.class = 'now'
+              list3.push(temp2)
               if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
                 temp1.status =  {appointment: true, detection: false, report: true}
               }else if(resSet[item].bookingFinishStatus!='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
@@ -110,12 +103,11 @@ Page({
         }
       }
       this.setData({
-        successDate: list3,
-        nowDate: list4,
+        coloredDate: list3,
         successList: list1,
-        nowList: list2
+        failList: list2
       })
-      console.log(this.data.list4)
+      console.log(this.data.coloredDate)
     }
   })
   },

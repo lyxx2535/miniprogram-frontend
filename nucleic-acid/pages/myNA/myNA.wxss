@@ -31,6 +31,10 @@ page {
   border-radius: 50%;
   background-color: #C7EDCC;
 }
+.now{
+  border-radius: 50%;
+  background-color: #fff8af;
+}
 .choose{
   background-color: #000000;
   color: #FFFFFF;
