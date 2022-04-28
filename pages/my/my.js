@@ -12,9 +12,7 @@ Page({
   // nickName: "寄给海的信"
   // openId: "oe-0Q4xfMngiXvS76YCK0IeHqdHM"
   // school: "未选定"
-  /**
-   * 页面的初始数据
-   */
+
   data: {
      navigationTitle: '我的',
      userInfo: {}, // 用户信息列表
