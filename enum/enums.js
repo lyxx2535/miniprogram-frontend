@@ -44,7 +44,8 @@ const SH_SEARCH_HISTORY = '/seek-help/history/'
 const RH_SEARCH_HISTORY = '/help-info/history/'
 const DELETE_SH_HISTORY_BY_USER = '/seek-help/delete-all-history'
 const DELETE_RH_HISTORY_BY_USER = '/help-info/delete-all-history'
-
+const DELETE_RH_FORUM_BY_ID = '/help-info/delete/'
+const DELETE_SH_FORUM_BY_ID = '/seek-help/delete/'
 
 export {
   LOGIN_API,
@@ -84,5 +85,7 @@ export {
   SH_SEARCH_HISTORY,
   DELETE_RH_HISTORY_BY_USER,
   DELETE_SH_HISTORY_BY_USER,
+  DELETE_RH_FORUM_BY_ID,
+  DELETE_SH_FORUM_BY_ID,
   
 }

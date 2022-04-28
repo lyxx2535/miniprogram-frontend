@@ -119,13 +119,12 @@ video{
 .cu-chat .cu-item>.main {
 	max-width: calc(100% - 260rpx);
 	margin: 0 40rpx;
-	display: flex;
+  display: flex;
 	align-items: center;
 }
 
 .cu-chat .cu-item>image {
   height: 320rpx;
-
 }
 
 page{
@@ -141,7 +140,8 @@ page{
 }
 
 .bg-white{
-  background:#fff
+  background:#fff;
+
 }
 
 .cu-chat .cu-item>.main .content {

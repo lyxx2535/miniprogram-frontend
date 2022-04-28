@@ -13,6 +13,21 @@ Page({
     },
     async getTestNum(){
       const res = await api._test_count();
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
       const count = res.data.data
       this.setData({
         num_detection: count
@@ -20,6 +35,21 @@ Page({
     },
     async getReportNum(){
       const res = await api._report_count();
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
       const count = res.data.data
       this.setData({
         num_report: count
@@ -27,6 +57,21 @@ Page({
     },
     async getBookNum(){
       const res = await api._book_count();
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
       const count = res.data.data
       this.setData({
         num_appointment: count

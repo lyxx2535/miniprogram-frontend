@@ -99,7 +99,7 @@ Page({
   linkSocket() {
     let that = this
     wx.connectSocket({
-      // todo: 这里需要改成: web-server/{senderId}。roomId可以删除
+
       url: API.WS_BASE + `web-server/${this.data.senderId}`,
       // url: API.WS_BASE + `webSocketOneToOne/${this.data.senderId}/${this.data.roomId}`,
       success() {
@@ -467,35 +467,52 @@ Page({
                                    this.data.senderId,
                                    this.data.pageNo,
                                    this.data.pageSize);
-    console.log('拉取页码：' + this.data.pageNo)
-    const records = data.data.data;
-    if(records){
-      if(records.length < this.data.pageSize){
-        this._noDataing = true
-      }
-      for(let index in records){
-        const obj = records[index];
-        // receiverId设为null，用于标注小菊花
-        obj.receiverId = null;
-        obj.content = obj.content;
-        obj.senderId = obj.senderId;
-        obj.id = obj.id;
-        obj.isShowTime = obj.isShowTime;
-        obj.sendTime = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
-        // 这里需要逆序添加 保证最新的消息永远在list的最后面
-        this.data.list.unshift(obj);
-      }
-      // 页数 + 1
-      this.setData({
-        list: this.data.list,
-        triggered: false,
-        pageNo: this.data.pageNo + 1
-      },function(){
-        if(ident === "init" ){              
-          this.getScollBottom();
+    if(data.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
         }
       })
-      console.log('本地缓存聊天记录：' + JSON.stringify(this.data.list));
+    }
+    else{
+      console.log('拉取页码：' + this.data.pageNo)
+      const records = data.data.data;
+      if(records){
+        if(records.length < this.data.pageSize){
+          this._noDataing = true
+        }
+        for(let index in records){
+          const obj = records[index];
+          // receiverId设为null，用于标注小菊花
+          obj.receiverId = null;
+          obj.content = obj.content;
+          obj.senderId = obj.senderId;
+          obj.id = obj.id;
+          obj.isShowTime = obj.isShowTime;
+          obj.sendTime = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
+          // 这里需要逆序添加 保证最新的消息永远在list的最后面
+          this.data.list.unshift(obj);
+        }
+        // 页数 + 1
+        this.setData({
+          list: this.data.list,
+          triggered: false,
+          pageNo: this.data.pageNo + 1
+        },function(){
+          if(ident === "init" ){              
+            this.getScollBottom();
+          }
+        })
+        console.log('本地缓存聊天记录：' + JSON.stringify(this.data.list));
+      }
     }
   }
 })

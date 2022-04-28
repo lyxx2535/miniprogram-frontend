@@ -14,7 +14,7 @@
   <text class="text_detail">预约时间：{{item.time}}前</text>
 
   <view class="flex flex-grow-0 relative">
-  <!-- TODO：激活按钮绑定跳转事件和处理事件 -->
+
     <button  wx:if="{{item.status.ongoing}}" class="btn btn_1" style="background-color: black; color: white;" bindtap="goToBook" data-url="{{item.url}}" data-index="{{index}}">前往预约</button>
     <button  wx:if="{{item.status.ongoing}}" class="btn btn_2" style="background-color: #d0cece;" bindtap="tapAppointment" data-index="{{index}}">我已预约</button>
     <button  wx:if="{{item.status.over}}" class="btn btn_1" style="background-color: #f0efef; color: #d0cece;">前往预约</button>
@@ -28,7 +28,7 @@
   <view class="flex relative">
     <image src="{{img_url.remind}}" class="inline-block icon_remind"></image>
     <text class="text_remind" >预约提醒</text>
-    <!-- TODO：switch绑定处理事件 -->
+
     <view class="flex-1 text-right relative" style="right: 30rpx;margin-top: 4rpx;">
       <switch wx:if="{{item.status.over}}" disabled="true"></switch>
       <switch wx:if="{{item.status.miss}}" disabled="true"></switch>

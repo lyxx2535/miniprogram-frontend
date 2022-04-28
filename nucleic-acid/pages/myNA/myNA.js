@@ -49,6 +49,7 @@ Page({
       method: "GET",
       success: (res) => {
         const resSet = res.data.data
+        console.log(res.data)
         let list1 = []
         let list2 = []
         let list3 = []
@@ -89,6 +90,17 @@ Page({
               }
               list2.push(temp1)
               break
+            case '进行中':
+              if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
+                temp1.status =  {appointment: true, detection: false, report: true}
+              }else if(resSet[item].bookingFinishStatus!='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
+                temp1.status =  {appointment: false, detection: false, report: true}
+              }else if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus!='已完成'){
+                temp1.status =  {appointment: true, detection: false, report: false}
+              }else{
+                temp1.status =  {appointment: false, detection: false, report: false}
+              }
+              list2.push(temp1)
         }
       }
       this.setData({
@@ -97,6 +109,7 @@ Page({
         successList: list1,
         failList: list2
       })
+      console.log(this.data.list4)
     }
   })
   },

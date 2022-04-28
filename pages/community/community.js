@@ -50,6 +50,21 @@ Page({
   async getSearchHistory(){
     if(this.data.currentTab == 0){
       const res = await api._get_sh_search_history()
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
       console.log('求助历史记录：' + JSON.stringify(res.data))
       this.setData({
         history: res.data.data
@@ -57,6 +72,21 @@ Page({
     }
     else{
       const res = await api._get_rh_search_history()
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
       console.log('帮助历史记录：' + JSON.stringify(res.data))
       this.setData({
         history: res.data.data
@@ -81,7 +111,22 @@ Page({
       return
     }
     const res = await api._search_sh_by_keyWord(value)
-    console.log('搜素求助贴：' + res.data)
+    if(res.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
+        }
+      })
+    }
+    console.log('搜索求助贴：' + JSON.stringify(res.data))
     this.setData({
       searchRes: res.data.data
     })
@@ -95,7 +140,22 @@ Page({
       return
     }
     const res = await api._search_rh_by_keyWord(value)
-    console.log('搜素帮助贴：' + res.data)
+    if(res.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
+        }
+      })
+    }
+    console.log('搜索帮助贴：' + JSON.stringify(res.data))
     this.setData({
       searchRes: res.data.data
     })
@@ -131,10 +191,40 @@ Page({
   async deleteHistoryByUser(){
     if(this.data.currentTab == 0){
       const res = await api._delete_sh_search_history_byUser()
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
       console.log('删除求助历史记录：' + JSON.stringify(res.data))
     }
     else{
       const res = await api._delete_rh_search_history_byUser()
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
       console.log('删除帮助历史记录：' + JSON.stringify(res.data))
     }
   },
@@ -187,6 +277,13 @@ Page({
     app.globalData.currentTab = e.currentTarget.dataset.idx;
     // 刷新历史记录
     this.getSearchHistory()
+    // 刷新搜索结果
+    if(this.data.currentTab == 0){
+      this.searchSH(this.data.keyWord)
+    }
+    else{
+      this.searchRH(this.data.keyWord)
+    }
     // TODO: 刷新算法推荐
   },
   refreshData(index){
@@ -375,6 +472,21 @@ Page({
   },
   async getSeekHelpList(){
     const res = await api._query_sh_list_byTag();
+    if(res.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
+        }
+      })
+    }
     const resData = res.data.data;
     this.setData({
       forumSeekHelp: resData
@@ -384,6 +496,21 @@ Page({
   },
   async getRenderHelpList(){
     const res = await api._query_rh_list_byTag();
+    if(res.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
+        }
+      })
+    }
     const resData = res.data.data;
     this.setData({
       forumRenderHelp: resData
