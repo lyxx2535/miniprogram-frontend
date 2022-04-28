@@ -11,16 +11,22 @@ Page({
     img_url: {
       notice: IMG.NOTICE,
     },
+<<<<<<< Updated upstream
     successDate :[],//“已完成”的核酸日期
     failDate:[],//“未完成”的核酸日期
+=======
+
+    successDate :[],//“已完成”的核酸日期 标记为绿色
+    nowDate:[],//“未完成”的核酸日期 标记为红色
+>>>>>>> Stashed changes
     successList:[],//“已完成”的核酸列表
-    failList:[],//“未完成”的核酸列表
-    finished: false,//表示当前按钮选择的是“未完成”还是“已完成”
+    nowList:[],//“进行中”的核酸列表
+    finished: false,//表示当前按钮选择的是“进行中”还是“已完成”
   },
   afterCalendarRender(e) {
     const calendar = this.selectComponent('#calendar').calendar
     calendar.setDateStyle(this.data.successDate)
-    calendar.setDateStyle(this.data.failDate)
+    calendar.setDateStyle(this.data.nowDate)
   },
   // 点击按钮事件
   reportMedia1(e){
@@ -76,7 +82,7 @@ Page({
               }
               list1.push(temp1)
               break
-            case '未完成':
+            case '进行中':
               temp2.class = 'fail'
               list4.push(temp2)
               if(resSet[item].bookingFinishStatus=='已完成'&&resSet[item].reportingFinishStatus=='已完成'){
@@ -105,9 +111,9 @@ Page({
       }
       this.setData({
         successDate: list3,
-        failDate: list4,
+        nowDate: list4,
         successList: list1,
-        failList: list2
+        nowList: list2
       })
       console.log(this.data.list4)
     }
