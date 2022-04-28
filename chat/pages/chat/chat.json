@@ -1,5 +1,7 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "l-textarea": "/miniprogram_npm/lin-ui/textarea/index"
+  },
   "pageOrientation": "auto",
   "navigationBarTitleText": "111"
 }
