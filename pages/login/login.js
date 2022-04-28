@@ -44,6 +44,9 @@ Page({
     wx.setStorageSync('token', res.data.data.token)
     console.log('exe')
     console.log('token: ' + wx.getStorageSync('token'));
+    wx.switchTab({
+      url: '/pages/index_NA/index_NA',
+    })
   },
   /**
    * 生命周期函数--监听页面显示
