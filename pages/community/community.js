@@ -61,12 +61,30 @@ Page({
   },
 
   // pjz - 搜索
+  async getSearchHistory(){
+    if(this.data.currentTab == 0){
+      const res = await api._get_sh_search_history()
+      console.log('求助历史记录：' + JSON.stringify(res.data))
+      this.setData({
+        history: res.data.data
+      })
+    }
+    else{
+      const res = await api._get_rh_search_history()
+      console.log('帮助历史记录：' + JSON.stringify(res.data))
+      this.setData({
+        history: res.data.data
+      })
+    }
+  },
   // 开始输入
   onSearch(){
     console.log('exe')
     this.setData({
       isSearch: true
     })
+    // 获取搜索记录
+    this.getSearchHistory()
   },
   async searchSH(value){
     // handle空串
@@ -124,13 +142,13 @@ Page({
       isShowRes: false
     })
   },
-  // 清楚历史记录
+  // 清除历史记录
   clearHistory(){
     this.setData({
       history: []
     })
   },
-  // 刷新算法推荐
+  // TODO: 刷新算法推荐
   refreshTag(){
 
   },
@@ -152,6 +170,9 @@ Page({
     })
     //全局变量
     app.globalData.currentTab = e.currentTarget.dataset.idx;
+    // 刷新历史记录
+    this.getSearchHistory()
+    // TODO: 刷新算法推荐
   },
   refreshData(index){
     // 改变当前list视图

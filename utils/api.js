@@ -404,7 +404,7 @@ const _search_rh_by_keyWord = (_keyWord) => {
 // 获取用户搜索帮助的历史记录，需要token
 const _get_rh_search_history = () => {
   return httpRequest({
-    url: API.RH_SEARCH_HISTORY + 5,
+    url: API.RH_SEARCH_HISTORY + 15,
     method: 'GET',
     header:{
       "content-type": "application/json",
@@ -417,7 +417,7 @@ const _get_rh_search_history = () => {
 // 获取用户搜索求助的历史记录，需要token
 const _get_sh_search_history = () => {
   return httpRequest({
-    url: API.SH_SEARCH_HISTORY + 5,
+    url: API.SH_SEARCH_HISTORY + 15,
     method: 'GET',
     header:{
       "content-type": "application/json",
