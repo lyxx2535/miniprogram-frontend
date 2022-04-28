@@ -108,21 +108,6 @@ Page({
     // 先发布草稿
     if(this.data.forumType == 0){
       const res = await api._publish_sh_draft(_data);
-      if(res.data.code == 401){
-        wx.showToast({
-          title: '用户认证已过期，请重新登录',
-          icon: 'none',
-          duration: 3000,
-          success: function () {
-            setTimeout(function () {
-                //要延时执行的代码
-                wx.reLaunch({
-                    url: '/pages/login/login'
-                })
-            }, 3000) //延迟时间 
-          }
-        })
-      }
       resData = res.data.data;
       this.setData({
         id: resData.id
@@ -130,21 +115,6 @@ Page({
     }
     else{
       const res = await api._publish_rh_draft(_data);
-      if(res.data.code == 401){
-        wx.showToast({
-          title: '用户认证已过期，请重新登录',
-          icon: 'none',
-          duration: 3000,
-          success: function () {
-            setTimeout(function () {
-                //要延时执行的代码
-                wx.reLaunch({
-                    url: '/pages/login/login'
-                })
-            }, 3000) //延迟时间 
-          }
-        })
-      }
       resData = res.data.data;
       this.setData({
         id: resData.id
@@ -153,11 +123,15 @@ Page({
     console.log('发布草稿：' + JSON.stringify(resData))
     // 再上传图片
     const filePaths = this.data.forumImg
-    this.uploadImg(filePaths)
-    // 上传成功 返回上一级页面，否则不跳转
-    wx.navigateBack({
-      delta:1 //返回上一级页面
-    })
+    // 如果没上传图片，直接返回之前的页面
+    if(filePaths.length == 0){
+      wx.switchTab({
+        url: '/pages/community/community',
+      })
+    }
+    else{
+      this.uploadImg(filePaths)
+    }
   },
   // linUI上传图片接口
   async uploadImg(filePaths){
@@ -166,40 +140,10 @@ Page({
       if(this.data.forumType == 0){
         const res = await api._upload_sh_draft_img(filePaths[item], this.data.id);
         resData = res.data
-        if(res.data.code == 401){
-          wx.showToast({
-            title: '用户认证已过期，请重新登录',
-            icon: 'none',
-            duration: 3000,
-            success: function () {
-              setTimeout(function () {
-                  //要延时执行的代码
-                  wx.reLaunch({
-                      url: '/pages/login/login'
-                  })
-              }, 3000) //延迟时间 
-            }
-          })
-        }
       }
       else{
         const res = await api._upload_rh_draft_img(filePaths[item], this.data.id);
         resData = res.data
-        if(res.data.code == 401){
-          wx.showToast({
-            title: '用户认证已过期，请重新登录',
-            icon: 'none',
-            duration: 3000,
-            success: function () {
-              setTimeout(function () {
-                  //要延时执行的代码
-                  wx.reLaunch({
-                      url: '/pages/login/login'
-                  })
-              }, 3000) //延迟时间 
-            }
-          })
-        }
       }
       if(resData.length == 0){
         console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(resData))
@@ -214,8 +158,8 @@ Page({
             duration: 3000,
             success: () => {
               // 上传成功 返回上一级页面，否则不跳转
-              wx.navigateBack({
-                delta:1 //返回上一级页面
+              wx.switchTab({
+                url: '/pages/community/community',
               })
             }
           })

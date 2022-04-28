@@ -26,21 +26,6 @@ Page({
     // 不需要参数了，携带token查
     const res = await _get_user_friendList();
     console.log(res.data);
-    if(res.data.code == 401){
-      wx.showToast({
-        title: '用户认证已过期，请重新登录',
-        icon: 'none',
-        duration: 3000,
-        success: function () {
-          setTimeout(function () {
-              //要延时执行的代码
-              wx.reLaunch({
-                  url: '/pages/login/login'
-              })
-          }, 3000) //延迟时间 
-        }
-      })
-    }
     if(res.data.code == 200){
       this.setData({
         list: res.data.data,

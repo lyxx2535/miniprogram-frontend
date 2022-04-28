@@ -467,22 +467,6 @@ Page({
                                    this.data.senderId,
                                    this.data.pageNo,
                                    this.data.pageSize);
-    if(data.data.code == 401){
-      wx.showToast({
-        title: '用户认证已过期，请重新登录',
-        icon: 'none',
-        duration: 3000,
-        success: function () {
-          setTimeout(function () {
-              //要延时执行的代码
-              wx.reLaunch({
-                  url: '/pages/login/login'
-              })
-          }, 3000) //延迟时间 
-        }
-      })
-    }
-    else{
       console.log('拉取页码：' + this.data.pageNo)
       const records = data.data.data;
       if(records){
@@ -513,6 +497,5 @@ Page({
         })
         console.log('本地缓存聊天记录：' + JSON.stringify(this.data.list));
       }
-    }
   }
 })

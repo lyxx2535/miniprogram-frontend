@@ -46,21 +46,6 @@ Page({
   async getForumInfo(type){
     if(type == 0){
       const res = await api._query_sh_forum_byId(this.data.forumId)
-      if(res.data.code == 401){
-        wx.showToast({
-          title: '用户认证已过期，请重新登录',
-          icon: 'none',
-          duration: 3000,
-          success: function () {
-            setTimeout(function () {
-                //要延时执行的代码
-                wx.reLaunch({
-                    url: '/pages/login/login'
-                })
-            }, 3000) //延迟时间 
-          }
-        })
-      }
       const resData = res.data.data;
       this.setData({
         userId: resData.userId,
@@ -69,21 +54,6 @@ Page({
     }
     if(type == 1){
       const res = await api._query_rh_forum_byId(this.data.forumId)
-      if(res.data.code == 401){
-        wx.showToast({
-          title: '用户认证已过期，请重新登录',
-          icon: 'none',
-          duration: 3000,
-          success: function () {
-            setTimeout(function () {
-                //要延时执行的代码
-                wx.reLaunch({
-                    url: '/pages/login/login'
-                })
-            }, 3000) //延迟时间 
-          }
-        })
-      }
       const resData = res.data.data;
       this.setData({
         userId: resData.userId,

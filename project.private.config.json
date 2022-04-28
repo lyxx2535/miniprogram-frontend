@@ -56,7 +56,7 @@
         },
         {
           "name": "",
-          "pathName": "community/pages/search/search",
+          "pathName": "pages/userList/userList",
           "query": "",
           "launchMode": "default",
           "scene": null
