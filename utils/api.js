@@ -453,6 +453,32 @@ const _delete_rh_search_history_byUser = () => {
     showLoading: false
   })
 }
+// 删除用户发布的求助帖，需要token
+const _delete_sh_forum_byId = (_id) => {
+  return httpRequest({
+    url: API.DELETE_SH_FORUM_BY_ID + _id,
+    method: 'DELETE',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 删除用户发布的帮助贴，需要token
+const _delete_rh_forum_byId = (_id) => {
+  return httpRequest({
+    url: API.DELETE_RH_FORUM_BY_ID + _id,
+    method: 'DELETE',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 
 export {
   _login,
@@ -489,5 +515,7 @@ export {
   _get_sh_search_history,
   _delete_rh_search_history_byUser,
   _delete_sh_search_history_byUser,
+  _delete_rh_forum_byId,
+  _delete_sh_forum_byId,
   
 }

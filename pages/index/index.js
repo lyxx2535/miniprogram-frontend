@@ -63,6 +63,12 @@ Page({
       const res = await api._get_user_info()
       console.log(res.data)
     },
+    async deleteForum(){
+      const res = await api._delete_rh_forum_byId(128)
+      const res1 = await api._delete_sh_forum_byId(115)
+      console.log(res.data);
+      console.log(res1.data);
+    },
   onLoad() {
     if (wx.getUserProfile) {
       this.setData({

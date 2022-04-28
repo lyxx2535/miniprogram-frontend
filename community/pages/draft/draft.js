@@ -105,30 +105,59 @@ Page({
       "urgency": this.data.emergency,
     }
     let resData;
-    // 先上传图片
-    const filePaths = this.data.forumImg
-    const temp = this.uploadImg(filePaths)
-    // 再发布草稿
-    if(temp == 1){
-      if(this.data.forumType == 0){
-        const res = await api._publish_sh_draft(_data);
-        resData = res.data.data;
-        this.setData({
-          id: resData.id
+    // 先发布草稿
+    if(this.data.forumType == 0){
+      const res = await api._publish_sh_draft(_data);
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
         })
       }
-      else{
-        const res = await api._publish_rh_draft(_data);
-        resData = res.data.data;
-        this.setData({
-          id: resData.id
-        })
-      }
-      console.log('发布草稿：' + JSON.stringify(resData))
-      wx.navigateBack({
-        delta:1 //返回上一级页面
+      resData = res.data.data;
+      this.setData({
+        id: resData.id
       })
     }
+    else{
+      const res = await api._publish_rh_draft(_data);
+      if(res.data.code == 401){
+        wx.showToast({
+          title: '用户认证已过期，请重新登录',
+          icon: 'none',
+          duration: 3000,
+          success: function () {
+            setTimeout(function () {
+                //要延时执行的代码
+                wx.reLaunch({
+                    url: '/pages/login/login'
+                })
+            }, 3000) //延迟时间 
+          }
+        })
+      }
+      resData = res.data.data;
+      this.setData({
+        id: resData.id
+      })
+    }
+    console.log('发布草稿：' + JSON.stringify(resData))
+    // 再上传图片
+    const filePaths = this.data.forumImg
+    this.uploadImg(filePaths)
+    // 上传成功 返回上一级页面，否则不跳转
+    wx.navigateBack({
+      delta:1 //返回上一级页面
+    })
   },
   // linUI上传图片接口
   async uploadImg(filePaths){
@@ -137,20 +166,58 @@ Page({
       if(this.data.forumType == 0){
         const res = await api._upload_sh_draft_img(filePaths[item], this.data.id);
         resData = res.data
+        if(res.data.code == 401){
+          wx.showToast({
+            title: '用户认证已过期，请重新登录',
+            icon: 'none',
+            duration: 3000,
+            success: function () {
+              setTimeout(function () {
+                  //要延时执行的代码
+                  wx.reLaunch({
+                      url: '/pages/login/login'
+                  })
+              }, 3000) //延迟时间 
+            }
+          })
+        }
       }
       else{
         const res = await api._upload_rh_draft_img(filePaths[item], this.data.id);
         resData = res.data
+        if(res.data.code == 401){
+          wx.showToast({
+            title: '用户认证已过期，请重新登录',
+            icon: 'none',
+            duration: 3000,
+            success: function () {
+              setTimeout(function () {
+                  //要延时执行的代码
+                  wx.reLaunch({
+                      url: '/pages/login/login'
+                  })
+              }, 3000) //延迟时间 
+            }
+          })
+        }
       }
       if(resData.length == 0){
         console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(resData))
+        this.deleteForum()
       }
       else{
         const resJson = JSON.parse(resData)
         console.log(resJson);
         if(resJson.code == 200){
           wx.showToast({
-            title: '上传成功！'
+            title: '上传成功！',
+            duration: 3000,
+            success: () => {
+              // 上传成功 返回上一级页面，否则不跳转
+              wx.navigateBack({
+                delta:1 //返回上一级页面
+              })
+            }
           })
         }
         else{
@@ -158,12 +225,23 @@ Page({
             title: '上传失败！',
             icon: 'error'
           })
-          return -1
+          this.deleteForum()
         }
       }
       this.finishPublish()
     }
-    return 1
+  },
+  async deleteForum(){
+    // 删求助帖
+    if(this.data.forumType == 0){
+      const res = await api._delete_sh_forum_byId(this.data.id)
+      console.log('已删除异常发布帖：' + res.data)
+    }
+    // 删帮忙贴
+    else{
+      const res = await api._delete_rh_forum_byId(this.data.id)
+      console.log('已删除异常发布帖：' + res.data)
+    }
   },
   finishPublish(){
     this.setData({

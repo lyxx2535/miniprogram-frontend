@@ -24,4 +24,5 @@
   <button bindtap="checkMsg" class="mt-20px">查看服务消息</button>
   <button bindtap="searchForum" class="mt-20px">关键词搜帖</button>
   <button bindtap="searchHistory" class="mt-20px">获取搜索记录</button>
+  <button bindtap="deleteForum" class="mt-20px">删除帖子</button>
 </view>

@@ -50,6 +50,21 @@ Page({
   // 向服务端请求发送提醒
   async add_remind(_data){
     const res = await api._add_remind(_data);
+    if(res.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
+        }
+      })
+    }
     console.log(res);
     wx.showToast({
       title: '已开启提醒',
@@ -144,6 +159,21 @@ Page({
 
   async getNucleicInfo(){
     const res = await api._get_book_inform();
+    if(res.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
+        }
+      })
+    }
     const resSet = res.data.data
     console.log(res)
     let obj = []
@@ -240,7 +270,7 @@ Page({
       remindContent: this.data.list[e.currentTarget.dataset.index].name,
       start_time_p2: this.data.list[e.currentTarget.dataset.index].time
     })
-    // TODO:开启服务提醒 封装相关api
+    // 开启服务提醒 封装相关api
     const index = e.currentTarget.dataset.index
     if(!this.data.list[index].isOpenRemind){
       var currentStatus = e.currentTarget.dataset.status; 

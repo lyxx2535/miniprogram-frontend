@@ -34,9 +34,26 @@ Page({
   async getUserInfo(){
     const res = await api._get_user_info()
     console.log(res.data)
-    this.setData({
-      userInfo: res.data.data
-    })
+    if(res.data.code == 200){
+      this.setData({
+        userInfo: res.data.data
+      })
+    }
+    if(res.data.code == 401){
+      wx.showToast({
+        title: '用户认证已过期，请重新登录',
+        icon: 'none',
+        duration: 3000,
+        success: function () {
+          setTimeout(function () {
+              //要延时执行的代码
+              wx.reLaunch({
+                  url: '/pages/login/login'
+              })
+          }, 3000) //延迟时间 
+        }
+      })
+    }
   },
 
   /**
