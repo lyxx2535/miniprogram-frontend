@@ -1,4 +1,5 @@
 // community/pages/community/community.js
+import { DELETE_RH_HISTORY_BY_USER } from '../../enum/enums'
 import * as IMG from '../../enum/imageUrl'
 import * as api from '../../utils/api'
 const app = getApp()
@@ -142,11 +143,22 @@ Page({
       isShowRes: false
     })
   },
+  async deleteHistoryByUser(){
+    if(this.data.currentTab == 0){
+      const res = await api._delete_sh_search_history_byUser()
+      console.log('删除求助历史记录：' + JSON.stringify(res.data))
+    }
+    else{
+      const res = await api._delete_rh_search_history_byUser()
+      console.log('删除帮助历史记录：' + JSON.stringify(res.data))
+    }
+  },
   // 清除历史记录
   clearHistory(){
     this.setData({
       history: []
     })
+    this.deleteHistoryByUser()
   },
   // TODO: 刷新算法推荐
   refreshTag(){

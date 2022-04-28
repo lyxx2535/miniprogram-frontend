@@ -427,6 +427,32 @@ const _get_sh_search_history = () => {
     showLoading: false
   })
 }
+// 删除用户搜索求助的历史记录，需要token
+const _delete_sh_search_history_byUser = () => {
+  return httpRequest({
+    url: API.DELETE_SH_HISTORY_BY_USER,
+    method: 'DELETE',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 删除用户搜索求助的历史记录，需要token
+const _delete_rh_search_history_byUser = () => {
+  return httpRequest({
+    url: API.DELETE_RH_HISTORY_BY_USER,
+    method: 'DELETE',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 
 export {
   _login,
@@ -461,5 +487,7 @@ export {
   _search_sh_by_keyWord,
   _get_rh_search_history,
   _get_sh_search_history,
+  _delete_rh_search_history_byUser,
+  _delete_sh_search_history_byUser,
   
 }

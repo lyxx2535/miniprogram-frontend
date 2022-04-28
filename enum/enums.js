@@ -42,6 +42,8 @@ const SEARCH_SH = '/seek-help/search/'
 const SEARCH_RH = '/help-info/search/'
 const SH_SEARCH_HISTORY = '/seek-help/history/'
 const RH_SEARCH_HISTORY = '/help-info/history/'
+const DELETE_SH_HISTORY_BY_USER = '/seek-help/delete-all-history'
+const DELETE_RH_HISTORY_BY_USER = '/help-info/delete-all-history'
 
 
 export {
@@ -80,5 +82,7 @@ export {
   SEARCH_SH,
   RH_SEARCH_HISTORY,
   SH_SEARCH_HISTORY,
+  DELETE_RH_HISTORY_BY_USER,
+  DELETE_SH_HISTORY_BY_USER,
   
 }
