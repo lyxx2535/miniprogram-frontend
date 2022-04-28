@@ -55,7 +55,7 @@
 			      confirm-hold value="{{comment}}"
 			      cursor="{{cursor}}"
 			      cursor-spacing="90rpx"
-            adjust-position="{{true}}"
+            adjust-position="{{false}}"
 			      focus="{{focus}}"
 			      bindblur="onBlur"
 			      bindfocus="onFocus"
