@@ -152,7 +152,7 @@ Page({
       temp.spot = resSet[item].place;
       temp.requirement = resSet[item].require;
       temp.isOpenRemind = resSet[item].isOpenRemind
-      temp.timeSpan = dateFormat.tsFormatTime(resSet[item].startTime, 'Y-M-D') + ' ~ ' + dateFormat.tsFormatTime(resSet[item].endTime, 'M-D');
+      temp.timeSpan = dateFormat.tsFormatTime(resSet[item].startTime, 'Y/M/D') + ' ~ ' + dateFormat.tsFormatTime(resSet[item].endTime, 'M/D');
       switch (resSet[item].finishStatus) {
         case '进行中':
           temp.status = {ongoing: true, over: false, miss: false}

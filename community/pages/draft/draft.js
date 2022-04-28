@@ -93,7 +93,7 @@ Page({
   // 发布
   async publish(){
     var d = new Date()
-    const now = dateUtil.tsFormatTime(d,'Y-M-D h:m:s' )
+    const now = dateUtil.tsFormatTime(d,'Y/M/D h:m:s' )
     const ddl = this.data.ddl + " 00:00:00"
     const _data = {
       "comment": this.data.remark,
