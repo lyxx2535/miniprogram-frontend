@@ -95,8 +95,20 @@ Page({
             "touser": wx.getStorageSync('openid'),  //需要提前获取
           }
           console.log(_data)
-          // 请求服务端
-          this.add_remind(_data);
+          if(res.dTxNqzkbtF7apmXfZBYlWD97krufydh5Gh0Zgn2QvlQ == 'reject'){
+            wx.showToast({
+              title: '请开启提醒权限',
+              icon: 'error'
+            })
+            this.data.list[this.data.currentIndex].isOpenRemind = false;
+            this.setData({
+              list: this.data.list
+            })
+          }
+          else{
+            // 请求服务端
+            this.add_remind(_data);
+          }
         }
       })
     }
