@@ -1,1 +1,2 @@
 /* my/pages/my_help/my_help.wxss */
+@import '../../my_ihelp.wxss';
