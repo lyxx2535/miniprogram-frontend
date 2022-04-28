@@ -19,7 +19,7 @@ App({
     this.getAccessToken()
     // 拿到当天日期
     var d = new Date();
-    wx.setStorageSync('date', util.tsFormatTime(d,'Y-M-D h:m:s'))
+    wx.setStorageSync('date', util.tsFormatTime(d,'Y/M/D h:m:s'))
     // 登录
     wx.login({
       success: res => {

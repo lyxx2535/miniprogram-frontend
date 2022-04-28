@@ -103,5 +103,5 @@ module.exports = {
   formatTime,
   wxuuid,
   tsFormatTime,
-  formatTimeYMD,
+  formatTimeYMD
 }

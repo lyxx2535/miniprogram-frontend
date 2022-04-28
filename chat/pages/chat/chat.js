@@ -130,7 +130,7 @@ Page({
               console.log('新发消息： ' + JSON.stringify(this.data.list[item]))
               // 删除小菊花
               this.data.list[item].receiverId = null;
-              this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y-M-D h:m');
+              this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y/M/D h:m');
               this.data.list[item].isShowTime = resJson.isShowTime;
               this.data.list[item].id = resJson.id;
             }
@@ -290,8 +290,8 @@ Page({
     this.data.list.push(obj);
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length > 1){
-      obj.lastSendMsgTime = this.data.list[this.data.list.length - 2].sendTime;
-      console.log('上一条消息发送时间: ' + this.data.list[this.data.list.length - 2].sendTime)
+      obj.lastSendMsgTime = util.tsFormatTime(this.data.list[this.data.list.length - 2].sendTime, 'Y/M/D h:m:s');
+      console.log('上一条消息发送时间: ' + obj.lastSendMsgTime)
     }
     else{
       obj.lastSendMsgTime = null;
@@ -481,7 +481,7 @@ Page({
           obj.senderId = obj.senderId;
           obj.id = obj.id;
           obj.isShowTime = obj.isShowTime;
-          obj.sendTime = util.tsFormatTime(obj.sendTime,'Y-M-D h:m');
+          obj.sendTime = util.tsFormatTime(obj.sendTime,'Y/M/D h:m');
           // 这里需要逆序添加 保证最新的消息永远在list的最后面
           this.data.list.unshift(obj);
         }

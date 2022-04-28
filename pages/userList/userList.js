@@ -45,6 +45,7 @@ Page({
       }
     })
     this.get_friend_list();
+    console.log(this.data.list)
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
