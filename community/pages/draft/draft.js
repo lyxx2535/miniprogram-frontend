@@ -105,27 +105,30 @@ Page({
       "urgency": this.data.emergency,
     }
     let resData;
-    if(this.data.forumType == 0){
-      const res = await api._publish_sh_draft(_data);
-      resData = res.data.data;
-      this.setData({
-        id: resData.id
-      })
-    }
-    else{
-      const res = await api._publish_rh_draft(_data);
-      resData = res.data.data;
-      this.setData({
-        id: resData.id
-      })
-    }
-    console.log('发布草稿：' + JSON.stringify(resData))
-    // 上传图片
+    // 先上传图片
     const filePaths = this.data.forumImg
-    this.uploadImg(filePaths)
-    wx.navigateBack({
-      delta:1 //返回上一级页面
-    })
+    const temp = this.uploadImg(filePaths)
+    // 再发布草稿
+    if(temp == 1){
+      if(this.data.forumType == 0){
+        const res = await api._publish_sh_draft(_data);
+        resData = res.data.data;
+        this.setData({
+          id: resData.id
+        })
+      }
+      else{
+        const res = await api._publish_rh_draft(_data);
+        resData = res.data.data;
+        this.setData({
+          id: resData.id
+        })
+      }
+      console.log('发布草稿：' + JSON.stringify(resData))
+      wx.navigateBack({
+        delta:1 //返回上一级页面
+      })
+    }
   },
   // linUI上传图片接口
   async uploadImg(filePaths){
@@ -155,10 +158,12 @@ Page({
             title: '上传失败！',
             icon: 'error'
           })
+          return -1
         }
       }
       this.finishPublish()
     }
+    return 1
   },
   finishPublish(){
     this.setData({
