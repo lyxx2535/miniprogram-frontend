@@ -34,7 +34,7 @@
     <view wx:for="{{history}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item}}" bindtap="getInput">{{item}}</view>
   </view>
 
-  <view style="position: relative; display: flex; margin-top: 920rpx;">
+  <view style="position: relative; display: flex; margin-top: 60rpx;">
     <view class="sub-title">算法推荐</view>
     <image class="sub-img" mode="widthFix" src="{{asset.refresh}}" bindtap="refreshTag"></image>
   </view>
@@ -44,23 +44,26 @@
   </view>
 </view>
 
-  <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{list}}" wx:key="index" wx:if="{{isShowRes}}">
+  <view class="card" bindtap="checkDetail"  wx:for="{{searchRes}}" wx:key="index" wx:if="{{isShowRes}}">
           <view style="display: flex;">
               <view>
-                  <image src = "{{item.showImg}}" class="help_image"></image>
+                <!-- urlList的第一张，否则显示默认图片 -->
+                <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
+                <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
               </view>
               <view class="content">
                   <view class="help_title">{{item.name}}</view>
                   <view class = "tag">
-                      <view class="tag1">{{item.type}}</view>
+                      <view wx:if="{{currentTab == 0}}" class="tag1">{{item.seekHelpType}}</view>
+                      <view wx:if="{{currentTab == 1}}" class="tag1">{{item.helpType}}</view>
                       <view class="tag2">{{item.tag}}</view>
                   </view>
-                  <view class = "help_msg">{{item.remark}}</view>
+                  <view class = "help_msg">{{item.comment}}</view>
               </view>
           </view>
           <view class="user_info">
-              <image src="{{item.avartar}}" class="user_pic"></image>
-              <view class="user_name">{{item.userName}}</view>   
+              <image src="{{item.avartarUrl}}" class="user_pic"></image>
+              <view class="user_name">{{item.nickName}}</view>   
           </view>
   </view>
 <!-- end：搜索 -->

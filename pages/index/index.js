@@ -49,17 +49,15 @@ Page({
       const res = await api._check_remind();
       console.log(res.data)
     },
-    async queryhelpMsg(){
-      const res = await api._query_rh_forum_byId(31)
-      const res2 = await api._query_sh_forum_byId(1)
+    async searchForum(){
+      const res = await api._search_sh_by_keyWord('借')
       console.log(res.data)
-      console.log(res2.data)
     },
-    async queryForumList(){
-      const res = await api._query_rh_list_byTag();
-      const res2 = await api._query_sh_list_byTag();
-      console.log(res.data);
-      console.log(res2.data)
+    async searchHistory(){
+      const res = await api._get_sh_search_history()
+      console.log('求助历史记录：' + JSON.stringify(res.data))
+      const res1 = await api._get_rh_search_history()
+      console.log('帮助历史记录：' + JSON.stringify(res1.data))
     },
   onLoad() {
     if (wx.getUserProfile) {

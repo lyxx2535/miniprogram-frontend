@@ -1,8 +1,8 @@
 // user
-const LOGIN_API = '/user/sessionId';
-const GET_TOKEN = '/user/login';
-const TOKEN_TEST = '/user/test';
-const GET_USER_INFO = '/user/query';
+const LOGIN_API = '/user/sessionId'
+const GET_TOKEN = '/user/login'
+const TOKEN_TEST = '/user/test'
+const GET_USER_INFO = '/user/query'
 const GET_USER_INFO_BYID = '/user/info/'
 const ACCESS_TOKEN = '/user/access-token'
 // chat
@@ -38,6 +38,11 @@ const QUERY_SH_BY_ID = '/seek-help/query/'
 const QUERY_RH_BY_ID = '/help-info/query/'
 const QUERY_SH_LIST = '/seek-help/tag'
 const QUERY_RH_LIST = '/help-info/tag'
+const SEARCH_SH = '/seek-help/search/'
+const SEARCH_RH = '/help-info/search/'
+const SH_SEARCH_HISTORY = '/seek-help/history/'
+const RH_SEARCH_HISTORY = '/help-info/history/'
+
 
 export {
   LOGIN_API,
@@ -71,5 +76,9 @@ export {
   QUERY_SH_BY_ID,
   QUERY_RH_LIST,
   QUERY_SH_LIST,
-
+  SEARCH_RH,
+  SEARCH_SH,
+  RH_SEARCH_HISTORY,
+  SH_SEARCH_HISTORY,
+  
 }

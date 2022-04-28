@@ -323,7 +323,7 @@ const  _upload_sh_draft_img = (_filePath, _draft_id) => {
     showLoading: true
   })
 }
-// 通过id查询帮助帖子
+// 通过id查询帮助帖子，需要token
 const _query_rh_forum_byId = (_id) => {
   return httpRequest({
     url: API.QUERY_RH_BY_ID + _id,
@@ -336,7 +336,7 @@ const _query_rh_forum_byId = (_id) => {
     showLoading: true
   })
 }
-// 通过id查询求助帖子
+// 通过id查询求助帖子，需要token
 const _query_sh_forum_byId = (_id) => {
   return httpRequest({
     url: API.QUERY_SH_BY_ID + _id,
@@ -349,7 +349,7 @@ const _query_sh_forum_byId = (_id) => {
     showLoading: true
   })
 }
-// 获得按tag分类的所有求助帖子
+// 获得按tag分类的所有求助帖子，需要token
 const _query_sh_list_byTag = () => {
   return httpRequest({
     url: API.QUERY_SH_LIST,
@@ -362,7 +362,7 @@ const _query_sh_list_byTag = () => {
     showLoading: true
   })
 }
-// 获得按tag分类的所有帮助帖子
+// 获得按tag分类的所有帮助帖子，需要token
 const _query_rh_list_byTag = (_tag) => {
   return httpRequest({
     url: API.QUERY_RH_LIST,
@@ -373,6 +373,58 @@ const _query_rh_list_byTag = (_tag) => {
       'Authorization': wx.getStorageSync('token')
     },
     showLoading: true
+  })
+}
+// 通过关键词搜索求助帖，需要token
+const _search_sh_by_keyWord = (_keyWord) => {
+  return httpRequest({
+    url: API.SEARCH_SH + _keyWord,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 通过关键词搜索帮助帖，需要token
+const _search_rh_by_keyWord = (_keyWord) => {
+  return httpRequest({
+    url: API.SEARCH_RH + _keyWord,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 获取用户搜索帮助的历史记录，需要token
+const _get_rh_search_history = () => {
+  return httpRequest({
+    url: API.RH_SEARCH_HISTORY + 5,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 获取用户搜索求助的历史记录，需要token
+const _get_sh_search_history = () => {
+  return httpRequest({
+    url: API.SH_SEARCH_HISTORY + 5,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
   })
 }
 
@@ -405,5 +457,9 @@ export {
   _query_sh_forum_byId,
   _query_rh_list_byTag,
   _query_sh_list_byTag,
+  _search_rh_by_keyWord,
+  _search_sh_by_keyWord,
+  _get_rh_search_history,
+  _get_sh_search_history,
   
 }

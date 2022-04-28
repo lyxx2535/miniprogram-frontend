@@ -22,6 +22,6 @@
   </view>
   <button bindtap="getUserProfile" class="mt-20px">登陆并获取token</button>
   <button bindtap="checkMsg" class="mt-20px">查看服务消息</button>
-  <button bindtap="queryhelpMsg" class="mt-20px">查看帖子信息</button>
-  <button bindtap="queryForumList" class="mt-20px">查看帖子列表</button>
+  <button bindtap="searchForum" class="mt-20px">关键词搜帖</button>
+  <button bindtap="searchHistory" class="mt-20px">获取搜索记录</button>
 </view>

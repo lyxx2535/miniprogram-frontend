@@ -34,12 +34,23 @@ Page({
     scrollLeft: 0,
     // 窗体宽度
     windowWidth: 0,
+    // 搜索模块
 
-    // pjz - 搜索
+        // const data = [{
+        //   name: '一只口罩',
+        //   type: '紧急租借',
+        //   tag: '日用品',
+        //   remark: '阿巴阿巴',
+        //   userName: '阿巴阿巴',
+        //   avartar: this.data.test_img,
+        //   showImg: this.data.test_img,
+        //   id: '1'
+        // }]
+
     searchRes: [], // 帖子的搜索结果
     keyWord: "", // 搜索关键字
-    history: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 历史搜索词
-    algorithm: ['阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴','阿巴'], // 算法推荐关键词
+    history: [], // 历史搜索词
+    algorithm: [], // 算法推荐关键词
     asset: {
       search: IMG.ICNO_SEARCH,
       trash: IMG.ICNO_DELETE,
@@ -57,18 +68,53 @@ Page({
       isSearch: true
     })
   },
+  async searchSH(value){
+    // handle空串
+    if(value == ''){
+      this.setData({
+        searchRes: []
+      })
+      return
+    }
+    const res = await api._search_sh_by_keyWord(value)
+    console.log('搜素求助贴：' + res.data)
+    this.setData({
+      searchRes: res.data.data
+    })
+  },
+  async searchRH(value){
+    // handle空串
+    if(value == ''){
+      this.setData({
+        searchRes: []
+      })
+      return
+    }
+    const res = await api._search_rh_by_keyWord(value)
+    console.log('搜素帮助贴：' + res.data)
+    this.setData({
+      searchRes: res.data.data
+    })
+  },
   // 输入框双向绑定
   onInput(e){
     this.setData({
       keyWord: e.detail.value
     })
+    console.log('搜索值: ' + e.detail.value)
     if(!this.data.isShowRes){
       this.setData({
         isShowRes: true
       })
     }
     console.log(this.data.isShowRes)
-    // TODO: 搜索算法
+    // 搜索算法
+    if(this.data.currentTab == 0){
+      this.searchSH(e.detail.value)
+    }
+    else{
+      this.searchRH(e.detail.value)
+    }
   },
   // 取消输入
   cancelInput(){
@@ -339,20 +385,6 @@ Page({
     this.getSeekHelpList();
     this.getRenderHelpList();
     console.log('load！')
-    // 搜索功能的测试数据
-    const data = [{
-      name: '一只口罩',
-      type: '紧急租借',
-      tag: '日用品',
-      remark: '阿巴阿巴',
-      userName: '阿巴阿巴',
-      avartar: this.data.test_img,
-      showImg: this.data.test_img,
-      id: '1'
-    }]
-    this.setData({
-      list: data
-    })
   },
   onReady(){
     wx.setNavigationBarTitle({
