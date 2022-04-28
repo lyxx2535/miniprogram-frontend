@@ -1,4 +1,6 @@
 <!--nucleic-acid/pages/detection/detection.wxml-->
+<view wx:if="{{list.length == 0}}">您当前没有检测任务~</view>
+
 <view class="card mt-20px" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
 
 <view class="mt-30px flex">
