@@ -53,6 +53,9 @@ const ICON_REDO = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_
 const ICON_SETTING = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_setting.png'
 const STATE_SOLVED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/state_solved.png'
 const STATE_UNSOLVED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/state_unsolved.png'
+const ICON_DELETE_BLACK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_delete_black.png'
+const ICON_OVER_BLACK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_over_black.png'
+const ICON_REDO_BLACK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_redo_black.png'
 
 export {
   ICON_CALENDER,
@@ -97,5 +100,8 @@ export {
   ICON_SETTING,
   STATE_SOLVED,
   STATE_UNSOLVED,
+  ICON_DELETE_BLACK,
+  ICON_REDO_BLACK,
+  ICON_OVER_BLACK,
   
 }
