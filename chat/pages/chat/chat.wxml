@@ -1,7 +1,7 @@
 <view class='view-page'>
   <view class="comments cu-chat" id="x_chat">
     <scroll-view scroll-y="{{true}}" scroll-with-animation='{{true}}' scroll-into-view="{{toBottom}}"
-      style="width:100%; height:{{windowHeight}}px; padding-bottom: 50px; display: flex;flex-direction: column;"
+      style="width:100%; height:{{windowHeight}}px;"
       refresher-enabled="{{true}}"
       refresher-threshold="{{200}}"
       refresher-default-style="black"
