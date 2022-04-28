@@ -50,7 +50,7 @@ Page({
     console.log("屏幕高度：" + wx.getSystemInfoSync().windowHeight);
     console.log("头高度：" + App.globalData.navHeight);
     //默认聊天对象是zy id：9
-    const receiverId = options.receiverId ? options.receiverId: 9;
+    const receiverId = options.receiverId;
     this.getReceiveInfo(receiverId);
     this.getMemberInfo();
     //初始化emoji组件
