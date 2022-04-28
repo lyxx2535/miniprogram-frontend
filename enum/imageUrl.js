@@ -43,6 +43,16 @@ const LABEL_ELECTRONIC = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/c
 const LABEL_HYGIENE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_hygiene.png'
 const LABEL_MEDICINE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_medicine.png'
 const LABEL_SPORT = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/community/label_sport.png'
+// my
+const ICON_CONTACT = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_contact.png'
+const ICON_DELETE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_delete.png'
+const ICON_FORWARD = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_forward.png'
+const ICON_OVER = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_over.png'
+const ICON_QUESTION = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_question.png'
+const ICON_REDO = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_redo.png'
+const ICON_SETTING = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_setting.png'
+const STATE_SOLVED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/state_solved.png'
+const STATE_UNSOLVED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/state_unsolved.png'
 
 export {
   ICON_CALENDER,
@@ -78,5 +88,14 @@ export {
   LABEL_HYGIENE,
   LABEL_MEDICINE,
   LABEL_SPORT,
+  ICON_CONTACT,
+  ICON_DELETE,
+  ICON_FORWARD,
+  ICON_OVER,
+  ICON_QUESTION,
+  ICON_REDO,
+  ICON_SETTING,
+  STATE_SOLVED,
+  STATE_UNSOLVED,
   
 }
