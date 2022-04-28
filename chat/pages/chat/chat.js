@@ -146,7 +146,7 @@ Page({
           // messageObj.avatar = this.data.receiveAvatar;
           //传入时间
           messageObj.id = resJson.id
-          messageObj.sendTime = resJson.sendTime;
+          messageObj.sendTime = util.tsFormatTime(resJson.sendTime,'Y/M/D h:m');
           messageObj.content = resJson.content;
           messageObj.isShowTime = resJson.isShowTime;
           this.data.list.push(messageObj);
