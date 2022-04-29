@@ -43,3 +43,14 @@ page{
   font-size: 22rpx;
   color: #999;
 }
+.unread{
+  border-radius: 100%;
+  width: 40rpx;
+  height: 40rpx;
+  font-size: smaller;
+  font-weight: 500;
+  background-color: #f74c30;
+  color: white;
+  text-align: center;
+  line-height: normal;
+}

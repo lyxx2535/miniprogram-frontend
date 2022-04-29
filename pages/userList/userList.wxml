@@ -10,15 +10,17 @@
     <!--类型判断,显示不同的数据-->
     <block>
         <!-- <view class='item'  bindtap="toChat" data-openId='{{item.openId}}'> -->
-        <view class='item'  bindtap="toChat" data-id='{{item.id}}'>
-          <image class='poster rounded-xl' style="border-color: rgba(107, 114, 128, var(--tw-border-opacity));" src='{{item.avatarUrl}}'></image>
+        <view class='item'  bindtap="toChat" data-id='{{item.value.id}}'>
+          <image class='poster rounded-xl' style="border-color: rgba(107, 114, 128, var(--tw-border-opacity));" src='{{item.value.avatarUrl}}'></image>
           <view class='meta'>
             <view class="title">
-              <text class="inline-block text-xl">{{item.nickName}}</text>
-              <text class="inline-block text-sm mt-10rpx" style="float: right;">{{item.latestChatDate}}</text>
+              <text class="inline-block text-xl">{{item.value.nickName}}</text>
+              <text class="inline-block text-sm mt-10rpx" style="float: right;">{{item.value.latestChatDate}}</text>
             </view>
-            <!-- <text class='sub-title' style="font-size: 30rpx;">与ta进一步联系吧！</text> -->
-            <text class='sub-title' style="font-size: 30rpx; overflow: hidden;white-space:nowrap; text-overflow: ellipsis; width: 530rpx;">{{item.content}}</text>
+            <view class="flex">
+              <text class='sub-title' style="font-size: 30rpx; overflow: hidden;white-space:nowrap; text-overflow: ellipsis; width: 498rpx;">{{item.value.content}}</text>
+              <view wx:if="{{item.key > 0}}" class="unread">{{item.key}}</view>
+            </view>
           </view>
         </view>
     </block>
