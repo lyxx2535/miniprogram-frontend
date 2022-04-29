@@ -50,7 +50,7 @@
 
 <view class='divide-line'></view>
 
-<view class="relative" style="width: 100vw;">
+<view class="relative" style="width: 100vw; height: 200rpx;">
   <view class="flex chat-btn relative" bindtap="goToChat">
     <image src="{{imgUrl.chat}}" style="height: 60rpx; margin-top: 10rpx; margin-left: 30rpx;" mode="heightFix"></image>
     <text style="letter-spacing: 8rpx; font-size: 35rpx; margin-left: 25rpx;margin-top: 13rpx; color: #838383;">与TA私聊</text>
