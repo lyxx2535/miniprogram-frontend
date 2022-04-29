@@ -166,7 +166,7 @@ Page({
         }
       }
       // 随后改变键盘弹出状态
-      if(this.data.list.length <= 6){
+      if(this.data.list.length <= 5){
         this.setData({
           isAutoPosition: false,
           trueKbHeight: true
@@ -507,7 +507,7 @@ Page({
         if(records.length < this.data.pageSize){
           this._noDataing = true
         }
-        if(records.length <= 6){
+        if(records.length <= 5){
           this.setData({
             isAutoPosition: false,
             trueKbHeight: true
