@@ -57,6 +57,13 @@ page{
   width: 50rpx;
   margin-left: 350rpx;
 }
+.icon-btn{
+  padding-top: 30rpx;
+  padding-bottom: 30rpx;
+  width: 50rpx;
+  position: relative;
+  left: 295rpx;
+}
 .info-text{
   margin-top: 35rpx; 
   font-size: 25rpx; 
@@ -93,4 +100,17 @@ page{
   font-weight: lighter;
   color: #7f7f7f;
   letter-spacing: 8rpx;
+}
+.big-card-btn:not([size="mini"]){
+  letter-spacing: 4rpx;
+  width: 250rpx;
+  font-size: 35rpx;
+  font-weight: bold;
+  padding-top: 25rpx;
+  padding-bottom: 25rpx;
+  position: relative;
+  margin-left: 0;
+  margin-right: 0;
+  left: 0;
+  background-color: #ededef;
 }

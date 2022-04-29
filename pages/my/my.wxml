@@ -45,13 +45,14 @@
     <view class="big-card-text2">其他</view>
     <view class="divide-line"></view>
     <view class="flex">
-      <view class="big-card-text">常见问题</view>
-      <image mode="widthFix" src="{{imgUrl.question}}" class="icon"></image>
+      <button class="big-card-btn">常见问题</button>
+      <image mode="widthFix" src="{{imgUrl.question}}" class="icon-btn"></image>
     </view>
     <view class="divide-line" style="width: 94%; margin-left: 3%; height: 6rpx;"></view>
-    <view class="flex">
-      <view class="big-card-text">联系我们</view>
-      <image mode="widthFix" src="{{imgUrl.contact}}" class="icon"></image>
+    <view class="flex" style="position: relative;">
+      <button class="big-card-btn" open-type="contact">联系我们</button>
+      <!-- <view class="big-card-text">联系我们</view> -->
+      <image mode="widthFix" src="{{imgUrl.contact}}" class="icon-btn"></image>
     </view>
   </view>
 </scroll-view>

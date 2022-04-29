@@ -68,6 +68,20 @@
           "pathName": "pages/my/my",
           "query": "",
           "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "my/pages/my_help/my_help",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "my/pages/my_seekHelp/my_seekHelp",
+          "query": "",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
