@@ -18,7 +18,7 @@
               <text class="inline-block text-sm mt-10rpx" style="float: right;">{{item.latestChatDate}}</text>
             </view>
             <!-- <text class='sub-title' style="font-size: 30rpx;">与ta进一步联系吧！</text> -->
-            <text class='sub-title' style="font-size: 30rpx;">{{item.content}}</text>
+            <text class='sub-title' style="font-size: 30rpx; word-break: break-all;">{{item.content}}</text>
 
           </view>
         </view>

@@ -82,6 +82,7 @@ border-radius:10px;
 .content{
   padding-top: 10rpx;
   padding-bottom: 10rpx;
+  word-break: break-all;
 }
 .padding-bottom{
   padding-bottom: 10rpx;
@@ -143,9 +144,7 @@ page{
 
 .bg-white{
   background:#fff;
-
 }
-
 .cu-chat .cu-item>.main .content {
 
 	padding: 20rpx 25rpx;
