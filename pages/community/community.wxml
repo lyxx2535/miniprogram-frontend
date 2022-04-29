@@ -1,62 +1,114 @@
-<view class="bg">
-  <view class="bg1"></view>
-  <view class="bg2"></view>
-</view>
-
-<view style="display: flex;">
-    <!-- 顶部标签 -->
-    <view class="navbar">
-    <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+<l-skeleton
+  style="margin-top: 100rpx;"
+  loading="{{isShowSkeleton}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{true}}"
+  avatar-size="100rpx"
+  avatar-shape="circle"
+  rows="8"
+  active="{{true}}"
+>
+<!-- 插槽内容 -->
+    <view class="bg">
+      <view class="bg1"></view>
+      <view class="bg2"></view>
     </view>
-    <!-- 右上角标签 -->
-    <view class="navSide">
-        <button class="btn1" plain bindtap="Popup" style="width: 50rpx;margin-left: 60rpx;">
-            <image src = "{{NEW}}" style="width: 40rpx;height: 40rpx;"></image>
-        </button>
+
+    <view style="display: flex;">
+        <!-- 顶部标签 -->
+        <view class="navbar">
+        <text wx:for="{{navbar}}" data-idx="{{index}}" class="item {{currentTab==index ? 'active' : ''}}" wx:key="unique" bindtap="navbarTap">{{item}}</text>
+        </view>
+        <!-- 右上角标签 -->
+        <view class="navSide">
+            <button class="btn1" plain bindtap="Popup" style="width: 50rpx;margin-left: 60rpx;">
+                <image src = "{{NEW}}" style="width: 40rpx;height: 40rpx;"></image>
+            </button>
+        </view>
     </view>
-</view>
 
 
-<!-- start: 搜索 -->
-<view style="position: relative; display: flex; margin-top: 30rpx;">
-  <image src="{{asset.search}}" class="input-img" mode="widthFix"></image>
-  <input class="input" placeholder="请输入帖子关键词" bindinput="onInput" value="{{keyWord}}"
-  bindfocus="onSearch"></input>
-  <text class="input-text" bindtap="cancelInput">取消</text>
-</view>
+    <!-- start: 搜索 -->
+    <view style="position: relative; display: flex; margin-top: 30rpx;">
+      <image src="{{asset.search}}" class="input-img" mode="widthFix"></image>
+      <input class="input" placeholder="请输入帖子关键词" bindinput="onInput" value="{{keyWord}}"
+      bindfocus="onSearch"></input>
+      <text class="input-text" bindtap="cancelInput">取消</text>
+    </view>
 
-<view wx:if="{{isSearch && !isShowRes}}">
-  <view style="position: relative; display: flex; margin-top: 50rpx;">
-    <view class="sub-title">历史记录</view>
-    <image class="sub-img" mode="widthFix" src="{{asset.trash}}" bindtap="clearHistory"></image>
-  </view>
+    <view wx:if="{{isSearch && !isShowRes}}">
+      <view style="position: relative; display: flex; margin-top: 50rpx;">
+        <view class="sub-title">历史记录</view>
+        <image class="sub-img" mode="widthFix" src="{{asset.trash}}" bindtap="clearHistory"></image>
+      </view>
 
-  <view style="margin-top: 20rpx;">
-    <view wx:for="{{history}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item.keyword}}" bindtap="getInput">{{item.keyword}}</view>
-  </view>
+      <view style="margin-top: 20rpx;">
+        <view wx:for="{{history}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item.keyword}}" bindtap="getInput">{{item.keyword}}</view>
+      </view>
 
-  <view style="position: relative; display: flex; margin-top: 60rpx;">
-    <view class="sub-title">算法推荐</view>
-    <image class="sub-img" mode="widthFix" src="{{asset.refresh}}" bindtap="refreshTag"></image>
-  </view>
+      <view style="position: relative; display: flex; margin-top: 60rpx;">
+        <view class="sub-title">算法推荐</view>
+        <image class="sub-img" mode="widthFix" src="{{asset.refresh}}" bindtap="refreshTag"></image>
+      </view>
 
-  <view style="margin-top: 20rpx;">
-    <view wx:for="{{algorithm}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item}}" bindtap="getInput">{{item}}</view>
-  </view>
-</view>
+      <view style="margin-top: 20rpx;">
+        <view wx:for="{{algorithm}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item}}" bindtap="getInput">{{item}}</view>
+      </view>
+    </view>
 
-  <view class="card" bindtap="checkDetail"  data-id="{{item.id}}" wx:for="{{searchRes}}" wx:key="index" wx:if="{{isShowRes}}">
+      <view class="card" bindtap="checkDetail"  data-id="{{item.id}}" wx:for="{{searchRes}}" wx:key="index" wx:if="{{isShowRes}}">
+              <view style="display: flex;">
+                  <view>
+                    <!-- urlList的第一张，否则显示默认图片 -->
+                    <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
+                    <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
+                  </view>
+                  <view class="content">
+                      <view class="help_title">{{item.name}}</view>
+                      <view class = "tag">
+                          <view wx:if="{{currentTab == 0}}" class="tag1">{{item.seekHelpType}}</view>
+                          <view wx:if="{{currentTab == 1}}" class="tag1">{{item.helpType}}</view>
+                          <view class="tag2">{{item.tag}}</view>
+                      </view>
+                      <view class = "help_msg">{{item.comment}}</view>
+                  </view>
+              </view>
+              <view class="user_info">
+                  <image src="{{item.avatarUrl}}" class="user_pic"></image>
+                  <view class="user_name">{{item.nickName}}</view>   
+              </view>
+      </view>
+    <!-- end：搜索 -->
+
+    <view wx:if="{{!isSearch}}">
+      <!--标签  -->
+      <view>
+        <scroll-view scroll-x="true" enable-flex="true" class="scroll" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
+            <block  wx:for="{{nav}}" wx:for-index="index" wx:key="index" >
+                <view class="nav-item {{ current==index ? 'active':'' }}" bindtap="currentNav" data-index="{{ index }}" >
+                    <image src="{{item.image}}" class="nav-image" ></image>
+                    <text  class="nav-text">{{item.id}}</text>
+                </view>
+            </block>
+        </scroll-view>
+      </view>
+
+
+      <view wx:if="{{currentTab==0}}">
+        <!--求助区-->
+        <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 62vh;">
+          <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index" >
           <view style="display: flex;">
               <view>
-                <!-- urlList的第一张，否则显示默认图片 -->
-                <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
-                <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
+              <!-- urlList的第一张，否则显示默认图片 -->
+                  <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
+                  <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
               </view>
               <view class="content">
                   <view class="help_title">{{item.name}}</view>
                   <view class = "tag">
-                      <view wx:if="{{currentTab == 0}}" class="tag1">{{item.seekHelpType}}</view>
-                      <view wx:if="{{currentTab == 1}}" class="tag1">{{item.helpType}}</view>
+                      <view class="tag1">{{item.seekHelpType}}</view>
                       <view class="tag2">{{item.tag}}</view>
                   </view>
                   <view class = "help_msg">{{item.comment}}</view>
@@ -66,104 +118,77 @@
               <image src="{{item.avatarUrl}}" class="user_pic"></image>
               <view class="user_name">{{item.nickName}}</view>   
           </view>
-  </view>
-<!-- end：搜索 -->
-
-<view wx:if="{{!isSearch}}">
-  <!--标签  -->
-  <view>
-    <scroll-view scroll-x="true" enable-flex="true" class="scroll" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
-        <block  wx:for="{{nav}}" wx:for-index="index" wx:key="index" >
-            <view class="nav-item {{ current==index ? 'active':'' }}" bindtap="currentNav" data-index="{{ index }}" >
-                <image src="{{item.image}}" class="nav-image" ></image>
-                <text  class="nav-text">{{item.id}}</text>
-            </view>
-        </block>
-    </scroll-view>
-  </view>
-
-
-  <view wx:if="{{currentTab==0}}">
-    <!--求助区-->
-    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 62vh;">
-      <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index" >
-      <view style="display: flex;">
-          <view>
-          <!-- urlList的第一张，否则显示默认图片 -->
+        </view>
+        </scroll-view>
+        
+      </view>
+      <!-- 帮忙区 -->
+      <view wx:elif="{{currentTab==1}}">
+        <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 62vh;">
+        <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{renderHelpList}}" wx:key="index" >
+          <view style="display: flex;">
+              <view>
+              <!-- urlList的第一张，否则显示默认图片 -->
               <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
               <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
-          </view>
-          <view class="content">
-              <view class="help_title">{{item.name}}</view>
-              <view class = "tag">
-                  <view class="tag1">{{item.seekHelpType}}</view>
-                  <view class="tag2">{{item.tag}}</view>
               </view>
-              <view class = "help_msg">{{item.comment}}</view>
+              <view class="content">
+                  <view class="help_title">{{item.name}}</view>
+                  <view class = "tag">
+                      <view class="tag1">{{item.helpType}}</view>
+                      <view class="tag2">{{item.tag}}</view>
+                  </view>
+                  <view class = "help_msg">{{item.comment}}</view>
+              </view>
           </view>
+          <view class="user_info">
+              <image src="{{item.avatarUrl}}" class="user_pic"></image>
+              <view class="user_name">{{item.nickName}}</view>   
+          </view>
+        </view>
+        </scroll-view>
       </view>
-      <view class="user_info">
-          <image src="{{item.avatarUrl}}" class="user_pic"></image>
-          <view class="user_name">{{item.nickName}}</view>   
-      </view>
+
     </view>
-    </scroll-view>
-    
-  </view>
-  <!-- 帮忙区 -->
-  <view wx:elif="{{currentTab==1}}">
-    <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 62vh;">
-    <view class="card" bindtap="checkDetail" data-id="{{item.id}}" wx:for="{{renderHelpList}}" wx:key="index" >
+
+
+
+    <!--点击后灰色背景的设置-->
+
+    <view wx:if="{{now_state}}" class="tc_background" 	catchtouchmove="touchMove" bindtap="hideModal"
+    ></view>
+
+    <!--弹窗的出现-->
+    <view animation="{{animationData}}" style="display: flex;" class="box" wx:if="{{now_state}}">
+    <!--弹窗内部内容-->
       <view style="display: flex;">
-          <view>
-          <!-- urlList的第一张，否则显示默认图片 -->
-          <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
-          <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
-          </view>
-          <view class="content">
-              <view class="help_title">{{item.name}}</view>
-              <view class = "tag">
-                  <view class="tag1">{{item.helpType}}</view>
-                  <view class="tag2">{{item.tag}}</view>
-              </view>
-              <view class = "help_msg">{{item.comment}}</view>
-          </view>
+            <button class='v1' bindtap="toDraft2" style="height: 300rpx; width: 250rpx;margin-left: 475rpx;">
+              <image class="icon_help" mode ="widthFix" src="{{Seek_Help}}"></image> 
+              <view class="dbtext1">求助</view>
+            </button>
+            <button class='v1' bindtap="toDraft1" style="height: 300rpx; width: 250rpx;;margin-left: 50rpx;">
+              <image class="icon_help" mode ="widthFix" src="{{Help}}"></image> 
+              <view class="dbtext1">帮忙</view>
+            </button>
       </view>
-      <view class="user_info">
-          <image src="{{item.avatarUrl}}" class="user_pic"></image>
-          <view class="user_name">{{item.nickName}}</view>   
-      </view>
+        <!-- <view class="v2">
+            <button size="250" class='pos2' bindtap="toDraft2"></button>
+                <image class="icon_seekhelp" mode ="widthFix" src="{{Seek_Help}}"></image> 
+            <view class="dbtext1">求  助</view>
+        </view> -->
     </view>
-    </scroll-view>
-  </view>
 
-</view>
-
-
-
-<!--点击后灰色背景的设置-->
-
-<view wx:if="{{now_state}}" class="tc_background" 	catchtouchmove="touchMove" bindtap="hideModal"
-></view>
-
-<!--弹窗的出现-->
-<view animation="{{animationData}}" style="display: flex;" class="box" wx:if="{{now_state}}">
-<!--弹窗内部内容-->
-<view style="display: flex;">
-      <button class='v1' bindtap="toDraft2" style="height: 300rpx; width: 250rpx;margin-left: 475rpx;">
-        <image class="icon_help" mode ="widthFix" src="{{Seek_Help}}"></image> 
-        <view class="dbtext1">求助</view>
-      </button>
-      <button class='v1' bindtap="toDraft1" style="height: 300rpx; width: 250rpx;;margin-left: 50rpx;">
-        <image class="icon_help" mode ="widthFix" src="{{Help}}"></image> 
-        <view class="dbtext1">帮忙</view>
-      </button>
-</view>
-     
-    <!-- <view class="v2">
-        <button size="250" class='pos2' bindtap="toDraft2"></button>
-            <image class="icon_seekhelp" mode ="widthFix" src="{{Seek_Help}}"></image> 
-        <view class="dbtext1">求  助</view>
-    </view> -->
-
-</view>
+</l-skeleton>
+  <l-skeleton
+  loading="{{isShowSkeleton}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{true}}"
+  avatar-size="100rpx"
+  avatar-shape="circle"
+  rows="8"
+  active="{{true}}"
+>
+  <!-- 插槽内容 -->
+  <view/>
+</l-skeleton>

@@ -14,7 +14,8 @@ Page({
     list: [], // 数据列表
     myOpenId: wx.getStorageSync('openid'),// 用户的唯一标识
     type: '', // 数据类型
-    loading: true // 显示等待框
+    loading: true, // 显示等待框
+    isShowSkeleton: true, // 是否展示骨架框
   },
   toChat(event){
     let id = event.currentTarget.dataset.id;
@@ -52,6 +53,9 @@ Page({
         selected: 2
       })
     }
+    setTimeout( () => this.setData({
+      isShowSkeleton: false,
+    }), 500)
   },
   /**
    * 生命周期函数--监听页面加载

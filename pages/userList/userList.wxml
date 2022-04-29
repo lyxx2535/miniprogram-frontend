@@ -1,28 +1,39 @@
 <!--pages/list/list.wxml-->
-<!--列表页-->
-<view class='container'>
-  <!--等待框-->
-  <loading hidden="{{!loading}}">加载中...</loading>
-  <!--顶部标题栏-->
-  <view class='page-header'></view>
-  <!--列表-->
-  <view class='page-body' wx:for="{{list}}" wx:key="id">
-    <!--类型判断,显示不同的数据-->
-    <block>
-        <!-- <view class='item'  bindtap="toChat" data-openId='{{item.openId}}'> -->
-        <view class='item'  bindtap="toChat" data-id='{{item.value.id}}'>
-          <image class='poster rounded-xl' style="border-color: rgba(107, 114, 128, var(--tw-border-opacity));" src='{{item.value.avatarUrl}}'></image>
-          <view class='meta'>
-            <view class="title">
-              <text class="inline-block text-xl">{{item.value.nickName}}</text>
-              <text class="inline-block text-sm mt-10rpx" style="float: right;">{{item.value.latestChatDate}}</text>
-            </view>
-            <view class="flex">
-              <text class='sub-title' style="font-size: 30rpx; overflow: hidden;white-space:nowrap; text-overflow: ellipsis; width: 498rpx;">{{item.value.content}}</text>
-              <view wx:if="{{item.key > 0}}" class="unread">{{item.key}}</view>
+<l-skeleton
+  loading="{{isShowSkeleton}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{true}}"
+  avatar-size="100rpx"
+  avatar-shape="circle"
+  rows="8"
+  active="{{true}}"
+  >
+  <!--列表页-->
+  <view class='container'>
+    <!--等待框-->
+    <loading hidden="{{!loading}}">加载中...</loading>
+    <!--顶部标题栏-->
+    <view class='page-header'></view>
+    <!--列表-->
+    <view class='page-body' wx:for="{{list}}" wx:key="id">
+      <!--类型判断,显示不同的数据-->
+      <block>
+          <!-- <view class='item'  bindtap="toChat" data-openId='{{item.openId}}'> -->
+          <view class='item'  bindtap="toChat" data-id='{{item.value.id}}'>
+            <image class='poster rounded-xl' style="border-color: rgba(107, 114, 128, var(--tw-border-opacity));" src='{{item.value.avatarUrl}}'></image>
+            <view class='meta'>
+              <view class="title">
+                <text class="inline-block text-xl">{{item.value.nickName}}</text>
+                <text class="inline-block text-sm mt-10rpx" style="float: right;">{{item.value.latestChatDate}}</text>
+              </view>
+              <view class="flex">
+                <text class='sub-title' style="font-size: 30rpx; overflow: hidden;white-space:nowrap; text-overflow: ellipsis; width: 498rpx;">{{item.value.content}}</text>
+                <view wx:if="{{item.key > 0}}" class="unread">{{item.key}}</view>
+              </view>
             </view>
           </view>
-        </view>
-    </block>
+      </block>
+    </view>
   </view>
-</view>
+</l-skeleton>

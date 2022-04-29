@@ -6,11 +6,12 @@ App({
   // 向服务端获取access_token
   async getAccessToken(){
     const res = await api._get_access_token();
+    // console.log(res.data.data)
     if(res.data.data.length == 0){
       console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(res.data))
     }
     else{
-      wx.setStorageSync('access_token', JSON.parse(res.data.data).access_token)
+      wx.setStorageSync('access_token', res.data.data)
       console.log('access_token: ' + wx.getStorageSync('access_token'))
     }
   },

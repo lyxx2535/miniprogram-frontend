@@ -9,7 +9,8 @@ Page({
         num_detection:0,
         num_report:0,
         ICON_CALENDER: IMG.ICON_CALENDER,
-        VECTOR_PIC: IMG.VECTOR_PIC
+        VECTOR_PIC: IMG.VECTOR_PIC,
+        isShowSkeleton: true, // 是否展示骨架条
     },
     async getTestNum(){
       const res = await api._test_count();
@@ -71,5 +72,8 @@ Page({
           selected: 0
         })
       }
+      setTimeout( () => this.setData({
+        isShowSkeleton: false,
+      }), 500)
     }
 })

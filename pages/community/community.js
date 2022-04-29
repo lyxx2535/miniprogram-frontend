@@ -47,6 +47,7 @@ Page({
     },
     isSearch: false, // 是否展现搜索页面
     isShowRes: false, // 是否展现搜索结果
+    isShowSkeleton: true, // 是否展示骨架条
   },
 
   // pjz - 搜索
@@ -439,7 +440,7 @@ Page({
     const res = await api._query_rh_list_byTag();
     const resData = res.data.data;
     this.setData({
-      forumRenderHelp: resData
+      forumRenderHelp: resData,
     })
     console.log(resData)
     this.refreshData(this.data.current)
@@ -474,6 +475,9 @@ Page({
     this.getSeekHelpList();
     this.getRenderHelpList();
     console.log('load！')
+    setTimeout( () => this.setData({
+      isShowSkeleton: false,
+    }), 500)
   },
   onReady(){
     wx.setNavigationBarTitle({

@@ -28,6 +28,7 @@ Page({
       solved: IMG.STATE_SOLVED,
       unsolved: IMG.STATE_UNSOLVED
      }, // 静态资源url
+     isShowSkeleton: true, // 是否展示骨架框
   },
 
   // 获取用户信息
@@ -72,6 +73,9 @@ Page({
       })
     }
     this.getUserInfo()
+    setTimeout( () => this.setData({
+      isShowSkeleton: false,
+    }), 500)
   },
 
 })
