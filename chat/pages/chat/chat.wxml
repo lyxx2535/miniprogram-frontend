@@ -77,7 +77,8 @@
 			      bindblur="onBlur"
 			      bindfocus="onFocus"
 			      bindinput="onInput"
-			      bindconfirm="onConfirm"       
+			      bindconfirm="onConfirm" 
+            maxlength="80"      
 			    ></textarea>
 			  </label>
 			</view>
