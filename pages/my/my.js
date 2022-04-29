@@ -75,7 +75,7 @@ Page({
     this.getUserInfo()
     setTimeout( () => this.setData({
       isShowSkeleton: false,
-    }), 500)
+    }), 750)
   },
 
 })
