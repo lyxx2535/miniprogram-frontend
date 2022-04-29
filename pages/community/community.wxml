@@ -49,8 +49,8 @@
           <view style="display: flex;">
               <view>
                 <!-- urlList的第一张，否则显示默认图片 -->
-                <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
-                <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
+                <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
+                <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
               </view>
               <view class="content">
                   <view class="help_title">{{item.name}}</view>
@@ -90,8 +90,8 @@
       <view style="display: flex;">
           <view>
           <!-- urlList的第一张，否则显示默认图片 -->
-              <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
-              <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
+              <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
+              <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
           </view>
           <view class="content">
               <view class="help_title">{{item.name}}</view>
@@ -117,8 +117,8 @@
       <view style="display: flex;">
           <view>
           <!-- urlList的第一张，否则显示默认图片 -->
-          <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
-          <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
+          <image wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
+          <image wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
           </view>
           <view class="content">
               <view class="help_title">{{item.name}}</view>

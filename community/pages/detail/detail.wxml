@@ -45,7 +45,7 @@
 </view>
 
 <view class="img-block">
-  <image bindtap="previewImg" data-list="{{info.urlList}}" data-url="{{item.imageUrl}}" wx:for="{{info.urlList}}" wx:key="index" mode="widthFix" style="width: 30%; display: inline-block; margin-left: 20rpx;" wx:for-item="item" src="{{item.imageUrl}}"></image>
+  <image bindtap="previewImg" data-list="{{info.urlList}}" data-url="{{item.imageUrl}}" wx:for="{{info.urlList}}" wx:key="index" mode="aspectFill" class="preview-img" wx:for-item="item" src="{{item.imageUrl}}"></image>
 </view>
 
 <view class='divide-line'></view>
