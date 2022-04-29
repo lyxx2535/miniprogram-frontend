@@ -61,9 +61,9 @@ Page({
             showmenu: true,
         })
     },
-    //获得“帮忙”信息，让“进行中”数据展示在“已截止”之前
+    // 获得“帮忙”信息，让“进行中”数据展示在“已截止”之前
     async getSeekHelpList(){
-        const res = await api._sh_list_byUser();
+        const res = await api._sh_list_byUser()
         const resData = res.data.data;
         let ongoingList = []
         let endList = []

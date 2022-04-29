@@ -130,6 +130,9 @@
     margin-top: -120rpx;
 }
 .help_title {
+    width: 270rpx;
+    white-space: nowrap;
+    overflow: hidden;
     font-size: 30rpx;
     font-weight: 700;
     letter-spacing: 8rpx;

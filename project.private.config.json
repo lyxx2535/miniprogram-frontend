@@ -74,12 +74,6 @@
           "pathName": "my/pages/my_seekHelp/my_seekHelp",
           "query": "",
           "scene": null
-        },
-        {
-          "name": "",
-          "pathName": "my/pages/my_seekHelp/my_seekHelp",
-          "query": "",
-          "scene": null
         }
       ]
     }
