@@ -35,7 +35,7 @@ Page({
     toBottom:'bottom',// 滚动到底部
     emojiShow: false, //表情区是否显示
     paddingBottom: 0, //消息内容区距底部的距离
-    keyboardHeight: 15,//输入框距下边框距离
+    keyboardHeight: 0,//输入框距下边框距离
     emojiSource: 'https://s1.ax1x.com/2022/04/19/LBDn78.png',//表情图片
     windowHeight:0,//聊天内容区的高度
     sendAvatar:'',//当前用户头像
@@ -44,7 +44,9 @@ Page({
     imgList:[],//聊天记录中的图片数组
     pageNo:0, //聊天记录页码
     pageSize:10,//聊天记录页容量
-    isDisConnection:false//是否是手动断开连接
+    isDisConnection: false, //是否是手动断开连接
+    isAutoPosition: true, // 页面是否随键盘上移
+    trueKbHeight: false, // 键盘距底部的真实距离
   },
   // 初始化操作：获取我的信息，获取对方信息，初始化组件
   onLoad: function (options) {
@@ -137,7 +139,7 @@ Page({
               console.log('新发消息： ' + JSON.stringify(this.data.list[item]))
               // 删除小菊花
               this.data.list[item].receiverId = null;
-              this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y/M/D h:m');
+              this.data.list[item].sendTime = util.tsFormatTime(resJson.sendTime,'Y/M/D h:m:s');
               this.data.list[item].isShowTime = resJson.isShowTime;
               this.data.list[item].id = resJson.id;
             }
@@ -146,14 +148,13 @@ Page({
             list: this.data.list
           })
           console.log('消息列表：' + JSON.stringify(this.data.list))
-          return;
           //如果是接受消息
         }else{
           //接受到对方的来信，渲染
           // messageObj.avatar = this.data.receiveAvatar;
           //传入时间
           messageObj.id = resJson.id
-          messageObj.sendTime = util.tsFormatTime(resJson.sendTime,'Y/M/D h:m');
+          messageObj.sendTime = util.tsFormatTime(resJson.sendTime,'Y/M/D h:m:s');
           messageObj.content = resJson.content;
           messageObj.isShowTime = resJson.isShowTime;
           this.data.list.push(messageObj);
@@ -164,6 +165,20 @@ Page({
           })
         }
       }
+      // 随后改变键盘弹出状态
+      if(this.data.list.length <= 6){
+        this.setData({
+          isAutoPosition: false,
+          trueKbHeight: true
+        })
+      }
+      else{
+        this.setData({
+          isAutoPosition: true,
+          trueKbHeight: false
+        })
+      }
+      console.log('监听页面上弹状态：' + this.data.isAutoPosition)
     })
     wx.onSocketOpen(() => {
       console.log('WebSocket连接打开')
@@ -253,12 +268,21 @@ Page({
   // },
   onFocus(e) {
     this.hideAllPanel()
-    this.setData({
-      paddingBottom: e.detail.height,
-      keyboardHeight: e.detail.height,
-    },function(){
-      this.getScollBottom()
-    })
+    if(this.data.trueKbHeight){
+      this.setData({
+        paddingBottom: e.detail.height,
+        keyboardHeight: e.detail.height,
+      },function(){
+        this.getScollBottom()
+      })
+    }
+    else{
+      this.setData({
+        paddingBottom: e.detail.height
+      },function(){
+        this.getScollBottom()
+      })
+    }
   },
   onBlur(e) {
       this.setData({
@@ -483,6 +507,18 @@ Page({
         if(records.length < this.data.pageSize){
           this._noDataing = true
         }
+        if(records.length <= 6){
+          this.setData({
+            isAutoPosition: false,
+            trueKbHeight: true
+          })
+        }
+        else{
+          this.setData({
+            isAutoPosition: true,
+            trueKbHeight: false
+          })
+        }
         for(let index in records){
           const obj = records[index];
           // receiverId设为null，用于标注小菊花
@@ -491,7 +527,7 @@ Page({
           obj.senderId = obj.senderId;
           obj.id = obj.id;
           obj.isShowTime = obj.isShowTime;
-          obj.sendTime = util.tsFormatTime(obj.sendTime,'Y/M/D h:m');
+          obj.sendTime = util.tsFormatTime(obj.sendTime,'Y/M/D h:m:s');
           // 这里需要逆序添加 保证最新的消息永远在list的最后面
           this.data.list.unshift(obj);
         }
