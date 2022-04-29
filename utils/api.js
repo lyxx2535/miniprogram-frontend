@@ -68,7 +68,7 @@ const _get_user_friendList = () => {
       'Authorization': wx.getStorageSync('token')
     },
     method: "GET",
-    showLoading: true
+    showLoading: false
   })
 }
 // 获取用户的所有聊天记录，需要token
@@ -236,7 +236,7 @@ const _report_count = () => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    showLoading: true
+    showLoading: false
   })
 }
 // 获取用户待预约数量
@@ -249,7 +249,7 @@ const _book_count = () => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    showLoading: true
+    showLoading: false
   })
 }
 // 获取用户待检测数量
@@ -262,7 +262,7 @@ const _test_count = () => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    showLoading: true
+    showLoading: false
   })
 }
 // 发布求助信息，需要token
@@ -333,7 +333,7 @@ const _query_rh_forum_byId = (_id) => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    showLoading: true
+    showLoading: false
   })
 }
 // 通过id查询求助帖子，需要token
@@ -346,7 +346,7 @@ const _query_sh_forum_byId = (_id) => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    showLoading: true
+    showLoading: false
   })
 }
 // 获得按tag分类的所有求助帖子，需要token
@@ -359,7 +359,7 @@ const _query_sh_list_byTag = () => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    showLoading: true
+    showLoading: false
   })
 }
 // 获得按tag分类的所有帮助帖子，需要token
@@ -372,7 +372,7 @@ const _query_rh_list_byTag = (_tag) => {
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
-    showLoading: true
+    showLoading: false
   })
 }
 // 通过关键词搜索求助帖，需要token

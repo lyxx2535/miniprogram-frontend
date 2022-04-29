@@ -158,6 +158,7 @@ Page({
           messageObj.content = resJson.content;
           messageObj.isShowTime = resJson.isShowTime;
           this.data.list.push(messageObj);
+          console.log('接受到对方来信：' + messageObj)
           this.setData({
             list: this.data.list,
           },function(){
