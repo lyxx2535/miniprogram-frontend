@@ -9,8 +9,8 @@ Page({
    * 页面的初始数据
    */
   data: {
-    type0: ["求帮跑腿", "求借", "求租"], // 求助类型
-    type1: ["帮跑腿", "外借", "出租"], // 帮助类型
+    type0: ["求帮跑腿", "求借", "求租", "求购"], // 求助类型
+    type1: ["帮跑腿", "外借", "出租", "出售"], // 帮助类型
     typeIndex: 0, // 当前选中的type下标
     tag: ["食物饮品", "日用品", "书籍文具", "运动用品", "化妆品", "药品", "卫生用品", "电子产品"], // 标签
     tagIndex: 0, // 当前选中的tag下标
@@ -246,7 +246,7 @@ Page({
     var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     // 拿到当天日期
     var d = new Date();
-    wx.setStorageSync('date', util.tsFormatTime(d,'Y/M/D h:m:s'))
+    wx.setStorageSync('date', dateUtil.tsFormatTime(d,'Y/M/D h:m:s'))
     this.setData({
       start_time: obj.dateTime,
       dateTimeArray: obj.dateTimeArray,

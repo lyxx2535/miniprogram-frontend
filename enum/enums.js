@@ -18,6 +18,9 @@ const INSERT_TEST_INFORM = '/nucleic-acid/testing/insert'
 const GET_TEST_INFORM = '/nucleic-acid/testing/user-list'
 const INSERT_BOOK_INFORM = '/nucleic-acid/booking/insert'
 const GET_BOOK_INFORM = '/nucleic-acid/booking/user-list'
+const UPDATE_REPORT_INFORM = '/nucleic-acid/info/update'
+const UPDATE_TEST_INFORM = '/nucleic-acid/testing/update'
+const UPDATE_BOOK_INFORM = '/nucleic-acid/booking/update'
 // 发送服务消息
 const SEND_REMIND = '/task/add'
 const CHECK_REMIND = '/task/list'
@@ -65,6 +68,9 @@ export {
   INSERT_TEST_INFORM,
   GET_TEST_INFORM,
   GET_BOOK_INFORM,
+  UPDATE_BOOK_INFORM,
+  UPDATE_TEST_INFORM,
+  UPDATE_REPORT_INFORM,
   SEND_REMIND,
   CHECK_REMIND,
   DELETE_REMIND,

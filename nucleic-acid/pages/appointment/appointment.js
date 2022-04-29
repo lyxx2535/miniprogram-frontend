@@ -149,6 +149,7 @@ Page({
     let obj = []
     for(let item in resSet){
       let temp = {};
+      temp.managerId = resSet[item].managerId;
       temp.name = resSet[item].title;
       temp.time = resSet[item].deadLine;
       temp.id = resSet[item].id; // 该通知的id

@@ -479,7 +479,48 @@ const _delete_rh_forum_byId = (_id) => {
     showLoading: false
   })
 }
-
+// 更新用户核酸上报信息，需要token
+const _update_report_inform = (_data) => {
+  return httpRequest({
+    url: API.UPDATE_REPORT_INFORM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 更新用户核酸检测信息，需要token
+const _update_test_inform = (_data) => {
+  return httpRequest({
+    url: API.UPDATE_TEST_INFORM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 更新用户核酸预约信息，需要token
+const _update_book_inform = (_data) => {
+  return httpRequest({
+    url: API.UPDATE_BOOK_INFORM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 export {
   _login,
   _get_token,
@@ -517,5 +558,8 @@ export {
   _delete_sh_search_history_byUser,
   _delete_rh_forum_byId,
   _delete_sh_forum_byId,
+  _update_book_inform,
+  _update_test_inform,
+  _update_report_inform,
   
 }
