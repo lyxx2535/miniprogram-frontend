@@ -1,2 +1,46 @@
-<!--my/pages/my_seekHelp/my_seekHelp.wxml-->
-<text>my/pages/my_seekHelp/my_seekHelp.wxml</text>
+<!--my/pages/my_help/my_help.wxml-->
+<view>
+    <!--提示信息-->
+    <button class="question_btn" style="width: auto;" bindtap='showTips'>
+        <image src="{{QUESTION}}" class="question_img"></image>
+        <text class="question_text">左右滑动更改卡片状态</text>
+    </button>
+
+    <!--详细的提示信息-->
+    <view class="TipsZhezhao {{isTipsTrue?'isTipsShow':'isTipsHide'}}" bindtap='hideTips'>
+        <view class='tipsZhezhaoContent'>
+            <view class="triangle"></view>
+            <block wx:for="{{tips}}" wx:for-index="index" wx:key="index">
+            <view class="tips_item">
+                <view><image src="{{item.icon}}" class="tips_icon"></image></view> 
+                <view class="tips_text">{{item.tip}}</view>
+            </view>              
+            </block>
+
+        </view>
+    </view>
+
+    <!-- 展示“我的求助”条目 -->
+    <view class="card {{item.finishStatus=='进行中'?'white':'gray'}}" bindtap="checkDetail"  data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index">
+        <view style="display: flex;">
+            <view>
+                <!-- urlList的第一张，否则显示默认图片 -->
+                <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
+                <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
+            </view>
+            
+            <view class="content">
+                <view class="help_title">{{item.name}}</view>
+                <view class = "tag">
+                    <view class="tag1">{{item.seekHelpType}}</view>
+                    <view class="tag2">{{item.tag}}</view>
+                </view>
+                <view class = "help_msg">{{item.comment}}</view>
+                <!-- 若状态为“已截止”，显示icon -->
+                <image src = "{{img_url.solved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='已解决'}}"></image>
+                <image src = "{{img_url.unsolved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='未解决'}}"></image>
+            </view>
+        </view>
+  </view>
+  
+</view>

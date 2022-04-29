@@ -1,5 +1,6 @@
 // my/pages/my_help/my_help.js
 import * as IMG from '../../../enum/imageUrl'
+import * as api from '../../../utils/api'
 Page({
 
     /**
@@ -13,6 +14,12 @@ Page({
             {'icon':IMG.ICON_REDO_BLACK,'tip':'到期未解决的帖子，左滑跳转到发布页面，修改日期即可重新发布。'},
         
           ],
+        renderHelpList: [], // 当前展示的互助帖子list
+        test_img: IMG.VECTOR_PIC,
+        img_url: {
+            solved: IMG.STATE_SOLVED,
+            unsolved: IMG.STATE_UNSOLVED
+          },
     },
 
     showTips: function () {
@@ -27,11 +34,58 @@ Page({
         })
     },
 
+     // 查看帖子详情
+    checkDetail(e){
+        const id = e.currentTarget.dataset.id;
+        console.log('查看' + id + '号帖子内容')
+        // const id = 1; // 这里暂时先随便写一个值
+        wx.navigateTo({
+            url: '/community/pages/detail/detail?id=' + id + '&type=1',
+        })
+    },
+      // 预览图片
+    previewImg(e){
+        let temp = []
+        const list = e.currentTarget.dataset.list
+        for(let item in list){
+            temp.push(list[item].imageUrl)
+        }
+        const url = e.currentTarget.dataset.url
+        console.log(JSON.stringify(list) + url)
+        if(list.length == 0 ){
+            list.push(url)
+        }
+        wx.previewImage({
+            urls: temp,
+            current: url,
+            showmenu: true,
+        })
+    },
+    //获得“帮忙”信息，让“进行中”数据展示在“已截止”之前
+    async getRenderHelpList(){
+        const res = await api._rh_list_byUser();
+        const resData = res.data.data;
+        let ongoingList = []
+        let endList = []
+        for(let item in resData){
+            switch(resData[item].finishStatus){
+                case '进行中':
+                    ongoingList.push(resData[item])
+                    break
+                case '已截止':
+                    endList.push(resData[item])
+                    break
+            }
+        }
+        this.setData({
+            renderHelpList: ongoingList.concat(endList)
+        })
+    },
     /**
      * 生命周期函数--监听页面加载
      */
     onLoad: function (options) {
-
+        this.getRenderHelpList();
     },
 
     /**
@@ -45,7 +99,14 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+       
+        let _title = "我的帮忙";
+        wx.setNavigationBarTitle({
+          title: _title,
+          fail: err => {
+            console.log(err)
+          }
+        })
     },
 
     /**

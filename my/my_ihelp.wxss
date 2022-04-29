@@ -80,3 +80,95 @@
     border-color: transparent transparent #ffffff transparent;
     border-width: 10rpx;
 }
+/* 卡片相关 */
+.card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30rpx;
+    margin-bottom: 10rpx;
+    border-radius: 10rpx;
+    /* border: 5rpx solid #d0cece; */
+    width: 84%;
+    margin-left: 5%;
+    padding: 20rpx;
+    
+}
+.white{
+    background-color: #ffffff;
+}
+.gray{
+    background-color: #ffffff65;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40rpx;
+}
+.help_image {
+    display: inline-block;
+    height: 150rpx;
+    width: 150rpx;
+    background-color: black;
+    border-radius: 10rpx;
+    border-color: black;
+    border-width: 10rpx;   
+}
+.help_icon_nocomment {
+    display: inline-block;
+    height: 120rpx;
+    width: 120rpx;
+    border-width: 10rpx;
+    margin-left: 300rpx;
+    margin-top: -90rpx;
+}
+.help_icon {
+    display: inline-block;
+    height: 120rpx;
+    width: 120rpx;
+    border-width: 10rpx;
+    margin-left: 300rpx;
+    margin-top: -120rpx;
+}
+.help_title {
+    font-size: 30rpx;
+    font-weight: 700;
+    letter-spacing: 8rpx;
+    color: #3d3d3d;
+}
+.tag{
+    display: flex;
+    height: 30rpx;
+    margin-top: 15rpx;
+}
+.tag1{
+    display: inline-block;
+    background-color:#ec7070; 
+    color: white;
+    padding-left: 3rpx;
+    padding-right: 3rpx;
+    padding-top: 1rpx;
+    padding-bottom: 1rpx;
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    font-weight: bold;
+    letter-spacing: 4rpx;
+  }
+  .tag2{
+    background-color:#ffe699;
+    color: black;
+    padding-left: 3rpx;
+    padding-right: 3rpx;
+    padding-top: 1rpx;
+    padding-bottom: 1rpx;
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    font-weight: bold;
+    letter-spacing: 4rpx;
+    margin-left: 10rpx;
+  }
+  .help_msg {
+    font-size: 20rpx;
+    font-weight: 300;
+    letter-spacing: 4rpx;
+    margin-top: 15rpx;
+  }
