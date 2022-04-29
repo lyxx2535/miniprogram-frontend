@@ -25,7 +25,8 @@ Page({
     pageName:'',//页面名称
     senderId: 1, //当前用户ID
     lineHeight: 24,//表情的大小
-    receiverId:'',//接受人
+    receiverId: 0,//接受人
+    roomId: 0,//房间ID 防止串线
     list:[],//消息列表
     focus: false,//光标选中
     cursor: 0,//光标位置
@@ -75,6 +76,7 @@ Page({
         receiverId: info.id,
         receiveAvatar: info.avatarUrl,
         pageName: info.nickname,
+        roomId: this.data.senderId + info.id,
       },function(){
         this.linkSocket();
         this.getMessageHistory("init");
@@ -103,11 +105,10 @@ Page({
   },
   // 链接websocket
   linkSocket() {
+    console.log(typeof(this.data.senderId) + typeof(this.data.receiverId) + typeof(this.data.roomId))
     let that = this
     wx.connectSocket({
-
-      url: API.WS_BASE + `web-server/${this.data.senderId}`,
-      // url: API.WS_BASE + `webSocketOneToOne/${this.data.senderId}/${this.data.roomId}`,
+      url: API.WS_BASE + `web-server/${this.data.senderId}/${this.data.roomId}/${this.data.receiverId}`,
       success() {
         isSocketOpen = true;
         that.initEventHandle()
@@ -292,6 +293,7 @@ Page({
     const obj = {};
     obj.senderId = this.data.senderId; //发送人的ID
     obj.receiverId = this.data.receiverId;//接收人的ID
+    obj.roomId = this.data.roomId; //二人组合成的房间ID
     obj.content = message; //消息内容
     //消息先加入聊天区域，此时菊花是转的
     this.data.list.push(obj);
