@@ -39,6 +39,9 @@ Page({
       this.setData({
         userInfo: res.data.data
       })
+      setTimeout( () => this.setData({
+        isShowSkeleton: false,
+      }), 250)
     }
   },
 
@@ -73,9 +76,6 @@ Page({
       })
     }
     this.getUserInfo()
-    setTimeout( () => this.setData({
-      isShowSkeleton: false,
-    }), 750)
   },
 
 })

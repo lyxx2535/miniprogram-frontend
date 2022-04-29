@@ -32,6 +32,9 @@ Page({
         list: res.data.data,
         loading: false // 关闭等待框
       })
+      setTimeout( () => this.setData({
+        isShowSkeleton: false,
+      }), 250)
     }
   },
     /**
@@ -53,9 +56,6 @@ Page({
         selected: 2
       })
     }
-    setTimeout( () => this.setData({
-      isShowSkeleton: false,
-    }), 500)
   },
   /**
    * 生命周期函数--监听页面加载
