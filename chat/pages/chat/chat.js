@@ -53,6 +53,12 @@ Page({
     const receiverId = options.receiverId;
     this.getReceiveInfo(receiverId);
     this.getMemberInfo();
+    if(wx.getStorageSync(`comment${receiverId}`)){
+      this.setData({
+        comment: wx.getStorageSync(`comment${receiverId}`)
+      })
+    }
+    console.log('comment' + this.data.comment)
     //初始化emoji组件
     // const emojiInstance = this.selectComponent('.mp-emoji');
     // this.emojiNames = emojiInstance.getEmojiNames();
@@ -263,6 +269,7 @@ Page({
   onInput(e) {
     const value = e.detail.value
     this.data.comment = value
+    wx.setStorageSync(`comment${this.data.receiverId}`, value)
   },
   onConfirm() {
       //消息发送前的处理
@@ -296,6 +303,7 @@ Page({
     else{
       obj.lastSendMsgTime = null;
     }
+    wx.setStorageSync(`comment${this.data.receiverId}`, '')
     this.setData({
       comment: '',
       list: this.data.list
