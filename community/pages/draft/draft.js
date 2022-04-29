@@ -136,7 +136,6 @@ Page({
     const _data = {
       "comment": this.data.remark,
       "deadLine": ddl,
-      "helpType": this.data.type1[this.data.typeIndex],
       "name": this.data.content,
       "publishDate": now,
       "tag": this.data.tag[this.data.tagIndex],
@@ -146,6 +145,7 @@ Page({
     let resData;
     // 先发布草稿
     if(this.data.forumType == 0){
+      _data["seekHelpType"] = this.data.type0[this.data.typeIndex]
       const res = await api._publish_sh_draft(_data);
       resData = res.data.data;
       this.setData({
@@ -153,6 +153,7 @@ Page({
       })
     }
     else{
+      _data["helpType"] = this.data.type1[this.data.typeIndex]
       const res = await api._publish_rh_draft(_data);
       resData = res.data.data;
       this.setData({
