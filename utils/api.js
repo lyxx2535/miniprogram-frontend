@@ -493,6 +493,7 @@ const _update_report_inform = (_data) => {
     showLoading: false
   })
 }
+
 // 更新用户核酸检测信息，需要token
 const _update_test_inform = (_data) => {
   return httpRequest({
@@ -513,6 +514,33 @@ const _update_book_inform = (_data) => {
     url: API.UPDATE_BOOK_INFORM,
     method: 'POST',
     data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+
+// 获取用户发布的所有求助贴，需要token
+const _sh_list_byUser = () => {
+  return httpRequest({
+    url: API.SH_LIST_BY_USER,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 获取用户发布的所有帮助贴，需要token
+const _rh_list_byUser = () => {
+  return httpRequest({
+    url: API.RH_LIST_BY_USER,
+    method: 'GET',
     header:{
       "content-type": "application/json",
       'accept': 'application/json',
@@ -561,5 +589,7 @@ export {
   _update_book_inform,
   _update_test_inform,
   _update_report_inform,
+  _sh_list_byUser,
+  _rh_list_byUser
   
 }
