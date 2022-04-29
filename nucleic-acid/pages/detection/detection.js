@@ -109,6 +109,11 @@ Page({
       this.setData({
         list: this.data.list
       })
+      const _data = {
+        id: this.data.list[this.data.currentIndex].id,
+        isOpenRemind: this.data.list[this.data.currentIndex].isOpenRemind
+      }
+      this.updateData(_data)
     }
   },
   // 日期选择器事件
@@ -187,6 +192,10 @@ Page({
       dateTimeArray: obj.dateTimeArray,
     });
   },
+  async updateData(_data){
+    const res = await api._update_test_inform(_data)
+    console.log('更新成功！' + JSON.stringify(res.data));
+  },
   // 完成检测
   finishDetection(index){
     let obj = [];
@@ -203,7 +212,11 @@ Page({
       list: obj
     })
     console.log('完成检测，改变检测状态')
-    // TODO: 回传后端，更新状态
+    const _data = {
+      id: this.data.list[index].id,
+      finishStatus: '已完成'
+    }
+    this.updateData(_data)
 
   },
   // 点击已检测
@@ -232,7 +245,12 @@ Page({
           title: '已关闭服务通知！',
         })
       }
-      // TODO: 回传后端，更新状态
+      // 更新
+      const _data = {
+        id: this.data.list[index].id,
+        isOpenRemind: this.data.list[index].isOpenRemind
+      }
+      this.updateData(_data)
   },
 
   // 表单弹出动画

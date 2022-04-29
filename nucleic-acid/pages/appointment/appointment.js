@@ -109,6 +109,11 @@ Page({
       this.setData({
         list: this.data.list
       })
+      const _data = {
+        id: this.data.list[this.data.currentIndex].id,
+        isOpenRemind: this.data.list[this.data.currentIndex].isOpenRemind
+      }
+      this.updateData(_data)
     }
   },
   
@@ -141,7 +146,10 @@ Page({
       [type]: arr
     });
   },
-
+  async updateData(_data){
+    const res = await api._update_book_inform(_data)
+    console.log('更新成功！' + JSON.stringify(res.data));
+  },
   async getNucleicInfo(){
     const res = await api._get_book_inform();
     const resSet = res.data.data
@@ -209,7 +217,6 @@ Page({
         })
       }
     })
-    // todo: 后续改变状态操作
   },
   // 完成预约
   finishAppointment(index){
@@ -228,7 +235,11 @@ Page({
       list: obj
     })
     console.log('完成预约，改变预约状态')
-    // TODO: 回传后端，更新状态
+    const _data = {
+      id: this.data.list[index].id,
+      finishStatus: '已完成'
+    }
+    this.updateData(_data)
   },
   // 点击已预约
   tapAppointment(e){
@@ -255,7 +266,12 @@ Page({
         title: '已关闭服务通知！',
       })
     }
-    // TODO: 回传后端，更新状态
+    // 更新
+    const _data = {
+      id: this.data.list[index].id,
+      isOpenRemind: this.data.list[index].isOpenRemind
+    }
+    this.updateData(_data)
   },
 
   // 表单弹出动画

@@ -63,6 +63,10 @@ Page({
       title: '已开启提醒',
     })
   },
+  async updateData(_data){
+    const res = await api._update_report_inform(_data)
+    console.log('更新成功！' + JSON.stringify(res.data));
+  },
   // 通过按钮关闭表单
   confirmRemind(e){
     var currentStatus = e.currentTarget.dataset.status; 
@@ -117,6 +121,11 @@ Page({
       this.setData({
         list: this.data.list
       })
+      const _data = {
+        id: this.data.list[this.data.currentIndex].id,
+        isOpenRemind: this.data.list[this.data.currentIndex].isOpenRemind
+      }
+      this.updateData(_data)
     }
   },
   // 日期选择器事件
@@ -259,7 +268,11 @@ Page({
       list: obj
     })
     console.log('完成上报，改变上报状态')
-    // TODO: 回传后端，更新状态
+    const _data = {
+      id: this.data.list[index].id,
+      finishStatus: '已完成'
+    }
+    this.updateData(_data)
   },
   // 打开上报提醒
   switchChange(e){
@@ -282,7 +295,12 @@ Page({
         title: '已关闭服务通知！',
       })
     }
-    // TODO: 回传后端，更新状态
+    // 更新
+    const _data = {
+      id: this.data.list[index].id,
+      isOpenRemind: this.data.list[index].isOpenRemind
+    }
+    this.updateData(_data)
   },
 
   // 表单弹出动画
@@ -337,6 +355,7 @@ Page({
     let obj = []
     for(let item in resSet){
       let temp = {};
+      temp.isOpenRemind = resSet[item].isOpenRemind
       temp.name = resSet[item].title;
       temp.time = resSet[item].deadLine;
       temp.id = resSet[item].id; // 该通知的id
