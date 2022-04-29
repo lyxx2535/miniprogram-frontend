@@ -41,7 +41,7 @@ Page({
       })
       setTimeout( () => this.setData({
         isShowSkeleton: false,
-      }), 250)
+      }), 500)
     }
   },
 

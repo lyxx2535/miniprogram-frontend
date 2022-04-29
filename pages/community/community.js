@@ -477,7 +477,7 @@ Page({
     console.log('load！')
     setTimeout( () => this.setData({
       isShowSkeleton: false,
-    }), 750)
+    }), 1000)
   },
   onReady(){
     wx.setNavigationBarTitle({
