@@ -67,7 +67,7 @@ const chooseMedia = (options) =>{
   return new Promise((resolve, reject) => {
     wx.chooseMedia({
       count: 1,
-      sizeType: ['original'],
+      sizeType: ['compressed'],
       mediaType: ['image','video'],
       sourceType: ['album', 'camera'],
       maxDuration: 30,
