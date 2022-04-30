@@ -3,6 +3,15 @@ import * as api from './utils/api'
 const util = require('./utils/chat')
 
 App({
+  // 获得自己的id
+  async getMyInfo(){
+    const res = await api._get_user_info();
+    console.log('获取我的信息：' + JSON.stringify(res.data.data));
+    if (res.data.code == 200) {
+      const info = res.data.data;
+      wx.setStorageSync('myId', info.id)
+    }
+  },
   // 向服务端获取access_token
   async getAccessToken(){
     const res = await api._get_access_token();
@@ -18,6 +27,8 @@ App({
   onLaunch() {
     // 拿到access_token
     this.getAccessToken()
+    // 保存当前用户id
+    this.getMyInfo()
     // 拿到当天日期
     var d = new Date();
     wx.setStorageSync('date', util.tsFormatTime(d,'Y/M/D h:m:s'))

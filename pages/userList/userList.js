@@ -19,9 +19,18 @@ Page({
   },
   toChat(event){
     let id = event.currentTarget.dataset.id;
-    wx.navigateTo({
-      url: `/chat/pages/chat/chat?receiverId=`+ id,
-    })
+    if(wx.getStorageSync('myId') == id){
+      wx.showToast({
+        title: '无法和自己聊天！',
+        icon: 'error',
+        duration: 1000
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: `/chat/pages/chat/chat?receiverId=`+ id,
+      })
+    }
   },
   async get_friend_list(){
     // 不需要参数了，携带token查
@@ -61,6 +70,5 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) { // options 为 board页传来的参数
-    // this.get_friend_list();
   }
 })

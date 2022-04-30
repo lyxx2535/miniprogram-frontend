@@ -54,8 +54,8 @@ Page({
     console.log("头高度：" + App.globalData.navHeight);
     //默认聊天对象是zy id：9
     const receiverId = options.receiverId;
+    this.getMemberInfo(receiverId);
     this.getReceiveInfo(receiverId);
-    this.getMemberInfo();
     if(wx.getStorageSync(`comment${receiverId}`)){
       this.setData({
         comment: wx.getStorageSync(`comment${receiverId}`)
@@ -92,7 +92,7 @@ Page({
     }
   },
   // 获取我的信息
-  async getMemberInfo(){
+  async getMemberInfo(receiverId){
     const res = await _get_user_info();
     console.log('获取我的信息：' + JSON.stringify(res.data.data));
     if (res.data.code == 200) {
@@ -107,8 +107,8 @@ Page({
   },
   // 链接websocket
   linkSocket() {
-    console.log(typeof(this.data.senderId) + typeof(this.data.receiverId) + typeof(this.data.roomId))
     let that = this
+    console.log('roomId: ' + this.data.roomId)
     wx.connectSocket({
       url: API.WS_BASE + `web-server/${this.data.senderId}/${this.data.roomId}/${this.data.receiverId}`,
       success() {
@@ -325,11 +325,11 @@ Page({
     //向后台传入最后一条消息的时间，后台进行计算，下一条消息的间隔是否超过5分钟，超过则显示时间
     if(this.data.list && this.data.list.length > 1){
       obj.lastSendMsgTime = util.tsFormatTime(this.data.list[this.data.list.length - 2].sendTime, 'Y/M/D h:m:s');
-      console.log('上一条消息发送时间: ' + obj.lastSendMsgTime)
     }
     else{
       obj.lastSendMsgTime = null;
     }
+    console.log('第' + this.data.roomId + '号房 ' + '上一条消息发送时间: ' + obj.lastSendMsgTime)
     wx.setStorageSync(`comment${this.data.receiverId}`, '')
     this.setData({
       comment: '',

@@ -38,9 +38,18 @@ Page({
   // 跳转聊天
   goToChat(){
     const id = this.data.userId
-    wx.navigateTo({
-      url: `/chat/pages/chat/chat?receiverId=`+ id,
-    })
+    if(wx.getStorageSync('myId') == id){
+      wx.showToast({
+        title: '无法和自己聊天！',
+        icon: 'error',
+        duration: 1000
+      })
+    }
+    else{
+      wx.navigateTo({
+        url: `/chat/pages/chat/chat?receiverId=`+ id,
+      })
+    }
   },
 
   async getForumInfo(type){
