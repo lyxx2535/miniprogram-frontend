@@ -44,9 +44,20 @@ Page({
     wx.setStorageSync('token', res.data.data.token)
     console.log('exe')
     console.log('token: ' + wx.getStorageSync('token'));
+    // 保存当前用户id
+    this.getMyInfo()
     wx.switchTab({
       url: '/pages/index_NA/index_NA',
     })
+  },
+  // 获得自己的id
+  async getMyInfo(){
+    const res = await api._get_user_info();
+    console.log('获取我的信息：' + JSON.stringify(res.data.data));
+    if (res.data.code == 200) {
+      const info = res.data.data;
+      wx.setStorageSync('myId', info.id)
+    }
   },
   /**
    * 生命周期函数--监听页面显示

@@ -3,6 +3,7 @@ import * as IMG from '../../../enum/imageUrl'
 import * as api from '../../../utils/api'
 import { TEMPLATE_ID } from '../../../enum/enums.js'
 const dateTimePicker = require('../../../utils/dateTimer');
+const util = require('../../../utils/chat')
 
 Page({
   data: {
@@ -66,7 +67,6 @@ Page({
           console.log(res)
           // 准备请求参数
           var _data = {
-            "accessToken": wx.getStorageSync('access_token'),
             "data": {
               // MessageVO
               "thing1": {
@@ -111,7 +111,8 @@ Page({
       })
       const _data = {
         id: this.data.list[this.data.currentIndex].id,
-        isOpenRemind: this.data.list[this.data.currentIndex].isOpenRemind
+        isOpenRemind: this.data.list[this.data.currentIndex].isOpenRemind,
+        userId: wx.getStorageSync('myId')
       }
       this.updateData(_data)
     }
@@ -130,7 +131,7 @@ Page({
       } = e.currentTarget.dataset;
     this.setData({
       [type]: e.detail.value,
-      [param]: dateTimeArray[0][e.detail.value[0]] + '-' + dateTimeArray[1][e.detail.value[1]] + '-' + dateTimeArray[2][e.detail.value[2]] + ' ' + dateTimeArray[3][e.detail.value[3]] + ':' + dateTimeArray[4][e.detail.value[4]] + ':' + dateTimeArray[5][e.detail.value[5]]
+      [param]: dateTimeArray[0][e.detail.value[0]] + '/' + dateTimeArray[1][e.detail.value[1]] + '/' + dateTimeArray[2][e.detail.value[2]] + ' ' + dateTimeArray[3][e.detail.value[3]] + ':' + dateTimeArray[4][e.detail.value[4]] + ':' + dateTimeArray[5][e.detail.value[5]]
     });
   },
   changeDateTimeColumn(e) {
@@ -237,7 +238,8 @@ Page({
     console.log('完成预约，改变预约状态')
     const _data = {
       id: this.data.list[index].id,
-      finishStatus: '已完成'
+      finishStatus: '已完成',
+      userId: wx.getStorageSync('myId')
     }
     this.updateData(_data)
   },
@@ -269,7 +271,8 @@ Page({
     // 更新
     const _data = {
       id: this.data.list[index].id,
-      isOpenRemind: this.data.list[index].isOpenRemind
+      isOpenRemind: this.data.list[index].isOpenRemind,
+      userId: wx.getStorageSync('myId')
     }
     this.updateData(_data)
   },
