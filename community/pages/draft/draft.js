@@ -250,6 +250,7 @@ Page({
     this.setData({
       start_time: obj.dateTime,
       dateTimeArray: obj.dateTimeArray,
+      ddl: wx.getStorageSync('date')
     });
     // 根据options选择渲染求助还是帮忙
     this.setData({
