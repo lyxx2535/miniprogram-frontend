@@ -77,8 +77,7 @@ Page({
       this.setData({
         receiverId: info.id,
         receiveAvatar: info.avatarUrl,
-        pageName: info.nickname,
-        roomId: this.data.senderId + info.id,
+        pageName: info.nickname
       },function(){
         this.linkSocket();
         this.getMessageHistory("init");
@@ -108,6 +107,9 @@ Page({
   // 链接websocket
   linkSocket() {
     let that = this
+    this.setData({
+      roomId: this.data.senderId + this.data.receiverId
+    })
     console.log('roomId: ' + this.data.roomId)
     wx.connectSocket({
       url: API.WS_BASE + `web-server/${this.data.senderId}/${this.data.roomId}/${this.data.receiverId}`,
