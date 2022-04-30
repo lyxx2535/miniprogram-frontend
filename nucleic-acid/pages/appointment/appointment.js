@@ -56,6 +56,11 @@ Page({
       title: '已开启提醒',
     })
   },
+  // 更新是否开启通知
+  async update_isOpenRemind(_isOpenRemind, _id){
+    const res = await api._update_book_remind(_isOpenRemind, _id);
+    console.log(res.data)
+  },
   // 通过按钮关闭表单
   confirmRemind(e){
     var currentStatus = e.currentTarget.dataset.status; 
@@ -109,12 +114,7 @@ Page({
       this.setData({
         list: this.data.list
       })
-      const _data = {
-        id: this.data.list[this.data.currentIndex].id,
-        isOpenRemind: this.data.list[this.data.currentIndex].isOpenRemind,
-        userId: wx.getStorageSync('myId')
-      }
-      this.updateData(_data)
+      this.update_isOpenRemind(this.data.list[this.data.currentIndex].isOpenRemind, this.data.list[this.data.currentIndex].id)
     }
   },
   
@@ -269,12 +269,7 @@ Page({
       })
     }
     // 更新
-    const _data = {
-      id: this.data.list[index].id,
-      isOpenRemind: this.data.list[index].isOpenRemind,
-      userId: wx.getStorageSync('myId')
-    }
-    this.updateData(_data)
+    this.update_isOpenRemind(this.data.list[index].isOpenRemind, this.data.list[index].id)
   },
 
   // 表单弹出动画

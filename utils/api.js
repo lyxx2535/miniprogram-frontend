@@ -522,7 +522,54 @@ const _update_book_inform = (_data) => {
     showLoading: false
   })
 }
-
+// 更新用户核酸预约提醒状态，需要token
+const _update_book_remind = (_isOpenRemind, _id) => {
+  return httpRequest({
+    url: API.UPDATE_BOOK_REMIND + _id,
+    method: 'POST',
+    data: {
+      isOpenRemind: _isOpenRemind
+    },
+    header:{
+      "content-type": "application/x-www-form-urlencoded",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 更新用户核酸检测提醒状态，需要token
+const _update_test_remind = (_isOpenRemind, _id) => {
+  return httpRequest({
+    url: API.UPDATE_TEST_REMIND + _id,
+    method: 'POST',
+    data: {
+      isOpenRemind: _isOpenRemind
+    },
+    header:{
+      "content-type": "application/x-www-form-urlencoded",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 更新用户核酸上报提醒状态，需要token
+const _update_report_remind = (_isOpenRemind, _id) => {
+  return httpRequest({
+    url: API.UPDATE_REPORT_REMIND + _id,
+    method: 'POST',
+    data: {
+      isOpenRemind: _isOpenRemind
+    },
+    header:{
+      "content-type": "application/x-www-form-urlencoded",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 // 获取用户发布的所有求助贴，需要token
 const _sh_list_byUser = () => {
   return httpRequest({
@@ -589,6 +636,9 @@ export {
   _update_book_inform,
   _update_test_inform,
   _update_report_inform,
+  _update_book_remind,
+  _update_test_remind,
+  _update_report_remind,
   _sh_list_byUser,
   _rh_list_byUser
   

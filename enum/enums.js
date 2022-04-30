@@ -21,6 +21,9 @@ const GET_BOOK_INFORM = '/nucleic-acid/booking/user-list'
 const UPDATE_REPORT_INFORM = '/nucleic-acid/info/update'
 const UPDATE_TEST_INFORM = '/nucleic-acid/testing/update'
 const UPDATE_BOOK_INFORM = '/nucleic-acid/booking/update'
+const UPDATE_REPORT_REMIND = '/nucleic-acid/info/remind/'
+const UPDATE_BOOK_REMIND = '/nucleic-acid/booking/remind/'
+const UPDATE_TEST_REMIND = '/nucleic-acid/testing/remind/'
 // 发送服务消息
 const SEND_REMIND = '/task/add'
 const CHECK_REMIND = '/task/list'
@@ -73,6 +76,9 @@ export {
   UPDATE_BOOK_INFORM,
   UPDATE_TEST_INFORM,
   UPDATE_REPORT_INFORM,
+  UPDATE_BOOK_REMIND,
+  UPDATE_REPORT_REMIND,
+  UPDATE_TEST_REMIND,
   SEND_REMIND,
   CHECK_REMIND,
   DELETE_REMIND,
@@ -96,5 +102,6 @@ export {
   DELETE_RH_FORUM_BY_ID,
   DELETE_SH_FORUM_BY_ID,
   SH_LIST_BY_USER,
-  RH_LIST_BY_USER
+  RH_LIST_BY_USER,
+
 }
