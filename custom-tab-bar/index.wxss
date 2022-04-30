@@ -8,9 +8,10 @@
 }
 /* 每个Tab的样式 */
 .tab {
+  position: relative;
   text-align: -webkit-center;
   flex-grow: 1;
-  margin-bottom: 20rpx;
+  padding-bottom: 20rpx;
 }
 .tab-image {
   width: 112rpx;
@@ -29,7 +30,6 @@
   position: absolute;
   height: 100rpx;
   border-radius: 70rpx;
-  margin-bottom: 50rpx;
   background-color: #ededef;
   z-index: -1;
   width: 88%;

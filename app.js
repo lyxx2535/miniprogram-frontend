@@ -1,7 +1,6 @@
 // app.js
 import * as api from './utils/api'
 const util = require('./utils/chat')
-
 App({
   // 获得自己的id
   async getMyInfo(){
@@ -25,6 +24,7 @@ App({
     }
   },
   onLaunch() {
+  
     // 拿到access_token
     this.getAccessToken()
     // 保存当前用户id
@@ -44,6 +44,17 @@ App({
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
     wx.getSystemInfo({
       success: res => {
+        console.log('手机信息res'+res.model)
+          let model = res.model;
+            if (/iphone\sx/i.test(model) || (/iphone/i.test(model) && /unknown/.test(model))|| /iphone\s11/i.test(model)||/iphone\s12/i.test(model)||/iphone\s13/i.test(model)){
+                this.globalData.isIphoneX = true;
+                this.globalData.bottomLeft=65;
+            }else{
+                this.globalData.isIphoneX = false;
+                this.globalData.bottomLeft=0;
+            }
+          console.log(this.globalData.isIphoneX,this.globalData.bottomLeft);
+        //机型
         let statusBarHeight = res.statusBarHeight;
         //胶囊按钮与顶部的距离
         let navTop = menuButtonObject.top;
@@ -52,19 +63,27 @@ App({
         this.globalData.navHeight = navHeight;
         this.globalData.navTop = navTop;
         this.globalData.windowHeight = res.windowHeight;
+        this.globalData.model = model;
       },
       fail(err) {
         console.log(err);
       }
     })
+ 
+
+
+   
     // 默认跳转到login
     // wx.navigateTo({
     //   url: '/pages/login/login',
     // })
   },
+  
   globalData: {
     navHeight: 0,
     navTop: 0,
-    windowHeight: 0
+    windowHeight: 0,
+    bottomLeft: 0,
+    isIphoneX: false,//判断机型 
   }
 })

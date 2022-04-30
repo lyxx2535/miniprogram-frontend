@@ -1,7 +1,7 @@
 <!--components/tabBar1/tabBar1.wxml-->
 <cover-view class="tab-bar" style="background-color: {{tabBar.backgroundColor}};" wx:if="{{show}}">
     <!-- 循环渲染Tab标签 -->
-    <cover-view class="bg_tab"></cover-view>
+    <cover-view class="bg_tab" style="bottom: {{50+left}}rpx;"></cover-view>
     <cover-view class="tab"
         wx:for="{{tabBar.list}}" wx:key="index"
         data-path="{{item.pagePath}}" data-index="{{index}}" bindtap="switchPage">

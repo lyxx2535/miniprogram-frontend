@@ -1,9 +1,11 @@
 import * as IMG1 from '../enum/imageUrl'
+const app = getApp()
 Component({
   /**
    * 组件的初始数据
    */
   data: {
+        left:app.globalData.bottomLeft,//iPhone底部高度
         show:true,
         selected: 0, // 选中的页面
         tabBar:{
@@ -44,6 +46,7 @@ Component({
    * 组件的方法列表
    */
   methods: {
+    
     switchPage (e) {
       const data = e.currentTarget.dataset
       const url = data.path
@@ -60,4 +63,5 @@ Component({
       // })
     }
   }
+  
 })
