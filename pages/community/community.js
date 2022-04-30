@@ -463,15 +463,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
+    wx.setNavigationBarTitle({
+      title: this.data.navigationTitle,
+      fail: err => {
+        console.log(err)
+      }
+    })
     if (typeof this.getTabBar === 'function' &&
       this.getTabBar()) {
       this.getTabBar().setData({
         selected: 1
       })
     }
-    // this.setData({
-    //   currentTab: 0
-    // })
     // 加载后端数据
     this.getSeekHelpList();
     this.getRenderHelpList();
@@ -481,11 +484,5 @@ Page({
     }), 1000)
   },
   onReady(){
-    wx.setNavigationBarTitle({
-      title: this.data.navigationTitle,
-      fail: err => {
-        console.log(err)
-      }
-    })
   }
 })

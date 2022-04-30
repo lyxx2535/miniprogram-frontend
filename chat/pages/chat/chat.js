@@ -510,7 +510,7 @@ Page({
         if(records.length < this.data.pageSize){
           this._noDataing = true
         }
-        if(records.length <= 5){
+        if(records.length <= 7){
           this.setData({
             isAutoPosition: false,
             trueKbHeight: true

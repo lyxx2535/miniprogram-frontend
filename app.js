@@ -44,7 +44,7 @@ App({
     let menuButtonObject = wx.getMenuButtonBoundingClientRect();
     wx.getSystemInfo({
       success: res => {
-        console.log('手机信息res'+res.model)
+        console.log('手机信息res' + res.model)
           let model = res.model;
             if (/iphone\sx/i.test(model) || (/iphone/i.test(model) && /unknown/.test(model))|| /iphone\s11/i.test(model)||/iphone\s12/i.test(model)||/iphone\s13/i.test(model)){
                 this.globalData.isIphoneX = true;
