@@ -24,7 +24,7 @@
   </view>
 
   <scroll-view scroll-y="true" style="margin-top: 15rpx; height: 58vh;">
-    <view class="card flex">
+    <view class="card flex" bindtap="toMyNA">
     <view>
       <view class="card-text">我的核酸</view>
       <view class="underline" style="background: linear-gradient(to right,#3f8ba2, #5ca8c0);"></view>
@@ -33,7 +33,7 @@
       <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
     </view>
 
-    <view class="card flex">
+    <view class="card flex" bindtap="toMyRH">
     <view>
       <view class="card-text">我的帮忙</view>
       <view class="underline" style="background: linear-gradient(to right,#ffd968, #ffe389);"></view>
@@ -42,7 +42,7 @@
       <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
     </view>
 
-    <view class="card flex">
+    <view class="card flex" bindtap="toMySH">
     <view>
       <view class="card-text">我的求助</view>
       <view class="underline" style="background: linear-gradient(to right,#ec7272, #f3a3a3);"></view>

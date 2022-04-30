@@ -1,5 +1,5 @@
 // index.js
-import { TEMPLATE_ID } from '../../enum/enums.js'
+import { TEMPLATE_ID, TEST_COUNT } from '../../enum/enums.js'
 import * as api from '../../utils/api.js'
 
 Page({
@@ -68,6 +68,10 @@ Page({
       const res1 = await api._delete_sh_forum_byId(115)
       console.log(res.data);
       console.log(res1.data);
+    },
+    async test(){
+      const res = await api._rh_list_byUser()
+      console.log(res.data)
     },
   onLoad() {
     if (wx.getUserProfile) {

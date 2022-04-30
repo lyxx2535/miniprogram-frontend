@@ -174,4 +174,7 @@
     font-weight: 300;
     letter-spacing: 4rpx;
     margin-top: 15rpx;
+    width: 270rpx;
+    white-space: nowrap;
+    overflow: hidden;
   }

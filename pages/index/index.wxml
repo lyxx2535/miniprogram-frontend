@@ -25,4 +25,5 @@
   <button bindtap="searchForum" class="mt-20px">关键词搜帖</button>
   <button bindtap="searchHistory" class="mt-20px">获取搜索记录</button>
   <button bindtap="deleteForum" class="mt-20px">删除帖子</button>
+  <button bindtap="test" class="mt-20px">测试</button>
 </view>

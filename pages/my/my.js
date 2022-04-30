@@ -44,7 +44,21 @@ Page({
       }), 500)
     }
   },
-
+  toMyNA(){
+    wx.navigateTo({
+      url: '/nucleic-acid/pages/myNA/myNA',
+    })
+  },
+  toMyRH(){
+    wx.navigateTo({
+      url: '/my/pages/my_help/my_help',
+    })
+  },
+  toMySH(){
+    wx.navigateTo({
+      url: '/my/pages/my_seekHelp/my_seekHelp',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */
