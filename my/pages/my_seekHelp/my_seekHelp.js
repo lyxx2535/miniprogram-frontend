@@ -19,9 +19,9 @@ Page({
         img_url: {
             solved: IMG.STATE_SOLVED,
             unsolved: IMG.STATE_UNSOLVED,
-            delete: IMG.ICON_DELETE_BLACK,
-            over: IMG.ICON_OVER_BLACK,
-            redo: IMG.ICON_REDO_BLACK,
+            delete: IMG.ICON_DELETE,
+            over: IMG.ICON_OVER,
+            redo: IMG.ICON_REDO,
           },
     },
 

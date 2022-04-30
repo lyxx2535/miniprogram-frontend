@@ -23,7 +23,7 @@
     <!-- 展示“我的求助”条目 -->
     <view class="card {{item.finishStatus=='进行中'?'white':'gray'}}" wx:for="{{seekHelpList}}" wx:key="index">
         <!-- width：可限定内容在卡片中，重要 -->
-        <l-slide-view height="150" width="650" slide-width="300">
+        <l-slide-view height="200" width="630" slide-width="{{item.finishStatus=='进行中'?'360':'240'}}">
             <view slot="left" style="display: flex;" bindtap="checkDetail" data-id="{{item.id}}">
                 <view>
                     <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
@@ -41,8 +41,33 @@
                     <image src = "{{img_url.unsolved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='未解决'}}" mode="widthFix" style="width: 150rpx; top: 10rpx; position: relative; background-color: #f8f8f9;"></image>
                 </view>
             </view>
+            <view slot="right" wx:if="{{item.finishStatus=='进行中'}}" style="display: flex;height: 200rpx;" >
+                <view class="state_all" bindtap="deleteMsg" style="background-color: #e85252;">
+                    <image src="{{img_url.delete}}" class="state_img"></image>
+                </view>
+                <view class="state_all" bindtap="editMsg" style="background-color: #ffc000;">
+                    <image src="{{img_url.redo}}" class="state_img"></image>
+                </view>
+                <view class="state_all" bindtap="overMsg" style="background-color: #00b050; border-radius: 0rpx 10rpx 10rpx 0rpx ;">
+                    <image src="{{img_url.over}}" class="state_img"></image>
+                </view>
+               
+                <!-- <l-avatar text="编辑" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/> -->
+                <!-- <l-avatar text="截止" placement="bottom" src="{{img_url.over}}"  size="80" bind:lintap="overMsg"/>
+                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/> -->
+            </view>
+            <view slot="right" wx:if="{{item.finishStatus!='进行中'}}" style="display: flex;height: 200rpx;">
+                <view class="state_all" bindtap="deleteMsg" style="background-color: #e85252;">
+                    <image src="{{img_url.delete}}" class="state_img"></image>
+                </view>
+                <view class="state_all" bindtap="editMsg" style="background-color: #ffc000; border-radius: 0rpx 10rpx 10rpx 0rpx ;">
+                    <image src="{{img_url.redo}}" class="state_img"></image>
+                </view>
+                <!-- <l-avatar text="重发" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
+                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/> -->
+            </view>
 
-            <view slot="right" wx:if="{{item.finishStatus=='进行中'}}">
+            <!-- <view slot="right" wx:if="{{item.finishStatus=='进行中'}}">
                 <l-avatar text="编辑" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
                 <l-avatar text="解决" placement="bottom" src="{{img_url.over}}"  size="80" bind:lintap="overMsg"/>
                 <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/>
@@ -50,7 +75,7 @@
             <view slot="right" wx:if="{{item.finishStatus!='进行中'}}">
                 <l-avatar text="重发" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
                 <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/>
-            </view>
+            </view> -->
         </l-slide-view>
     </view>
 
