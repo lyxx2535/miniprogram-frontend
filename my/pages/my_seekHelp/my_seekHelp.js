@@ -18,7 +18,10 @@ Page({
         test_img: IMG.VECTOR_PIC,
         img_url: {
             solved: IMG.STATE_SOLVED,
-            unsolved: IMG.STATE_UNSOLVED
+            unsolved: IMG.STATE_UNSOLVED,
+            delete: IMG.ICON_DELETE_BLACK,
+            over: IMG.ICON_OVER_BLACK,
+            redo: IMG.ICON_REDO_BLACK,
           },
     },
 
@@ -60,6 +63,18 @@ Page({
             current: url,
             showmenu: true,
         })
+    },
+       // 删除该条信息
+       deleteMsg(e){
+        console.log("delete")
+    },
+    // 编辑该条信息
+    editMsg(e){
+        console.log("edit")
+    },
+    // 结束该条信息
+    overMsg(e){
+        console.log("over")
     },
     // 获得“帮忙”信息，让“进行中”数据展示在“已截止”之前
     async getSeekHelpList(){

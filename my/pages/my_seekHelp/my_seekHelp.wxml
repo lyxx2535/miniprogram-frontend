@@ -21,26 +21,38 @@
     </view>
 
     <!-- 展示“我的求助”条目 -->
-    <view class="card {{item.finishStatus=='进行中'?'white':'gray'}}" bindtap="checkDetail"  data-id="{{item.id}}" wx:for="{{seekHelpList}}" wx:key="index">
-        <view style="display: flex;">
-            <view>
-                <!-- urlList的第一张，否则显示默认图片 -->
-                <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image" mode="aspectFill"></image>
-                <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image" mode="aspectFill"></image>
-            </view>
-            
-            <view class="content">
-                <view class="help_title">{{item.name}}</view>
-                <view class = "tag">
-                    <view class="tag1">{{item.seekHelpType}}</view>
-                    <view class="tag2">{{item.tag}}</view>
+    <view class="card {{item.finishStatus=='进行中'?'white':'gray'}}" wx:for="{{seekHelpList}}" wx:key="index">
+        <!-- width：可限定内容在卡片中，重要 -->
+        <l-slide-view height="150" width="650" slide-width="300">
+            <view slot="left" style="display: flex;" bindtap="checkDetail" data-id="{{item.id}}">
+                <view>
+                    <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
+                    <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
                 </view>
-                <view class = "help_msg">{{item.comment}}</view>
-                <!-- 若状态为“已截止”，显示icon -->
-                <image src = "{{img_url.solved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='已解决'}}" mode="widthFix" style="width: 150rpx; top: 10rpx; position: relative; background-color: #f8f8f9;"></image>
-                <image src = "{{img_url.unsolved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='未解决'}}" mode="widthFix" style="width: 150rpx; top: 10rpx; position: relative; background-color: #f8f8f9;"></image>
+            
+                <view class="content">
+                    <view class="help_title">{{item.name}}</view>
+                    <view class = "tag">
+                        <view class="tag1">{{item.seekHelpType}}</view>
+                        <view class="tag2">{{item.tag}}</view>
+                    </view>
+                    <view class = "help_msg">{{item.comment}}</view>
+                    <image src = "{{img_url.solved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='已解决'}}" mode="widthFix" style="width: 150rpx; top: 10rpx; position: relative; background-color: #f8f8f9;"></image>
+                    <image src = "{{img_url.unsolved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='未解决'}}" mode="widthFix" style="width: 150rpx; top: 10rpx; position: relative; background-color: #f8f8f9;"></image>
+                </view>
             </view>
-        </view>
-  </view>
-  
+
+            <view slot="right" wx:if="{{item.finishStatus=='进行中'}}">
+                <l-avatar text="编辑" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
+                <l-avatar text="解决" placement="bottom" src="{{img_url.over}}"  size="80" bind:lintap="overMsg"/>
+                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/>
+            </view>
+            <view slot="right" wx:if="{{item.finishStatus!='进行中'}}">
+                <l-avatar text="重发" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
+                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/>
+            </view>
+        </l-slide-view>
+    </view>
+
+            
 </view>
