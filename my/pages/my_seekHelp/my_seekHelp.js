@@ -46,7 +46,7 @@ Page({
             url: '/community/pages/detail/detail?id=' + id + '&type=0',
         })
     },
-      // 预览图片
+    // 预览图片
     previewImg(e){
         let temp = []
         const list = e.currentTarget.dataset.list
