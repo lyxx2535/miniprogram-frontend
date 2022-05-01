@@ -212,7 +212,7 @@ Page({
           this.deleteForum()
         }
       }
-      this.finishPublish()
+      // this.finishPublish()
     }
   },
   async deleteForum(){
