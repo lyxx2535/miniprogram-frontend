@@ -30,6 +30,7 @@ Page({
     endYear: 2050, // 最大年份
     start_time_p: wx.getStorageSync('date'), //显示的开始时间
     start_time_p2: '', //显示的开始时间2
+    isShowSkeleton: true, // 是否展示骨架屏
   },
   
   // input数据双向绑定
@@ -181,7 +182,8 @@ Page({
       obj.push(temp);
     }
     this.setData({
-      list: obj
+      list: obj,
+      isShowSkeleton: false
     })
     console.log(this.data.list)
   },

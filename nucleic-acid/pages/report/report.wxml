@@ -1,96 +1,108 @@
 <!--nucleic-acid/pages/report/report.wxml-->
-<view wx:if="{{list.length == 0}}">您当前没有上报任务~</view>
+<l-skeleton
+  style="margin-top: 100rpx;"
+  loading="{{isShowSkeleton}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{false}}"
+  avatar-size="100rpx"
+  avatar-shape="circle"
+  rows="8"
+  active="{{true}}"
+>
+  <view wx:if="{{list.length == 0}}">您当前没有上报任务~</view>
 
-<view class="card" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
+  <view class="card" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
 
-  <view class="mt-30px flex">
-    <image src="{{img_url.notice}}" class="inline-block icon_notice" style="z-index: 999;"></image>
-    <text class="inline-block text_title ">{{item.name}}</text>
-    <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
-    <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
-    <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
-  </view>
+    <view class="mt-30px flex">
+      <image src="{{img_url.notice}}" class="inline-block icon_notice" style="z-index: 999;"></image>
+      <text class="inline-block text_title ">{{item.name}}</text>
+      <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.ongoing}}" src="{{img_url.ongoing}}"></image>
+      <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.over}}" src="{{img_url.over}}"></image>
+      <image class="mt-2 h-7 w-16 ml-auto state-right" wx:if="{{item.status.miss}}" src="{{img_url.miss}}"></image>
+    </view>
 
-  <view class="text_detail">截止时间：{{item.time}}</view>
+    <view class="text_detail">截止时间：{{item.time}}</view>
 
-  <view class="flex flex-grow-0 relative">
+    <view class="flex flex-grow-0 relative">
 
-    <button  wx:if="{{item.status.ongoing}}" class="btn btn_2" style="background-color: #d0cece;" bindtap="reportMedia" data-name="{{item.name}}" data-index="{{index}}">点击上报</button>
-    <button  wx:if="{{item.status.over}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
-    <button  wx:if="{{item.status.miss}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
-  </view>
+      <button  wx:if="{{item.status.ongoing}}" class="btn btn_2" style="background-color: #d0cece;" bindtap="reportMedia" data-name="{{item.name}}" data-index="{{index}}">点击上报</button>
+      <button  wx:if="{{item.status.over}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
+      <button  wx:if="{{item.status.miss}}" class="btn btn_2" style="background-color: #f0efef; color: #d0cece;">点击上报</button>
+    </view>
 
-  <view class="divide_line" style="margin-top: 20px;"></view>
+    <view class="divide_line" style="margin-top: 20px;"></view>
 
-  <!--点击后灰色背景的设置-->
-  <view wx:if="{{now_state}}" class="background" bindtap="hideModal"></view>
-  <!--弹窗的出现-->
-  <view animation="{{animationData}}" class="box" wx:if="{{now_state}}" >
-  <!--弹窗内部内容-->
-  <view class="text_title" style="margin-left: auto;">{{reportContent}}结果上报</view>
-    <view wx:if="{{!isChoose}}" bindtap="chooseImg">
-      <view class="media relative" >
-        <image src="{{img_url.upload}}" style="position: relative; width: 40%; height: 40%; margin:0 auto; top: 60rpx"></image>
-        <view style="margin: 0 auto; position: relative; top: 100rpx;font-size: 26rpx; letter-spacing:7rpx;font-weight: 300;">点击上传图片</view>
+    <!--点击后灰色背景的设置-->
+    <view wx:if="{{now_state}}" class="background" bindtap="hideModal"></view>
+    <!--弹窗的出现-->
+    <view animation="{{animationData}}" class="box" wx:if="{{now_state}}" >
+    <!--弹窗内部内容-->
+    <view class="text_title" style="margin-left: auto;">{{reportContent}}结果上报</view>
+      <view wx:if="{{!isChoose}}" bindtap="chooseImg">
+        <view class="media relative" >
+          <image src="{{img_url.upload}}" style="position: relative; width: 40%; height: 40%; margin:0 auto; top: 60rpx"></image>
+          <view style="margin: 0 auto; position: relative; top: 100rpx;font-size: 26rpx; letter-spacing:7rpx;font-weight: 300;">点击上传图片</view>
+        </view>
+      </view>
+      <view wx:if="{{isChoose}}">
+        <image src="{{tempImgUrl}}" mode="heightFix" style="height: 50vh; margin-top: 60rpx;"></image>
+        <view class="flex mt-8 relative">
+          <button bindtap="reChoose" class="btn_upload" style="left: 50rpx;letter-spacing:8rpx;">更改</button>
+          <button bindtap="uploadImg" class="btn_upload" style="right: 50rpx; letter-spacing:8rpx;background-color: black; color: white;">提交</button>
+        </view>
       </view>
     </view>
-    <view wx:if="{{isChoose}}">
-      <image src="{{tempImgUrl}}" mode="heightFix" style="height: 50vh; margin-top: 60rpx;"></image>
-      <view class="flex mt-8 relative">
-        <button bindtap="reChoose" class="btn_upload" style="left: 50rpx;letter-spacing:8rpx;">更改</button>
-        <button bindtap="uploadImg" class="btn_upload" style="right: 50rpx; letter-spacing:8rpx;background-color: black; color: white;">提交</button>
+
+
+    <view class="flex relative">
+      <image src="{{img_url.remind}}" class="inline-block icon_remind"></image>
+      <text class="text_remind" >上报提醒</text>
+
+      <view class="flex-1 text-right relative" style="right: 30rpx; margin-top: 4rpx;">
+        <switch wx:if="{{item.status.over}}" disabled="true"></switch>
+        <switch wx:if="{{item.status.miss}}" disabled="true"></switch>
+        <switch wx:if="{{item.status.ongoing}}" checked="{{item.isOpenRemind}}" bindchange="switchChange" data-status="open" data-index="{{index}}" color="#595959"></switch>
       </view>
     </view>
-  </view>
-
-
-  <view class="flex relative">
-    <image src="{{img_url.remind}}" class="inline-block icon_remind"></image>
-    <text class="text_remind" >上报提醒</text>
-
-    <view class="flex-1 text-right relative" style="right: 30rpx; margin-top: 4rpx;">
-      <switch wx:if="{{item.status.over}}" disabled="true"></switch>
-      <switch wx:if="{{item.status.miss}}" disabled="true"></switch>
-      <switch wx:if="{{item.status.ongoing}}" checked="{{item.isOpenRemind}}" bindchange="switchChange" data-status="open" data-index="{{index}}" color="#595959"></switch>
-    </view>
-  </view>
-<!-- 选择提醒后弹出的表单 -->
-<view class="drawer_screen" bindtap="confirmRemind" data-status="close" data-close="true" wx:if="{{isShowForm}}"></view> 
-  <view animation="{{animationData}}" class="drawer_box" wx:if="{{isShowForm}}"> 
-    <view class="drawer_title">自定义/确认提醒内容</view> 
-    <view class="drawer_content">
-      <view class="top grid"> 
-        <label class="title col-0">上报地点</label> 
-        <input class="input_base input_h30 col-1" value="小程序内" bindinput="onInputName"></input> 
+  <!-- 选择提醒后弹出的表单 -->
+  <view class="drawer_screen" bindtap="confirmRemind" data-status="close" data-close="true" wx:if="{{isShowForm}}"></view> 
+    <view animation="{{animationData}}" class="drawer_box" wx:if="{{isShowForm}}"> 
+      <view class="drawer_title">自定义/确认提醒内容</view> 
+      <view class="drawer_content">
+        <view class="top grid"> 
+          <label class="title col-0">上报地点</label> 
+          <input class="input_base input_h30 col-1" value="小程序内" bindinput="onInputName"></input> 
+        </view> 
+        <view class="top grid"> 
+          <label class="title col-0">上报内容</label> 
+          <input class="input_base input_h30 col-1" value="{{list[currentIndex].name}}" bindinput="onInputContent" data-value="{{list[currentIndex].name}}"></input>
+        </view>
+        <view class="top grid"> 
+          <label class="title col-0">提醒时间</label> 
+          <picker class="act_picker" mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
+            <view class="act_right">
+              <text style="letter-spacing:3rpx; font-weight: 300;" wx:if="{{!start_time_p}}">请选择</text>
+              <text style="letter-spacing:3rpx; font-weight: 300;" wx:else>{{start_time_p}}</text>
+              <text style="color: rgb(121, 121, 121); margin-left: 10rpx;" >▼</text>
+            </view>
+          </picker>
+          <!-- <picker  mode="date" header-text="选择时间" value="{{date}}"  bindchange="bindDateChange">
+            <view style="font-size: 24rpx;margin-top: 12rpx;margin-left: 3rpx;">
+              <text style="letter-spacing:3rpx;font-weight: 300;">{{date}}</text>
+              <text style="color: rgb(121, 121, 121); margin-top: 50rpx; margin-left: 3rpx;" >▼</text>
+            </view>
+          </picker>  -->
+        </view>
+        <view class="top bottom grid"> 
+          <label class="title col-0">备注</label> 
+          <input class="input_base input_h30 col-1" value="{{remindRemark}}" bindinput="onInputRemark"></input> 
+        </view> 
       </view> 
-      <view class="top grid"> 
-        <label class="title col-0">上报内容</label> 
-        <input class="input_base input_h30 col-1" value="{{list[currentIndex].name}}" bindinput="onInputContent" data-value="{{list[currentIndex].name}}"></input>
-      </view>
-      <view class="top grid"> 
-        <label class="title col-0">提醒时间</label> 
-        <picker class="act_picker" mode="multiSelector" value="{{start_time}}" data-type="start_time" data-param='start_time_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}">
-          <view class="act_right">
-            <text style="letter-spacing:3rpx; font-weight: 300;" wx:if="{{!start_time_p}}">请选择</text>
-            <text style="letter-spacing:3rpx; font-weight: 300;" wx:else>{{start_time_p}}</text>
-            <text style="color: rgb(121, 121, 121); margin-left: 10rpx;" >▼</text>
-          </view>
-        </picker>
-        <!-- <picker  mode="date" header-text="选择时间" value="{{date}}"  bindchange="bindDateChange">
-          <view style="font-size: 24rpx;margin-top: 12rpx;margin-left: 3rpx;">
-            <text style="letter-spacing:3rpx;font-weight: 300;">{{date}}</text>
-            <text style="color: rgb(121, 121, 121); margin-top: 50rpx; margin-left: 3rpx;" >▼</text>
-          </view>
-        </picker>  -->
-      </view>
-      <view class="top bottom grid"> 
-        <label class="title col-0">备注</label> 
-        <input class="input_base input_h30 col-1" value="{{remindRemark}}" bindinput="onInputRemark"></input> 
-      </view> 
-    </view> 
-    <view class="btn_ok" bindtap="confirmRemind" data-status="close" data-close="false">确定</view> 
-  </view>
+      <view class="btn_ok" bindtap="confirmRemind" data-status="close" data-close="false">确定</view> 
+    </view>
 
-</view>
+  </view>
+</l-skeleton>
 
 
