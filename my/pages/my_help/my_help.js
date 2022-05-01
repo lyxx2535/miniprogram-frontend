@@ -23,6 +23,10 @@ Page({
             over: IMG.ICON_OVER,
             redo: IMG.ICON_REDO,
           },
+        clickDelete: false,
+        clickOver: false,
+        clickRedo: false,
+        currentId: 0,
     },
 
     showTips: function () {
@@ -37,11 +41,16 @@ Page({
         })
     },
 
+    storeId(e){
+        const id = e.currentTarget.dataset.id;
+        this.setData({
+            currentId: id
+        })
+    },
      // 查看帖子详情
     checkDetail(e){
         const id = e.currentTarget.dataset.id;
         console.log('查看' + id + '号帖子内容')
-        // const id = 1; // 这里暂时先随便写一个值
         wx.navigateTo({
             url: '/community/pages/detail/detail?id=' + id + '&type=1',
         })
@@ -64,9 +73,38 @@ Page({
             showmenu: true,
         })
     },
-    // 删除该条信息
+   
+     // 通过按钮关闭表单
+    confirmDelete(e){
+        console.log(this.data.currentId)
+        if(e.currentTarget.dataset.close == "false"){//用户点击了确定
+          console.log("用户确定删除")
+          api._delete_rh_forum_byId(this.data.currentId);
+          this.deleteMsg()
+          this.getRenderHelpList();
+        }
+        else{
+            console.log("用户取消删除")
+            this.deleteMsg()
+        }
+    },
+      // 通过按钮结束表单
+      confirmOver(e){
+        if(e.currentTarget.dataset.close == "false"){//用户点击了确定
+          console.log("用户确定截止")
+          api._update_rh_status_byId(this.data.currentId, "已截止");
+          this.overMsg()
+          this.getRenderHelpList();
+         }
+        else{
+            console.log("用户取消截止")
+            this.overMsg()
+        }
+    },
     deleteMsg(e){
-        console.log("delete")
+        this.setData({
+            clickDelete: !this.data.clickDelete
+        })
     },
     // 编辑该条信息
     editMsg(e){
@@ -74,7 +112,9 @@ Page({
     },
     // 结束该条信息
     overMsg(e){
-        console.log("over")
+        this.setData({
+            clickOver: !this.data.clickOver
+        })
     },
     //获得“帮忙”信息，让“进行中”数据展示在“已截止”之前
     async getRenderHelpList(){
@@ -95,6 +135,7 @@ Page({
         this.setData({
             renderHelpList: ongoingList.concat(endList)
         })
+        console.log("load list")
     },
 
     /**
@@ -115,7 +156,7 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-       
+        
         let _title = "我的帮忙";
         wx.setNavigationBarTitle({
           title: _title,

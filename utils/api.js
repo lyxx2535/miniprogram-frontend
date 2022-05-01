@@ -596,6 +596,39 @@ const _rh_list_byUser = () => {
     showLoading: false
   })
 }
+// 更新用户发布的帮助贴状态，需要token
+const _update_sh_status_byId = (_id, _finishStatus) => {
+  return httpRequest({
+    url: API.SH_UPDATE_STATUS_BY_ID + _id,
+    method: 'POST',
+    data: {
+      finishStatus: _finishStatus
+    },
+    header:{
+      "content-type": "application/x-www-form-urlencoded",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 更新用户发布的帮助贴状态，需要token
+const _update_rh_status_byId = (_id, _finishStatus) => {
+  return httpRequest({
+    url: API.RH_UPDATE_STATUS_BY_ID + _id,
+    method: 'POST',
+    data: {
+      finishStatus: _finishStatus
+    },
+    header:{
+      "content-type": "application/x-www-form-urlencoded",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+
 export {
   _login,
   _get_token,
@@ -640,6 +673,8 @@ export {
   _update_test_remind,
   _update_report_remind,
   _sh_list_byUser,
-  _rh_list_byUser
+  _rh_list_byUser,
+  _update_sh_status_byId,
+  _update_rh_status_byId
   
 }
