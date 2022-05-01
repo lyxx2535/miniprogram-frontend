@@ -1,4 +1,4 @@
-<!--my/pages/my_help/my_help.wxml-->
+<!--my/pages/my_help/my_seekHelp.wxml-->
 <view>
     <!--提示信息-->
     <button class="question_btn" style="width: auto;" bindtap='showTips'>
@@ -23,7 +23,7 @@
     <!-- 展示“我的求助”条目 -->
     <view class="card {{item.finishStatus=='进行中'?'white':'gray'}}" wx:for="{{seekHelpList}}" wx:key="index">
         <!-- width：可限定内容在卡片中，重要 -->
-        <l-slide-view height="200" width="630" slide-width="{{item.finishStatus=='进行中'?'360':'240'}}">
+        <l-slide-view height="200" width="630" slide-width="{{item.finishStatus=='进行中'?'360':'240'}}" bind:slideopen="storeId" auto-close="true" data-id="{{item.id}}">
             <view slot="left" style="display: flex;" bindtap="checkDetail" data-id="{{item.id}}">
                 <view>
                     <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
@@ -51,10 +51,6 @@
                 <view class="state_all" bindtap="overMsg" style="background-color: #00b050; border-radius: 0rpx 10rpx 10rpx 0rpx ;">
                     <image src="{{img_url.over}}" class="state_img"></image>
                 </view>
-               
-                <!-- <l-avatar text="编辑" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/> -->
-                <!-- <l-avatar text="截止" placement="bottom" src="{{img_url.over}}"  size="80" bind:lintap="overMsg"/>
-                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/> -->
             </view>
             <view slot="right" wx:if="{{item.finishStatus!='进行中'}}" style="display: flex;height: 200rpx;">
                 <view class="state_all" bindtap="deleteMsg" style="background-color: #e85252;">
@@ -63,20 +59,23 @@
                 <view class="state_all" bindtap="editMsg" style="background-color: #ffc000; border-radius: 0rpx 10rpx 10rpx 0rpx ;">
                     <image src="{{img_url.redo}}" class="state_img"></image>
                 </view>
-                <!-- <l-avatar text="重发" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
-                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/> -->
             </view>
-
-            <!-- <view slot="right" wx:if="{{item.finishStatus=='进行中'}}">
-                <l-avatar text="编辑" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
-                <l-avatar text="解决" placement="bottom" src="{{img_url.over}}"  size="80" bind:lintap="overMsg"/>
-                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/>
-            </view>
-            <view slot="right" wx:if="{{item.finishStatus!='进行中'}}">
-                <l-avatar text="重发" placement="bottom" src="{{img_url.redo}}" size="80" bind:lintap="editMsg"/>
-                <l-avatar text="删除" placement="bottom" src="{{img_url.delete}}" size="80" bind:lintap="deleteMsg"/>
-            </view> -->
         </l-slide-view>
+
+        <!-- 点击删除后的弹出框 -->
+        <view class="drawer_screen" bindtap="confirmDelete" data-status="close" data-close="true" wx:if="{{clickDelete}}"></view> 
+        <view class="drawer_box" wx:if="{{clickDelete}}"> 
+            <view class="drawer_title">是否确认删除该条帮助消息？</view> 
+            <view class="btn" bindtap="confirmDelete" data-status="close" data-close="false">确定</view> 
+            <view class="btn" bindtap="deleteMsg" data-status="close" data-close="true">取消</view> 
+        </view>
+         <!-- 点击完成后的弹出框 -->
+         <view class="drawer_screen" bindtap="confirmOver" data-status="close" data-close="true" wx:if="{{clickOver}}"></view> 
+        <view class="drawer_box" wx:if="{{clickOver}}"> 
+            <view class="drawer_title">是否确认截止该条帮助消息？</view> 
+            <view class="btn" bindtap="confirmOver" data-status="close" data-close="false">确定</view> 
+            <view class="btn" bindtap="overMsg" data-status="close" data-close="true">取消</view> 
+        </view>
     </view>
 
             

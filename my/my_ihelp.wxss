@@ -194,3 +194,44 @@
       margin-left: 35rpx;
       margin-top: 75rpx;
   }
+  /* 弹出确认表单 */
+ .drawer_screen { 
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
+    background: #000; 
+    opacity: 0.2; 
+    overflow: hidden; 
+   } 
+    /*content*/
+ .drawer_box { 
+    width: 650rpx; 
+    overflow: hidden; 
+    position: fixed; 
+    top: 50%; 
+    left: 0; 
+    z-index: 1001; 
+    background: #FAFAFA; 
+    margin: -150px 50rpx 0 50rpx; 
+    border-radius: 10rpx; 
+   } 
+   .drawer_title{ 
+    padding:15px; 
+    text-align: center; 
+    font-size: 32rpx;
+    font-weight: 1000;
+    letter-spacing:8rpx;
+   } 
+   .btn{
+    margin-top: 10px;
+    padding: 10px; 
+    font: 20px "microsoft yahei"; 
+    text-align: center; 
+    border-top: 1px solid #E8E8EA; 
+    font-size: 32rpx;
+    /* font-weight: 1000; */
+    letter-spacing:20rpx;
+   } 

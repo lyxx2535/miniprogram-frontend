@@ -1,7 +1,6 @@
 {
   "usingComponents": 
   {
-    "l-slide-view":"/miniprogram_npm/lin-ui/slide-view/index",
-    "l-avatar":"/miniprogram_npm/lin-ui/avatar/index"
+    "l-slide-view":"/miniprogram_npm/lin-ui/slide-view/index"
   }
 }

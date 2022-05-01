@@ -54,7 +54,8 @@ const DELETE_RH_FORUM_BY_ID = '/help-info/delete/'
 const DELETE_SH_FORUM_BY_ID = '/seek-help/delete/'
 const SH_LIST_BY_USER = '/seek-help/user-list'
 const RH_LIST_BY_USER = '/help-info/user-list'
-
+const SH_UPDATE_STATUS_BY_ID = '/seek-help/update-status/'
+const RH_UPDATE_STATUS_BY_ID = '/help-info/update-status/'
 export {
   LOGIN_API,
   GET_TOKEN,
@@ -103,5 +104,6 @@ export {
   DELETE_SH_FORUM_BY_ID,
   SH_LIST_BY_USER,
   RH_LIST_BY_USER,
-
+  SH_UPDATE_STATUS_BY_ID,
+  RH_UPDATE_STATUS_BY_ID
 }

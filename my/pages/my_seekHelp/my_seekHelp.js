@@ -1,4 +1,4 @@
-// my/pages/my_help/my_help.js
+// my/pages/my_help/my_seekHelp.js
 import * as IMG from '../../../enum/imageUrl'
 import * as api from '../../../utils/api'
 Page({
@@ -23,6 +23,10 @@ Page({
             over: IMG.ICON_OVER,
             redo: IMG.ICON_REDO,
           },
+        clickDelete: false,
+        clickOver: false,
+        clickRedo: false,
+        currentId: 0,
     },
 
     showTips: function () {
@@ -37,6 +41,12 @@ Page({
         })
     },
 
+    storeId(e){
+        const id = e.currentTarget.dataset.id;
+        this.setData({
+            currentId: id
+        })
+    },
      // 查看帖子详情
     checkDetail(e){
         const id = e.currentTarget.dataset.id;
@@ -64,9 +74,37 @@ Page({
             showmenu: true,
         })
     },
-       // 删除该条信息
-       deleteMsg(e){
-        console.log("delete")
+      // 通过按钮关闭表单
+      confirmDelete(e){
+        console.log(this.data.currentId)
+        if(e.currentTarget.dataset.close == "false"){//用户点击了确定
+          console.log("用户确定删除")
+          api._delete_sh_forum_byId(this.data.currentId);
+          this.deleteMsg()
+          this.getSeekHelpList();
+        }
+        else{
+            console.log("用户取消删除")
+            this.deleteMsg()
+        }
+    },
+    // 通过按钮结束表单
+    confirmOver(e){
+        if(e.currentTarget.dataset.close == "false"){//用户点击了确定
+          console.log("用户确定截止")
+          api._update_sh_status_byId(this.data.currentId, "已解决");
+          this.overMsg()
+          this.getSeekHelpList();
+         }
+        else{
+            console.log("用户取消截止")
+            this.overMsg()
+        }
+    },
+    deleteMsg(e){
+        this.setData({
+            clickDelete: !this.data.clickDelete
+        })
     },
     // 编辑该条信息
     editMsg(e){
@@ -74,7 +112,9 @@ Page({
     },
     // 结束该条信息
     overMsg(e){
-        console.log("over")
+        this.setData({
+            clickOver: !this.data.clickOver
+        })
     },
     // 获得“帮忙”信息，让“进行中”数据展示在“已截止”之前
     async getSeekHelpList(){
@@ -92,7 +132,6 @@ Page({
                     break
             }
         }
-        console.log(endList)
         this.setData({
             seekHelpList: ongoingList.concat(endList)
         })
