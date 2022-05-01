@@ -155,11 +155,11 @@
 
     <!--点击后灰色背景的设置-->
 
-    <view wx:if="{{now_state}}" class="tc_background" 	catchtouchmove="touchMove" bindtap="hideModal"
+    <view wx:if="{{now_state}}" class="tc_background" 	catchtouchmove="true" bindtap="hideModal"
     ></view>
 
     <!--弹窗的出现-->
-    <view animation="{{animationData}}" style="display: flex;" class="box" wx:if="{{now_state}}">
+    <view animation="{{animationData}}" style="display: flex;" catchtouchmove="true" class="box" wx:if="{{now_state}}">
     <!--弹窗内部内容-->
       <view style="display: flex;">
             <button class='v1' bindtap="toDraft2" style="height: 300rpx; width: 250rpx;margin-left: 475rpx;">
