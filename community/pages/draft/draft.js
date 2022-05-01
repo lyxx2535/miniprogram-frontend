@@ -242,6 +242,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    var d = new Date();
+    wx.setStorageSync('date', dateUtil.tsFormatTime(d,'Y/M/D h:m:s'))
+    this.setData({
+      ddl: wx.getStorageSync('date'),
+      ddl_p: wx.getStorageSync('date')
+    });
     // 获取完整的年月日 时分秒，以及默认显示的数组
     var obj = dateTimePicker.dateTimePicker(this.data.startYear, this.data.endYear);
     this.setData({
@@ -266,13 +272,6 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow() {
-    // 拿到当天日期
-    var d = new Date();
-    wx.setStorageSync('date', dateUtil.tsFormatTime(d,'Y/M/D h:m:s'))
-    this.setData({
-      ddl: wx.getStorageSync('date'),
-      ddl_p: wx.getStorageSync('date')
-    });
     let _title;
     if(this.data.forumType == 0){
       _title = "我要求助"
