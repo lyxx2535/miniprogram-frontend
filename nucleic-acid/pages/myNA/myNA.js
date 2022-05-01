@@ -15,6 +15,7 @@ Page({
     successList:[],//“已完成”的核酸列表
     failList:[],//“未完成”的核酸列表
     finished: false,//表示当前按钮选择的是“未完成”还是“已完成”
+    isShowSkeleton: true, // 是否显示骨架屏
   },
   afterCalendarRender(e) {
     const calendar = this.selectComponent('#calendar').calendar
@@ -37,7 +38,7 @@ Page({
    */
   onLoad(options) {
     wx.request({
-      url: 'https://xjk-advisor.com:9090/api/nucleic-acid/schedule', 
+      url: 'https://xjk-advisor.com/api/nucleic-acid/schedule', 
       data: {
       },
       header: {
@@ -105,7 +106,8 @@ Page({
       this.setData({
         coloredDate: list3,
         successList: list1,
-        failList: list2
+        failList: list2,
+        isShowSkeleton: false
       })
       console.log(this.data.coloredDate)
     }
