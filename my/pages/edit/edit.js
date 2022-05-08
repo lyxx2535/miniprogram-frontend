@@ -6,12 +6,12 @@ Page({
    * 页面的初始数据
    */
   data: {
-
     navigationTitle: '设置个人信息',
     userInfo: {}, // 用户信息列表
     isShowSkeleton: true, // 是否展示骨架框
     tagUrl: 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/tab_%E4%B8%8B%E6%8B%89.png',
     show:[false, false, false, false, false],//控制下拉列表的显示隐藏，false隐藏、true显示
+    instituteIndex: 0,
     select:{
       school: ['南京大学'],
       institute: [
@@ -48,8 +48,27 @@ Page({
         '马克思主义学院',
         '艺术学院'
       ],
-      major: ['软件工程', '摸鱼工程', '小龙虾工程'],
-      grade: ['2018本', '2019本', '2020本', '2021本'],
+      major: [
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        [],
+        ['软件工程', '摸鱼工程', '小龙虾工程'],
+      ],
+      grade: ['2018本', '2019本', '2020本', '2021本', '2019硕', '2020硕', '2021硕'],
       sex: ['男', '女']
     },//下拉列表的数据
     index:[0, 0, 0, 0, 0], // 控制下拉列表的下标
@@ -63,6 +82,16 @@ Page({
       this.setData({
         userInfo: res.data.data
       })
+      const institute = res.data.data.institute
+      for(let item in this.data.select.institute){
+        if(institute == this.data.select.institute[item]){
+          this.setData({
+            instituteIndex: item
+          })
+          break;
+        }
+      }
+      console.log(this.data.select.institute[this.data.instituteIndex])
       setTimeout( () => this.setData({
         isShowSkeleton: false,
       }), 500)
@@ -113,6 +142,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    this.getUserInfo()
   },
   /**
    * 生命周期函数--监听页面显示
@@ -124,6 +154,5 @@ Page({
         console.log(err)
       }
     })
-    this.getUserInfo()
   },
 })

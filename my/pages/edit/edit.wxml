@@ -50,11 +50,11 @@
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="2">
           <text wx:if="{{!isChoose[2]}}" class='select_text'>{{userInfo.major}}</text>
-          <text wx:if="{{isChoose[2]}}" class='select_text'>{{select.major[index[2]]}}</text>
+          <text wx:if="{{isChoose[2]}}" class='select_text'>{{select.major[instituteIndex][index[2]]}}</text>
           <image class='select_img {{show[2]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
         </view>
-        <view class='option_box' style='height:{{show[2]?(select.major.length>5?300:select.major.length*60):0}}rpx;'>
-          <text class='option' style='{{index==select.major.length-1&&"border:0;"}}' wx:for='{{select.major}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="2">{{item}}</text>
+        <view class='option_box' style='height:{{show[2]?(select.major[instituteIndex].length>5?300:select.major[instituteIndex].length*60):0}}rpx;'>
+          <text class='option' style='{{index==select.major[instituteIndex].length-1&&"border:0;"}}' wx:for='{{select.major[instituteIndex]}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="2">{{item}}</text>
         </view>
       </view>
     </view>
