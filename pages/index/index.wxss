@@ -23,6 +23,10 @@
   height: 100vh;
 }
 
+.home-swiper .wx-swiper-dots{
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
 .slide-image {
   width: 100%;
   height: 100%;
@@ -38,6 +42,7 @@
   position: absolute;
   z-index: 100;
   flex-direction: column;
+  bottom: env(safe-area-inset-bottom);
 }
 
 .btn {
