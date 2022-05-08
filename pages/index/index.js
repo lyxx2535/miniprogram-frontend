@@ -1,6 +1,7 @@
 // index.js
 import { TEMPLATE_ID, TEST_COUNT } from '../../enum/enums.js'
 import * as api from '../../utils/api.js'
+import * as IMG from '../../enum/imageUrl'
 
 Page({
   data: {
@@ -9,7 +10,13 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     canIUseGetUserProfile: false,
-    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName') // 如需尝试获取用户信息可改为false
+    canIUseOpenData: wx.canIUse('open-data.type.userAvatarUrl') && wx.canIUse('open-data.type.userNickName'), // 如需尝试获取用户信息可改为false
+
+    //轮播图
+    autoplay: true,
+    interval: 5000,
+    duration: 1000,
+
   },
     getUserProfile(e) {
       wx.getUserProfile({
@@ -73,7 +80,7 @@ Page({
       const res = await api._rh_list_byUser()
       console.log(res.data)
     },
-  onLoad() {
+  onLoad: function(){
     if (wx.getUserProfile) {
       this.setData({
         canIUseGetUserProfile: true
@@ -82,6 +89,34 @@ Page({
     console.log('load index page!')
     // this.insertBook()
     // this.insertTest()
+
+    //轮播图
+    var that = this; 
+    var data = {
+      "datas": [
+        {
+          "id": 1,
+          "imgurl": IMG.INDEX_NA
+        },
+        {
+          "id": 2,
+          "imgurl": IMG.INDEX_COMMUNITY
+        },
+        {
+          "id": 3,
+          "imgurl": IMG.INDEX_CHAT
+        }
+      ]
+    }; 
+    that.setData({
+      lunboData: data.datas
+    })
+  },
+
+  gotoNA: function (options) {
+      wx.switchTab({
+         url: '/pages/index_NA/index_NA',
+  })  
   },
 
 })

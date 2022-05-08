@@ -17,3 +17,50 @@
 /* .usermotto {
   margin-top: 200px;
 } */
+
+.home-swiper {
+  width: 100%;
+  height: 100vh;
+}
+
+.slide-image {
+  width: 100%;
+  height: 100%;
+}
+
+.container {
+  z-index: -1;
+  position: relative;
+}
+
+.btns {
+  display:flex;
+  position: absolute;
+  z-index: 100;
+  flex-direction: column;
+}
+
+.btn {
+  margin-top: -20vh;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 10rpx;
+  height: 75rpx;
+  background-color: #3b3838;
+  color: #ffffff;
+  border-radius: 15rpx;
+  display:flex;
+  
+}
+
+.btn2 {
+  margin-top: 2vh;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 10rpx;
+  height: 75rpx;
+  background-color: #ffffff;
+  color: #3b3838;
+  border-radius: 15rpx;
+  
+}
