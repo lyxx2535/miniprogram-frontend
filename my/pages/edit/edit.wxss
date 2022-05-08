@@ -81,6 +81,7 @@ page {
   transition: height 0.3s;
  }
  .option{
+  margin-left: 8rpx;
   letter-spacing: 4rpx;
   display: block;
   line-height: 40rpx;
