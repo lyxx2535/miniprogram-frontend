@@ -5,6 +5,7 @@ const TOKEN_TEST = '/user/test'
 const GET_USER_INFO = '/user/query'
 const GET_USER_INFO_BYID = '/user/info/'
 const ACCESS_TOKEN = '/user/access-token'
+const UPDATE_USER_INFO = '/user/update'
 // chat
 const CHAT_BASE = 'https://localhost:9999/message-server/'
 // const WS_BASE = 'ws://localhost:9999/message-server/'
@@ -105,5 +106,7 @@ export {
   SH_LIST_BY_USER,
   RH_LIST_BY_USER,
   SH_UPDATE_STATUS_BY_ID,
-  RH_UPDATE_STATUS_BY_ID
+  RH_UPDATE_STATUS_BY_ID,
+  UPDATE_USER_INFO,
+  
 }

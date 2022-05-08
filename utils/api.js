@@ -628,6 +628,20 @@ const _update_rh_status_byId = (_id, _finishStatus) => {
     showLoading: false
   })
 }
+// 更新用户信息，需要token
+const _update_userInfo = (_data) => {
+  return httpRequest({
+    url: API.UPDATE_USER_INFO,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 
 export {
   _login,
@@ -675,6 +689,7 @@ export {
   _sh_list_byUser,
   _rh_list_byUser,
   _update_sh_status_byId,
-  _update_rh_status_byId
+  _update_rh_status_byId,
+  _update_userInfo,
   
 }

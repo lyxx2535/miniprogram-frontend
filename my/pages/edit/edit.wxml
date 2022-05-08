@@ -21,7 +21,8 @@
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">学校：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap' data-index="0">
-          <text class='select_text'>{{select.school[index[0]]}}</text>
+          <text wx:if="{{!isChoose[0]}}" class='select_text'>{{userInfo.school}}</text>
+          <text wx:if="{{isChoose[0]}}" class='select_text'>{{select.school[index[0]]}}</text>
           <image class='select_img {{show[0]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
         </view>
         <view class='option_box' style='height:{{show[0]?(select.school.length>5?300:select.school.length*60):0}}rpx;'>
@@ -34,11 +35,12 @@
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">院系：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="1">
-          <text class='select_text'>{{select.insititute[index[1]]}}</text>
+          <text wx:if="{{!isChoose[1]}}" class='select_text'>{{userInfo.institute}}</text>
+          <text wx:if="{{isChoose[1]}}" class='select_text'>{{select.institute[index[1]]}}</text>
           <image class='select_img {{show[1]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
         </view>
-        <view class='option_box' style='height:{{show[1]?(select.insititute.length>5?300:select.insititute.length*60):0}}rpx;'>
-          <text class='option' style='{{index==select.insititute.length-1&&"border:0;"}}' wx:for='{{select.insititute}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="1">{{item}}</text>
+        <view class='option_box' style='height:{{show[1]?(select.institute.length>5?300:select.institute.length*60):0}}rpx;'>
+          <text class='option' style='{{index==select.institute.length-1&&"border:0;"}}' wx:for='{{select.institute}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="1">{{item}}</text>
         </view>
       </view>
     </view>
@@ -47,7 +49,8 @@
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">专业：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="2">
-          <text class='select_text'>{{select.major[index[2]]}}</text>
+          <text wx:if="{{!isChoose[2]}}" class='select_text'>{{userInfo.major}}</text>
+          <text wx:if="{{isChoose[2]}}" class='select_text'>{{select.major[index[2]]}}</text>
           <image class='select_img {{show[2]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
         </view>
         <view class='option_box' style='height:{{show[2]?(select.major.length>5?300:select.major.length*60):0}}rpx;'>
@@ -60,7 +63,8 @@
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">年级：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="3">
-          <text class='select_text'>{{select.grade[index[3]]}}</text>
+          <text wx:if="{{!isChoose[3]}}" class='select_text'>{{userInfo.grade}}</text>
+          <text wx:if="{{isChoose[3]}}" class='select_text'>{{select.grade[index[3]]}}</text>
           <image class='select_img {{show[3]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
         </view>
         <view class='option_box' style='height:{{show[3]?(select.grade.length>5?300:select.grade.length*60):0}}rpx;'>
@@ -73,7 +77,8 @@
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">性别：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="4">
-          <text class='select_text'>{{select.sex[index[4]]}}</text>
+          <text wx:if="{{!isChoose[4]}}" class='select_text'>{{userInfo.gender}}</text>
+          <text wx:if="{{isChoose[4]}}" class='select_text'>{{select.sex[index[4]]}}</text>
           <image class='select_img {{show[4]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
         </view>
         <view class='option_box' style='height:{{show[4]?(select.sex.length>5?300:select.sex.length*60):0}}rpx;'>
@@ -83,7 +88,7 @@
     </view>
   </view>
 
-  <button style="background-color: #f2f2f2; color: black; font-weight: 700; font-size: larger; margin-top: 60rpx; border-radius: 20rpx; letter-spacing: 8rpx; padding-top: 20rpx; padding-bottom: 20rpx;">
+  <button style="background-color: #f2f2f2; color: black; font-weight: 700; font-size: larger; margin-top: 60rpx; border-radius: 20rpx; letter-spacing: 8rpx; padding-top: 20rpx; padding-bottom: 20rpx;" bindtap="updateInfo">
     保存修改
   </button>
 </view>

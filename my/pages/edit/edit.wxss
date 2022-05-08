@@ -68,7 +68,6 @@ page {
   transform:rotate(180deg); 
  }
  .option_box{
-  
   position: absolute;
   top: 70rpx;
   width: 100%;
@@ -87,5 +86,7 @@ page {
   line-height: 40rpx;
   font-size: 30rpx;
   border-bottom: 1px solid #efefef;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
   padding: 10rpx;
  }
