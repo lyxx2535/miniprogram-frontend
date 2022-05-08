@@ -39,7 +39,8 @@
       "name": "我的模块",
       "pages": [
         "pages/my_help/my_help",
-        "pages/my_seekHelp/my_seekHelp"
+        "pages/my_seekHelp/my_seekHelp",
+        "pages/edit/edit"
       ],
       "independent": false
     }
