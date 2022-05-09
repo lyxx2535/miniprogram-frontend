@@ -116,19 +116,19 @@ Page({
       })
     }
     else{
-      if(isChoose[0]){
+      if(this.data.isChoose[0]){
         this.data.userInfo.school = this.data.select.school[this.data.index[0]]
       }
-      if(isChoose[1]){
+      if(this.data.isChoose[1]){
         this.data.userInfo.institute = this.data.select.institute[this.data.index[1]]
       }
-      if(isChoose[2]){
+      if(this.data.isChoose[2]){
         this.data.userInfo.major = this.data.select.major[this.data.instituteIndex][this.data.index[2]]
       }
-      if(isChoose[3]){
+      if(this.data.isChoose[3]){
         this.data.userInfo.grade = this.data.select.grade[this.data.index[3]]
       }
-      if(isChoose[4]){
+      if(this.data.isChoose[4]){
         this.data.userInfo.gender = this.data.select.sex[this.data.index[4]]
       }
       console.log(this.data.userInfo)

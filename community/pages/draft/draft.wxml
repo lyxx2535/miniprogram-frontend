@@ -45,7 +45,7 @@
 
 <view class="info-block flex">
   <text style="margin-top: 20rpx;">备注：</text>
-  <l-input focus="true" width="500" hide-label="true" placeholder="您可在备注详细描述您的需求" clear="{{true}}" value="{{remark}}" bind:lininput="saveRemark"/>
+  <l-input focus="false" width="500" hide-label="true" placeholder="您可在备注详细描述您的需求" clear="{{true}}" value="{{remark}}" bind:lininput="saveRemark"/>
 </view>
 
 <view style="margin-left: 60rpx; margin-top: 40rpx;">

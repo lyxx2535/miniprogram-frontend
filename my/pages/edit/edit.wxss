@@ -1,12 +1,14 @@
 /* my/pages/edit/edit.wxss */
 page {
   background-color: #ffffff;
-  /* position: fixed;
+  position: absolute;
   left: 0px;
   top: 0px;
-  height: 100vh;
+  /* height: 200rpx; */
+  scroll-behavior: smooth;
   width: 100%;
-  overflow-x: hidden; */
+  overflow-x: hidden;
+  overflow-y: scroll;
 }
 .edit_bg {
   display: relative;
