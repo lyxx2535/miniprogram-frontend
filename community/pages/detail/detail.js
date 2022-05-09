@@ -71,6 +71,26 @@ Page({
     }
     console.log(this.data.info)
   },
+  async onClick(type, id){
+    let res;
+    if(type == 0){
+      res = await api._click_seek_help(id)
+    }
+    else{
+      res = await api._click_render_help(id)
+    }
+    console.log('点击帖子：' + JSON.stringify(res.data))
+  },
+  async onEndClick(type, id){
+    let res;
+    if(type == 0){
+      res = await api._end_click_seek_help(id)
+    }
+    else{
+      res = await api._end_click_render_help(id)
+    }
+    console.log('关闭帖子：' + JSON.stringify(res.data))
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -85,6 +105,8 @@ Page({
     console.log(this.data.forumType)
     // 从后端拿该id的帖子数据
     this.getForumInfo(type)
+    // 点击事件
+    this.onClick(type, id)
   },
 
   /**
@@ -105,5 +127,8 @@ Page({
       }
     })
   },
-
+  // 监听页面卸载
+  onUnload(){
+    this.onEndClick(this.data.forumType, this.data.forumId)
+  }
 })

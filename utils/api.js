@@ -637,6 +637,58 @@ const _update_userInfo = (_data) => {
     showLoading: false
   })
 }
+// 点击帮助页面时调用，需要token
+const _click_render_help = (_id) => {
+  return httpRequest({
+    url: API.CLICK_RENDER_HELP + _id,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 点击求助页面时调用，需要token
+const _click_seek_help = (_id) => {
+  return httpRequest({
+    url: API.CLICK_SEEK_HELP + _id,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 退出帮助页面时调用，需要token
+const _end_click_render_help = (_id) => {
+  return httpRequest({
+    url: API.END_CLICK_RH + _id,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 退出求助页面时调用，需要token
+const _end_click_seek_help = (_id) => {
+  return httpRequest({
+    url: API.END_CLICK_SH + _id,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 
 export {
   _login,
@@ -686,5 +738,9 @@ export {
   _update_sh_status_byId,
   _update_rh_status_byId,
   _update_userInfo,
+  _click_render_help,
+  _click_seek_help,
+  _end_click_render_help,
+  _end_click_seek_help,
   
 }

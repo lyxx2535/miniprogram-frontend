@@ -57,6 +57,11 @@ const SH_LIST_BY_USER = '/seek-help/user-list'
 const RH_LIST_BY_USER = '/help-info/user-list'
 const SH_UPDATE_STATUS_BY_ID = '/seek-help/update-status/'
 const RH_UPDATE_STATUS_BY_ID = '/help-info/update-status/'
+const CLICK_RENDER_HELP = '/help-info/click/'
+const CLICK_SEEK_HELP = '/seek-help/click/'
+const END_CLICK_RH = '/help-info/end-click/'
+const END_CLICK_SH = '/seek-help/end-click/'
+
 export {
   LOGIN_API,
   GET_TOKEN,
@@ -108,5 +113,9 @@ export {
   SH_UPDATE_STATUS_BY_ID,
   RH_UPDATE_STATUS_BY_ID,
   UPDATE_USER_INFO,
+  CLICK_RENDER_HELP,
+  CLICK_SEEK_HELP,
+  END_CLICK_RH,
+  END_CLICK_SH,
   
 }
