@@ -55,7 +55,6 @@
   color: #ffffff;
   border-radius: 15rpx;
   display:flex;
-  
 }
 
 .btn2 {
@@ -67,7 +66,20 @@
   background-color: #ffffff;
   color: #3b3838;
   border-radius: 15rpx;
-  
+}
+.text{
+  text-align: center;
+  color: #a7a9ad;
+  position: relative;
+  bottom: 1380rpx;
+  left: 20rpx;
+}
+.question_img{
+  left: 10rpx;
+  width: 40rpx;
+  height: 40rpx;
+  position: relative;
+  bottom: 1375rpx;
 }
 /* 弹出上传区CSS */
 .background{
@@ -77,14 +89,16 @@
   top: 0;
   left: 0;
   background: #000;
-  opacity: 0.2;
+  opacity: 0.4;
   overflow: hidden;
   z-index: 1000;
 }
 .box{
-    height: 80%;
+    height: 1150rpx;
     width: 100%;
-    overflow: hidden;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
     position: fixed;
     bottom: 0;
     left: 0;

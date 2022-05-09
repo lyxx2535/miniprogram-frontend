@@ -13,6 +13,7 @@ Page({
     userInfo: {}, // 用户信息列表
     isShowSkeleton: true, // 是否展示骨架框
     tagUrl: 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/tab_%E4%B8%8B%E6%8B%89.png',
+    questionUrl: 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_question.png',
     show:[false, false, false, false, false],//控制下拉列表的显示隐藏，false隐藏、true显示
     instituteIndex: 0,
     select:{
@@ -115,7 +116,9 @@ Page({
     const res = await api._get_user_info()
     if(res.data.code == 200){
       this.setData({
-        userInfo: res.data.data
+        userInfo: res.data.data,
+        isEdit: true,
+        isChoose: [true, true, true, true, true]
       })
       const institute = res.data.data.institute
       for(let item in this.data.select.institute){
@@ -127,9 +130,6 @@ Page({
         }
       }
       console.log(this.data.select.institute[this.data.instituteIndex])
-      setTimeout( () => this.setData({
-        isShowSkeleton: false,
-      }), 500)
     }
   },
   startLogin(){
