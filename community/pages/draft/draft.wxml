@@ -17,7 +17,7 @@
 
 <view class="info-block flex">
   <text style="margin-top: 20rpx;">名称：</text>
-  <l-input focus="true" width="500" hide-label="true" placeholder="请简要描述您的帖子内容" clear="{{true}}" value="{{content}}"  bind:lininput="saveContent" />
+  <l-input focus="false" width="500" hide-label="true" placeholder="请简要描述您的帖子内容" clear="{{true}}" value="{{content}}"  bind:lininput="saveContent" />
 </view>
 
 <view class="info-block flex relative ">
