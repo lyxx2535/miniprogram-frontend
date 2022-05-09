@@ -94,7 +94,7 @@
   z-index: 1000;
 }
 .box{
-    height: 1150rpx;
+    height: 1120rpx;
     width: 100%;
     overflow-x: hidden;
     overflow-y: auto;

@@ -22,26 +22,26 @@
     <!--弹窗的出现-->
     <view animation="{{animationData}}" class="box" wx:if="{{now_state}}" >
       <!--弹窗内部内容-->
-      <view style="margin-top: 20rpx;">
+      <view style="margin-top: 30rpx; letter-spacing: 1rpx;">
         <view style="text-align: center;">
           <text style="color: #c0c0c0;">❔ 首次登录</text>
           <text style="color: #c0c0c0; font-weight: 700;">请填写信息</text>
           <text style="color: #c0c0c0;">再点击下方按钮</text>
         </view>
-        <view style="text-align: center; margin-top: 10rpx;">
+        <view style="text-align: center; margin-top: 20rpx;">
           <text style="color: #c0c0c0;">❕ 重新认证直接点击下方</text>
           <text style="color: #c0c0c0; font-weight: 700;">“确认并登录平台”</text>
         </view>
-        <view style="text-align: center; margin-top: 10rpx;">
+        <view style="text-align: center; margin-top: 20rpx;">
           <text style="color: #c0c0c0;">✔ 已授权用户可在首页直接点击</text>
           <text style="color: #c0c0c0; font-weight: 700;">“进入平台”</text>
         </view>
-        <view class="flex info-block" style="margin-top: 20rpx;">
+        <view class="flex info-block" style="margin-top: 40rpx;">
           <view style=" margin-top: 20rpx; margin-left: 30rpx;">真实姓名：</view>
           <l-input focus="true" width="300" hide-label="true" placeholder="请填写您的真实姓名" clear="{{true}}" value="{{userInfo.name}}"  bind:lininput="saveContent" style="font-size: 30rpx;"/>
         </view>
 
-        <view class="flex info-block" style="margin-top: 40rpx;">
+        <view class="flex info-block" style="margin-top: 30rpx;">
           <view style=" margin-top: 20rpx; margin-left: 30rpx;">学校：</view>
           <view class='select_box'>
             <view class='select' catchtap='selectTap' data-index="0">
@@ -55,7 +55,7 @@
           </view>
         </view>
 
-        <view class="flex info-block" style="margin-top: 40rpx;">
+        <view class="flex info-block" style="margin-top: 30rpx;">
           <view style=" margin-top: 20rpx; margin-left: 30rpx;">院系：</view>
           <view class='select_box'>
             <view class='select' catchtap='selectTap'  data-index="1">
@@ -69,7 +69,7 @@
           </view>
         </view>
 
-        <view class="flex info-block" style="margin-top: 40rpx;">
+        <view class="flex info-block" style="margin-top: 30rpx;">
           <view style=" margin-top: 20rpx; margin-left: 30rpx;">专业：</view>
           <view class='select_box'>
             <view class='select' catchtap='selectTap'  data-index="2">
@@ -83,7 +83,7 @@
           </view>
         </view>
 
-        <view class="flex info-block" style="margin-top: 40rpx;">
+        <view class="flex info-block" style="margin-top: 30rpx;">
           <view style=" margin-top: 20rpx; margin-left: 30rpx;">年级：</view>
           <view class='select_box'>
             <view class='select' catchtap='selectTap'  data-index="3">
@@ -97,7 +97,7 @@
           </view>
         </view>
 
-        <view class="flex info-block" style="margin-top: 40rpx;">
+        <view class="flex info-block" style="margin-top: 30rpx;">
           <view style=" margin-top: 20rpx; margin-left: 30rpx;">性别：</view>
           <view class='select_box'>
             <view class='select' catchtap='selectTap'  data-index="4">
@@ -112,7 +112,7 @@
         </view>
       </view>
 
-      <button style="background-color: #c0c0c0; color: black; font-weight: 300; margin-top: 60rpx; border-radius: 20rpx; letter-spacing: 4rpx; padding-top: 20rpx; padding-bottom: 20rpx;" bindtap="saveInfo">
+      <button style="background-color: #c0c0c0; color: black; font-weight: 300; margin-top: 50rpx; border-radius: 20rpx; letter-spacing: 4rpx; padding-top: 20rpx; padding-bottom: 20rpx;" bindtap="saveInfo">
         确认并登录平台
       </button>
     </view>
