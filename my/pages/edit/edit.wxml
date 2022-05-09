@@ -4,7 +4,7 @@
   <view class="edit_bg"> 
   </view>
 
-  <view style="align-items: center; text-align: center;">
+  <view style="align-items: center; text-align: center; position: relative; z-index: 99999;">
   <!-- TODO: 点击头像后更换头像，绑定上传事件 -->
     <image src="{{userInfo.avatarUrl}}" style="width: 150rpx; height: 150rpx; margin-top: 50rpx; border-radius: 50%;" >头像</image>
     <view style="margin-top: 20rpx; font-size: large; font-weight: 700; letter-spacing: 4rpx;">{{userInfo.nickName}}</view>
