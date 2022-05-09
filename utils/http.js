@@ -33,6 +33,7 @@ const httpRequest = (options) =>{
           var resJson = res.data
         }
         if(resJson.code == 401){
+          wx.setStorageSync('isExpire', true)
           wx.showToast({
             title: '用户认证已过期，请重新授权登录',
             icon: 'none',

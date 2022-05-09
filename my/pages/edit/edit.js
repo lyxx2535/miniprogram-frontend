@@ -133,6 +133,7 @@ Page({
       }
       console.log(this.data.userInfo)
       const res = await api._update_userInfo(this.data.userInfo);
+      wx.setStorageSync('userInfo', this.data.userInfo) // 更新userInfo
       console.log(res.data)
       wx.showToast({
         title: '已成功修改',

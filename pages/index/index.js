@@ -112,25 +112,20 @@ Page({
     }
   },
   // 获取用户信息
-  async getUserInfo(){
-    const res = await api._get_user_info()
-    if(res.data.code == 200){
-      this.setData({
-        userInfo: res.data.data,
-        isEdit: true,
-        isChoose: [true, true, true, true, true]
-      })
-      const institute = res.data.data.institute
-      for(let item in this.data.select.institute){
-        if(institute == this.data.select.institute[item]){
-          this.setData({
-            instituteIndex: item
-          })
-          break;
-        }
+  getUserInfo(){
+    this.setData({
+      userInfo: wx.getStorageSync('userInfo'),
+    })
+    const institute = wx.getStorageSync('userInfo').institute
+    for(let item in this.data.select.institute){
+      if(institute == this.data.select.institute[item]){
+        this.setData({
+          instituteIndex: item
+        })
+        break;
       }
-      console.log(this.data.select.institute[this.data.instituteIndex])
     }
+    console.log(this.data.select.institute[this.data.instituteIndex])
   },
   startLogin(){
     var that = this 
@@ -156,6 +151,7 @@ Page({
   },
   async getOpenid(){
     const response = await api._login(wx.getStorageSync('code'));
+    console.log(response.data)
     wx.setStorageSync('session_key', response.data.session_key);
     wx.setStorageSync('openid', response.data.openid);
     this.data.userInfo.openId = response.data.openid
@@ -165,13 +161,14 @@ Page({
     this.getToken();
   },
   async getToken(){
-    console.log(this.data.userInfo)
     const res = await api._get_token(this.data.userInfo)
+    wx.setStorageSync('isLogin', true)
+    wx.setStorageSync('isExpire', false)
+    wx.setStorageSync('userInfo', this.data.userInfo)
     wx.setStorageSync('token', res.data.data.token)
-    console.log('token: ' + wx.getStorageSync('token'));
     // 保存当前用户id
     this.getMyInfo()
-    wx.setStorageSync('isLogin', true)
+    console.log('token: ' + wx.getStorageSync('token'));
     wx.switchTab({
       url: '/pages/index_NA/index_NA',
     })
@@ -245,22 +242,24 @@ Page({
   },
   // 点击保存修改按钮
   saveInfo(){
-    for(let item in this.data.isChoose){
-      if(!this.data.isChoose[item] || !this.data.isEdit){
-        wx.showToast({
-          title: '您还有未填写的信息，请完成填写',
-          icon: 'none',
-          duration: 1000
-        })
-        return;
+    if(wx.getStorageSync('isExpire') != true){
+      for(let item in this.data.isChoose){
+        if(!this.data.isChoose[item] || !this.data.isEdit){
+          wx.showToast({
+            title: '您还有未填写的信息，请完成填写',
+            icon: 'none',
+            duration: 1000
+          })
+          return;
+        }
       }
+      this.data.userInfo.school = this.data.select.school[this.data.index[0]]
+      this.data.userInfo.institute = this.data.select.institute[this.data.index[1]]
+      this.data.userInfo.major = this.data.select.major[this.data.instituteIndex][this.data.index[2]]
+      this.data.userInfo.grade = this.data.select.grade[this.data.index[3]]
+      this.data.userInfo.gender = this.data.select.sex[this.data.index[4]]
+      console.log(this.data.userInfo)
     }
-    this.data.userInfo.school = this.data.select.school[this.data.index[0]]
-    this.data.userInfo.institute = this.data.select.institute[this.data.index[1]]
-    this.data.userInfo.major = this.data.select.major[this.data.instituteIndex][this.data.index[2]]
-    this.data.userInfo.grade = this.data.select.grade[this.data.index[3]]
-    this.data.userInfo.gender = this.data.select.sex[this.data.index[4]]
-    console.log(this.data.userInfo)
     this.getUserProfile()
   },
   // 保存输入框内容
