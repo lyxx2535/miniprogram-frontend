@@ -10,14 +10,14 @@
     <view style="margin-top: 20rpx; font-size: large; font-weight: 700; letter-spacing: 4rpx;">{{userInfo.nickName}}</view>
   </view>
   
-  <view style="margin-top: 100rpx;">
+  <view style="margin-top: 80rpx;">
 
     <view class="flex info-block">
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">真实姓名：</view>
       <l-input focus="false" width="300" hide-label="true" placeholder="请填写您的真实姓名" clear="{{true}}" value="{{userInfo.name}}"  bind:lininput="saveContent" style="font-size: 30rpx;"/>
     </view>
 
-    <view class="flex info-block" style="margin-top: 40rpx;">
+    <view class="flex info-block" style="margin-top: 30rpx;">
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">学校：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap' data-index="0">
@@ -31,7 +31,7 @@
       </view>
     </view>
 
-    <view class="flex info-block" style="margin-top: 40rpx;">
+    <view class="flex info-block" style="margin-top: 30rpx;">
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">院系：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="1">
@@ -45,7 +45,7 @@
       </view>
     </view>
 
-    <view class="flex info-block" style="margin-top: 40rpx;">
+    <view class="flex info-block" style="margin-top: 30rpx;">
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">专业：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="2">
@@ -59,7 +59,7 @@
       </view>
     </view>
 
-    <view class="flex info-block" style="margin-top: 40rpx;">
+    <view class="flex info-block" style="margin-top: 30rpx;">
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">年级：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="3">
@@ -73,7 +73,7 @@
       </view>
     </view>
 
-    <view class="flex info-block" style="margin-top: 40rpx;">
+    <view class="flex info-block" style="margin-top: 30rpx;">
       <view style=" margin-top: 20rpx; margin-left: 30rpx;">性别：</view>
       <view class='select_box'>
         <view class='select' catchtap='selectTap'  data-index="4">
@@ -88,7 +88,7 @@
     </view>
   </view>
 
-  <button style="background-color: #f2f2f2; color: black; font-weight: 700; font-size: larger; margin-top: 60rpx; border-radius: 20rpx; letter-spacing: 8rpx; padding-top: 20rpx; padding-bottom: 20rpx;" bindtap="updateInfo">
+  <button style="background-color: #f2f2f2; color: black; font-weight: 700; font-size: larger; margin-top: 50rpx; border-radius: 20rpx; letter-spacing: 8rpx; padding-top: 20rpx; padding-bottom: 20rpx;" bindtap="updateInfo">
     保存修改
   </button>
 </view>

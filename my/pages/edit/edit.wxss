@@ -1,20 +1,22 @@
 /* my/pages/edit/edit.wxss */
 page {
   background-color: #ffffff;
-  position: absolute;
+  position: fixed;
   left: 0px;
   top: 0px;
-  /* height: 200rpx; */
+  height: 100vh;
   scroll-behavior: smooth;
   width: 100%;
   overflow-x: hidden;
-  overflow-y: scroll;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
 }
 .edit_bg {
   display: relative;
   flex-direction: column;
   align-items: center;
   height: 100%;
+  overflow-y: scroll;
   z-index: -90;
 }
 .edit_bg:after{
