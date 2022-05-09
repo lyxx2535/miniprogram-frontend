@@ -33,8 +33,6 @@ page {
   width: 85%;
   margin-left: 7.5%;
 }
-
-
 .select_box{
   background: #ffffff;
   width: 65%;

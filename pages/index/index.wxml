@@ -4,44 +4,100 @@
   <swiper class="home-swiper" indicator-dots="true" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}">
     <block wx:for-items="{{lunboData}}">
       <swiper-item>
-        <image src="{{item.imgurl}}" class="slide-image" ></image>
+        <image src="{{item.imgurl}}" class="slide-image" mode="aspectFill"></image>
       </swiper-item>
     </block>
   </swiper>
 </view>
 <view class="btns">
-  <button bindtap="getUserProfile" class="btn" style="margin-left: 240rpx;width: 280rpx;">登录授权</button>
-  <button bindtap="gotoNA" class="btn2" style="margin-left: 240rpx;width: 280rpx;">进入平台</button>
-</view>
+  <button bindtap="startLogin" class="btn" style="margin-left: 240rpx;width: 280rpx;">登录授权</button>
+  <button bindtap="goToNA" class="btn2" style="margin-left: 240rpx;width: 280rpx;">进入平台</button>
 
+      <!--点击后灰色背景的设置-->
+    <view wx:if="{{now_state}}" class="background" bindtap="hideModal"></view>
+    <!--弹窗的出现-->
+    <view animation="{{animationData}}" class="box" wx:if="{{now_state}}" >
+      <!--弹窗内部内容-->
+      <view style="margin-top: 20rpx;">
+        <view style="text-align: center; color: #c0c0c0;">✅已登录且认证未过期可直接点击下方“进入平台”</view>
+        <view class="flex info-block" style="margin-top: 20rpx;">
+          <view style=" margin-top: 20rpx; margin-left: 30rpx;">真实姓名：</view>
+          <l-input focus="true" width="300" hide-label="true" placeholder="请填写您的真实姓名" clear="{{true}}" value="{{userInfo.name}}"  bind:lininput="saveContent" style="font-size: 30rpx;"/>
+        </view>
 
+        <view class="flex info-block" style="margin-top: 40rpx;">
+          <view style=" margin-top: 20rpx; margin-left: 30rpx;">学校：</view>
+          <view class='select_box'>
+            <view class='select' catchtap='selectTap' data-index="0">
+              <text wx:if="{{!isChoose[0]}}" class='select_text'>{{userInfo.school}}</text>
+              <text wx:if="{{isChoose[0]}}" class='select_text'>{{select.school[index[0]]}}</text>
+              <image class='select_img {{show[0]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+            </view>
+            <view class='option_box' style='height:{{show[0]?(select.school.length>5?300:select.school.length*60):0}}rpx;'>
+              <text class='option' style='{{index==select.school.length-1&&"border:0;"}}' wx:for='{{select.school}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="0">{{item}}</text>
+            </view>
+          </view>
+        </view>
 
+        <view class="flex info-block" style="margin-top: 40rpx;">
+          <view style=" margin-top: 20rpx; margin-left: 30rpx;">院系：</view>
+          <view class='select_box'>
+            <view class='select' catchtap='selectTap'  data-index="1">
+              <text wx:if="{{!isChoose[1]}}" class='select_text'>{{userInfo.institute}}</text>
+              <text wx:if="{{isChoose[1]}}" class='select_text'>{{select.institute[index[1]]}}</text>
+              <image class='select_img {{show[1]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+            </view>
+            <view class='option_box' style='height:{{show[1]?(select.institute.length>5?300:select.institute.length*60):0}}rpx;'>
+              <text class='option' style='{{index==select.institute.length-1&&"border:0;"}}' wx:for='{{select.institute}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="1">{{item}}</text>
+            </view>
+          </view>
+        </view>
 
-<!-- <view class="flex-col justify-center content-center items-center flex">
-  <view class="userinfo mt-50px">
-    <block wx:if="{{canIUseOpenData}}">
-      <view class="userinfo-avatar" bindtap="bindViewTap">
-        <open-data type="userAvatarUrl"></open-data>
+        <view class="flex info-block" style="margin-top: 40rpx;">
+          <view style=" margin-top: 20rpx; margin-left: 30rpx;">专业：</view>
+          <view class='select_box'>
+            <view class='select' catchtap='selectTap'  data-index="2">
+              <text wx:if="{{!isChoose[2]}}" class='select_text'>{{userInfo.major}}</text>
+              <text wx:if="{{isChoose[2]}}" class='select_text'>{{select.major[instituteIndex][index[2]]}}</text>
+              <image class='select_img {{show[2]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+            </view>
+            <view class='option_box' style='height:{{show[2]?(select.major[instituteIndex].length>5?300:select.major[instituteIndex].length*60):0}}rpx;'>
+              <text class='option' style='{{index==select.major[instituteIndex].length-1&&"border:0;"}}' wx:for='{{select.major[instituteIndex]}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="2">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="flex info-block" style="margin-top: 40rpx;">
+          <view style=" margin-top: 20rpx; margin-left: 30rpx;">年级：</view>
+          <view class='select_box'>
+            <view class='select' catchtap='selectTap'  data-index="3">
+              <text wx:if="{{!isChoose[3]}}" class='select_text'>{{userInfo.grade}}</text>
+              <text wx:if="{{isChoose[3]}}" class='select_text'>{{select.grade[index[3]]}}</text>
+              <image class='select_img {{show[3]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+            </view>
+            <view class='option_box' style='height:{{show[3]?(select.grade.length>5?300:select.grade.length*60):0}}rpx;'>
+              <text class='option' style='{{index==select.grade.length-1&&"border:0;"}}' wx:for='{{select.grade}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="3">{{item}}</text>
+            </view>
+          </view>
+        </view>
+
+        <view class="flex info-block" style="margin-top: 40rpx;">
+          <view style=" margin-top: 20rpx; margin-left: 30rpx;">性别：</view>
+          <view class='select_box'>
+            <view class='select' catchtap='selectTap'  data-index="4">
+              <text wx:if="{{!isChoose[4]}}" class='select_text'>{{userInfo.gender}}</text>
+              <text wx:if="{{isChoose[4]}}" class='select_text'>{{select.sex[index[4]]}}</text>
+              <image class='select_img {{show[4]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+            </view>
+            <view class='option_box' style='height:{{show[4]?(select.sex.length>5?300:select.sex.length*60):0}}rpx;'>
+              <text class='option' style='{{index==select.sex.length-1&&"border:0;"}}' wx:for='{{select.sex}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="4">{{item}}</text>
+            </view>
+          </view>
+        </view>
       </view>
-      <open-data type="userNickName"></open-data>
-    </block>
-    <block wx:elif="{{!hasUserInfo}}">
-      <button wx:if="{{canIUseGetUserProfile}}" bindtap="getUserProfile"> 获取头像昵称 </button>
-      <button wx:elif="{{canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-      <view wx:else> 请使用1.4.4及以上版本基础库 </view>
-    </block>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
-  </view>
-  <view class="usermotto mt-60px" >
-    <text class="user-motto">{{motto}}</text>
-  </view>
-  <button bindtap="getUserProfile" class="mt-20px">登陆并获取token</button>
-  <button bindtap="checkMsg" class="mt-20px">查看服务消息</button>
-  <button bindtap="searchForum" class="mt-20px">关键词搜帖</button>
-  <button bindtap="searchHistory" class="mt-20px">获取搜索记录</button>
-  <button bindtap="deleteForum" class="mt-20px">删除帖子</button>
-  <button bindtap="test" class="mt-20px">测试</button>
-</view> -->
+
+      <button style="background-color: #c0c0c0; color: black; font-weight: 300; margin-top: 60rpx; border-radius: 20rpx; letter-spacing: 4rpx; padding-top: 20rpx; padding-bottom: 20rpx;" bindtap="saveInfo">
+        确认并进入平台
+      </button>
+    </view>
+</view>

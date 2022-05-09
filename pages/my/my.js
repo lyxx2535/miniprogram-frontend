@@ -59,6 +59,11 @@ Page({
       url: '/my/pages/my_seekHelp/my_seekHelp',
     })
   },
+  toEdit(){
+    wx.navigateTo({
+      url: '/my/pages/edit/edit',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

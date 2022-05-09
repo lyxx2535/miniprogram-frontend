@@ -34,14 +34,14 @@ const httpRequest = (options) =>{
         }
         if(resJson.code == 401){
           wx.showToast({
-            title: '用户认证已过期，请重新登录',
+            title: '用户认证已过期，请重新授权登录',
             icon: 'none',
             duration: 1000,
             success: function () {
               setTimeout(function () {
                   //要延时执行的代码
                   wx.reLaunch({
-                      url: '/pages/login/login'
+                      url: '/pages/index/index'
                   })
               }, 1000) //延迟时间 
             }

@@ -101,8 +101,8 @@
       </view> 
       <view class="btn_ok" bindtap="confirmRemind" data-status="close" data-close="false">确定</view> 
     </view>
-
   </view>
+  
 </l-skeleton>
 
 

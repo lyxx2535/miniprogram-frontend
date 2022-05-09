@@ -18,15 +18,10 @@ const _login = (_code) => {
   })
 }
 // 向后端请求token，参数是userVO
-const _get_token = (avatarUrl, nickName, openId, school) => {
+const _get_token = (_data) => {
   return httpRequest({
     url: API.GET_TOKEN,
-    data: {
-      avatarUrl: avatarUrl,
-      nickName: nickName,
-      openId: openId,
-      school: school
-    },
+    data: _data,
     header:{
       "content-type": "application/json",
       'accept': 'application/json'

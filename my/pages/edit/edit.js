@@ -66,13 +66,14 @@ Page({
         [],
         [],
         [],
-        ['软件工程', '摸鱼工程', '小龙虾工程'],
+        ['软件工程'],
       ],
       grade: ['2018本', '2019本', '2020本', '2021本', '2019硕', '2020硕', '2021硕'],
       sex: ['男', '女']
     },//下拉列表的数据
     index:[0, 0, 0, 0, 0], // 控制下拉列表的下标
     isChoose: [false, false, false, false, false], // 用户是否选择了该下标
+    isEdit: false, // 用户是否进行了修改
   },
   // 获取用户信息
   async getUserInfo(){
@@ -101,23 +102,43 @@ Page({
   saveContent(e){
     this.data.userInfo.name = e.detail.value;
     this.setData({
-      userInfo: this.data.userInfo
+      userInfo: this.data.userInfo,
+      isEdit: true
     })
   },
   // 点击保存修改按钮
   async updateInfo(){
-    this.data.userInfo.school = this.data.select.school[this.data.index[0]]
-    this.data.userInfo.institute = this.data.select.institute[this.data.index[1]]
-    this.data.userInfo.major = this.data.select.major[this.data.index[2]]
-    this.data.userInfo.grade = this.data.select.grade[this.data.index[3]]
-    this.data.userInfo.gender = this.data.select.sex[this.data.index[4]]
-    console.log(this.data.userInfo)
-    const res = await api._update_userInfo(this.data.userInfo);
-    console.log(res.data)
-    wx.showToast({
-      title: '已成功修改',
-      duration: 1000
-    })
+    if(!this.data.isEdit){
+      wx.showToast({
+        title: '您尚未进行修改, 无法保存',
+        icon: 'none',
+        duration: 1000
+      })
+    }
+    else{
+      if(isChoose[0]){
+        this.data.userInfo.school = this.data.select.school[this.data.index[0]]
+      }
+      if(isChoose[1]){
+        this.data.userInfo.institute = this.data.select.institute[this.data.index[1]]
+      }
+      if(isChoose[2]){
+        this.data.userInfo.major = this.data.select.major[this.data.instituteIndex][this.data.index[2]]
+      }
+      if(isChoose[3]){
+        this.data.userInfo.grade = this.data.select.grade[this.data.index[3]]
+      }
+      if(isChoose[4]){
+        this.data.userInfo.gender = this.data.select.sex[this.data.index[4]]
+      }
+      console.log(this.data.userInfo)
+      const res = await api._update_userInfo(this.data.userInfo);
+      console.log(res.data)
+      wx.showToast({
+        title: '已成功修改',
+        duration: 1000
+      })
+    }
   },
   // 点击下拉显示框
   selectTap(e){
@@ -130,12 +151,18 @@ Page({
   optionTap(e){
     let Index = Number(e.currentTarget.dataset.type);//获取点击的下拉列表的下标\
     this.data.index[Index] = e.currentTarget.dataset.index
+    if(Index == 1){ // 如果选择的是院系，渲染对应的专业列表
+      this.setData({
+        instituteIndex: e.currentTarget.dataset.index
+      })
+    }
     this.data.show[Index] = !this.data.show[Index]
-    this.data.isChoose[Index] = !this.data.isChoose[Index]
+    this.data.isChoose[Index] = true
     this.setData({
       index: this.data.index,
       show: this.data.show,
-      isChoose: this.data.isChoose
+      isChoose: this.data.isChoose,
+      isEdit: true
     });
   },
   /**

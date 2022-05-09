@@ -24,11 +24,12 @@ App({
     }
   },
   onLaunch() {
-  
-    // 拿到access_token
-    this.getAccessToken()
-    // 保存当前用户id
-    this.getMyInfo()
+    if(wx.getStorageSync('isLogin')){
+      // 拿到access_token
+      this.getAccessToken()
+      // 保存当前用户id
+      this.getMyInfo()
+    }
     // 拿到当天日期
     var d = new Date();
     wx.setStorageSync('date', util.tsFormatTime(d,'Y/M/D h:m:s'))
@@ -69,14 +70,6 @@ App({
         console.log(err);
       }
     })
- 
-
-
-   
-    // 默认跳转到login
-    // wx.navigateTo({
-    //   url: '/pages/login/login',
-    // })
   },
   
   globalData: {

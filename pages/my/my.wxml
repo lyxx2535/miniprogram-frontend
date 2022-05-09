@@ -8,7 +8,7 @@
   rows="8"
   active="{{true}}"
   >
-  <view class="header">
+  <view class="header" bindtap="toEdit">
     <image src="{{imgUrl.setting}}" mode="widthFix" style="width: 30rpx;"></image>
     <text style="margin-left: 10rpx">设置个人信息</text>
   </view>

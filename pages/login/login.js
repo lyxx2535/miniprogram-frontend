@@ -37,10 +37,13 @@ Page({
     this.getToken();
   },
   async getToken(){
-    const res = await api._get_token(wx.getStorageSync('userInfo_wx').avatarUrl,
-                                     wx.getStorageSync('userInfo_wx').nickName,
-                                     wx.getStorageSync('openid'),
-                                     '南京大学')
+    const _data = {
+      avatarUrl: wx.getStorageSync('userInfo_wx').avatarUrl,
+      nickName: wx.getStorageSync('userInfo_wx').nickName,
+      openId: wx.getStorageSync('openid'),
+      school: '南京大学'
+    }
+    const res = await api._get_token(_data)
     wx.setStorageSync('token', res.data.data.token)
     console.log('exe')
     console.log('token: ' + wx.getStorageSync('token'));
