@@ -26,7 +26,7 @@ App({
   onLaunch() {
     if(wx.getStorageSync('isLogin')){
       // 拿到access_token
-      this.getAccessToken()
+      // this.getAccessToken()
       // 保存当前用户id
       this.getMyInfo()
     }

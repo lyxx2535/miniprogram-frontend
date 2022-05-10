@@ -1,5 +1,5 @@
 // community/pages/community/community.js
-import { DELETE_RH_HISTORY_BY_USER } from '../../enum/enums'
+import { DELETE_RH_HISTORY_BY_USER, LOGIN_API } from '../../enum/enums'
 import * as IMG from '../../enum/imageUrl'
 import * as api from '../../utils/api'
 const app = getApp()
@@ -32,6 +32,8 @@ Page({
     seekHelpList: [], // 当前展示的求助帖子list
     forumRenderHelp: {}, // 帮助页面显示的帖子对象，成员是各个标签的帖子list
     renderHelpList: [], // 当前展示的帮助帖子list
+    recommendRhList: [], // 算法推荐的帮助帖子list
+    recommendShList: [], // 算法推荐的求助帖子list
     current: 0,  // 当前项目
     scrollLeft: 0, // 滚动栏滚动距离
     windowWidth: 0, // 窗体宽度
@@ -69,7 +71,6 @@ Page({
   },
   // 开始输入
   onSearch(){
-    console.log('exe')
     this.setData({
       isSearch: true
     })
@@ -161,8 +162,14 @@ Page({
       // 此时bindinput无法监听到input值变化，需要手动设置视图变化
       isShowRes: true
     })
+    // 搜索算法
+    if(this.data.currentTab == 0){
+      this.searchSH(_keyWord)
+    }
+    else{
+      this.searchRH(_keyWord)
+    }
   },
-
   // cyr - community
   // 预览图片
   previewImg(e){
@@ -190,13 +197,21 @@ Page({
     //全局变量
     app.globalData.currentTab = e.currentTarget.dataset.idx;
     // 刷新历史记录
-    this.getSearchHistory()
+    this.getSearchHistory();
+    // 刷新算法推荐结果
+    this.getRecommend(false);
     // 刷新搜索结果
     if(this.data.currentTab == 0){
       this.searchSH(this.data.keyWord)
+      this.setData({
+        algorithm: this.data.recommendShList
+      })
     }
     else{
       this.searchRH(this.data.keyWord)
+      this.setData({
+        algorithm: this.data.recommendRhList
+      })
     }
     // TODO: 刷新算法推荐
   },
@@ -204,19 +219,9 @@ Page({
     // 改变当前list视图
     switch (index) {
       case 0:
-        if(this.data.forumRenderHelp['算法推荐'] == undefined){
-          this.setData({
-            renderHelpList: []
-          })
-        }
-        if(this.data.forumSeekHelp['算法推荐'] == undefined){
-          this.setData({
-            seekHelpList: []
-          })
-        }
         this.setData({
-          seekHelpList: this.data.forumSeekHelp['算法推荐'],
-          renderHelpList: this.data.forumRenderHelp['算法推荐'],
+          seekHelpList: this.data.recommendShList,
+          renderHelpList: this.data.recommendRhList,
         })
         break;
       case 1:
@@ -360,7 +365,6 @@ Page({
       scrollLeft: scrollLeft
     })
     this.refreshData(index);
-    console.log(this.data.seekHelpList)
   },
   // 查看帖子详情
   checkDetail(e){
@@ -382,17 +386,17 @@ Page({
     });
     console.log(that.data.now_state);
   },
-   //点击背景触发的事件
-   hideModal(e){
-      var that = this 
-      that.setData({
-        now_state:false
-      })
-      this.getTabBar().setData({
-        show: true,
-      });
-      console.log(that.data.now_state);
-    },
+  //点击背景触发的事件
+  hideModal(e){
+    var that = this 
+    that.setData({
+      now_state:false
+    })
+    this.getTabBar().setData({
+      show: true,
+    });
+    console.log(that.data.now_state);
+  },
    
   // 跳转至编辑页
   toDraft1(){
@@ -423,15 +427,22 @@ Page({
     console.log(resData)
     this.refreshData(this.data.current)
   },
-  async getRecommend(){
-    let res;
-    if(this.data.currentTab == 0){
-      res = await api._get_sh_recommend();
+  async getRecommend(flag){
+    const res_sh = await api._get_sh_recommend();
+    const res_rh = await api._get_rh_recommend();
+    console.log(res_rh.data.data)
+    this.setData({
+      recommendRhList: res_rh.data.data,
+      recommendShList: res_sh.data.data
+    })
+    // 初始化
+    if(flag){
+      this.setData({
+        seekHelpList: this.data.recommendShList,
+        renderHelpList: this.data.recommendRhList,
+        algorithm: this.data.recommendShList
+      })
     }
-    else{
-      res = await api._get_rh_recommend();
-    }
-    console.log(res.data)
   },
   /**
    * 生命周期函数--监听页面加载
@@ -444,7 +455,6 @@ Page({
         })
       },
     })
-    // this.getRecommend()
   },
 
   /**
@@ -466,6 +476,9 @@ Page({
     // 加载后端数据
     this.getSeekHelpList();
     this.getRenderHelpList();
+    // 获取算法推荐
+    this.getRecommend(true);
+    // 将默认list设置为算法推荐内容
     console.log('load！')
     setTimeout( () => this.setData({
       isShowSkeleton: false,

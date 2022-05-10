@@ -53,7 +53,7 @@
       </view>
 
       <view style="margin-top: 20rpx;">
-        <view wx:for="{{algorithm}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item}}" bindtap="getInput">{{item}}</view>
+        <view wx:for="{{algorithm}}" wx:key="index" class="tag_search" style="display: inline-block;" data-content="{{item.name}}" bindtap="getInput">{{item.name}}</view>
       </view>
     </view>
 
