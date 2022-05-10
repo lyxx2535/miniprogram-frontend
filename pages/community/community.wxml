@@ -31,7 +31,7 @@
 
     <!-- start: 搜索 -->
     <view style="position: relative; display: flex; margin-top: 30rpx;">
-      <image src="{{asset.search}}" class="input-img" mode="widthFix"></image>
+      <image src="{{asset.search}}" class="input-img" style="width: 48rpx; height: 48rpx;"></image>
       <input class="input" placeholder="请输入帖子关键词" bindinput="onInput" value="{{keyWord}}"
       bindfocus="onSearch"></input>
       <text class="input-text" bindtap="cancelInput">取消</text>
@@ -40,7 +40,7 @@
     <view wx:if="{{isSearch && !isShowRes}}">
       <view style="position: relative; display: flex; margin-top: 50rpx;">
         <view class="sub-title">历史记录</view>
-        <image class="sub-img" mode="widthFix" src="{{asset.trash}}" bindtap="clearHistory"></image>
+        <image class="sub-img" style="width: 50rpx; height: 50rpx;" src="{{asset.trash}}" bindtap="clearHistory"></image>
       </view>
 
       <view style="margin-top: 20rpx;">
@@ -49,7 +49,7 @@
 
       <view style="position: relative; display: flex; margin-top: 60rpx;">
         <view class="sub-title">算法推荐</view>
-        <image class="sub-img" mode="widthFix" src="{{asset.refresh}}" bindtap="refreshTag"></image>
+        <image class="sub-img" style="width: 50rpx; height: 50rpx;" src="{{asset.refresh}}" bindtap="refreshTag"></image>
       </view>
 
       <view style="margin-top: 20rpx;">
