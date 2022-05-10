@@ -20,6 +20,7 @@ Page({
     remark: "", // 备注
     forumImg: [], // 帖子图片url
     forumType: 1, // 求助贴：0，帮助贴：1
+    forumId: -1, // 新建帖子：-1 修改已存在帖子：id
     scrollLeft: 0, // 滚动栏滚动距离
     windowWidth: 0, // 窗体宽度
     // timePicker
@@ -244,6 +245,57 @@ Page({
       forumImg: [], // 帖子图片url
     })
   },
+  async getForumInfo(type){
+    let index1 = 0;//指示类型下标
+    let index2 = 0;//指示标签下标
+    let imgList = [];//存储图片url
+    if(type == 0){//求助类型
+      const res = await api._query_sh_forum_byId(this.data.forumId)
+      const resData = res.data.data;
+      console.log(resData)
+      while(this.data.type0[index1] != resData.seekHelpType){
+        index1++;
+      }
+      while(this.data.tag[index2] != resData.tag){
+        index2++;
+      }
+      for(let item in resData.urlList){
+        imgList.push(resData.urlList[item].imageUrl)
+      }
+      this.setData({
+        typeIndex: index1, // 当前选中的type下标
+        tagIndex: index2, // 当前选中的tag下标
+        content: resData.name, // 内容/名称
+        emergency: resData.urgency, // 紧急程度, 目前点亮☆的下标
+        remark: resData.comment, // 备注
+        forumImg: imgList, // 帖子图片url
+      })
+    }
+    if(type == 1){//帮助类型
+      const res = await api._query_rh_forum_byId(this.data.forumId)
+      const resData = res.data.data;
+      console.log(resData)
+      while(this.data.type1[index1] != resData.helpType){
+        index1++;
+      }
+      while(this.data.tag[index2] != resData.tag){
+        index2++;
+      }
+      for(let item in resData.urlList){
+        imgList.push(resData.urlList[item].imgUrl)
+      }
+      console.log(imgList)
+      this.setData({
+        typeIndex: index1, // 当前选中的type下标
+        tagIndex: index2, // 当前选中的tag下标
+        content: resData.name, // 内容/名称
+        emergency: resData.urgency, // 紧急程度, 目前点亮☆的下标
+        remark: resData.comment, // 备注
+        forumImg: imgList, // 帖子图片url
+      })
+    }
+    
+  },
   /**
    * 生命周期函数--监听页面加载
    */
@@ -262,9 +314,15 @@ Page({
     });
     // 根据options选择渲染求助还是帮忙
     this.setData({
+      forumId: options.id,
       forumType: options.type
     })
+    console.log('当前草稿id：' + this.data.forumId)
     console.log('当前草稿类别：' + this.data.forumType)
+    // 如果帖子已经存在，从后端拿该id的帖子数据
+    if(this.data.forumId != -1){
+      this.getForumInfo(this.data.forumType)
+    }
     wx.getSystemInfo({
       success: (result) => {
         this.setData({
@@ -292,7 +350,7 @@ Page({
       }
     })
     this.setData({
-      forumImg: []
+      // forumImg: []
     })
   }
 })

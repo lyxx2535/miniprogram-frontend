@@ -411,14 +411,15 @@ Page({
   },
    
   // 跳转至编辑页
+  // 创建新条目，id用-1表示
   toDraft1(){
     wx.navigateTo({
-      url: '/community/pages/draft/draft?type=1',
+      url: '/community/pages/draft/draft?id=' + -1 + '&type=' + 1,
     })
   },
   toDraft2(){
     wx.navigateTo({
-      url: '/community/pages/draft/draft?type=0',
+      url: '/community/pages/draft/draft?id=' + -1 + '&type=' + 0,
     })
   },
   async getSeekHelpList(){

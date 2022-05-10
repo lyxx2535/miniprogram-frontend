@@ -103,7 +103,9 @@ Page({
     },
     // 编辑该条信息
     editMsg(e){
-        console.log("edit")
+        wx.navigateTo({
+            url: '/community/pages/draft/draft?id=' + this.data.currentId + '&type=' + 1,
+          })
     },
     // 结束该条信息
     overMsg(e){
