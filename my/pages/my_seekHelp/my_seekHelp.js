@@ -44,7 +44,7 @@ Page({
     storeId(e){
         const id = e.currentTarget.dataset.id;
         this.setData({
-            currentId: id
+            currentId: id,
         })
     },
      // 查看帖子详情
@@ -75,29 +75,24 @@ Page({
         })
     },
       // 通过按钮关闭表单
-      confirmDelete(e){
-        console.log(this.data.currentId)
+      async confirmDelete(e){
         if(e.currentTarget.dataset.close == "false"){//用户点击了确定
-          console.log("用户确定删除")
-          api._delete_sh_forum_byId(this.data.currentId);
-          this.deleteMsg()
-          this.getSeekHelpList();
+          await api._delete_sh_forum_byId(this.data.currentId);
+          await this.getSeekHelpList();
+          this.deleteMsg()//关闭页面
         }
         else{
-            console.log("用户取消删除")
             this.deleteMsg()
         }
     },
     // 通过按钮结束表单
-    confirmOver(e){
-        if(e.currentTarget.dataset.close == "false"){//用户点击了确定
-          console.log("用户确定截止")
-          api._update_sh_status_byId(this.data.currentId, "已解决");
+    async confirmOver(e){
+        if(e.currentTarget.dataset.close == "false"){//用户点击了确定，进行页面刷新
+          await api._update_sh_status_byId(this.data.currentId, "已解决");
+          await this.getSeekHelpList();
           this.overMsg()
-          this.getSeekHelpList();
          }
         else{
-            console.log("用户取消截止")
             this.overMsg()
         }
     },
@@ -120,26 +115,31 @@ Page({
     async getSeekHelpList(){
         const res = await api._sh_list_byUser()
         const resData = res.data.data;
-        let ongoingList = []
-        let endList = []
+        let list1 = [];
+        let list2 = [];
+        let list3 = [];
         for(let item in resData){
             switch(resData[item].finishStatus){
                 case '进行中':
-                    ongoingList.push(resData[item])
+                    list1.push(resData[item])
                     break
-                default:
-                    endList.push(resData[item])
+                case '未解决':
+                    list2.push(resData[item])
+                    break
+                case '已解决':
+                    list3.push(resData[item])
                     break
             }
         }
         this.setData({
-            seekHelpList: ongoingList.concat(endList)
+            seekHelpList: list1.concat(list2).concat(list3),
         })
     },
+
     /**
      * 生命周期函数--监听页面加载
      */
-    onLoad: function (options) {
+    onLoad () {
         this.getSeekHelpList();
     },
 
@@ -154,7 +154,6 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-       
         let _title = "我的求助";
         wx.setNavigationBarTitle({
           title: _title,
