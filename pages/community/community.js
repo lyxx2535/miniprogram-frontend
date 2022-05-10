@@ -457,7 +457,7 @@ Page({
       }) 
     }
     // 初始化
-    if(flag){
+    if(flag && this.data.current == 0){
       this.setData({
         seekHelpList: this.data.recommendShList,
         renderHelpList: this.data.recommendRhList,

@@ -10,6 +10,7 @@ Page({
   data: {
     userId: 9, // 发布帖子的用户id，默认为zy
     forumType: 0, // 求助贴：0，帮助贴：1
+    endId: 0, // 退出接口时候的id
     imgUrl: {
       chat: IMG.ICNO_CHAT,
     },
@@ -80,8 +81,12 @@ Page({
       res = await api._click_render_help(id)
     }
     console.log('点击帖子：' + JSON.stringify(res.data))
+    this.setData({
+      endId: res.data.data.id
+    })
   },
   async onEndClick(type, id){
+    console.log('id' + this.data.forumId)
     let res;
     if(type == 0){
       res = await api._end_click_seek_help(id)
@@ -101,8 +106,6 @@ Page({
       forumId: id,
       forumType: type
     })
-    console.log(this.data.forumId)
-    console.log(this.data.forumType)
     // 从后端拿该id的帖子数据
     this.getForumInfo(type)
     // 点击事件
@@ -129,6 +132,6 @@ Page({
   },
   // 监听页面卸载
   onUnload(){
-    this.onEndClick(this.data.forumType, this.data.forumId)
+    this.onEndClick(this.data.forumType, this.data.endId)
   }
 })
