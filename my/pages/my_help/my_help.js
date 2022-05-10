@@ -75,29 +75,24 @@ Page({
     },
    
      // 通过按钮关闭表单
-    confirmDelete(e){
-        console.log(this.data.currentId)
+     async confirmDelete(e){
         if(e.currentTarget.dataset.close == "false"){//用户点击了确定
-          console.log("用户确定删除")
-          api._delete_rh_forum_byId(this.data.currentId);
+          await api._delete_rh_forum_byId(this.data.currentId);
+          await this.getRenderHelpList();
           this.deleteMsg()
-          this.getRenderHelpList();
         }
         else{
-            console.log("用户取消删除")
             this.deleteMsg()
         }
     },
       // 通过按钮结束表单
-      confirmOver(e){
+      async confirmOver(e){
         if(e.currentTarget.dataset.close == "false"){//用户点击了确定
-          console.log("用户确定截止")
-          api._update_rh_status_byId(this.data.currentId, "已截止");
+          await api._update_rh_status_byId(this.data.currentId, "已截止");
+          await this.getRenderHelpList();
           this.overMsg()
-          this.getRenderHelpList();
          }
         else{
-            console.log("用户取消截止")
             this.overMsg()
         }
     },
@@ -135,7 +130,6 @@ Page({
         this.setData({
             renderHelpList: ongoingList.concat(endList)
         })
-        console.log("load list")
     },
 
     /**
