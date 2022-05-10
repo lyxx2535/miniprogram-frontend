@@ -3,6 +3,8 @@ import { DELETE_RH_HISTORY_BY_USER, LOGIN_API } from '../../enum/enums'
 import * as IMG from '../../enum/imageUrl'
 import * as api from '../../utils/api'
 const app = getApp()
+const util = require('../../utils/chat')
+
 Page({
 
   /**
@@ -150,9 +152,24 @@ Page({
     })
     this.deleteHistoryByUser()
   },
-  // TODO: 刷新算法推荐
+  // 刷新算法推荐
   refreshTag(){
-
+    this.getRecommend(false)
+    if(this.data.currentTab == 0){
+      this.setData({
+        algorithm: this.data.recommendShList
+      })
+    }
+    else{
+      this.setData({
+        algorithm: this.data.recommendRhList
+      })
+    }
+    // 随机打乱数组
+    this.data.algorithm = util.shuffle(this.data.algorithm);
+    this.setData({
+      algorithm: this.data.algorithm
+    })
   },
   // 点击tag
   getInput(e){
@@ -213,7 +230,6 @@ Page({
         algorithm: this.data.recommendRhList
       })
     }
-    // TODO: 刷新算法推荐
   },
   refreshData(index){
     // 改变当前list视图
@@ -430,7 +446,6 @@ Page({
   async getRecommend(flag){
     const res_sh = await api._get_sh_recommend();
     const res_rh = await api._get_rh_recommend();
-    console.log(res_rh.data.data)
     this.setData({
       recommendRhList: res_rh.data.data,
       recommendShList: res_sh.data.data
