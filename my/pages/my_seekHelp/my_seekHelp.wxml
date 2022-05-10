@@ -23,7 +23,7 @@
     <!-- 展示“我的求助”条目 -->
     <view class="card {{item.finishStatus=='进行中'?'white':'gray'}}" wx:for="{{seekHelpList}}" wx:key="index">
         <!-- width：可限定内容在卡片中，重要 -->
-        <l-slide-view height="200" width="630" slide-width="{{item.finishStatus=='进行中'?'360':'240'}}" bind:slideopen="storeId" auto-close="true" data-id="{{item.id}}">
+        <l-slide-view height="200" width="675" slide-width="{{item.finishStatus=='进行中'?'360':'240'}}" bind:slideopen="storeId" auto-close="true" data-id="{{item.id}}">
             <view slot="left" style="display: flex;" bindtap="checkDetail" data-id="{{item.id}}">
                 <view>
                     <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
