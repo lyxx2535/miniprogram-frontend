@@ -154,22 +154,18 @@ Page({
   },
   // 刷新算法推荐
   refreshTag(){
-    this.getRecommend(false)
-    if(this.data.currentTab == 0){
-      this.setData({
-        algorithm: this.data.recommendShList
-      })
-    }
-    else{
-      this.setData({
-        algorithm: this.data.recommendRhList
-      })
-    }
-    // 随机打乱数组
-    this.data.algorithm = util.shuffle(this.data.algorithm);
-    this.setData({
-      algorithm: this.data.algorithm
+    wx.showLoading({
+      title: '刷新中...',
+      mask: true  //开启蒙版遮罩
     })
+    setTimeout(() => {
+      // 随机打乱数组
+      this.data.algorithm = util.shuffle(this.data.algorithm);
+      this.setData({
+        algorithm: this.data.algorithm
+      })
+      wx.hideLoading()
+    }, 250)
   },
   // 点击tag
   getInput(e){
