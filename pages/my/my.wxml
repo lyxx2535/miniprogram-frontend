@@ -9,12 +9,12 @@
   active="{{true}}"
   >
   <view class="header" bindtap="toEdit">
-    <image src="{{imgUrl.setting}}" mode="widthFix" style="width: 30rpx;"></image>
+    <image src="{{imgUrl.setting}}" style="width: 30rpx; height: 30rpx;"></image>
     <text style="margin-left: 10rpx">设置个人信息</text>
   </view>
 
   <view class="flex" style="height: 230rpx; margin-top: 20rpx; margin-left: 30rpx;">
-    <image mode="heightFix" src="{{userInfo.avatarUrl}}" class="user-avartar"></image>
+    <image style="height: 180rpx; width: 180rpx;" src="{{userInfo.avatarUrl}}" class="user-avartar"></image>
 
     <view class="user-info">
       <view style="font-weight:600; font-size: 35rpx; letter-spacing: 4rpx;">{{userInfo.nickName}}</view>
@@ -30,7 +30,7 @@
       <view class="underline" style="background: linear-gradient(to right,#3f8ba2, #5ca8c0);"></view>
     </view>
     
-      <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
+      <image style="width: 50rpx; height: 50rpx;" src="{{imgUrl.forward}}" class="icon"></image>
     </view>
 
     <view class="card flex" bindtap="toMyRH">
@@ -39,7 +39,7 @@
       <view class="underline" style="background: linear-gradient(to right,#ffd968, #ffe389);"></view>
     </view>
       
-      <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
+      <image style="width: 50rpx; height: 50rpx;" src="{{imgUrl.forward}}" class="icon"></image>
     </view>
 
     <view class="card flex" bindtap="toMySH">
@@ -48,7 +48,7 @@
       <view class="underline" style="background: linear-gradient(to right,#ec7272, #f3a3a3);"></view>
     </view>
       
-      <image mode="widthFix" src="{{imgUrl.forward}}" class="icon"></image>
+      <image style="width: 50rpx; height: 50rpx;" src="{{imgUrl.forward}}" class="icon"></image>
     </view>
 
     <view class="big-card">
@@ -56,13 +56,13 @@
       <view class="divide-line"></view>
       <view class="flex">
         <button class="big-card-btn">常见问题</button>
-        <image mode="widthFix" src="{{imgUrl.question}}" class="icon-btn"></image>
+        <image style="width: 50rpx; height: 50rpx;" src="{{imgUrl.question}}" class="icon-btn"></image>
       </view>
       <view class="divide-line" style="width: 94%; margin-left: 3%; height: 6rpx;"></view>
       <view class="flex" style="position: relative;">
         <button class="big-card-btn" open-type="contact">联系我们</button>
         <!-- <view class="big-card-text">联系我们</view> -->
-        <image mode="widthFix" src="{{imgUrl.contact}}" class="icon-btn"></image>
+        <image style="width: 50rpx; height: 50rpx;" src="{{imgUrl.contact}}" class="icon-btn"></image>
       </view>
     </view>
   </scroll-view>

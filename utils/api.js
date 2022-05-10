@@ -689,6 +689,32 @@ const _end_click_seek_help = (_id) => {
     showLoading: false
   })
 }
+// 获取帮助推荐信息，需要token
+const _get_rh_recommend = () => {
+  return httpRequest({
+    url: API.GET_RH_RECOMMEND,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 获取求助推荐信息，需要token
+const _get_sh_recommend = () => {
+  return httpRequest({
+    url: API.GET_SH_RECOMMEND,
+    method: 'GET',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 
 export {
   _login,
@@ -742,5 +768,7 @@ export {
   _click_seek_help,
   _end_click_render_help,
   _end_click_seek_help,
+  _get_rh_recommend,
+  _get_sh_recommend,
   
 }

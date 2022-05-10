@@ -161,7 +161,6 @@ Page({
           userInfo: this.data.userInfo,
           hasUserInfo: true
         })
-        console.log(this.data.userInfo)
         wx.setStorageSync('userInfo_wx', res.userInfo)
         this.getOpenid(); 
       }
@@ -179,6 +178,7 @@ Page({
     this.getToken();
   },
   async getToken(){
+    console.log(this.data.userInfo)
     const res = await api._get_token(this.data.userInfo)
     wx.setStorageSync('isLogin', true)
     wx.setStorageSync('isExpire', false)
@@ -276,7 +276,7 @@ Page({
       this.data.userInfo.major = this.data.select.major[this.data.instituteIndex][this.data.index[2]]
       this.data.userInfo.grade = this.data.select.grade[this.data.index[3]]
       this.data.userInfo.gender = this.data.select.sex[this.data.index[4]]
-      console.log(this.data.userInfo)
+      console.log('打印' + JSON.stringify(this.data.userInfo))
     }
     this.getUserProfile()
   },

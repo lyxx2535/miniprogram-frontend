@@ -61,6 +61,8 @@ const CLICK_RENDER_HELP = '/help-info/click/'
 const CLICK_SEEK_HELP = '/seek-help/click/'
 const END_CLICK_RH = '/help-info/end-click/'
 const END_CLICK_SH = '/seek-help/end-click/'
+const GET_RH_RECOMMEND = '/help-info/recommend'
+const GET_SH_RECOMMEND = '/seek-help/recommend'
 
 export {
   LOGIN_API,
@@ -117,5 +119,7 @@ export {
   CLICK_SEEK_HELP,
   END_CLICK_RH,
   END_CLICK_SH,
+  GET_SH_RECOMMEND,
+  GET_RH_RECOMMEND,
   
 }
