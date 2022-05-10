@@ -446,12 +446,21 @@ Page({
       recommendRhList: res_rh.data.data,
       recommendShList: res_sh.data.data
     })
+    if(this.data.currentTab == 0){
+      this.setData({
+        algorithm: this.data.recommendShList
+      })
+    }
+    else{
+      this.setData({
+        algorithm: this.data.recommendRhList
+      }) 
+    }
     // 初始化
     if(flag){
       this.setData({
         seekHelpList: this.data.recommendShList,
         renderHelpList: this.data.recommendRhList,
-        algorithm: this.data.recommendShList
       })
     }
   },
@@ -490,7 +499,6 @@ Page({
     // 获取算法推荐
     this.getRecommend(true);
     // 将默认list设置为算法推荐内容
-    console.log('load！')
     setTimeout( () => this.setData({
       isShowSkeleton: false,
     }), 1000)
