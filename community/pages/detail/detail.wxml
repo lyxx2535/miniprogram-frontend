@@ -2,7 +2,7 @@
 <view class='divide-line'></view>
 
 <view class="flex mt-2" style="height: 100rpx;">
-  <image mode="heightFix" src="{{info.avatarUrl}}" class="user-avartar"></image>
+  <image style="height: 100rpx; width: 100rpx;" src="{{info.avatarUrl}}" class="user-avartar"></image>
   <view class="user-info">
     <view style="font-weight:600; font-size: 35rpx; letter-spacing: 4rpx;">{{info.nickName}}</view>
     <view style="margin-top: 15rpx; font-size: 25rpx; letter-spacing: 2rpx;">{{info.publishDate}}</view>
@@ -52,7 +52,7 @@
 
 <view class="relative" style="width: 100vw; height: 200rpx;">
   <view class="flex chat-btn relative" bindtap="goToChat">
-    <image src="{{imgUrl.chat}}" style="height: 60rpx; margin-top: 10rpx; margin-left: 30rpx;" mode="heightFix"></image>
+    <image src="{{imgUrl.chat}}" style="height: 60rpx; width: 60rpx; margin-top: 10rpx; margin-left: 30rpx;" ></image>
     <text style="letter-spacing: 8rpx; font-size: 35rpx; margin-left: 25rpx;margin-top: 13rpx; color: #838383;">与TA私聊</text>
   </view>
 </view>

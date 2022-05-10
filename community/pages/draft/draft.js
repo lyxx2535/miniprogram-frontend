@@ -128,6 +128,12 @@ Page({
       emergency: e.detail.score
     })
   },
+  handleUnknown(filePath) {
+    if(filePath.includes('.unknown')){
+      return filePath.substring(0, filePath.length() - 7) + 'jpg'
+    }
+    else return filePath
+  },
   // 发布
   async publish(){
     var d = new Date()
@@ -178,11 +184,11 @@ Page({
     for(let item in filePaths){
       var resData;
       if(this.data.forumType == 0){
-        const res = await api._upload_sh_draft_img(filePaths[item], this.data.id);
+        const res = await api._upload_sh_draft_img(this.handleUnknown(filePaths[item]), this.data.id);
         resData = res.data
       }
       else{
-        const res = await api._upload_rh_draft_img(filePaths[item], this.data.id);
+        const res = await api._upload_rh_draft_img(this.handleUnknown(filePaths[item]), this.data.id);
         resData = res.data
       }
       if(resData.length == 0){
