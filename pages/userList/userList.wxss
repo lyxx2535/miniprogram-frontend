@@ -36,8 +36,8 @@ page{
   position: absolute;
 }
 .item .poster {
-  width: 95rpx;
-  height: 95rpx;
+  width: 100rpx;
+  height: 100rpx;
   margin-right: 29rpx;
   border-radius: 10rpx;
   
@@ -53,7 +53,7 @@ page{
   font-size: 38rpx;
 }
 .item .meta .sub-title {
-  font-size: 22rpx;
+  font-size: 24rpx;
   color: #999;
   letter-spacing: 2rpx;
 }
@@ -70,14 +70,14 @@ page{
 }
 
 .user_name {
-  font-size: 30rpx;
+  font-size: 32rpx;
   letter-spacing: 2rpx;
 
 }
 
 .msg_time {
   color: #999;
-  font-size: 22rpx;
+  font-size: 24rpx;
   margin-top: 8rpx;
   letter-spacing: 2rpx;
 }
