@@ -3,6 +3,13 @@ import * as IMG from '../../../enum/imageUrl'
 Page({
   data: {
     navigationTitle: '我的核酸',
+    QUESTION:IMG.ICON_QUESTION,
+        tips:[
+            {'icon':IMG.ICON_OVER_BLACK,'tip':'正在进行的帖子，右滑可变为已解决状态。'},
+            {'icon':IMG.ICON_DELETE_BLACK,'tip':'已解决和未解决的帖子，可以左滑进行删除。系统默认显示一个月内的所有帖子。'},
+            {'icon':IMG.ICON_REDO_BLACK,'tip':'到期未解决的帖子，左滑跳转到发布页面，修改日期即可重新发布。'},
+        
+          ],
     calendarConfig: {
       firstDayOfWeek: 'Mon', // 每周第一天为周一还是周日，默认按周日开始
       onlyShowCurrentMonth: true, // 日历面板是否只显示本月日期
@@ -49,16 +56,16 @@ Page({
       success: (res) => {
         const resSet = res.data.data
         console.log(res.data)
-        let list1 = []
-        let list2 = []
-        let list3 = []
+        let list1 = [] //已完成的核酸
+        let list2 = [] //未完成的核酸
+        let list3 = [] //给未完成、已完成、进行中的核酸上色
         for(let item in resSet){
           let temp1 = {}
           let temp2 = {}
           temp1.name = resSet[item].title;
-          temp2.year = parseInt(resSet[item].testingTime.split('-')[0])
-          temp2.month = parseInt(resSet[item].testingTime.split('-')[1])
-          temp2.date = parseInt(resSet[item].testingTime.split('-')[2])
+          temp2.year = parseInt(resSet[item].testingTime.split('/')[0])
+          temp2.month = parseInt(resSet[item].testingTime.split('/')[1])
+          temp2.date = parseInt(resSet[item].testingTime.split('/')[2])
           switch (resSet[item].testingFinishStatus) {
             case '已完成':
               temp2.class = 'success'

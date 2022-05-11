@@ -10,6 +10,25 @@
   active="{{true}}"
 >
   <view>
+  <!--提示信息-->
+  <!-- <button class="question_btn" style="width: auto;" bindtap='showTips'>
+        <image src="{{QUESTION}}" class="question_img"></image>
+        <text class="question_text">左右滑动更改卡片状态</text>
+    </button>
+
+    <view class="TipsZhezhao {{isTipsTrue?'isTipsShow':'isTipsHide'}}" bindtap='hideTips'>
+        <view class='tipsZhezhaoContent'>
+            <view class="triangle"></view>
+            <block wx:for="{{tips}}" wx:for-index="index" wx:key="index">
+            <view class="tips_item">
+                <view><image src="{{item.icon}}" class="tips_icon"></image></view> 
+                <view class="tips_text">{{item.tip}}</view>
+            </view>              
+            </block>
+
+        </view>
+    </view> -->
+    <!-- 日历 -->
     <view class="calendar_bg">
       <calendar config="{{calendarConfig}}"
       bind:afterCalendarRender="afterCalendarRender"
