@@ -53,7 +53,7 @@ Page({
     isShowRes: false, // 是否展现搜索结果
     isShowSkeleton: true, // 是否展示骨架条
     cancelOccur: false, //是否显示取消
-    inputWidth: '79%',
+    inputWidth: '78%',
   },
 
   // pjz - 搜索
@@ -144,7 +144,7 @@ Page({
       isSearch: false,
       isShowRes: false,
       cancelOccur: false,
-      inputWidth: '79%'
+      inputWidth: '78%'
     })
   },
   async deleteHistoryByUser(){

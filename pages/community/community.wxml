@@ -23,7 +23,7 @@
         <!-- 右上角标签 -->
         <view class="navSide">
             <button class="btn1" plain bindtap="Popup" style="width: 50rpx;margin-left: 60rpx;">
-                <image src = "{{NEW}}" style="width: 40rpx;height: 40rpx;"></image>
+                <image src = "{{NEW}}" style="width: 35rpx;height: 35rpx;"></image>
             </button>
         </view>
     </view>
@@ -31,8 +31,8 @@
 
     <!-- start: 搜索 -->
     <view style="position: relative; display: flex; margin-top: 30rpx;">
-      <image src="{{asset.search}}" class="input-img" style="width: 48rpx; height: 48rpx;"></image>
-      <input class="input" placeholder="请输入帖子关键词" bindtap="canCancel" bindinput="onInput" value="{{keyWord}}" style="width:{{inputWidth}}"
+      <image src="{{asset.search}}" class="input-img" style="width: 40rpx; height: 40rpx;"></image>
+      <input class="input" placeholder="请输入帖子关键词" placeholder-class="placeholderStyle" bindtap="canCancel" bindinput="onInput" value="{{keyWord}}" style="width:{{inputWidth}}"
       bindfocus="onSearch"></input>
       <text class="input-text" wx:if="{{cancelOccur}}" bindtap="cancelInput">取消</text>
     </view>
