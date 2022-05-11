@@ -63,6 +63,10 @@ const END_CLICK_RH = '/help-info/end-click/'
 const END_CLICK_SH = '/seek-help/end-click/'
 const GET_RH_RECOMMEND = '/help-info/recommend'
 const GET_SH_RECOMMEND = '/seek-help/recommend'
+const UPDATE_RH_FORUM = '/help-info/update'
+const UPDATE_SH_FORUM = '/seek-help/update'
+const UPDATE_RH_IMAGE = '/help-info/update-image/'
+const UPDATE_SH_IMAGE = '/seek-help/update-image/'
 
 export {
   LOGIN_API,
@@ -121,5 +125,9 @@ export {
   END_CLICK_SH,
   GET_SH_RECOMMEND,
   GET_RH_RECOMMEND,
+  UPDATE_RH_FORUM,
+  UPDATE_SH_FORUM,
+  UPDATE_SH_IMAGE,
+  UPDATE_RH_IMAGE,
   
 }

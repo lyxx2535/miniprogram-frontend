@@ -715,6 +715,64 @@ const _get_sh_recommend = () => {
     showLoading: false
   })
 }
+// 更新求助帖子信息，需要token
+const _update_sh_forum = (_data) => {
+  return httpRequest({
+    url: API.UPDATE_SH_FORUM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 更新帮助帖子信息，需要token
+const _update_rh_forum = (_data) => {
+  return httpRequest({
+    url: API.UPDATE_RH_FORUM,
+    method: 'POST',
+    data: _data,
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: true
+  })
+}
+// 修改求助帖子截图，需要token
+const  _update_sh_img = (_filePath, _id) => {
+  console.log('修改图片本地路径：' + _filePath)
+  return uploadMedia({
+    url: API.UPDATE_SH_IMAGE + _id,
+    filePath: _filePath,
+    name: 'imageList', // key
+    header: {
+      'content-type': 'multipart/form-data',
+      'Authorization': wx.getStorageSync('token')
+    },
+    method: 'POST',
+    showLoading: true
+  })
+}
+// 修改帮助帖子截图，需要token
+const  _update_rh_img = (_filePath, _id) => {
+  console.log('修改图片本地路径：' + _filePath)
+  return uploadMedia({
+    url: API.UPDATE_RH_IMAGE + _id,
+    filePath: _filePath,
+    name: 'imageList', // key
+    header: {
+      'content-type': 'multipart/form-data',
+      'Authorization': wx.getStorageSync('token')
+    },
+    method: 'POST',
+    showLoading: true
+  })
+}
 
 export {
   _login,
@@ -770,5 +828,9 @@ export {
   _end_click_seek_help,
   _get_rh_recommend,
   _get_sh_recommend,
+  _update_rh_forum,
+  _update_sh_forum,
+  _update_sh_img,
+  _update_rh_img,
   
 }

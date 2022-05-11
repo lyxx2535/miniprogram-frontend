@@ -109,13 +109,6 @@ Page({
       remark: e.detail.value
     })
   },
-  // 点击日期选择器事件
-  // bindDateChange: function(e) {
-  //   console.log('picker发送选择改变，携带值为', e.detail.value)
-  //   this.setData({
-  //     ddl: e.detail.value
-  //   })
-  // },
   onChangeTap(e){
     this.setData({
       forumImg: e.detail.all
@@ -137,47 +130,122 @@ Page({
   },
   // 发布
   async publish(){
-    var d = new Date()
-    const now = dateUtil.tsFormatTime(d,'Y/M/D h:m:s' )
-    const ddl = this.data.ddl_p
-    const _data = {
-      "comment": this.data.remark,
-      "deadLine": ddl,
-      "name": this.data.content,
-      "publishDate": now,
-      "tag": this.data.tag[this.data.tagIndex],
-      "urgency": this.data.emergency,
+    // 如果是新建帖子
+    if(this.data.forumId == -1){
+      var d = new Date()
+      const now = dateUtil.tsFormatTime(d,'Y/M/D h:m:s' )
+      const ddl = this.data.ddl_p
+      const _data = {
+        "comment": this.data.remark,
+        "deadLine": ddl,
+        "name": this.data.content,
+        "publishDate": now,
+        "tag": this.data.tag[this.data.tagIndex],
+        "urgency": this.data.emergency,
+      }
+      console.log('发布数据：' + JSON.stringify(_data))
+      let resData;
+      // 先发布草稿
+      if(this.data.forumType == 0){
+        _data["seekHelpType"] = this.data.type0[this.data.typeIndex]
+        const res = await api._publish_sh_draft(_data);
+        resData = res.data.data;
+        this.setData({
+          id: resData.id
+        })
+      }
+      else{
+        _data["helpType"] = this.data.type1[this.data.typeIndex]
+        const res = await api._publish_rh_draft(_data);
+        resData = res.data.data;
+        this.setData({
+          id: resData.id
+        })
+      }
+      console.log('发布草稿：' + JSON.stringify(resData))
+      // 再上传图片
+      const filePaths = this.data.forumImg
+      // 如果没上传图片，直接返回之前的页面
+      if(filePaths.length == 0){
+        wx.switchTab({
+          url: '/pages/community/community',
+        })
+      }
+      else{
+        this.uploadImg(filePaths)
+      }
     }
-    console.log('发布数据：' + JSON.stringify(_data))
-    let resData;
-    // 先发布草稿
-    if(this.data.forumType == 0){
-      _data["seekHelpType"] = this.data.type0[this.data.typeIndex]
-      const res = await api._publish_sh_draft(_data);
-      resData = res.data.data;
-      this.setData({
-        id: resData.id
-      })
-    }
+    // 如果是修改帖子
     else{
-      _data["helpType"] = this.data.type1[this.data.typeIndex]
-      const res = await api._publish_rh_draft(_data);
-      resData = res.data.data;
-      this.setData({
-        id: resData.id
-      })
+      var d = new Date()
+      const now = dateUtil.tsFormatTime(d,'Y/M/D h:m:s' )
+      const _data = {
+        "comment": this.data.remark,
+        "deadLine": this.data.ddl_p,
+        "name": this.data.content,
+        "publishDate": now,
+        "tag": this.data.tag[this.data.tagIndex],
+        "urgency": this.data.emergency,
+        "id": this.data.forumId
+      }
+      console.log('修改帖子数据：' + JSON.stringify(_data))
+      if(this.data.forumType == 0){
+        _data["seekHelpType"] = this.data.type0[this.data.typeIndex]
+        const res = await api._update_sh_forum(_data);
+        console.log(res.data)
+      }
+      else{
+        _data["helpType"] = this.data.type1[this.data.typeIndex]
+        const res = await api._update_rh_forum(_data);
+        console.log(res.data)
+      }
     }
-    console.log('发布草稿：' + JSON.stringify(resData))
-    // 再上传图片
-    const filePaths = this.data.forumImg
-    // 如果没上传图片，直接返回之前的页面
-    if(filePaths.length == 0){
-      wx.switchTab({
-        url: '/pages/community/community',
-      })
-    }
-    else{
-      this.uploadImg(filePaths)
+  },
+  // 修改图片接口
+  async updateImg(filePaths){
+    for(let item in filePaths){
+      var resData;
+      if(this.data.forumType == 0){
+        const res = await api._update_sh_img(this.handleUnknown(filePaths[item]), this.data.forumId);
+        resData = res.data
+      }
+      else{
+        const res = await api._update_rh_img(this.handleUnknown(filePaths[item]), this.data.forumId);
+        resData = res.data
+      }
+      if(resData.length == 0){
+        console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(resData))
+        this.deleteForum()
+      }
+      else{
+        const resJson = JSON.parse(resData)
+        console.log(resJson);
+        if(resJson.code == 200){
+          wx.showToast({
+            title: '编辑成功！',
+            duration: 3000,
+            success: () => {
+              let _url;
+              if(this.data.forumType == 0){
+                _url = '/my/pages/my_seekHelp'
+              }
+              else{
+                _url = '/my/pages/my_help'
+              }
+              wx.navigateTo({
+                url: _url,
+              })
+            }
+          })
+        }
+        else{
+          wx.showToast({
+            title: '编辑失败！',
+            icon: 'error'
+          })
+          this.deleteForum()
+        }
+      }
     }
   },
   // linUI上传图片接口
@@ -219,7 +287,6 @@ Page({
           this.deleteForum()
         }
       }
-      // this.finishPublish()
     }
   },
   async deleteForum(){
@@ -245,26 +312,27 @@ Page({
       forumImg: [], // 帖子图片url
     })
   },
+  // lyx:
   async getForumInfo(type){
-    let index1 = 0;//指示类型下标
-    let index2 = 0;//指示标签下标
+    let _typeIndex = 0;//指示类型下标
+    let _tagIndex = 0;//指示标签下标
     let imgList = [];//存储图片url
     if(type == 0){//求助类型
       const res = await api._query_sh_forum_byId(this.data.forumId)
       const resData = res.data.data;
       console.log(resData)
-      while(this.data.type0[index1] != resData.seekHelpType){
-        index1++;
+      while(this.data.type0[_typeIndex] != resData.seekHelpType){
+        _typeIndex++;
       }
-      while(this.data.tag[index2] != resData.tag){
-        index2++;
+      while(this.data.tag[_tagIndex] != resData.tag){
+        _tagIndex++;
       }
       for(let item in resData.urlList){
         imgList.push(resData.urlList[item].imageUrl)
       }
       this.setData({
-        typeIndex: index1, // 当前选中的type下标
-        tagIndex: index2, // 当前选中的tag下标
+        typeIndex: _typeIndex, // 当前选中的type下标
+        tagIndex: _tagIndex, // 当前选中的tag下标
         content: resData.name, // 内容/名称
         emergency: resData.urgency, // 紧急程度, 目前点亮☆的下标
         remark: resData.comment, // 备注
@@ -275,24 +343,25 @@ Page({
       const res = await api._query_rh_forum_byId(this.data.forumId)
       const resData = res.data.data;
       console.log(resData)
-      while(this.data.type1[index1] != resData.helpType){
-        index1++;
+      while(this.data.type1[_typeIndex] != resData.helpType){
+        _typeIndex++;
       }
-      while(this.data.tag[index2] != resData.tag){
-        index2++;
+      while(this.data.tag[_tagIndex] != resData.tag){
+        _tagIndex++;
       }
       for(let item in resData.urlList){
-        imgList.push(resData.urlList[item].imgUrl)
+        imgList.push(resData.urlList[item].imageUrl)
       }
-      console.log(imgList)
       this.setData({
-        typeIndex: index1, // 当前选中的type下标
-        tagIndex: index2, // 当前选中的tag下标
+        typeIndex: _typeIndex, // 当前选中的type下标
+        tagIndex: _tagIndex, // 当前选中的tag下标
         content: resData.name, // 内容/名称
         emergency: resData.urgency, // 紧急程度, 目前点亮☆的下标
         remark: resData.comment, // 备注
         forumImg: imgList, // 帖子图片url
+        ddl_p: resData.deadLine
       })
+      console.log('已有图片列表：' + this.data.forumImg)
     }
     
   },
@@ -348,9 +417,6 @@ Page({
       fail: err => {
         console.log(err)
       }
-    })
-    this.setData({
-      // forumImg: []
     })
   }
 })

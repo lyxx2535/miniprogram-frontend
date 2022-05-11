@@ -49,7 +49,7 @@
 </view>
 
 <view style="margin-left: 60rpx; margin-top: 40rpx;">
-  <l-image-picker size="4" bind:linchange="onChangeTap" size-type="compressed" />
+  <l-image-picker size="4" bind:linchange="onChangeTap" size-type="compressed" urls="{{forumImg}}"/>
 </view>
 
 <view class='divide-line'></view>
