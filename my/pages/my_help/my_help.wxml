@@ -3,7 +3,7 @@
     <!--提示信息-->
     <button class="question_btn" style="width: auto;" bindtap='showTips'>
         <image src="{{QUESTION}}" class="question_img"></image>
-        <text class="question_text">左右滑动更改卡片状态</text>
+        <text class="question_text">向左滑动编辑帖子</text>
     </button>
 
     <!--详细的提示信息-->

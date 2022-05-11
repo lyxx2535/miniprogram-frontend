@@ -71,7 +71,7 @@
 }
 
 .triangle {
-    margin-left: 380rpx;
+    margin-left: 430rpx;
     margin-top: -38rpx;
     margin-bottom: 20rpx;
     width: 0rpx;

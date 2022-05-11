@@ -17,7 +17,7 @@ Page({
         renderHelpList: [], // 当前展示的互助帖子list
         test_img: IMG.VECTOR_PIC,
         img_url: {
-            solved: IMG.STATE_SOLVED,
+            solved: IMG.STATE_OVERDUE,
             unsolved: IMG.STATE_UNSOLVED,
             delete: IMG.ICON_DELETE,
             over: IMG.ICON_OVER,
