@@ -128,8 +128,35 @@ Page({
     }
     else return filePath
   },
+  // 检查输入
+  checkInput(){
+    if(this.data.content.length == 0){
+      console.log('exe')
+      wx.showToast({
+        title: '请输入名称',
+        icon: 'none'
+      })
+      return false
+    }
+    if(this.data.remark.length == 0){
+      console.log('exe')
+      wx.showToast({
+        title: '请输入备注',
+        icon: 'none'
+      })
+      return false
+    }
+    return true
+  },
+  publish(){
+    // 先检查是否输入
+    const flag = this.checkInput();
+    if(flag){
+      this.publishDraft();
+    }
+  },
   // 发布
-  async publish(){
+  async publishDraft(){
     // 如果是新建帖子
     if(this.data.forumId == -1){
       var d = new Date()
@@ -199,9 +226,31 @@ Page({
         const res = await api._update_rh_forum(_data);
         console.log(res.data)
       }
+      // 再上传图片
+      const filePaths = this.data.forumImg
+      // 如果没上传图片，直接返回之前的页面
+      if(filePaths.length == 0){
+        let _url;
+        if(this.data.forumType == 0){
+          _url = '/my/pages/my_seekHelp/my_seekHelp'
+        }
+        else{
+          _url = '/my/pages/my_help/my_help'
+        }
+        wx.navigateTo({
+          url: _url,
+        })
+      }
+      else{
+        this.setData({
+          id: this.data.forumId
+        })
+        this.uploadImg(filePaths)
+
+      }
     }
   },
-  // 修改图片接口
+  // 修改图片接口 - 弃用
   async updateImg(filePaths){
     for(let item in filePaths){
       var resData;
@@ -227,10 +276,10 @@ Page({
             success: () => {
               let _url;
               if(this.data.forumType == 0){
-                _url = '/my/pages/my_seekHelp'
+                _url = '/my/pages/my_seekHelp/my_seekHelp'
               }
               else{
-                _url = '/my/pages/my_help'
+                _url = '/my/pages/my_help/my_help'
               }
               wx.navigateTo({
                 url: _url,
@@ -248,9 +297,17 @@ Page({
       }
     }
   },
+  isTempFile(filePath){
+    if(filePath.includes('wechat')) return false;
+    else return true
+  },
   // linUI上传图片接口
   async uploadImg(filePaths){
     for(let item in filePaths){
+      // 如果图片已上传
+      if(!this.isTempFile(filePaths[item])){
+        continue;
+      }
       var resData;
       if(this.data.forumType == 0){
         const res = await api._upload_sh_draft_img(this.handleUnknown(filePaths[item]), this.data.id);
@@ -264,7 +321,8 @@ Page({
         console.log('错误：后端返回数据为空！返回结果为：' + JSON.stringify(resData))
         this.deleteForum()
       }
-      else{
+      // 如果是插入图片
+      else if(this.data.forumId == -1){
         const resJson = JSON.parse(resData)
         console.log(resJson);
         if(resJson.code == 200){
@@ -287,6 +345,35 @@ Page({
           this.deleteForum()
         }
       }
+      // 如果是更新图片
+      else{
+        const resJson = JSON.parse(resData)
+        console.log(resJson);
+        if(resJson.code == 200){
+          wx.showToast({
+            title: '编辑成功！',
+            duration: 3000,
+            success: () => {
+              let _url;
+              if(this.data.forumType == 0){
+                _url = '/my/pages/my_seekHelp/my_seekHelp'
+              }
+              else{
+                _url = '/my/pages/my_help/my_help'
+              }
+              wx.navigateTo({
+                url: _url,
+              })
+            }
+          })
+        }
+        else{
+          wx.showToast({
+            title: '编辑失败！',
+            icon: 'error'
+          })
+        }
+      }
     }
   },
   async deleteForum(){
@@ -299,6 +386,25 @@ Page({
     else{
       const res = await api._delete_rh_forum_byId(this.data.id)
       console.log('已删除异常发布帖：' + res.data)
+    }
+  },
+  // 删除图片
+  async removeImg(e){
+    if(this.data.forumId != -1){
+      console.log(e.detail)
+      for(let item in this.data.imageList){
+        if(this.data.imageList[item].imageUrl == e.detail.current){
+          if(this.data.forumType == 0){
+            const res = await api._delete_sh_image(this.data.imageList[item].id)
+            console.log(res.data)
+          }
+          else{
+            const res = await api._delete_rh_image(this.data.imageList[item].id)
+            console.log(res.data)
+          }
+          return;
+        }
+      }
     }
   },
   finishPublish(){
@@ -337,6 +443,8 @@ Page({
         emergency: resData.urgency, // 紧急程度, 目前点亮☆的下标
         remark: resData.comment, // 备注
         forumImg: imgList, // 帖子图片url
+        ddl_p: resData.deadLine,
+        imageList: resData.urlList
       })
     }
     if(type == 1){//帮助类型
@@ -359,7 +467,8 @@ Page({
         emergency: resData.urgency, // 紧急程度, 目前点亮☆的下标
         remark: resData.comment, // 备注
         forumImg: imgList, // 帖子图片url
-        ddl_p: resData.deadLine
+        ddl_p: resData.deadLine,
+        imageList: resData.urlList
       })
       console.log('已有图片列表：' + this.data.forumImg)
     }
