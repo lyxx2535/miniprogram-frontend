@@ -23,11 +23,11 @@ page {
   margin-top: 100rpx;
   transform: scaleY(0.3)
 }
-.success {
+.fail {
   border-radius: 50%;
   background-color: #FDE6E0;
 }
-.fail {
+.success {
   border-radius: 50%;
   background-color: #C7EDCC;
 }
