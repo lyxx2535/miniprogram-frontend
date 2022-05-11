@@ -32,9 +32,9 @@
     <!-- start: 搜索 -->
     <view style="position: relative; display: flex; margin-top: 30rpx;">
       <image src="{{asset.search}}" class="input-img" style="width: 48rpx; height: 48rpx;"></image>
-      <input class="input" placeholder="请输入帖子关键词" bindinput="onInput" value="{{keyWord}}"
+      <input class="input" placeholder="请输入帖子关键词" bindtap="canCancel" bindinput="onInput" value="{{keyWord}}" style="width:{{inputWidth}}"
       bindfocus="onSearch"></input>
-      <text class="input-text" bindtap="cancelInput">取消</text>
+      <text class="input-text" wx:if="{{cancelOccur}}" bindtap="cancelInput">取消</text>
     </view>
 
     <view wx:if="{{isSearch && !isShowRes}}">

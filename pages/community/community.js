@@ -52,6 +52,8 @@ Page({
     isSearch: false, // 是否展现搜索页面
     isShowRes: false, // 是否展现搜索结果
     isShowSkeleton: true, // 是否展示骨架条
+    cancelOccur: false, //是否显示取消
+    inputWidth: '79%',
   },
 
   // pjz - 搜索
@@ -127,12 +129,22 @@ Page({
       this.searchRH(e.detail.value)
     }
   },
+  canCancel(e){
+    if(!this.data.cancelOccur){
+      this.setData({
+        cancelOccur: true,
+        inputWidth: '65%'
+      })
+    }
+  },
   // 取消输入
   cancelInput(){
     this.setData({
       keyWord: "",
       isSearch: false,
-      isShowRes: false
+      isShowRes: false,
+      cancelOccur: false,
+      inputWidth: '79%'
     })
   },
   async deleteHistoryByUser(){

@@ -229,7 +229,7 @@ button {
 
 /* 搜索 */
 .input{
-  width: 65%;
+  /* width: 79%; */
   position: relative;
   right: 20rpx;
   height: 65rpx;
