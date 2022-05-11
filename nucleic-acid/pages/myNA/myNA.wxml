@@ -1,5 +1,26 @@
+  <!--提示信息-->
+  <view class="tips_locate">
+    <button class="question_btn" style="width: auto;" bindtap='showTips'>
+        <image src="{{QUESTION}}" class="question_img"></image>
+        <text class="question_text">不同颜色代表不同状态</text>
+    </button>
+
+    <!--详细的提示信息-->
+    <view class="TipsZhezhao {{isTipsTrue?'isTipsShow':'isTipsHide'}}" bindtap='hideTips'>
+        <view class='tipsZhezhaoContent'>
+            <view class="triangle"></view>
+            <block wx:for="{{tips}}" wx:for-index="index" wx:key="index">
+            <view class="tips_item">
+                <view class="tips_text">{{item.tip}}</view>
+            </view>              
+            </block>
+
+        </view>
+    </view>
+
+</view>
 <l-skeleton
-  style="margin-top: 100rpx;"
+  style="display: inline-block; margin-top: 5rpx;"
   loading="{{isShowSkeleton}}"
   paragraph="{{true}}"
   title="{{true}}"
@@ -9,25 +30,8 @@
   rows="8"
   active="{{true}}"
 >
-  <view>
-  <!--提示信息-->
-  <!-- <button class="question_btn" style="width: auto;" bindtap='showTips'>
-        <image src="{{QUESTION}}" class="question_img"></image>
-        <text class="question_text">左右滑动更改卡片状态</text>
-    </button>
+  <view >
 
-    <view class="TipsZhezhao {{isTipsTrue?'isTipsShow':'isTipsHide'}}" bindtap='hideTips'>
-        <view class='tipsZhezhaoContent'>
-            <view class="triangle"></view>
-            <block wx:for="{{tips}}" wx:for-index="index" wx:key="index">
-            <view class="tips_item">
-                <view><image src="{{item.icon}}" class="tips_icon"></image></view> 
-                <view class="tips_text">{{item.tip}}</view>
-            </view>              
-            </block>
-
-        </view>
-    </view> -->
     <!-- 日历 -->
     <view class="calendar_bg">
       <calendar config="{{calendarConfig}}"
