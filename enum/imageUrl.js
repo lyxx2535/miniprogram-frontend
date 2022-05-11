@@ -56,6 +56,7 @@ const STATE_UNSOLVED = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/
 const ICON_DELETE_BLACK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_delete_black.png'
 const ICON_OVER_BLACK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_over_black.png'
 const ICON_REDO_BLACK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/icon_redo_black.png'
+const STATE_OVERDUE = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/my/state_overdue.png'
 // index 
 const INDEX_NA = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index/1.png'
 const INDEX_COMMUNITY = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index/2.png'
@@ -110,5 +111,6 @@ export {
   INDEX_NA,
   INDEX_CHAT,
   INDEX_COMMUNITY,
+  STATE_OVERDUE,
   
 }
