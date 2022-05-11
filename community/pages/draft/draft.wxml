@@ -29,13 +29,6 @@
         <text style="color: rgb(121, 121, 121); margin-top: 50rpx; margin-left: 3rpx;" >▼</text>
     </view>
   </picker>
-
-  <!-- <picker mode="date" header-text="选择时间" value="{{ddl}}"  bindchange="bindDateChange" style="position: relative; bottom: 7rpx;">
-    <view style="font-size: 25rpx;margin-top: 12rpx;margin-left: 3rpx;">
-      <text style="letter-spacing:3rpx;font-weight: 300;">{{ddl}}</text>
-      <text style="color: rgb(121, 121, 121); margin-top: 50rpx; margin-left: 3rpx;" >▼</text>
-    </view>
-  </picker>  -->
 </view>
 
 <view class="info-block flex">
@@ -49,7 +42,7 @@
 </view>
 
 <view style="margin-left: 60rpx; margin-top: 40rpx;">
-  <l-image-picker size="4" bind:linchange="onChangeTap" size-type="compressed" urls="{{forumImg}}"/>
+  <l-image-picker bind:linremove="removeImg" size="4" bind:linchange="onChangeTap" size-type="compressed" urls="{{forumImg}}"/>
 </view>
 
 <view class='divide-line'></view>

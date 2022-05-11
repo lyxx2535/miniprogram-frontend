@@ -502,7 +502,7 @@ Page({
     // 将默认list设置为算法推荐内容
     setTimeout( () => this.setData({
       isShowSkeleton: false,
-    }), 1000)
+    }), 500)
   },
   onReady(){
   }

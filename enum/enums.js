@@ -67,6 +67,8 @@ const UPDATE_RH_FORUM = '/help-info/update'
 const UPDATE_SH_FORUM = '/seek-help/update'
 const UPDATE_RH_IMAGE = '/help-info/update-image/'
 const UPDATE_SH_IMAGE = '/seek-help/update-image/'
+const DELETE_RH_IMAGE = '/help-info/delete-image/'
+const DELETE_SH_IMAGE = '/seek-help/delete-image/'
 
 export {
   LOGIN_API,
@@ -129,5 +131,7 @@ export {
   UPDATE_SH_FORUM,
   UPDATE_SH_IMAGE,
   UPDATE_RH_IMAGE,
+  DELETE_RH_IMAGE,
+  DELETE_SH_IMAGE,
   
 }

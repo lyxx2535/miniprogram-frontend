@@ -773,6 +773,32 @@ const  _update_rh_img = (_filePath, _id) => {
     showLoading: true
   })
 }
+// 删除求助帖子图片，需要token
+const _delete_sh_image = (_id) => {
+  return httpRequest({
+    url: API.DELETE_SH_IMAGE + _id,
+    method: 'DELETE',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 删除帮助帖子图片，需要token
+const _delete_rh_image = (_id) => {
+  return httpRequest({
+    url: API.DELETE_RH_IMAGE + _id,
+    method: 'DELETE',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
 
 export {
   _login,
@@ -832,5 +858,7 @@ export {
   _update_sh_forum,
   _update_sh_img,
   _update_rh_img,
+  _delete_rh_image,
+  _delete_sh_image,
   
 }
