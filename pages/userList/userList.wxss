@@ -20,14 +20,27 @@ page{
 }
 .item {
   display: flex;
-  padding: 20rpx 40rpx;
-  border-bottom: 1rpx solid #c0c0c0;
+  padding: 10rpx 40rpx;
+  border-bottom: 0.01rem solid rgba(239,239,239,1);
+
   cursor: pointer;
+  
+}
+.item::after {
+  content: ' ';
+  width:73%;
+  height: 120rpx;
+  display: block;
+  margin-left: 120rpx;
+  border-bottom: 1px solid rgb(214, 214, 214);
+  position: absolute;
 }
 .item .poster {
-  width: 110rpx;
-  height: 110rpx;
+  width: 95rpx;
+  height: 95rpx;
   margin-right: 29rpx;
+  border-radius: 10rpx;
+  
 }
 .item .meta {
   flex: 1;
@@ -42,6 +55,7 @@ page{
 .item .meta .sub-title {
   font-size: 22rpx;
   color: #999;
+  letter-spacing: 2rpx;
 }
 .unread{
   border-radius: 100%;
@@ -54,3 +68,17 @@ page{
   text-align: center;
   line-height: normal;
 }
+
+.user_name {
+  font-size: 30rpx;
+  letter-spacing: 2rpx;
+
+}
+
+.msg_time {
+  color: #999;
+  font-size: 22rpx;
+  margin-top: 8rpx;
+  letter-spacing: 2rpx;
+}
+
