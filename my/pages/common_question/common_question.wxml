@@ -3,3 +3,5 @@
     <view class="q_title">{{item.q}}</view>
     <view class="q_text">{{item.a}}</view>
 </view>
+<button style="width: 80vw; margin-left: 10vw; margin-top: 80rpx; background-color: #565656; color: white; letter-spacing: 1rpx; font-size: 30rpx; font-weight: 300; margin-bottom: env(safe-area-inset-bottom);" open-type="contact">仍有问题？联系客服</button>
+<view style=" height: 30rpx;"></view>

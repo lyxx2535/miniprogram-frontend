@@ -230,15 +230,21 @@ Page({
       const filePaths = this.data.forumImg
       // 如果没上传图片，直接返回之前的页面
       if(filePaths.length == 0){
-        let _url;
-        if(this.data.forumType == 0){
-          _url = '/my/pages/my_seekHelp/my_seekHelp'
-        }
-        else{
-          _url = '/my/pages/my_help/my_help'
-        }
-        wx.navigateTo({
-          url: _url,
+        wx.showToast({
+          title: '编辑成功！',
+          duration: 3000,
+          success: () => {
+            let _url;
+            if(this.data.forumType == 0){
+              _url = '/my/pages/my_seekHelp/my_seekHelp'
+            }
+            else{
+              _url = '/my/pages/my_help/my_help'
+            }
+            wx.navigateTo({
+              url: _url,
+            })
+          }
         })
       }
       else{
@@ -246,7 +252,6 @@ Page({
           id: this.data.forumId
         })
         this.uploadImg(filePaths)
-
       }
     }
   },
@@ -349,32 +354,33 @@ Page({
       else{
         const resJson = JSON.parse(resData)
         console.log(resJson);
-        if(resJson.code == 200){
-          wx.showToast({
-            title: '编辑成功！',
-            duration: 3000,
-            success: () => {
-              let _url;
-              if(this.data.forumType == 0){
-                _url = '/my/pages/my_seekHelp/my_seekHelp'
-              }
-              else{
-                _url = '/my/pages/my_help/my_help'
-              }
-              wx.navigateTo({
-                url: _url,
-              })
-            }
-          })
-        }
+        if(resJson.code == 200){}
         else{
           wx.showToast({
             title: '编辑失败！',
-            icon: 'error'
+            icon: 'error',
+            duration: 3000
           })
+          return;
         }
       }
     }
+    wx.showToast({
+      title: '编辑成功！',
+      duration: 3000,
+      success: () => {
+        let _url;
+        if(this.data.forumType == 0){
+          _url = '/my/pages/my_seekHelp/my_seekHelp'
+        }
+        else{
+          _url = '/my/pages/my_help/my_help'
+        }
+        wx.navigateTo({
+          url: _url,
+        })
+      }
+    })
   },
   async deleteForum(){
     // 删求助帖

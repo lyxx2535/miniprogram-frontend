@@ -16,7 +16,8 @@ Page({
             {'q':'我可以查看以前的帮助、求助信息吗？','a':'可以在“我的帮忙/求助”中查看一个月内的发帖记录。'},
             {'q':'我还有其他问题怎么办？','a':'请点击“联系客服”与客服进行进一步沟通。'},
             
-        ]
+        ],
+        navigationTitle: '常见问题'
     },
 
     /**
@@ -37,7 +38,9 @@ Page({
      * 生命周期函数--监听页面显示
      */
     onShow: function () {
-
+      wx.setNavigationBarTitle({
+        title: this.data.navigationTitle,
+      })
     },
 
     /**
