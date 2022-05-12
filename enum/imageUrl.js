@@ -8,6 +8,10 @@
 // 核酸 - 首页
 const ICON_CALENDER = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index_hesuan/icon_calender.png'
 const VECTOR_PIC = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index_hesuan/vector_pic.png'
+const NULL_REPORT = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index_hesuan/null_3.png'
+const NULL_TEST = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index_hesuan/null_2.png '
+const NULL_BOOK = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index_hesuan/null_1.png'
+const NULL = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/index_hesuan/null_0.png'
 // 核酸 - 列表
 const REMIND = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/remind.png'
 const STATE_MISS = 'https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/state_miss.png'
@@ -112,5 +116,9 @@ export {
   INDEX_CHAT,
   INDEX_COMMUNITY,
   STATE_OVERDUE,
+  NULL,
+  NULL_BOOK,
+  NULL_TEST,
+  NULL_REPORT,
   
 }

@@ -15,6 +15,7 @@ Page({
       remind: IMG.REMIND,
       upload: IMG.UPLOAD,
       return: IMG.RETURN,
+      noTask: IMG.NULL_REPORT
     },
     list :[],    // 预约信息列表
     now_state: null, // 当前卡片的状态

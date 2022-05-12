@@ -13,7 +13,8 @@ Page({
       ongoing: IMG.STATE_ONGOING,
       over: IMG.STATE_OVER,
       miss: IMG.STATE_MISS,
-      remind: IMG.REMIND
+      remind: IMG.REMIND,
+      noTask: IMG.NULL_BOOK
     },
     // 预约信息列表
     list :[],

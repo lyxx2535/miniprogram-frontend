@@ -10,7 +10,9 @@
   rows="8"
   active="{{true}}"
 >
-  <view wx:if="{{list.length == 0}}">您当前没有检测任务~</view>
+  <view wx:if="{{list.length == 0}}">
+    <image src="{{img_url.noTask}}" style="width: 100vw; margin-top: 100rpx;" mode="widthFix"></image>
+  </view>
 
   <view class="card mt-20px" wx:for="{{list}}" wx:key="index" id="item{{index + 1}}">
 
