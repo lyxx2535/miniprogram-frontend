@@ -57,7 +57,7 @@
       </view>
     </view>
 
-      <view class="card" bindtap="checkDetail"  data-id="{{item.id}}" wx:for="{{searchRes}}" wx:key="index" wx:if="{{isShowRes}}">
+      <view class="card" bindtap="checkDetail"  data-id="{{item.id}}" wx:for="{{searchRes}}" wx:key="index" wx:if="{{isShowRes && searchRes.length > 0}}">
               <view style="display: flex;">
                   <view>
                     <!-- urlList的第一张，否则显示默认图片 -->
@@ -78,6 +78,13 @@
                   <image src="{{item.avatarUrl}}" class="user_pic"></image>
                   <view class="user_name">{{item.nickName}}</view>   
               </view>
+      </view>
+      <view wx:if="{{isShowRes && searchRes.length == 0}}">
+        <view style="margin-top: 50rpx; text-align: center; font-size: 500;">
+          <text>抱歉没有找到与“</text>
+          <text style="color: #cc0000">{{keyWord}}</text>
+          <text>”相关的帖子</text>
+        </view>
       </view>
     <!-- end：搜索 -->
 
