@@ -13,18 +13,18 @@ page {
   z-index: -1;
   width: 94%;
   margin-left: 3%;
-  margin-top: 80rpx;
+  margin-top: 60rpx;
   top: 3%;
   background:#ffffff;
 }
 .divide_line{
   background-color: black;
-  margin-top: 40rpx;
   width: 94%;
   margin-left: 3%;
   height: 1rpx;
   margin-top: 100rpx;
-  transform: scaleY(0.3)
+  transform: scaleY(0.3);
+  position: relative;
 }
 .fail {
   border-radius: 50%;

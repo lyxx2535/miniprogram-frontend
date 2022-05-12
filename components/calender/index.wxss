@@ -55,13 +55,16 @@
 
 .calendar {
     width: 80%;
+    height: 50%;
+    position: relative;
     /* box-sizing: border-box; */
 }
 
 /* 日历操作栏 */
 
 .handle {
-    height: 140rpx;
+    height: 95rpx;
+    position: relative;
 }
 
 .prev-handle,
