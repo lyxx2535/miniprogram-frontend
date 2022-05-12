@@ -5,9 +5,9 @@ Page({
     navigationTitle: '我的核酸',
     QUESTION:IMG.ICON_QUESTION,
         tips:[
-            {'tip':'红色：'},
-            {'tip':'黄色：'},
-            {'tip':'绿色：'},
+            {'tip':'红色：该日期有未完成的核酸。'},
+            {'tip':'黄色：该日期有进行中的核酸。'},
+            {'tip':'绿色：该日期有已完成的核酸。'},
         
           ],
     calendarConfig: {
