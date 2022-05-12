@@ -200,6 +200,11 @@ Page({
     const res = await api._update_test_inform(_data)
     console.log('更新成功！' + JSON.stringify(res.data));
   },
+  // 改变检测的状态为“已完成”
+  async finishTest(_id){
+    const res = await api._finish_test(_id);
+    console.log('完成本次检测！' + JSON.stringify(res.data))
+  },
   // 完成检测
   finishDetection(index){
     let obj = [];
@@ -216,11 +221,12 @@ Page({
       list: obj
     })
     console.log('完成检测，改变检测状态')
-    const _data = {
-      id: this.data.list[index].id,
-      finishStatus: '已完成'
-    }
-    this.updateData(_data)
+    this.finishTest(this.data.list[index].id)
+    // const _data = {
+    //   id: this.data.list[index].id,
+    //   finishStatus: '已完成'
+    // }
+    // this.updateData(_data)
 
   },
   // 点击已检测

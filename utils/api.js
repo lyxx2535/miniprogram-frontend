@@ -488,7 +488,6 @@ const _update_report_inform = (_data) => {
     showLoading: false
   })
 }
-
 // 更新用户核酸检测信息，需要token
 const _update_test_inform = (_data) => {
   return httpRequest({
@@ -559,6 +558,32 @@ const _update_report_remind = (_isOpenRemind, _id) => {
     },
     header:{
       "content-type": "application/x-www-form-urlencoded",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 更新用户核酸检测状态，需要token
+const _finish_test = (_id) => {
+  return httpRequest({
+    url: API.FINISH_TEST + _id,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
+      'accept': 'application/json',
+      'Authorization': wx.getStorageSync('token')
+    },
+    showLoading: false
+  })
+}
+// 更新用户核酸预约状态，需要token
+const _finish_book = (_id) => {
+  return httpRequest({
+    url: API.FINISH_BOOK + _id,
+    method: 'POST',
+    header:{
+      "content-type": "application/json",
       'accept': 'application/json',
       'Authorization': wx.getStorageSync('token')
     },
@@ -860,5 +885,7 @@ export {
   _update_rh_img,
   _delete_rh_image,
   _delete_sh_image,
+  _finish_book,
+  _finish_test,
   
 }

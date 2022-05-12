@@ -222,6 +222,11 @@ Page({
       }
     })
   },
+  // 改变预约的状态为“已完成”
+  async finishTest(_id){
+    const res = await api._finish_book(_id);
+    console.log('完成本次检测！' + JSON.stringify(res.data))
+  },
   // 完成预约
   finishAppointment(index){
     console.log(typeof(index))
@@ -239,12 +244,13 @@ Page({
       list: obj
     })
     console.log('完成预约，改变预约状态')
-    const _data = {
-      id: this.data.list[index].id,
-      finishStatus: '已完成',
-      userId: wx.getStorageSync('myId')
-    }
-    this.updateData(_data)
+    this.finishTest(this.data.list[index].id)
+    // const _data = {
+    //   id: this.data.list[index].id,
+    //   finishStatus: '已完成',
+    //   userId: wx.getStorageSync('myId')
+    // }
+    // this.updateData(_data)
   },
   // 点击已预约
   tapAppointment(e){

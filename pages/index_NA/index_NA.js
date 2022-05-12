@@ -34,10 +34,6 @@ Page({
       })
     },
     onLoad: function(options) {
-      // 加载数据
-        this.getBookNum();
-        this.getReportNum();
-        this.getTestNum();
     },
     gotoAppointment: function (options) {
         wx.navigateTo({
@@ -75,5 +71,9 @@ Page({
       setTimeout( () => this.setData({
         isShowSkeleton: false,
       }), 500)
+      // 加载数据
+      this.getBookNum();
+      this.getReportNum();
+      this.getTestNum();
     }
 })

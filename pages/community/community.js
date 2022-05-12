@@ -120,7 +120,6 @@ Page({
         isShowRes: true
       })
     }
-    console.log(this.data.isShowRes)
     // 搜索算法
     if(this.data.currentTab == 0){
       this.searchSH(e.detail.value)
