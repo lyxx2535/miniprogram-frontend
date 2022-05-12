@@ -54,7 +54,7 @@
     <view class="big-card">
       <view class="big-card-text2">其他</view>
       <view class="divide-line"></view>
-      <view class="flex">
+      <view class="flex" bindtap="toCommonQuestion">
         <button class="big-card-btn">常见问题</button>
         <image style="width: 50rpx; height: 50rpx;" src="{{imgUrl.question}}" class="icon-btn"></image>
       </view>

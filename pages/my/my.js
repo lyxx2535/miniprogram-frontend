@@ -64,6 +64,11 @@ Page({
       url: '/my/pages/edit/edit',
     })
   },
+  toCommonQuestion(){
+    wx.navigateTo({
+      url: '/my/pages/common_question/common_question',
+    })
+  },
   /**
    * 生命周期函数--监听页面加载
    */

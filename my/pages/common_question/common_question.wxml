@@ -1,0 +1,5 @@
+<!--my/pages/common_question/common_question.wxml-->
+<view class="card" wx:for="{{questions}}" wx:for-index="index" wx:key="index">
+    <view class="q_title">{{item.q}}</view>
+    <view class="q_text">{{item.a}}</view>
+</view>
