@@ -65,14 +65,14 @@
         <!-- 点击删除后的弹出框 -->
         <view class="drawer_screen" bindtap="confirmDelete" data-status="close" data-close="true" wx:if="{{clickDelete}}"></view> 
         <view class="drawer_box" wx:if="{{clickDelete}}"> 
-            <view class="drawer_title">是否确认删除该条帮助消息？</view> 
+            <view class="drawer_title">是否确认删除该条求助消息？</view> 
             <view class="btn" bindtap="confirmDelete" data-status="close" data-close="false">确定</view> 
             <view class="btn" bindtap="deleteMsg" data-status="close" data-close="true">取消</view> 
         </view>
          <!-- 点击完成后的弹出框 -->
          <view class="drawer_screen" bindtap="confirmOver" data-status="close" data-close="true" wx:if="{{clickOver}}"></view> 
         <view class="drawer_box" wx:if="{{clickOver}}"> 
-            <view class="drawer_title">是否确认截止该条帮助消息？</view> 
+            <view class="drawer_title">是否确认截止该条求助消息？</view> 
             <view class="btn" bindtap="confirmOver" data-status="close" data-close="false">确定</view> 
             <view class="btn" bindtap="overMsg" data-status="close" data-close="true">取消</view> 
         </view>
