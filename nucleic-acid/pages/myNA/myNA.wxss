@@ -131,7 +131,7 @@ page {
   width: 100%;
   position: fixed;
   background-color:rgba(0, 0, 0, .3);
-  z-index: 2;
+  z-index: 4;
   top: 0;
   left: 0;
 }
