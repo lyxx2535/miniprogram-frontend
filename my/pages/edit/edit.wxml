@@ -1,0 +1,94 @@
+<!--my/pages/edit/edit.wxml-->
+<view>
+
+  <view class="edit_bg"> 
+  </view>
+
+  <view style="align-items: center; text-align: center; position: relative; z-index: 99999;">
+  <!-- TODO: 点击头像后更换头像，绑定上传事件 -->
+    <image src="{{userInfo.avatarUrl}}" style="width: 150rpx; height: 150rpx; margin-top: 50rpx; border-radius: 50%;" >头像</image>
+    <view style="margin-top: 20rpx; font-size: large; font-weight: 700; letter-spacing: 4rpx;">{{userInfo.nickName}}</view>
+  </view>
+  
+  <view style="margin-top: 80rpx;">
+
+    <view class="flex info-block">
+      <view style=" margin-top: 20rpx; margin-left: 30rpx;">真实姓名：</view>
+      <l-input focus="false" width="300" hide-label="true" placeholder="请填写您的真实姓名" clear="{{true}}" value="{{userInfo.name}}"  bind:lininput="saveContent" style="font-size: 30rpx;"/>
+    </view>
+
+    <view class="flex info-block" style="margin-top: 30rpx;">
+      <view style=" margin-top: 20rpx; margin-left: 30rpx;">学校：</view>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap' data-index="0">
+          <text wx:if="{{!isChoose[0]}}" class='select_text'>{{userInfo.school}}</text>
+          <text wx:if="{{isChoose[0]}}" class='select_text'>{{select.school[index[0]]}}</text>
+          <image class='select_img {{show[0]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+        </view>
+        <view class='option_box' style='height:{{show[0]?(select.school.length>5?300:select.school.length*60):0}}rpx;'>
+          <text class='option' style='{{index==select.school.length-1&&"border:0;"}}' wx:for='{{select.school}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="0">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex info-block" style="margin-top: 30rpx;">
+      <view style=" margin-top: 20rpx; margin-left: 30rpx;">院系：</view>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap'  data-index="1">
+          <text wx:if="{{!isChoose[1]}}" class='select_text'>{{userInfo.institute}}</text>
+          <text wx:if="{{isChoose[1]}}" class='select_text'>{{select.institute[index[1]]}}</text>
+          <image class='select_img {{show[1]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+        </view>
+        <view class='option_box' style='height:{{show[1]?(select.institute.length>5?300:select.institute.length*60):0}}rpx;'>
+          <text class='option' style='{{index==select.institute.length-1&&"border:0;"}}' wx:for='{{select.institute}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="1">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex info-block" style="margin-top: 30rpx;">
+      <view style=" margin-top: 20rpx; margin-left: 30rpx;">专业：</view>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap'  data-index="2">
+          <text wx:if="{{!isChoose[2]}}" class='select_text'>{{userInfo.major}}</text>
+          <text wx:if="{{isChoose[2]}}" class='select_text'>{{select.major[instituteIndex][index[2]]}}</text>
+          <image class='select_img {{show[2]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+        </view>
+        <view class='option_box' style='height:{{show[2]?(select.major[instituteIndex].length>5?300:select.major[instituteIndex].length*60):0}}rpx;'>
+          <text class='option' style='{{index==select.major[instituteIndex].length-1&&"border:0;"}}' wx:for='{{select.major[instituteIndex]}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="2">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex info-block" style="margin-top: 30rpx;">
+      <view style=" margin-top: 20rpx; margin-left: 30rpx;">年级：</view>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap'  data-index="3">
+          <text wx:if="{{!isChoose[3]}}" class='select_text'>{{userInfo.grade}}</text>
+          <text wx:if="{{isChoose[3]}}" class='select_text'>{{select.grade[index[3]]}}</text>
+          <image class='select_img {{show[3]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+        </view>
+        <view class='option_box' style='height:{{show[3]?(select.grade.length>5?300:select.grade.length*60):0}}rpx;'>
+          <text class='option' style='{{index==select.grade.length-1&&"border:0;"}}' wx:for='{{select.grade}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="3">{{item}}</text>
+        </view>
+      </view>
+    </view>
+
+    <view class="flex info-block" style="margin-top: 30rpx;">
+      <view style=" margin-top: 20rpx; margin-left: 30rpx;">性别：</view>
+      <view class='select_box'>
+        <view class='select' catchtap='selectTap'  data-index="4">
+          <text wx:if="{{!isChoose[4]}}" class='select_text'>{{userInfo.gender}}</text>
+          <text wx:if="{{isChoose[4]}}" class='select_text'>{{select.sex[index[4]]}}</text>
+          <image class='select_img {{show[4]&&"select_img_rotate"}}' src='{{tagUrl}}'></image>   
+        </view>
+        <view class='option_box' style='height:{{show[4]?(select.sex.length>5?300:select.sex.length*60):0}}rpx;'>
+          <text class='option' style='{{index==select.sex.length-1&&"border:0;"}}' wx:for='{{select.sex}}' wx:key='this' data-index='{{index}}' catchtap='optionTap' data-type="4">{{item}}</text>
+        </view>
+      </view>
+    </view>
+  </view>
+
+  <button style="background-color: #f2f2f2; color: black; font-weight: 700; font-size: larger; margin-top: 50rpx; border-radius: 20rpx; letter-spacing: 8rpx; padding-top: 20rpx; padding-bottom: 20rpx;" bindtap="updateInfo">
+    保存修改
+  </button>
+</view>

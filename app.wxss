@@ -1,0 +1,6 @@
+/**app.wxss**/
+@import 'windi.wxss';
+@import 'icon.wxss';
+
+
+

@@ -1,0 +1,99 @@
+{
+  "projectname": "MiniProgram",
+  "setting": {
+    "compileHotReLoad": true,
+    "urlCheck": true,
+    "autoAudits": false
+  },
+  "description": "项目私有配置文件。此文件中的内容将覆盖 project.config.json 中的相同字段。项目的改动优先同步到此文件中。详见文档：https://developers.weixin.qq.com/miniprogram/dev/devtools/projectconfig.html",
+  "condition": {
+    "miniprogram": {
+      "list": [
+        {
+          "name": "nucleic-acid/pages/report/report",
+          "pathName": "nucleic-acid/pages/report/report",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "community/pages/detail/detail",
+          "pathName": "community/pages/detail/detail",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index/index",
+          "pathName": "pages/index/index",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "nucleic-acid/pages/myNA/myNA",
+          "pathName": "nucleic-acid/pages/myNA/myNA",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/community/community",
+          "pathName": "pages/community/community",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index_NA/index_NA",
+          "pathName": "pages/index_NA/index_NA",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "my/pages/my_help/my_help",
+          "pathName": "my/pages/my_help/my_help",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "community/pages/draft/draft",
+          "pathName": "community/pages/draft/draft",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "pages/index_NA/index_NA",
+          "pathName": "pages/index_NA/index_NA",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "my/pages/my_help/my_help",
+          "pathName": "my/pages/my_help/my_help",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "my/pages/my_seekHelp/my_seekHelp",
+          "pathName": "my/pages/my_seekHelp/my_seekHelp",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "my/pages/common_question/common_question",
+          "pathName": "my/pages/common_question/common_question",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/my/my",
+          "query": "",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/login/login",
+          "query": "",
+          "scene": null
+        }
+      ]
+    }
+  }
+}

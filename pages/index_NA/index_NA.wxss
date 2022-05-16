@@ -1,0 +1,118 @@
+/* nucleic-acid/pages/index_NA/index_NA.wxss */
+page {
+    background-color: #f2f2f4;
+    position: fixed;
+    left: 0px;
+    top: 0px;
+    height: 100vh;
+    width: 100%;
+    overflow-x: hidden;
+}
+.indexNA_bg {
+    display: relative;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}
+
+.indexNA_bg:after{
+    content: '';
+    width: 300%;
+    height: 75%;
+    position: absolute;
+    z-index: -1;
+    left: -180%;
+    top: 0;
+    border-radius: 0 0 50% 50%;
+    background:#e7e6e6;
+}
+
+.list_button {
+    position: fixed;
+    margin: 8% 2.5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.btn_all {
+    border-radius: 20rpx;
+    box-shadow: 0rpx 1rpx 4rpx 0rpx rgb(122, 122, 122);
+    background-color: #f0f0f2;
+    line-height: 250rpx;
+}
+
+.btn_all_hover {
+    background-color: rgb(155, 155, 155);
+}
+
+.num_pos {
+    position: absolute;
+    right: 10%;
+    top: -15%;
+    font-size: 120rpx;
+    font-weight: bolder;
+}
+
+.one_pos {
+    position: absolute;
+    left: 11%;
+    top: 30%;
+    font-size: 30rpx;
+    font-weight: 1000;
+}
+
+.two_pos {
+    position: absolute;
+    left: 10%;
+    top: 45%;
+    font-size: 42rpx;
+    font-weight: bolder;
+    letter-spacing:10rpx;
+}
+
+.myNA {
+    position: fixed;
+    margin: 55% 2.5%;
+    display: flex;
+    align-items: center;
+}
+
+.btn_myNA {
+    border-radius: 15rpx;
+    box-shadow: 0rpx 1rpx 4rpx 0rpx rgb(122, 122, 122);
+    background-color: #585858;
+}
+
+.btn_myNA_hover {
+    background-color: rgb(104, 104, 104);
+}
+
+.text_myNA {
+    position: absolute;
+    left: 7%;
+    top: 10%;
+    font-size: 70rpx;
+    font-weight: bolder;
+    line-height:80rpx;
+    letter-spacing:10rpx;
+    color: white;
+}
+
+.img_cal {
+    position: absolute;
+    right: -8%;
+    top: 45%;
+    width: 160rpx;
+    height: 130rpx;
+	display: inline-block;
+	overflow: hidden;
+}
+
+.img_bgg {
+    position: fixed;
+    margin: 75% 42%;
+    display: flex;
+    align-items: center;
+}
+

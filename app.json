@@ -1,0 +1,83 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/community/community",
+        "pages/my/my",
+        "pages/userList/userList",
+        "pages/index_NA/index_NA"
+    ],
+    "subpackages": [
+        {
+            "root": "chat",
+            "name": "聊天模块",
+            "pages": [
+                "pages/chat/chat"
+            ],
+            "independent": false
+        },
+        {
+            "root": "community",
+            "name": "互助社区",
+            "pages": [
+                "pages/detail/detail",
+                "pages/draft/draft"
+            ],
+            "independent": false
+        },
+        {
+            "root": "nucleic-acid",
+            "name": "核酸模块",
+            "pages": [
+                "pages/appointment/appointment",
+                "pages/detection/detection",
+                "pages/report/report",
+                "pages/myNA/myNA"
+            ],
+            "independent": false
+        },
+        {
+            "root": "my",
+            "name": "我的模块",
+            "pages": [
+                "pages/my_help/my_help",
+                "pages/my_seekHelp/my_seekHelp",
+                "pages/edit/edit",
+                "pages/common_question/common_question"
+            ],
+            "independent": false
+        }
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#f3f7f8",
+        "navigationBarTitleText": "Weixin",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "custom": true,
+        "color": "#000000",
+        "selectedColor": "#000000",
+        "backgroundColor": "#000000",
+        "list": [
+            {
+                "pagePath": "pages/index_NA/index_NA",
+                "text": "核酸"
+            },
+            {
+                "pagePath": "pages/community/community",
+                "text": "帮助"
+            },
+            {
+                "pagePath": "pages/userList/userList",
+                "text": "消息"
+            },
+            {
+                "pagePath": "pages/my/my",
+                "text": "我的"
+            }
+        ]
+    },
+    "style": "v2",
+    "sitemapLocation": "sitemap.json",
+    "lazyCodeLoading": "requiredComponents"
+}

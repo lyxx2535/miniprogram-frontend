@@ -1,0 +1,45 @@
+<!--nucleic-acid/pages/index_NA/index_NA.wxml-->
+<l-skeleton
+  loading="{{isShowSkeleton}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{true}}"
+  avatar-size="100rpx"
+  avatar-shape="circle"
+  rows="8"
+  active="{{true}}"
+  >
+  <!-- 插槽内容 -->
+    <view>
+      <view class="indexNA_bg"> 
+      </view>
+      <view class = "list_button">
+          <button class="btn_all" style="width:220rpx; height: 300rpx;" bindtap="gotoAppointment" hover-class="btn_all_hover">
+          <text class="num_pos" style="color: #c00000;">{{num_appointment}}</text>
+          <text class="one_pos">待</text>
+          <text class="two_pos">预约</text>
+          </button>
+          <button class="btn_all" style="margin-left: 28rpx;width:220rpx; height: 300rpx;" bindtap="gotoDetection" hover-class="btn_all_hover">
+          <text class="num_pos" style="color: #ceab01;">{{num_detection}}</text>
+          <text class="one_pos">待</text>
+          <text class="two_pos">检测</text>
+          </button>
+          <button class="btn_all" style="margin-left: 28rpx;width:220rpx; height: 300rpx;" bindtap="gotoReport" hover-class="btn_all_hover">
+          <text class="num_pos" style="color: #1f4e79;">{{num_report}}</text>
+          <text class="one_pos">待</text>
+          <text class="two_pos">上报</text>
+          </button>
+      </view>
+      <view class="myNA">
+          <button class="btn_myNA" style="width:350rpx; height: 200rpx;" bindtap="gotoMyNA" hover-class="btn_myNA_hover">
+              <text class="text_myNA">我的\n核酸</text>
+              <image src="{{ICON_CALENDER}}" class="img_cal"></image>
+          </button>
+      </view>
+      <view class="img_bgg">
+          <image src="{{VECTOR_PIC}}" style="width: 500rpx;height: 500rpx;"></image>
+      </view>
+    </view>
+</l-skeleton>
+
+

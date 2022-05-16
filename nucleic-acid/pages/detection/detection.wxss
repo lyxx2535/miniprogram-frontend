@@ -1,0 +1,6 @@
+/* nucleic-acid/pages/detection/detection.wxss */
+@import '../../list.wxss';
+
+.btn_2:not([size="mini"]) {
+  left: 335rpx
+}

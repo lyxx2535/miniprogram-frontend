@@ -1,0 +1,50 @@
+<!--community/pages/draft/draft.wxml-->
+<view class='divide-line'></view>
+
+<view class="info-block flex" style="margin-top: 45rpx;">
+  <text wx:if="{{forumType == 0}}">求助类型：</text>
+  <text wx:if="{{forumType == 1}}">帮助类型：</text>
+  <view wx:if="{{forumType == 0}}" wx:for="{{type0}}" wx:key="index" bindtap="chooseType" data-index="{{index}}" class="{{index == typeIndex? 'tag1' : 'tag1-unselected'}}" style="margin-left: 20rpx;"> {{item}} </view>
+  <view wx:if="{{forumType == 1}}"  wx:for="{{type1}}" wx:key="index" bindtap="chooseType" data-index="{{index}}" class="{{index == typeIndex? 'tag1' : 'tag1-unselected'}}" style="margin-left: 20rpx;"> {{item}} </view>
+</view>
+
+<view class="info-block flex" style="margin-top: 40rpx;">
+  <text style="min-width: 100rpx;">标签：</text>
+  <scroll-view class='scroll-box' scroll-x="true" enable-flex="true" scroll-left="{{ scrollLeft }}" scroll-with-animation="true">
+    <view wx:for="{{tag}}" wx:key="index" bindtap="chooseTag" data-index="{{index}}" class="{{index == tagIndex? 'tag2' : 'tag2-unselected'}}" style="margin-left: 20rpx;  display: inline-block;"> {{item}} </view>
+  </scroll-view>
+</view>
+
+<view class="info-block flex">
+  <text style="margin-top: 20rpx;">名称：</text>
+  <l-input focus="false" width="500" hide-label="true" placeholder="请简要描述您的帖子内容" clear="{{true}}" value="{{content}}"  bind:lininput="saveContent" />
+</view>
+
+<view class="info-block flex relative ">
+  <text>截止时间：</text>
+  <picker  mode="multiSelector" value="{{start_time}}" data-type="ddl" data-param='ddl_p' bindchange="changeDateTime" bindcolumnchange="changeDateTimeColumn" range="{{dateTimeArray}}" style="position: relative; bottom: 7rpx;">
+    <view style="font-size: 25rpx;margin-top: 12rpx;margin-left: 3rpx;">
+        <text style="letter-spacing:3rpx; font-weight: 300;" wx:if="{{!ddl_p}}">请选择</text>
+        <text style="letter-spacing:3rpx; font-weight: 300;" wx:else>{{ddl_p}}</text>
+        <text style="color: rgb(121, 121, 121); margin-top: 50rpx; margin-left: 3rpx;" >▼</text>
+    </view>
+  </picker>
+</view>
+
+<view class="info-block flex">
+  <text style="margin-top: 20rpx;">紧急程度：</text>
+  <l-rate active-color="#FFDD55" inActive-color="#FFF5CE" bind:linchange="onChangeRate" style="margin-top: 20rpx;" score="{{emergency}}"></l-rate>
+</view>
+
+<view class="info-block flex">
+  <text style="margin-top: 20rpx;">备注：</text>
+  <l-input focus="false" width="500" hide-label="true" placeholder="您可在备注详细描述您的需求" clear="{{true}}" value="{{remark}}" bind:lininput="saveRemark"/>
+</view>
+
+<view style="margin-left: 60rpx; margin-top: 40rpx;">
+  <l-image-picker bind:linremove="removeImg" size="4" bind:linchange="onChangeTap" size-type="compressed" urls="{{forumImg}}"/>
+</view>
+
+<view class='divide-line'></view>
+
+<button class="btn" size="mini" style="width: 160rpx;" bindtap="publish">发布</button>

@@ -1,0 +1,5 @@
+{
+  "usingComponents": {
+    "l-slide-view":"/miniprogram_npm/lin-ui/slide-view/index"
+  }
+}

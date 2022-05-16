@@ -1,0 +1,5 @@
+/* my/pages/my_help/my_help.wxss */
+@import '../../my_ihelp.wxss';
+page{
+  background-color: #f3f3f5;
+}

@@ -1,0 +1,215 @@
+page {
+  background-color: #f2f2f4;
+}
+
+/* 卡片部分CSS */
+.card {
+  border-radius: 15rpx;
+  /* 阴影弄不准确555 */
+  box-shadow: 1rpx 1rpx 10rpx 0rpx rgb(211, 211, 211);
+  background-color: #ffffff;
+  width: 90%;
+  margin-left: 5%;
+}
+.divide_line{
+  background: linear-gradient(
+    to left,
+    transparent 0%,
+    transparent 50%,
+    #000000 50%,
+    #000000 100%
+  );
+  background-size: 20rpx 2rpx;
+  background-repeat: repeat-x;
+  margin-top: 40rpx;
+  width: 96%;
+  margin-left: 2%;
+  height: 2rpx;
+  margin-bottom: 20rpx;
+}
+.btn {
+  border-radius: 80rpx;
+  height: 80rpx;
+  font-size: 30rpx;
+  letter-spacing: 8rpx;
+  word-break:keep-all;
+  white-space:nowrap;
+}
+.btn:not([size="mini"]) {
+  position: relative;
+  margin-left: 90rpx;
+  margin-top: 40rpx;
+  width: 240rpx;
+  text-align: center;
+  justify-content: center;
+}
+.wx-switch-input{width:42px !important;height:22px !important;}
+.wx-switch-input::before{width:40px !important;height: 20px !important;}
+.wx-switch-input::after{width: 18px !important;height: 18px !important;}
+
+/* 开启提醒 弹出表单CSS */
+ .drawer_screen { 
+  width: 100%; 
+  height: 100%; 
+  position: fixed; 
+  top: 0; 
+  left: 0; 
+  z-index: 1000; 
+  background: #000; 
+  opacity: 0.2; 
+  overflow: hidden; 
+ } 
+   
+ /*content*/
+ .drawer_box { 
+  width: 650rpx; 
+  overflow: hidden; 
+  position: fixed; 
+  top: 50%; 
+  left: 0; 
+  z-index: 1001; 
+  background: #FAFAFA; 
+  margin: -150px 50rpx 0 50rpx; 
+  border-radius: 10rpx; 
+ } 
+   
+ .drawer_title{ 
+  padding:15px; 
+  text-align: center; 
+  font-size: 32rpx;
+  font-weight: 1000;
+  letter-spacing:8rpx;
+ } 
+ .drawer_content { 
+  overflow-y: scroll; /*超出父盒子高度可滚动*/
+ } 
+   
+ .btn_ok{
+  margin-top: 10px;
+  padding: 10px; 
+  font: 20px "microsoft yahei"; 
+  text-align: center; 
+  border-top: 1px solid #E8E8EA; 
+  color: #24501b; 
+  font-size: 32rpx;
+  font-weight: 1000;
+  letter-spacing:20rpx;
+ } 
+   
+ .top{ 
+   padding-top:8px; 
+ } 
+ .bottom { 
+   padding-bottom:8px; 
+ } 
+ .title { 
+   height: 30px; 
+   line-height: 30px; 
+   width: 160rpx; 
+   /* text-align: center;  */
+   display: inline-block; 
+   margin-left: 30rpx;
+   font-size: 24rpx;
+   letter-spacing:5rpx;
+   font-weight: 300;
+ } 
+   
+ .input_base { 
+   border: 2rpx solid #ccc; 
+   padding-left: 20rpx; 
+   margin-right: 50rpx; 
+   font-size: 24rpx;
+   letter-spacing:3rpx;
+   font-weight: 300;
+ } 
+ .input_h30{ 
+   height: 30px; 
+   line-height: 30px; 
+ } 
+ .input_view{ 
+   font: 12px "microsoft yahei"; 
+   background: #fff; 
+   color:#000; 
+   line-height: 30px; 
+ } 
+ input { 
+   font: 12px "microsoft yahei"; 
+   background: #fff; 
+   color:#000 ; 
+ } 
+ .grid { display: -webkit-box; display: box; } 
+ .col-1 {-webkit-box-flex:1;box-flex:1;} 
+
+ .icon_notice {
+     height: 75rpx;
+     width: 90rpx;
+     margin-top: 15rpx;
+ }
+
+ .icon_remind {
+  height: 70rpx;
+  width: 90rpx;
+ }
+
+ .text_title {
+  font-size: 34rpx;
+  font-weight: 1000;
+  letter-spacing:8rpx;
+  margin-top: 25rpx;
+ }
+
+ .state-right {
+   margin-right: 25rpx;
+ }
+
+ .text_detail {
+  margin-left: 90rpx;
+  font-size: 24rpx;
+  letter-spacing:5rpx;
+  font-weight: 300;
+ }
+
+ .text_remind {
+  font-size: 24rpx;
+  font-weight: 1000;
+  letter-spacing:8rpx;
+  margin-top: 15rpx;
+ }
+
+ .return_indexNA {
+   border: none;
+   border-color: transparent;
+   background-image: url(https://peng-img.oss-cn-shanghai.aliyuncs.com/wechat/lists/return.png);
+   background-size: 38rpx 38rpx;
+   background-repeat: no-repeat;
+   float:left;
+  
+ }
+ .return_indexNA[plain] {
+   border: 0;
+ }
+
+ .text_listTitle {
+  font-size: 28rpx;
+  font-weight: 1000;
+  letter-spacing:10rpx;
+  margin-top: 50rpx;
+ }
+
+ .divLine{
+  background: #dbdbdb;
+  width: 90%;
+  height: 3rpx;
+  margin-left: 5%;
+ }
+ .act_right {
+  min-width: 100rpx;
+  display: flex;
+  color: #999;
+  font-size: 24rpx;
+  margin-top: 12rpx;
+  margin-left: 3rpx;
+}
+.act_picker {
+  display: flex;
+}

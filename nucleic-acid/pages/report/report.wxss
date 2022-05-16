@@ -1,0 +1,70 @@
+/* nucleic-acid/pages/report/report.wxss */
+@import '../../list.wxss';
+
+.btn_2:not([size="mini"]) {
+  left: 320rpx
+}
+.btn_upload {
+  border-radius: 40px;
+  height: 80rpx;
+}
+.btn_upload:not([size="mini"]) {
+  position: relative;
+  width: 200rpx;
+  text-align: center;
+  justify-content: center;
+}
+/* 弹出上传区CSS */
+.background{
+  width: 100%;
+  height: 100%;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background: #000;
+  opacity: 0.2;
+  overflow: hidden;
+  z-index: 1000;
+}
+.box{
+    height: 80%;
+    width: 100%;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    z-index: 2000;
+    background: #e7e6e6;
+    text-align: center;
+    border-radius: 10px;
+}
+.media{
+  height: 300rpx;
+  width: 300rpx;
+  border-radius: 20px;
+  border: 2px dashed black;
+  margin-top: 15%;
+  margin-left: calc(50vw - 150rpx);
+}
+.act_item {
+  width: 702rpx;
+  background: #FFFFFF;
+  border-radius: 16rpx;
+  margin-bottom: 24rpx;
+  box-sizing: border-box;
+  padding: 24rpx;
+  position: relative;
+  font-size: 28rpx;
+  color: #4D4D4D;
+  font-weight: 500;
+}
+
+.require {
+  color: #E9543E;
+}
+
+.nowp {
+  white-space: nowrap;
+  margin-right: 15rpx;
+}
+

@@ -1,0 +1,9 @@
+/* nucleic-acid/pages/appointment/appointment.wxss */
+@import '../../list.wxss';
+
+.btn_1:not([size="mini"]) {
+  left: 70rpx;
+}
+.btn_2:not([size="mini"]) {
+  right: 20rpx;
+}

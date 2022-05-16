@@ -1,0 +1,9 @@
+{
+  "usingComponents": {
+    "calendar": "/components/calender/index",
+    "l-step":"/miniprogram_npm/lin-ui/step/index",
+    "l-steps":"/miniprogram_npm/lin-ui/steps/index",
+    "l-card" : "/miniprogram_npm/lin-ui/card/index",
+    "l-skeleton": "/miniprogram_npm/lin-ui/skeleton/index"
+  }
+}

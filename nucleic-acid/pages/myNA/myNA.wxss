@@ -1,0 +1,178 @@
+page {
+  background-color: #f2f2f4;
+  height: 100%;
+}
+
+
+.calendar_bg:after{
+  border-radius: 25rpx;
+  content: '';
+  width: 320%;
+  height: 400rpx;
+  position: absolute;
+  z-index: -1;
+  width: 94%;
+  margin-left: 3%;
+  margin-top: 60rpx;
+  top: 3%;
+  background:#ffffff;
+}
+.divide_line{
+  background-color: black;
+  width: 94%;
+  margin-left: 3%;
+  height: 1rpx;
+  margin-top: 100rpx;
+  transform: scaleY(0.3);
+  position: relative;
+}
+.fail {
+  border-radius: 50%;
+  background-color: #FDE6E0;
+}
+.success {
+  border-radius: 50%;
+  background-color: #C7EDCC;
+}
+.now{
+  border-radius: 50%;
+  background-color: #fff8af;
+}
+.choose{
+  background-color: #000000;
+  color: #FFFFFF;
+}
+.noChoose{
+  background-color: #FFFFFF;
+  color: #29292b3b;
+}
+.btn {
+  border-radius: 80px;
+  height: 80rpx;
+}
+.btn:not([size="mini"]) {
+  position: relative;
+  margin-left: 40px;
+  margin-top: 60rpx;
+  width: 240rpx;
+  text-align: center;
+  justify-content: center;
+}
+.btn2 {
+  border-radius: 80px;
+  height: 80rpx;
+}
+.btn2:not([size="mini"]) {
+  position: relative;
+  margin-right: 40px;
+  margin-top: -80rpx;
+  width: 240rpx;
+  text-align: center;
+  justify-content: center;
+}
+.list_bg:after{
+  border-radius: 25rpx;
+  content: '';
+  width: 94%;
+  margin-left: 3%;
+  height: 150%;
+  position: absolute;
+  z-index: -1;
+  top: 49%;
+  background:#ffffff;
+  display: flex;
+  margin-bottom: 3%;
+}
+.my_card {
+  border-radius: 50rpx;
+}
+.title{
+  color: #C7EDCC;
+}
+
+.question_btn {
+  background-color: transparent;
+  float: right;
+}
+.question_btn::after {
+  border: none;
+  border-color: transparent;
+}
+
+.question_img {
+  position: relative;
+  display:inline-block;
+  top: 4rpx;
+  height: 25rpx;
+  width: 25rpx;
+}
+
+.question_text {
+  margin-left: 10rpx;
+  font-size: 20rpx;
+  letter-spacing: 2rpx;
+  font-weight: 300;
+  color:#bebebe;
+  word-break:keep-all;
+  white-space:nowrap;
+}
+.tips_locate {
+  margin-top: 8rpx;
+}
+
+.isTipsShow{
+  display: block;
+}
+.isTipsHide{
+  display: none;
+}
+.TipsZhezhao{
+  height: 100%;
+  width: 100%;
+  position: fixed;
+  background-color:rgba(0, 0, 0, .3);
+  z-index: 2;
+  top: 0;
+  left: 0;
+}
+
+.tipsZhezhaoContent{
+  padding: 20rpx 20rpx;
+  width: 80%;
+  background: #ffffff;
+  margin: 12% auto;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  position: relative;
+}
+.tips_item {
+  margin-left: 25rpx;
+  margin-top: 20rpx;
+  margin-bottom: 20rpx;
+  display: flex;
+}
+.tips_icon {
+  height: 30rpx;
+  width: 30rpx;
+}
+
+.tips_text {
+  font-size: 24rpx;
+  letter-spacing: 3rpx;
+  margin-left: 15rpx;
+  font-weight: 300;
+}
+
+
+.triangle {
+  margin-left: 380rpx;
+  margin-top: -38rpx;
+  margin-bottom: 20rpx;
+  width: 0rpx;
+  height: 0rpx;
+  border-style: solid;
+  border-color: transparent transparent #ffffff transparent;
+  border-width: 10rpx;
+}

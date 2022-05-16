@@ -1,0 +1,37 @@
+.divide-line {
+  margin-top: 40rpx;
+  justify-content: center;
+  width: 94%;
+  margin-left: 3%;
+  border-bottom: 2rpx solid #ccc;
+}
+.info-block{
+  font-weight: 600;
+  font-size: 33rpx;
+  margin-top: 25rpx;
+  margin-left: 60rpx;
+}
+.tag1{
+  background-color:#ec7070; 
+  color: white;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-top: 7rpx;
+  padding-bottom: 8rpx;
+  border-radius: 10rpx;
+  font-size: 28rpx;
+  font-weight: bolder;
+  letter-spacing: 4rpx;
+}
+.tag2{
+  background-color:#ffe699;
+  color: black;
+  padding-left: 15rpx;
+  padding-right: 15rpx;
+  padding-top: 7rpx;
+  padding-bottom: 8rpx;
+  border-radius: 10rpx; 
+  font-size: 28rpx; 
+  font-weight: bolder; 
+  letter-spacing: 4rpx;
+}

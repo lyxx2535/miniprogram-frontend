@@ -1,0 +1,95 @@
+/* my/pages/edit/edit.wxss */
+page {
+  background-color: #ffffff;
+  position: fixed;
+  left: 0px;
+  top: 0px;
+  height: 100vh;
+  scroll-behavior: smooth;
+  width: 100%;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+.edit_bg {
+  display: relative;
+  flex-direction: column;
+  align-items: center;
+  height: 100%;
+  overflow-y: scroll;
+  z-index: -90;
+}
+.edit_bg:after{
+  content: '';
+  width: 125%;
+  height: 320rpx;
+  position: absolute;
+  z-index: -100;
+  left: -12.5%;
+  top: 0;
+  border-radius: 0 0 100% 100%;
+  background:#e7e6e6;
+}
+.info-block{
+  font-weight: 300;
+  font-size: 33rpx;
+  border-bottom: black 1rpx solid;
+  width: 85%;
+  margin-left: 7.5%;
+}
+.select_box{
+  background: #ffffff;
+  width: 65%;
+  margin-left: 70rpx;
+  position: relative;
+  margin-bottom: 20rpx;
+ }
+ .select{
+  box-sizing: border-box;
+  width: 100%;
+  height: 70rpx;
+  /* border:1px solid #efefef; */
+  border-radius: 8rpx;
+  display: flex;
+  align-items: center;
+  padding: 0 20rpx;
+ }
+ .select_text{
+  letter-spacing: 4rpx;
+  font-size: 30rpx;
+  flex: 1;
+ }
+ .select_img{
+  width: 40rpx;
+  height: 40rpx;
+  float: right;
+  display: block;
+  transition:transform 0.3s;
+ }
+ .select_img_rotate{
+  transform:rotate(180deg); 
+ }
+ .option_box{
+  position: absolute;
+  top: 70rpx;
+  width: 100%;
+  /* border: 1rpx solid #efefef; */
+  box-sizing: border-box;
+  height: 0;
+  overflow-y: auto;
+  border-top: 0;
+  z-index: 999;
+  background: #ffffff;
+  transition: height 0.3s;
+ }
+ .option{
+  margin-left: 8rpx;
+  letter-spacing: 4rpx;
+  display: block;
+  line-height: 40rpx;
+  font-size: 30rpx;
+  border-bottom: 1px solid #efefef;
+  border-left: 1px solid #efefef;
+  border-right: 1px solid #efefef;
+  padding: 10rpx;
+ }

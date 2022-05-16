@@ -1,0 +1,80 @@
+<!--my/pages/my_help/my_help.wxml-->
+<view>
+    <!--提示信息-->
+    <button class="question_btn" style="width: auto;" bindtap='showTips'>
+        <image src="{{QUESTION}}" class="question_img"></image>
+        <text class="question_text">向左滑动编辑帖子</text>
+    </button>
+
+    <!--详细的提示信息-->
+    <view class="TipsZhezhao {{isTipsTrue?'isTipsShow':'isTipsHide'}}" bindtap='hideTips'>
+        <view class='tipsZhezhaoContent'>
+            <view class="triangle"></view>
+            <block wx:for="{{tips}}" wx:for-index="index" wx:key="index">
+            <view class="tips_item">
+                <view><image src="{{item.icon}}" class="tips_icon"></image></view> 
+                <view class="tips_text">{{item.tip}}</view>
+            </view>              
+            </block>
+        </view>
+    </view>
+
+    <!-- 展示“我的帮忙”条目 -->
+    <view class="card {{item.finishStatus=='进行中'?'white':'gray'}}" wx:for="{{renderHelpList}}" wx:key="index">
+        <!-- width：可限定内容在卡片中，重要 -->
+        <l-slide-view height="200" width="675" slide-width="{{item.finishStatus=='进行中'?'360':'240'}}" bind:slideopen="storeId" auto-close="true" data-id="{{item.id}}">
+            <view slot="left" style="display: flex;" bindtap="checkDetail" data-id="{{item.id}}">
+                <view>
+                    <image bindtap="previewImg" data-list="{{item.urlList}}" data-url="{{test_img}}" wx:if="{{item.urlList.length == 0}}" src = "{{test_img}}" class="help_image"></image>
+                    <image bindtap="previewImg"  data-list="{{item.urlList}}" data-url="{{item.urlList[0].imageUrl}}" wx:if="{{item.urlList.length > 0}}" src = "{{item.urlList[0].imageUrl}}" class="help_image"></image>
+                </view>
+            
+                <view class="content">
+                    <view class="help_title">{{item.name}}</view>
+                    <view class = "tag">
+                        <view class="tag1">{{item.helpType}}</view>
+                        <view class="tag2">{{item.tag}}</view>
+                    </view>
+                    <view class = "help_msg">{{item.comment}}</view>
+                    <image src = "{{img_url.solved}}" class="gray {{item.comment?'help_icon':'help_icon_nocomment'}}" wx:if="{{item.finishStatus=='已截止'}}" mode="widthFix" style="width: 150rpx; top: 10rpx; position: relative; background-color: #f8f8f9;"></image>
+                </view>
+            </view>
+            <!-- 根据finishStatis判断显示的icon -->
+            <view slot="right" wx:if="{{item.finishStatus=='进行中'}}" style="display: flex;height: 200rpx;" close="slideClose">
+                <view class="state_all" bindtap="deleteMsg" style="background-color: #e85252;">
+                    <image src="{{img_url.delete}}" class="state_img"></image>
+                </view>
+                <view class="state_all" bindtap="editMsg" style="background-color: #ffc000;">
+                    <image src="{{img_url.redo}}" class="state_img"></image>
+                </view>
+                <view class="state_all" bindtap="overMsg" style="background-color: #00b050; border-radius: 0rpx 10rpx 10rpx 0rpx ;">
+                    <image src="{{img_url.over}}" class="state_img"></image>
+                </view>
+            </view>
+            <view slot="right" wx:if="{{item.finishStatus=='已截止'}}" style="display: flex;height: 200rpx;" close="{{slideClose}}">
+                <view class="state_all" bindtap="deleteMsg" style="background-color: #e85252;">
+                    <image src="{{img_url.delete}}" class="state_img"></image>
+                </view>
+                <view class="state_all" bindtap="editMsg" style="background-color: #ffc000; border-radius: 0rpx 10rpx 10rpx 0rpx ;">
+                    <image src="{{img_url.redo}}" class="state_img"></image>
+                </view>
+            </view>
+        </l-slide-view>
+
+        <!-- 点击删除后的弹出框 -->
+        <view class="drawer_screen" bindtap="confirmDelete" data-status="close" data-close="true" wx:if="{{clickDelete}}"></view> 
+        <view class="drawer_box" wx:if="{{clickDelete}}"> 
+            <view class="drawer_title">是否确认删除该条帮助消息？</view> 
+            <view class="btn" bindtap="confirmDelete" data-status="close" data-close="false">确定</view> 
+            <view class="btn" bindtap="deleteMsg" data-status="close" data-close="true">取消</view> 
+        </view>
+         <!-- 点击完成后的弹出框 -->
+         <view class="drawer_screen" bindtap="confirmOver" data-status="close" data-close="true" wx:if="{{clickOver}}"></view> 
+        <view class="drawer_box" wx:if="{{clickOver}}"> 
+            <view class="drawer_title">是否确认截止该条帮助消息？</view> 
+            <view class="btn" bindtap="confirmOver" data-status="close" data-close="false">确定</view> 
+            <view class="btn" bindtap="overMsg" data-status="close" data-close="true">取消</view> 
+        </view>
+    
+    </view>
+</view>

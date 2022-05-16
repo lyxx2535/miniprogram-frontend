@@ -1,0 +1,237 @@
+.question_btn {
+    background-color: transparent;
+    float: right;
+}
+.question_btn::after {
+    border: none;
+    border-color: transparent;
+  }
+
+.question_img {
+    position: relative;
+    display:inline-block;
+    top: 4rpx;
+    height: 25rpx;
+    width: 25rpx;
+}
+
+.question_text {
+    margin-left: 10rpx;
+    font-size: 20rpx;
+    letter-spacing: 2rpx;
+    font-weight: 300;
+    color:#bebebe;
+    word-break:keep-all;
+    white-space:nowrap;
+}
+
+.isTipsShow{
+    display: block;
+}
+.isTipsHide{
+    display: none;
+}
+.TipsZhezhao{
+    height: 100%;
+    width: 100%;
+    position: fixed;
+    background-color:rgba(0, 0, 0, .3);
+    z-index: 2;
+    top: 0;
+    left: 0;
+}
+
+.tipsZhezhaoContent{
+    padding: 20rpx 20rpx;
+    width: 80%;
+    background: #ffffff;
+    margin: 12% auto;
+    border-radius: 20rpx;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    position: relative;
+}
+.tips_item {
+    margin-left: 25rpx;
+    margin-top: 20rpx;
+    margin-bottom: 20rpx;
+    display: flex;
+}
+.tips_icon {
+    height: 30rpx;
+    width: 30rpx;
+}
+
+.tips_text {
+    font-size: 24rpx;
+    letter-spacing: 3rpx;
+    margin-left: 15rpx;
+    font-weight: 300;
+}
+
+.triangle {
+    margin-left: 430rpx;
+    margin-top: -38rpx;
+    margin-bottom: 20rpx;
+    width: 0rpx;
+    height: 0rpx;
+    border-style: solid;
+    border-color: transparent transparent #ffffff transparent;
+    border-width: 10rpx;
+}
+/* 卡片相关 */
+.card {
+    display: flex;
+    flex-direction: column;
+    margin-top: 30rpx;
+    margin-bottom: 10rpx;
+    border-radius: 10rpx;
+    /* border: 5rpx solid #d0cece; */
+    width: 90%;
+    margin-left: 5%;
+    height: 200rpx;
+    
+    
+}
+.white{
+    background-color: #ffffff;
+}
+.gray{
+    background-color: #ffffff65;
+}
+.content {
+    display: flex;
+    flex-direction: column;
+    margin-left: 40rpx;
+}
+.help_image {
+    display: inline-block;
+    height: 150rpx;
+    width: 150rpx;
+    background-color: black;
+    border-radius: 10rpx;
+    border-color: black;
+    border-width: 10rpx; 
+    margin: 20rpx 0rpx 20rpx 20rpx;
+}
+.help_icon_nocomment {
+    display: inline-block;
+    height: 120rpx;
+    width: 120rpx;
+    border-width: 10rpx;
+    margin-left: 250rpx;
+    margin-top: -90rpx;
+}
+.help_icon {
+    display: inline-block;
+    height: 120rpx;
+    width: 120rpx;
+    border-width: 10rpx;
+    margin-left: 250rpx;
+    margin-top: -120rpx;
+}
+.help_title {
+    white-space: nowrap;
+    overflow: hidden;
+    font-size: 30rpx;
+    font-weight: 700;
+    letter-spacing: 8rpx;
+    color: #3d3d3d;
+    margin-top: 20rpx;
+}
+.tag{
+    display: flex;
+    height: 30rpx;
+    margin-top: 15rpx;
+}
+.tag1{
+    display: inline-block;
+    background-color:#ec7070; 
+    color: white;
+    padding-left: 3rpx;
+    padding-right: 3rpx;
+    padding-top: 1rpx;
+    padding-bottom: 1rpx;
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    font-weight: bold;
+    letter-spacing: 4rpx;
+  }
+  .tag2{
+    background-color:#ffe699;
+    color: black;
+    padding-left: 3rpx;
+    padding-right: 3rpx;
+    padding-top: 1rpx;
+    padding-bottom: 1rpx;
+    border-radius: 4rpx;
+    font-size: 20rpx;
+    font-weight: bold;
+    letter-spacing: 4rpx;
+    margin-left: 10rpx;
+  }
+  .help_msg {
+    font-size: 20rpx;
+    font-weight: 300;
+    letter-spacing: 4rpx;
+    margin-top: 15rpx;
+    width: 270rpx;
+    white-space: nowrap;
+    overflow: hidden;
+  }
+  .state_all {
+      
+      display: flex;
+      flex-direction: column;
+      width: 120rpx;
+
+  }
+  .state_img {
+      display: flex;
+      width: 50rpx;
+      height: 50rpx;
+      margin-left: 35rpx;
+      margin-top: 75rpx;
+  }
+  /* 弹出确认表单 */
+ .drawer_screen { 
+    width: 100%; 
+    height: 100%; 
+    position: fixed; 
+    top: 0; 
+    left: 0; 
+    z-index: 1000; 
+    background: #000; 
+    opacity: 0.2; 
+    overflow: hidden; 
+   } 
+    /*content*/
+ .drawer_box { 
+    width: 650rpx; 
+    overflow: hidden; 
+    position: fixed; 
+    top: 50%; 
+    left: 0; 
+    z-index: 1001; 
+    background: #FAFAFA; 
+    margin: -150px 50rpx 0 50rpx; 
+    border-radius: 10rpx; 
+   } 
+   .drawer_title{ 
+    padding:15px; 
+    text-align: center; 
+    font-size: 32rpx;
+    font-weight: 1000;
+    letter-spacing:8rpx;
+   } 
+   .btn{
+    margin-top: 10px;
+    padding: 10px; 
+    font: 20px "microsoft yahei"; 
+    text-align: center; 
+    border-top: 1px solid #E8E8EA; 
+    font-size: 32rpx;
+    /* font-weight: 1000; */
+    letter-spacing:20rpx;
+   } 

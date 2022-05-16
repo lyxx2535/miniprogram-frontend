@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "l-skeleton": "/miniprogram_npm/lin-ui/skeleton/index"
+  },
+  "disableScroll":true
+}

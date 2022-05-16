@@ -1,0 +1,60 @@
+  <!--提示信息-->
+  <view class="tips_locate">
+    <button class="question_btn" style="width: auto;" bindtap='showTips'>
+        <image src="{{QUESTION}}" class="question_img"></image>
+        <text class="question_text">不同颜色代表不同状态</text>
+    </button>
+
+    <!--详细的提示信息-->
+    <view class="TipsZhezhao {{isTipsTrue?'isTipsShow':'isTipsHide'}}" bindtap='hideTips'>
+        <view class='tipsZhezhaoContent'>
+            <view class="triangle"></view>
+            <block wx:for="{{tips}}" wx:for-index="index" wx:key="index">
+            <view class="tips_item">
+                <view class="tips_text">{{item.tip}}</view>
+            </view>              
+            </block>
+
+        </view>
+    </view>
+
+</view>
+<l-skeleton
+  style="display: inline-block; margin-top: 5rpx;"
+  loading="{{isShowSkeleton}}"
+  paragraph="{{true}}"
+  title="{{true}}"
+  avatar="{{false}}"
+  avatar-size="100rpx"
+  avatar-shape="circle"
+  rows="8"
+  active="{{true}}"
+>
+  <view >
+
+    <!-- 日历 -->
+    <view class="calendar_bg">
+      <calendar config="{{calendarConfig}}"
+      bind:afterCalendarRender="afterCalendarRender"
+      bind:whenChangeMonth="afterCalendarRender"
+      id="calendar"/>
+    </view>
+    <view class="divide_line"></view>
+
+    <button class="btn {{!finished?'choose':'noChoose'}}" bindtap="reportMedia1">未完成</button>
+    <button class="btn2 {{finished?'choose':'noChoose'}}" bindtap="reportMedia2">已完成</button>
+
+    <view class="mt-20px" style="margin-bottom: 20px;" wx:for="{{!finished ? failList : successList}}" wx:key="index" id="item{{index + 1}}">
+      <l-card type="avatar" image="{{img_url.notice}}" title="{{item.name}}">
+        <view class="avter-content">
+          <l-steps  dot="{{true}}" color="#464244" active-index="-1">
+            <l-step icon="{{item.status.appointment?'success':'error'}}" title="预约" color="#464244"></l-step>
+            <l-step title="检测" icon="{{item.status.detection?'success':'error'}}"></l-step>
+            <l-step icon="{{item.status.report?'success':'error'}}" title="上报" ></l-step>
+          </l-steps>
+        </view>
+      </l-card>
+    </view>
+
+  </view>
+</l-skeleton>

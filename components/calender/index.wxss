@@ -1,0 +1,117 @@
+@import './theme/iconfont.wxss';
+@import './theme/theme-default.wxss';
+
+.b {
+    display: flex;
+}
+
+.lr {
+    flex-direction: row;
+}
+
+.tb {
+    flex-direction: column;
+}
+
+.pc {
+    justify-content: center;
+}
+
+.ac {
+    align-items: center;
+}
+
+.cc {
+    align-items: center;
+    justify-content: center;
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.flex {
+    flex-grow: 1;
+}
+.white-color {
+    color: #fff;
+}
+
+.fs24 {
+    font-size: 24rpx;
+}
+
+.fs28 {
+    font-size: 28rpx;
+}
+
+.fs32 {
+    font-size: 32rpx;
+}
+
+.fs36 {
+    font-size: 36rpx;
+}
+
+.calendar {
+    width: 80%;
+    height: 50%;
+    position: relative;
+    /* box-sizing: border-box; */
+}
+
+/* 日历操作栏 */
+
+.handle {
+    height: 95rpx;
+    position: relative;
+}
+
+.prev-handle,
+.next-handle {
+    padding: 20rpx;
+}
+
+.date-in-handle {
+    height: 50rpx;
+}
+
+/* 星期栏 */
+
+.weeks {
+    height: 40rpx;
+    line-height: 15rpx;
+    opacity: 0.5;
+}
+
+.week {
+    text-align: center;
+}
+
+.grid,
+.week {
+    width: 14.286014285714286%;
+}
+
+.date-wrap {
+    width: 100%;
+    height: 45rpx;
+    position: relative;
+    left: 0;
+    top: 0;
+}
+
+.date {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 60rpx;
+    height: 60rpx;
+    text-align: center;
+    line-height: 45rpx;
+    font-size: 26rpx;
+    font-weight: 200;
+    border-radius: 50%;
+    transition: 1e10s;
+}
+

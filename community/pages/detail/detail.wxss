@@ -1,0 +1,37 @@
+@import '../forum.wxss';
+.chat-btn{
+  width: 44vw;
+  height: 80rpx;
+  border: 2rpx solid #ccc;
+  border-radius: 30px;
+  left: 395rpx;
+  margin-top: 40rpx;
+}
+.user-avartar{
+  margin-left: 40rpx;
+  height: 100%;
+  border-radius: 50%;
+  margin-top: 8rpx;
+}
+.user-info{
+  margin-top: 12rpx;
+  margin-left: 40rpx;
+}
+
+.info-text{
+  font-weight: normal;
+  letter-spacing: 2rpx;
+}
+.img-block{
+  margin-left: 45rpx; 
+  margin-top: 30rpx; 
+  width: calc(100vw - 90rpx);
+}
+.preview-img{
+  width: 300rpx;
+  height: 300rpx;
+  display: inline-block; 
+  margin-left: 20rpx;
+  border-radius: 10rpx;
+  margin-top: 15rpx;
+}
